@@ -12,6 +12,7 @@ class GUIController {
         gui = new GUI();
     }
 
+
     public static GUIController getInstance() {
         if (guiControllerObject == null) {
             guiControllerObject = new GUIController();
