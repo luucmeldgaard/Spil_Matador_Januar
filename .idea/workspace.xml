@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55785571-7249-47c2-8b26-a12d9a939463" name="Changes" comment="Terning Implementeret igen">
-      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/DiceCup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/DiceCup.java" afterDir="false" />
+    <list default="true" id="7e3cf828-4692-4aaa-8bdb-60ad7025e652" name="Changes" comment="DiceCup implementeret">
       <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
