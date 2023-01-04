@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55785571-7249-47c2-8b26-a12d9a939463" name="Changes" comment="" />
+    <list default="true" id="55785571-7249-47c2-8b26-a12d9a939463" name="Changes" comment="Test på første commit i ny branch">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameState.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="development" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,8 +45,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672850485778</updated>
-      <workItem from="1672851159760" duration="353000" />
+      <workItem from="1672851159760" duration="1622000" />
     </task>
+    <task id="LOCAL-00001" summary="Lavet development branch">
+      <created>1672851535162</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672851535162</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Test på første commit i ny branch">
+      <created>1672851714708</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1672851714708</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -59,5 +77,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Lavet development branch" />
+    <MESSAGE value="Test på første commit i ny branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test på første commit i ny branch" />
   </component>
 </project>
