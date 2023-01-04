@@ -14,9 +14,7 @@ public class Player {
         this.position = position;
     }
 
-    public int rollDie() {
-        return diceCup.roll();
-    }
+    public int rollDie() { return diceCup.roll(); }
 
     //Return name, color and position
     public String getname(){
