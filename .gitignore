@@ -14,7 +14,8 @@ target/
 *.class
 *.xml
 .idea/workspace.xml
-workspace.xml
+.idea/shelf/
+
 
 ### Eclipse ###
 .apt_generated
@@ -40,3 +41,4 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/.idea/shelf/
