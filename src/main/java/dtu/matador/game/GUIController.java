@@ -1,6 +1,4 @@
-package org.dtu.matador.game;
-
-import gui_main.GUI;
+package dtu.matador.game;
 
 class GUIController {
 

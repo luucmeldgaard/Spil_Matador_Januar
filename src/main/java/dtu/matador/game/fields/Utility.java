@@ -1,6 +1,6 @@
-package org.dtu.matador.game.fields;
+package dtu.matador.game.fields;
 
-import org.dtu.matador.game.Property;
+import dtu.matador.game.Property;
 
 public class Utility extends Property {
 

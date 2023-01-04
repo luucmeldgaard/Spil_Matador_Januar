@@ -1,7 +1,6 @@
-package org.dtu.matador.game.fields;
+package dtu.matador.game.fields;
 
-import org.dtu.matador.game.FieldSpaces;
-import org.dtu.matador.game.NonPurchaseableFields;
+import dtu.matador.game.NonPurchaseableFields;
 
 
 public class StartField extends NonPurchaseableFields {

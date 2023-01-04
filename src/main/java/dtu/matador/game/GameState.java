@@ -1,4 +1,4 @@
-package org.dtu.matador.game;
+package dtu.matador.game;
 
 public class GameState {
 
