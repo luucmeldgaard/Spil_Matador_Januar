@@ -7,8 +7,8 @@ public class Die {
 
 //Each dice will show a number between 1 and 6.
     public int roll(int sides) {
-        Random random = new Random();
-        return random.nextInt(0,6)+1;
+        Random rand = new Random();
+        return rand.nextInt(0,6)+1;
     }
 
 }
