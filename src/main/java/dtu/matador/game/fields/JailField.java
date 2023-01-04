@@ -1,7 +1,7 @@
 package dtu.matador.game.fields;
 
-import dtu.matador.game.NonPurchaseableFields;
+import dtu.matador.game.NonPurchasableFields;
 
-public class JailField extends NonPurchaseableFields {
+public class JailField extends NonPurchasableFields {
 
 }
