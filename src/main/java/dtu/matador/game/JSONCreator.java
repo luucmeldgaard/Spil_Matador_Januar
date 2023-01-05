@@ -12,7 +12,6 @@ public class JSONCreator {
 
     public static void main(String[] args) throws IOException {
 
-
         Scanner scan = new Scanner(System.in);
         JSONArray fieldList = new JSONArray();
 
