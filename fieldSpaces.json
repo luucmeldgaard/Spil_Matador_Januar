@@ -1,0 +1,46 @@
+{
+  "board": [
+    {
+      "owner": "dsfa",
+      "price": "300",
+      "pawnForAmount": "dsaf",
+      "buildPrice": "dfs",
+      "neighborhood": "fdska",
+      "position": "0",
+      "rent": "400",
+      "title": "dfs",
+      "fieldType": "property",
+      "subText": "dsf",
+      "color_1": "",
+      "color_2": "df"
+    },
+    {
+      "owner": "fd",
+      "price": "dasf",
+      "pawnForAmount": "dfs",
+      "buildPrice": "dfsa",
+      "neighborhood": "dsfa",
+      "position": "1",
+      "rent": "fsaddfsa",
+      "title": "safd",
+      "fieldType": "property",
+      "subText": "sdfsa",
+      "color_1": "",
+      "color_2": "d"
+    },
+    {
+      "owner": "adfsa",
+      "price": "dfsa",
+      "pawnForAmount": "dfas",
+      "buildPrice": "dfas",
+      "neighborhood": "dfas",
+      "position": "2",
+      "rent": "dfs",
+      "title": "dsfa",
+      "fieldType": "property",
+      "subText": "dsf",
+      "color_1": "",
+      "color_2": "f"
+    }
+  ]
+}
