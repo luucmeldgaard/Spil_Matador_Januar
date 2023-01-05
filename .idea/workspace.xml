@@ -4,23 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55785571-7249-47c2-8b26-a12d9a939463" name="Changes" comment="GUIController class has now been created">
-      <change afterPath="$PROJECT_DIR$/src/test/java/dtu/matador/game/DiceCupTest.java" afterDir="false" />
+    <list default="true" id="55785571-7249-47c2-8b26-a12d9a939463" name="Changes" comment="Added workspace.xml to .gitignore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/NonPurchaseableFields.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/NonPurchaseableFields.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JUnit5 Test Class" />
-        <option value="JUnit4 Test Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -41,24 +32,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": ""
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
   }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="dtu.matador.game" />
-    </key>
-  </component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -67,51 +47,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672850485778</updated>
-      <workItem from="1672851159760" duration="1622000" />
+      <workItem from="1672851159760" duration="353000" />
+      <workItem from="1672852618490" duration="302000" />
     </task>
-    <task id="LOCAL-00001" summary="Lavet development branch">
-      <created>1672851535162</created>
+    <task id="LOCAL-00001" summary="Terning implementeret">
+      <created>1672853831020</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1672851535162</updated>
+      <updated>1672853831020</updated>
     </task>
-    <task id="LOCAL-00002" summary="Test på første commit i ny branch">
-      <created>1672851714708</created>
+    <task id="LOCAL-00002" summary="Terning Implementeret igen">
+      <created>1672853928739</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1672851714708</updated>
+      <updated>1672853928739</updated>
     </task>
-    <task id="LOCAL-00003" summary="Gamestate is now initialized in GameController.java">
-      <created>1672854727179</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1672854727180</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Gamestate is now initialized in GameController.java">
-      <created>1672854780728</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1672854780728</updated>
-    </task>
-    <task id="LOCAL-00005" summary="GUIController class has now been created">
-      <created>1672855390626</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1672855390626</updated>
-    </task>
-    <task id="LOCAL-00006" summary="GUIController class has now been created">
-      <created>1672855619465</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1672855619465</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,10 +82,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Lavet development branch" />
-    <MESSAGE value="Test på første commit i ny branch" />
-    <MESSAGE value="Gamestate is now initialized in GameController.java" />
-    <MESSAGE value="GUIController class has now been created" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUIController class has now been created" />
+    <MESSAGE value="Terning Implementeret igen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Terning Implementeret igen" />
   </component>
 </project>
