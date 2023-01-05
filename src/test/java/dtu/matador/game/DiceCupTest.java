@@ -17,5 +17,6 @@ public class DiceCupTest {
             Assert.assertTrue(result >= 2 && result <= 12);
         }
 
+
     }
 }
