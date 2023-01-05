@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55785571-7249-47c2-8b26-a12d9a939463" name="Changes" comment="Added workspace.xml to .gitignore">
+    <list default="true" id="55785571-7249-47c2-8b26-a12d9a939463" name="Changes" comment="First commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/NonPurchaseableFields.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/NonPurchaseableFields.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/NonPurchasableFields.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/NonPurchasableFields.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/fields/JailField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/fields/JailField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/fields/StartField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/fields/StartField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/fields/TaxField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/fields/TaxField.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +19,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="development" />
+        <entry key="$PROJECT_DIR$" value="feature_fieldcontroller" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -25,9 +28,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2JryQvt2xs3qWn6sKVfEsRjBCmR" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <OptionsSetting value="false" id="Update" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -36,9 +37,17 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/LuucM/IdeaProjects/Spil_Matador/src/main/java/dtu/matador/game/fields&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LuucM\IdeaProjects\Spil_Matador\src\main\java\dtu\matador\game\fields" />
+      <recent name="C:\Users\LuucM\IdeaProjects\Spil_Matador\src\main\java\dtu\matador\game" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -47,24 +56,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672850485778</updated>
-      <workItem from="1672851159760" duration="353000" />
-      <workItem from="1672852618490" duration="302000" />
+      <workItem from="1672850487086" duration="1110000" />
     </task>
-    <task id="LOCAL-00001" summary="Terning implementeret">
-      <created>1672853831020</created>
+    <task id="LOCAL-00001" summary="First commit">
+      <created>1672850916534</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1672853831020</updated>
+      <updated>1672850916534</updated>
     </task>
-    <task id="LOCAL-00002" summary="Terning Implementeret igen">
-      <created>1672853928739</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1672853928739</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -82,7 +83,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Terning Implementeret igen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Terning Implementeret igen" />
+    <MESSAGE value="First commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
   </component>
 </project>
