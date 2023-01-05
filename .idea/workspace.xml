@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e3cf828-4692-4aaa-8bdb-60ad7025e652" name="Changes" comment="DiceCup implementeret">
-      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/Player.java" afterDir="false" />
+    <list default="true" id="55785571-7249-47c2-8b26-a12d9a939463" name="Changes" comment="Added workspace.xml to .gitignore">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/NonPurchaseableFields.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/NonPurchaseableFields.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature_abstractproperty" />
+        <entry key="$PROJECT_DIR$" value="development" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
