@@ -12,26 +12,55 @@ import java.util.Map;
 
 public class FieldLoader {
 
-    Map<String, Map<String, String>> boardMap;
+    Map<String, String> boardMap;
     Map<Integer, String> positionalMap;
-    Map<String, String> colorMap;
 
 
     public FieldLoader(String selectedBoard) {
 
         this.boardMap = new HashMap<>();
         this.positionalMap = new HashMap<>();
-        this.colorMap = new HashMap<>();
 
         this.boardMap = JSONtoMapBoard(selectedBoard + ".json");
-        for (Map<String, String> fieldObject : this.boardMap.values()) {
-            this.positionalMap.put(Integer.parseInt(fieldObject.get("position")), fieldObject.get("title"));
+
+    }
+    private Map<String, String> JSONtoMapBoard(String filename) {
+
+        Map<String, String> JSONParsedMap = new HashMap<>();
+
+        // Get information from JSON and convert to a readable Map
+
+        JSONParser jsonParser = new JSONParser();
+        try (FileReader fieldFileReader = new FileReader(filename)) {
+            Object obj = jsonParser.parse(fieldFileReader);
+
+            String objData = obj.toString();
+            String[] rawObjDataArray = objData.split("}");
+
+            String fieldString;
+            int iteration = 0;
+            String[] objDataArray = new String[rawObjDataArray.length];
+
+            for (String fieldObject : rawObjDataArray) {
+                fieldString = fieldObject;
+                fieldString = fieldString.replace("[", "");
+                fieldString = fieldString.replace("{\"board\":[", "");
+                fieldString = fieldString.replace("]", "");
+                objDataArray[iteration] = fieldString;
+                iteration += 1;
+            }
+
+            for (int i = 0; i < objDataArray.length; i++) {
+                System.out.println(objDataArray[i]);
+            }
+
+        }
+        catch (IOException | ParseException ex) {
+            throw new RuntimeException(ex);
         }
 
+        return JSONParsedMap;
     }
-    private Map<String, Map<String, String>> JSONtoMapBoard(String filename) {
 
-        return new HashMap<>();
-    }
 
 }

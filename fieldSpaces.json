@@ -1,46 +1,46 @@
 {
   "board": [
     {
-      "owner": "dsfa",
-      "price": "300",
-      "pawnForAmount": "dsaf",
-      "buildPrice": "dfs",
-      "neighborhood": "fdska",
+      "owner": "",
+      "price": "3000",
+      "pawnForAmount": "200",
+      "buildPrice": "500",
+      "neighborhood": "blå",
       "position": "0",
       "rent": "400",
-      "title": "dfs",
+      "title": "Munkestræde",
       "fieldType": "property",
-      "subText": "dsf",
-      "color_1": "",
-      "color_2": "df"
+      "subText": "text",
+      "color_1": "blå",
+      "color_2": ""
     },
     {
-      "owner": "fd",
-      "price": "dasf",
-      "pawnForAmount": "dfs",
-      "buildPrice": "dfsa",
-      "neighborhood": "dsfa",
+      "owner": "",
+      "price": "400",
+      "pawnForAmount": "150",
+      "buildPrice": "600",
+      "neighborhood": "red",
       "position": "1",
-      "rent": "fsaddfsa",
-      "title": "safd",
+      "rent": "300",
+      "title": "Junialle",
       "fieldType": "property",
-      "subText": "sdfsa",
-      "color_1": "",
-      "color_2": "d"
+      "subText": "text",
+      "color_1": "yellow",
+      "color_2": ""
     },
     {
-      "owner": "adfsa",
-      "price": "dfsa",
-      "pawnForAmount": "dfas",
-      "buildPrice": "dfas",
-      "neighborhood": "dfas",
+      "owner": "",
+      "price": "400",
+      "pawnForAmount": "200",
+      "buildPrice": "400",
+      "neighborhood": "yellow",
       "position": "2",
-      "rent": "dfs",
-      "title": "dsfa",
+      "rent": "400",
+      "title": "Bankevej",
       "fieldType": "property",
-      "subText": "dsf",
-      "color_1": "",
-      "color_2": "f"
+      "subText": "text",
+      "color_1": "yellow",
+      "color_2": ""
     }
   ]
 }

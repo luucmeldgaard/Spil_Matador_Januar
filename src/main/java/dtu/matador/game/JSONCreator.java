@@ -19,7 +19,6 @@ public class JSONCreator {
         int iteration = 0;
         while (!lastScannedLine.equals("end")) {
             JSONObject fieldDetails = new JSONObject();
-            JSONObject fieldObject = new JSONObject();
             ArrayList<String> allowableFieldTypes = new ArrayList<>();
             allowableFieldTypes.add("p");
             allowableFieldTypes.add("c");
@@ -89,8 +88,6 @@ public class JSONCreator {
                 fieldDetails.put("color_1", scan.nextLine());
                 System.out.print("Color 2: ");
                 fieldDetails.put("color_2", scan.nextLine());
-
-                fieldObject.put(iteration, fieldDetails);
 
                 fieldList.add(fieldDetails);
 
