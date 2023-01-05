@@ -1,0 +1,451 @@
+----CLASS DIAGRAM 0.1----
+
+@startuml
+
+skinparam groupInheritance 2
+
+
+class GameState{}
+note left: Stores and logs all game-data
+
+class GameController {}
+note left: processes requests
+
+class GUIController {
+- GUIPlayer : GUI_Player:
++ CreateGUIBoard() : GUI
++ displaySetupGame() : GUI
++ prompt() : GUI
++ movePlayerForward() : GUI
++ MoveTo() : GUI
++ displayDieRoll() : GUI
++ displayChanceCard() : GUI
++ displayBuyOption() : GUI
+
+
+
+}
+
+class GUICreator {
+GUICreator(fieldNames: String[], fieldTitles: String[],
+fieldSubTexts: String[]: fieldColors: String[])
+}
+
+abstract class FieldSpace {
++ fieldName : String
++ fieldTitle : String
++ fieldSubText : String
++ color : Color
+}
+
+class Property {
+- streetHouses : int
+- streetHotels : int
+- visitPrice : int[]
+- pledged : Boolean
+}
+
+class PropertyArchive {
+- streetGroups : Property[][]
++ setOwner() : String
++ checkIfAbleToBuild() : boolean
++ buildHousing() : void
++ pledge() : void
++ updateGameState() : void
+}
+
+class Player {
+- name : String
+- balance : int
+- jailed : boolean
++ addBalance() : void
+}
+
+class DiceCup {
+- sides : int
+- numDies : int
++ rollCup() : int
+}
+
+class Die {
++roll() : int
+}
+
+GameState -- GameController : <<stores>>
+
+GameController .|> GUIController
+
+GUICreator  -- GUIController : <<Uses>>
+
+FieldSpace - GameController
+
+package "Non-Ownable Field Types" as Non<<Rectangle>> {
+class StartField {
+- StartBonusAmount : int
+- addBonus()
+- promptStartMessage() : void
+}
+class PrisonField {
+- promptMessageJailed() : void
+- promptMessageVisitor() : void
+- rollWayOut() : void
+
+}
+class ChanceField {
+- chanceCards : Map[][]
+- Events() : void
+}
+class ParkingField {
+- promptFreeParking() : void
+}
+class TaxField {
+- taxAmount : int
+- payTax() : void
+- promptTaxMessage() : void
+}
+}
+
+
+Property -|> FieldSpace
+(Property, FieldSpace) .. PropertyArchive
+FieldSpace <|---- Non
+
+GameController -- Player
+
+Player -- DiceCup
+
+DiceCup - Die : <<rolls>>
+
+
+@enduml
+
+
+
+
+
+
+----CLASS DIAGRAM V0.2----
+
+@startuml
+
+skinparam groupInheritance 2
+
+
+class GameState{
+fieldMap : Map<String, Map<String, String>>
+players : Player[]
+lastDiceCupRoll : int
+lastSuccesfulGUIInstance: GUI
+fieldLoaderFile : String
+colorLoaderFile : String
+}
+note left: Stores and logs all game-data
+
+class GameController {}
+note left: processes requests
+
+class GUIController {
+- GUIPlayer : GUI_Player:
++ CreateGUIBoard() : GUI
++ displaySetupGame() : GUI
++ prompt() : GUI
++ movePlayerForward() : GUI
++ MoveTo() : GUI
++ displayDieRoll() : GUI
++ displayChanceCard() : GUI
++ displayBuyOption() : GUI
+}
+
+class GUICreator {
+GUICreator(fieldNames: String[], fieldTitles: String[],
+fieldSubTexts: String[]: fieldColors: String[])
+}
+
+abstract class FieldSpace {
++ fieldName : String
++ fieldTitle : String
++ fieldSubText : String
++ description : String
++ color_1 : Color
++ color_2 : Color
+}
+
+class FieldController {
+getField()
+getFieldMap()
+stateUpdate()
+}
+
+class FieldLoader {
+JSONToMap_Fields()
+}
+
+class ColorSystem {
+JSONToMap_Colors()
+}
+
+interface Property {}
+
+package "Ownable Field Types" as Ownable<<Rectangle>> {
+class street {
+- streetHouses : int
+- streetHotels : int
+- visitPrice : int[]
+- pledged : Boolean
+}
+
+class railroad {
+- streetHouses : int
+- streetHotels : int
+- visitPrice : int[]
+- pledged : Boolean
+}
+
+class utility {
+- streetHouses : int
+- streetHotels : int
+- visitPrice : int[]
+- pledged : Boolean
+}
+}
+
+
+class PropertyDeeds {
+- streetGroups : Property[][]
++ setOwner() : String
++ checkIfAbleToBuild() : boolean
++ buildHousing() : void
++ pledge() : void
++ updateGameState() : void
+}
+
+class Player {
+- name : String
+- balance : int
+- jailed : boolean
++ addBalance() : void
+}
+
+class DiceCup {
+- sides : int
+- numDies : int
++ rollCup() : int
+}
+
+class Die {
++roll() : int
+}
+
+GameState -- GameController : <<stores>>
+
+GameController - GUIController
+
+GUICreator  -- GUIController : <<Uses>>
+
+GUIController - ColorSystem
+
+FieldSpace - FieldController
+FieldController -- FieldLoader
+FieldController - GameController
+
+package "Non-Ownable Field Types" as Non<<Rectangle>> {
+class StartField {
+- StartBonusAmount : int
+- addBonus()
+- promptStartMessage() : void
+}
+class PrisonField {
+- promptMessageJailed() : void
+- promptMessageVisitor() : void
+- rollWayOut() : void
+
+}
+class ChanceField {
+- chanceCards : Map[][]
+- Events() : void
+}
+class ParkingField {
+- promptFreeParking() : void
+}
+class TaxField {
+- taxAmount : int
+- payTax() : void
+- promptTaxMessage() : void
+}
+}
+
+Property <|-- Ownable
+
+Property -|> FieldSpace
+(Property, FieldSpace) .. PropertyDeeds
+FieldSpace <|---- Non
+
+GameController -- Player
+
+Player -- DiceCup
+
+DiceCup - Die : <<rolls>>
+
+
+@enduml
+
+
+
+-----------v3_________________
+
+
+@startuml
+
+skinparam groupInheritance 2
+
+
+class GameState{
+fieldMap : Map<String, Map<String, String>>
+playerArray : Array
+lastDiceCupRoll : int
+lastSuccesfulGUIInstance: GUI
+fieldLoaderFile : String
+colorLoaderFile : String
++ menu()
++ start()
++ playRound()
++ end()
+
+}
+note left: Stores and logs all game-data
+
+class GameController {}
+note left: processes requests
+
+class GUIController {
+- GUIPlayer : GUI_Player:
++ CreateGUIBoard() : GUI
++ displaySetupGame() : GUI
++ prompt() : GUI
++ movePlayerForward() : GUI
++ MoveTo() : GUI
++ displayDieRoll() : GUI
++ displayChanceCard() : GUI
++ displayBuyOption() : GUI
+}
+
+class GUICreator {
+GUICreator(fieldNames: String[], fieldTitles: String[],
+fieldSubTexts: String[]: fieldColors: String[])
+}
+
+abstract class FieldSpace {
++ fieldName : String
++ fieldTitle : String
++ fieldSubText : String
++ description : String
++ color_1 : Color
++ color_2 : Color
+}
+
+class FieldController {
+getField()
+getFieldMap()
+}
+
+class FieldLoader {
+JSONToMap_Fields()
+}
+
+
+interface Property {}
+
+package "Ownable Field Types" as Ownable<<Rectangle>> {
+class street {
+- streetHouses : int
+- streetHotels : int
+- visitPrice : int[]
+- pledged : Boolean
+}
+
+class railroad {
+- streetHouses : int
+- streetHotels : int
+- visitPrice : int[]
+- pledged : Boolean
+}
+
+class utility {
+- streetHouses : int
+- streetHotels : int
+- visitPrice : int[]
+- pledged : Boolean
+}
+}
+
+
+
+class Player {
+- name : String
+- balance : int
+- jailed : boolean
++ addBalance() : void
++ setBalance() : void
+}
+
+class DiceCup {
+- sides : int
+- numDies : int
++ rollCup() : int
+}
+
+class Die {
++roll() : int
+}
+
+GameState -- GameController : <<stores>>
+
+GameController - GUIController
+
+GUICreator  -- GUIController : <<Uses>>
+
+
+FieldSpace - FieldController
+FieldController -- FieldLoader
+FieldController - GameController
+
+package "Non-Ownable Field Types" as Non<<Rectangle>> {
+class StartField {
+- StartBonusAmount : int
+- addBonus()
+- promptStartMessage() : void
+}
+class PrisonField {
+- promptMessageJailed() : void
+- promptMessageVisitor() : void
+- rollWayOut() : void
+
+}
+class ChanceField {
+- chanceCards : Map[][]
+- Events() : void
+}
+class ParkingField {
+- promptFreeParking() : void
+}
+class TaxField {
+- taxAmount : int
+- payTax() : void
+- promptTaxMessage() : void
+}
+}
+
+Property <|-- Ownable
+
+Property -|> FieldSpace
+
+FieldSpace <|---- Non
+
+GameController -- Player
+
+Player -- DiceCup
+
+DiceCup - Die : <<rolls>>
+
+
+@enduml
