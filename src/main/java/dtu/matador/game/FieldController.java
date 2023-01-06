@@ -1,13 +1,24 @@
 package dtu.matador.game;
 
-import org.json.simple.parser.ParseException;
-
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class FieldController {
 
-    public static void main(String[] args) throws IOException, ParseException {
-        FieldLoader loader = new FieldLoader("fieldSpaces");
+    ArrayList<FieldSpaces> fields;
+    FieldLoader fieldLoader;
+    Map<String, Map<String, String>> fieldMap;
+
+
+
+    public FieldController(String selectedBoard) {
+        fieldLoader = new FieldLoader(selectedBoard);
+        fieldMap = fieldLoader.getFieldMap();
+        fields = setupFields();
+    }
+
+    public ArrayList<FieldSpaces> setupFields() {
+        return fields;
     }
 
 }
