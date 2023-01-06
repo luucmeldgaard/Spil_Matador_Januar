@@ -6,22 +6,22 @@ public abstract class Property implements Properties {
     String subtext;
     String description;
     int rent;
-    String color_1;
-    String color_2;
+    String color1;
+    String color2;
     String owner;
     boolean purchasable = false;
     int price;
 
     //Takes input to create the class
     public Property(String name, String subtext, String description, String rent,
-                    String color_1,String color_2, String price, String owner){
+                    String color1,String color2, String price, String owner){
         this.propertyName = name;
         this.subtext = subtext;
         this.description = description;
         this.rent = Integer.parseInt(rent);
         this.price = Integer.parseInt(price);
-        this.color_1 = color_1;
-        this.color_2 = color_2;
+        this.color1 = color1;
+        this.color2 = color2;
         this.owner = owner;
     }
     //Generic getters and setters
@@ -37,13 +37,11 @@ public abstract class Property implements Properties {
         return this.description;
     }
 
-    public String getColor_1() {
-        return this.color_1;
+    public String getColor1() {
+        return this.color1;
     }
 
-    public String getColor_2() {
-        return this.color_2;
-    }
+    public String getColor2() {return this.color2;}
 
     public boolean getPurchasable() {
         return purchasable;

@@ -7,18 +7,18 @@ public class Street extends Property {
     String subtext;
     String description;
     String rent;
-    String color_1;
-    String color_2;
+    String color1;
+    String color2;
     String price;
     String owner;
-    public Street(String name, String subtext, String description, String rent, String color_1, String color_2, String price, String owner) {
-        super(name, subtext, description, rent, color_1, color_2, price, owner);
+    public Street(String name, String subtext, String description, String rent, String color1, String color2, String price, String owner) {
+        super(name, subtext, description, rent, color1, color2, price, owner);
         this.name = name;
         this.subtext = subtext;
         this.description = description;
         this.rent = rent;
-        this.color_1 = color_1;
-        this.color_2 = color_2;
+        this.color1 = color1;
+        this.color2 = color2;
         this.price = price;
         this.owner = owner;
     }
