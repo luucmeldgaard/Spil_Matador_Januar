@@ -10,7 +10,14 @@ public class FieldControllerTest {
     public void testArray() {
         FieldController fieldController = new FieldController("fieldSpaces");
         fieldController.setupFields();
-        System.out.println(fieldController.getField(0));
+        int numberOfFields = fieldController.getFieldMap().size();
+        for (int i = 0; i < numberOfFields; i++) {
+            System.out.println(fieldController.getField(i).getName());
+        }
+        for (int i = 0; i < numberOfFields; i++) {
+            System.out.println(fieldController.getField(i).getColor1());
+        }
+
     }
 
 }

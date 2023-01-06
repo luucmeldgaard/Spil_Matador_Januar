@@ -10,7 +10,7 @@
     "title": "Bakkesnakkevej",
     "fieldType": "property",
     "subText": "text",
-    "color_1": "",
+    "color_1": "red",
     "color_2": ""
   },
   {
@@ -24,7 +24,7 @@
     "title": "Hejsavej",
     "fieldType": "property",
     "subText": "tet",
-    "color_1": "",
+    "color_1": "yellow",
     "color_2": ""
   }
 ]

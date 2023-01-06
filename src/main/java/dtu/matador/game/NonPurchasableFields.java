@@ -1,14 +1,14 @@
 package dtu.matador.game;
 
 public abstract class NonPurchasableFields implements FieldSpaces {
-    String propertyName;
+    String name;
     String subtext;
     String description;
     int rent;
-    String color_1;
-    String color_2;
+    String color1;
+    String color2;
     public String getName() {
-        return this.propertyName;
+        return this.name;
     }
 
     public String getSubtext() {
@@ -19,12 +19,12 @@ public abstract class NonPurchasableFields implements FieldSpaces {
         return this.description;
     }
 
-    public String getColor_1() {
-        return this.color_1;
+    public String getColor1() {
+        return this.color1;
     }
 
-    public String getColor_2() {
-        return this.color_2;
+    public String getColor2() {
+        return this.color2;
     }
 
 }
