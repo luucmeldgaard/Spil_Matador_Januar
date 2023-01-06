@@ -9,9 +9,8 @@ public class FieldControllerTest {
     @Test
     public void testArray() {
         FieldController fieldController = new FieldController("fieldSpaces");
-
         fieldController.setupFields();
-
+        System.out.println(fieldController.getField(0));
     }
 
 }
