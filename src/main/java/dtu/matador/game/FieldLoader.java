@@ -7,60 +7,50 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class FieldLoader {
 
-    Map<String, String> boardMap;
-    Map<Integer, String> positionalMap;
+    Map<String, Map<String, String>> boardMap;
 
 
-    public FieldLoader(String selectedBoard) {
-
-        this.boardMap = new HashMap<>();
-        this.positionalMap = new HashMap<>();
+    public FieldLoader(String selectedBoard) throws IOException, ParseException {
 
         this.boardMap = JSONtoMapBoard(selectedBoard + ".json");
 
     }
-    private Map<String, String> JSONtoMapBoard(String filename) {
 
-        Map<String, String> JSONParsedMap = new HashMap<>();
+    private Map<String, Map<String, String>> JSONtoMapBoard(String filename) throws IOException, ParseException {
 
-        // Get information from JSON and convert to a readable Map
+        // The map to return
+        Map<String, Map<String, String>> board = new HashMap<>();
 
+        // Makes it possible to parse JSON and map JSON text
         JSONParser jsonParser = new JSONParser();
+        ObjectMapper mapper = new ObjectMapper();
+
+        // Tries to parse the JSON to a Map<String, Map<String>, <String>
         try (FileReader fieldFileReader = new FileReader(filename)) {
+
+            // Creates an array of strings from an object created by the JsonParser
+            // to be able to parse each field to the mapper.
             Object obj = jsonParser.parse(fieldFileReader);
+            String objString = obj.toString();
+            objString = objString.substring(1, objString.length() - 1);
+            String[] objArray = objString.split("},");
 
-            String objData = obj.toString();
-            String[] rawObjDataArray = objData.split("}");
-
-            String fieldString;
-            int iteration = 0;
-            String[] objDataArray = new String[rawObjDataArray.length];
-
-            for (String fieldObject : rawObjDataArray) {
-                fieldString = fieldObject;
-                fieldString = fieldString.replace("[", "");
-                fieldString = fieldString.replace("{\"board\":[", "");
-                fieldString = fieldString.replace("]", "");
-                objDataArray[iteration] = fieldString;
-                iteration += 1;
+            // Adds each field to the board map
+            for (String item : objArray) {
+                item = item + "}";
+                System.out.println(item);
+                Map<String, String> map = mapper.readValue(item, Map.class);
+                board.put(map.get("position"), map);
             }
 
-            for (int i = 0; i < objDataArray.length; i++) {
-                System.out.println(objDataArray[i]);
-            }
+            return board;
 
         }
-        catch (IOException | ParseException ex) {
-            throw new RuntimeException(ex);
-        }
 
-        return JSONParsedMap;
+
     }
-
-
 }

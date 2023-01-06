@@ -1,46 +1,30 @@
-{
-  "board": [
-    {
-      "owner": "",
-      "price": "3000",
-      "pawnForAmount": "200",
-      "buildPrice": "500",
-      "neighborhood": "blå",
-      "position": "0",
-      "rent": "400",
-      "title": "Munkestræde",
-      "fieldType": "property",
-      "subText": "text",
-      "color_1": "blå",
-      "color_2": ""
-    },
-    {
-      "owner": "",
-      "price": "400",
-      "pawnForAmount": "150",
-      "buildPrice": "600",
-      "neighborhood": "red",
-      "position": "1",
-      "rent": "300",
-      "title": "Junialle",
-      "fieldType": "property",
-      "subText": "text",
-      "color_1": "yellow",
-      "color_2": ""
-    },
-    {
-      "owner": "",
-      "price": "400",
-      "pawnForAmount": "200",
-      "buildPrice": "400",
-      "neighborhood": "yellow",
-      "position": "2",
-      "rent": "400",
-      "title": "Bankevej",
-      "fieldType": "property",
-      "subText": "text",
-      "color_1": "yellow",
-      "color_2": ""
-    }
-  ]
-}
+[
+  {
+    "owner": "",
+    "price": "300",
+    "pawnForAmount": "29",
+    "buildPrice": "340",
+    "neighborhood": "red",
+    "position": "0",
+    "rent": "300",
+    "title": "Bakkesnakkevej",
+    "fieldType": "property",
+    "subText": "text",
+    "color_1": "",
+    "color_2": ""
+  },
+  {
+    "owner": "",
+    "price": "83",
+    "pawnForAmount": "200",
+    "buildPrice": "300",
+    "neighborhood": "yellow",
+    "position": "1",
+    "rent": "580",
+    "title": "Hejsavej",
+    "fieldType": "property",
+    "subText": "tet",
+    "color_1": "",
+    "color_2": ""
+  }
+]

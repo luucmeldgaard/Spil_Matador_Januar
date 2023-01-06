@@ -106,7 +106,7 @@ public class JSONCreator {
 
         try (FileWriter fieldFile = new FileWriter("fieldSpaces.json")) {
             //fieldFile.write(fieldList.toJSONString());
-            fieldFile.write(testFieldList.toJSONString());
+            fieldFile.write(fieldList.toJSONString());
             fieldFile.flush();
         } catch (
                 IOException ex) {
