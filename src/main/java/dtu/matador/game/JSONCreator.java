@@ -12,7 +12,6 @@ public class JSONCreator {
 
     public static void main(String[] args) throws IOException {
 
-
         Scanner scan = new Scanner(System.in);
         JSONArray fieldList = new JSONArray();
 
@@ -20,7 +19,6 @@ public class JSONCreator {
         int iteration = 0;
         while (!lastScannedLine.equals("end")) {
             JSONObject fieldDetails = new JSONObject();
-            JSONObject fieldObject = new JSONObject();
             ArrayList<String> allowableFieldTypes = new ArrayList<>();
             allowableFieldTypes.add("p");
             allowableFieldTypes.add("c");
@@ -91,8 +89,6 @@ public class JSONCreator {
                 System.out.print("Color 2: ");
                 fieldDetails.put("color_2", scan.nextLine());
 
-                fieldObject.put(iteration, fieldDetails);
-
                 fieldList.add(fieldDetails);
 
                 for (int i = 0; i < 50; ++i) System.out.println();
@@ -110,7 +106,7 @@ public class JSONCreator {
 
         try (FileWriter fieldFile = new FileWriter("fieldSpaces.json")) {
             //fieldFile.write(fieldList.toJSONString());
-            fieldFile.write(testFieldList.toJSONString());
+            fieldFile.write(fieldList.toJSONString());
             fieldFile.flush();
         } catch (
                 IOException ex) {
