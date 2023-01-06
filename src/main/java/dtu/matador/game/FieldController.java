@@ -18,6 +18,11 @@ public class FieldController {
     }
 
     public ArrayList<FieldSpaces> setupFields() {
+        for (Map<String, String> field : fieldMap.values()) {
+            int fieldPosition = Integer.parseInt(field.get("position"));
+            //switch (field.get())
+
+        }
         return fields;
     }
 
