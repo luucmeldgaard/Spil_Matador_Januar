@@ -1,5 +1,7 @@
 package dtu.matador.game;
 
+import java.util.Map;
+
 public abstract class NonPurchasableFields implements FieldSpaces {
     String name;
     String subtext;
@@ -33,6 +35,10 @@ public abstract class NonPurchasableFields implements FieldSpaces {
 
     public String getColor2() {
         return this.color2;
+    }
+
+    public Map<String, String> updateFieldMap() {
+        return null;
     }
 
 }

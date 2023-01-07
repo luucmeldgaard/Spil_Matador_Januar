@@ -1,6 +1,9 @@
 package dtu.matador.game;
 
-public abstract class Property implements Properties {
+import java.util.HashMap;
+import java.util.Map;
+
+public abstract class Property implements PropertyFields {
     //Creating variables that will be used
     String name;
     String subtext;
@@ -8,13 +11,16 @@ public abstract class Property implements Properties {
     int rent;
     String color1;
     String color2;
-    String owner;
+    String neighborhood;
     boolean purchasable = false;
     int price;
+    int pawnForAmount;
+    int position;
 
     //Takes input to create the class
     public Property(String name, String subtext, String description, String rent,
-                    String color1,String color2, String price, String owner){
+                    String color1,String color2, String price,
+                    String pawnForAmount, String position){
 
         this.name = name;
         this.subtext = subtext;
@@ -23,6 +29,8 @@ public abstract class Property implements Properties {
         this.color1 = color1;
         this.color2 = color2;
         this.price = Integer.parseInt(price);
+        this.pawnForAmount = Integer.parseInt(pawnForAmount);
+        this.position = Integer.parseInt(position);
     }
     //Generic getters and setters
     public String getName() {
@@ -43,6 +51,8 @@ public abstract class Property implements Properties {
 
     public String getColor2() {return this.color2;}
 
+    public void setColor2(String color) {this.color2 = color;}
+
     public boolean getPurchasable() {
         return purchasable;
     }
@@ -55,11 +65,14 @@ public abstract class Property implements Properties {
         return rent;
     }
 
-    public String getOwner() {
-        return this.owner;
-    }
-
     public void buy() {}
+
+    // Makes it possible to update Map being parsed to the gui and JSON later on
+    public Map<String, String> updateGuiField() {
+        Map<String, String> field = new HashMap<>();
+        field.put("color2", this.color2);
+        return field;
+    }
 
 }
 
