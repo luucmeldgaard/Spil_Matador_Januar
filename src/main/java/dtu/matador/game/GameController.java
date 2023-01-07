@@ -30,6 +30,7 @@ public class GameController {
         Player player = new Player(name, Color.BLUE, 0, 5000);
         player.setId(player.toString());
         gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
+        gui.movePlayerTo(player.getId(), 4);
         return player;
     }
 

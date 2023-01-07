@@ -12,7 +12,7 @@ import java.util.Map;
 class GUIController {
 
     private static GUIController guiControllerObject;
-    private static GUI gui;
+    public GUI gui;
     Map<String, GUI_Player> guiPlayerMap;
     GUI_Field[] guiFields;
 
@@ -54,11 +54,11 @@ class GUIController {
      * @param primary
      */
     public void addPlayer(String playerID, String name, int balance, int position, Color primary) {
-        GUI_Car car = addCar(primary, Color.RED);
+        GUI_Car car = addCar(primary, Color.BLACK);
         GUI_Player player = new GUI_Player(name, balance, car);
-        this.guiPlayerMap.put(playerID, player);
+        gui.addPlayer(player);
         player.getCar().setPosition(gui.getFields()[position]);
-        System.out.println(player.getCar().getPosition());
+        guiPlayerMap.put(playerID, player);
     }
 
     public void rollDie() {
@@ -66,7 +66,7 @@ class GUIController {
     }
 
     private void movePlayerOneField(GUI_Player player, int position) {
-        System.out.println(gui.getFields()[position+1]);
+        guiPlayerMap.get(player).getCar().setPosition(gui.getFields()[position + 1]);
     }
 
     public void movePlayer(GUI_Player player, int amount) {
@@ -75,8 +75,8 @@ class GUIController {
         }
     }
 
-    public void movePlayerTo(GUI_Player player, int position) {
-        player.getCar().setPosition(gui.getFields()[position]);
+    public void movePlayerTo(String playerID, int position) {
+        guiPlayerMap.get(playerID).getCar().setPosition(gui.getFields()[position]);
     }
 
 

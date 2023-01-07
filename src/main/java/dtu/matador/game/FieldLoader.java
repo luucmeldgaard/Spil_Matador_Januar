@@ -13,9 +13,12 @@ import java.util.*;
 public class FieldLoader {
 
     Map<String, Map<String, String>> boardMap;
+    Map<String, String> colorMap;
 
     public FieldLoader(String selectedBoard) {
         boardMap = JSONtoMapBoard(selectedBoard + ".json");
+        this.colorMap = new HashMap<>();
+        this.colorMap = JSONtoMapColors("colors.json");
     }
 
     private Map<String, Map<String, String>> JSONtoMapBoard(String filename) {
@@ -50,6 +53,26 @@ public class FieldLoader {
         }
 
         return board;
+    }
+
+    private Map<String, String> JSONtoMapColors(String filename) {
+        JSONParser jsonParser = new JSONParser();
+        try (FileReader fieldFileReader = new FileReader(filename)) {
+            Object obj = jsonParser.parse(fieldFileReader);
+
+            ObjectMapper mapper = new ObjectMapper();
+            String objString = obj.toString();
+            objString = objString.replace("[", "");
+            objString = objString.replace("]", "");
+            Map<String, String> map = mapper.readValue(objString, Map.class);
+            for (String color : map.keySet()) {
+                System.setProperty(color, map.get(color));
+            }
+            return map;
+        }
+        catch (IOException | ParseException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     // returns the Mapped fields
