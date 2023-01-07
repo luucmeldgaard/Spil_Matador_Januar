@@ -1,17 +1,29 @@
 package dtu.matador.game;
 
+import gui_fields.GUI_Board;
+import gui_fields.GUI_Car;
+import gui_fields.GUI_Car.Type;
+import gui_fields.GUI_Field;
+import gui_fields.GUI_Player;
 import gui_main.GUI;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 class GUIController {
 
     private static GUIController guiControllerObject;
     private static GUI gui;
+    Map<String, GUI_Player> guiPlayerArray;
+    GUI_Field[] guiFields;
 
     private GUIController(Map<String, Map<String, String>> fieldMap) {
         GUICreator fields = new GUICreator();
-        gui = new GUI(fields.setup(fieldMap));
+        guiPlayerArray = new HashMap<>();
+        guiFields = fields.setup(fieldMap);
+        gui = new GUI(guiFields);
     }
 
 
@@ -31,26 +43,42 @@ class GUIController {
 
     }
 
-    public void addPlayer() {
+    public GUI_Car addCar(Color primaryColor, Color patternColor) {
+        GUI_Car car = new GUI_Car(primaryColor, patternColor, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL);
+        return car;
+    }
 
+    /**
+     *
+     * @param name
+     * @param balance
+     * @param position
+     * @param primary
+     * @param pattern
+     */
+    public void addPlayer(String playerID, String name, int balance, int position, Color primary, Color pattern) {
+        GUI_Car car = addCar(primary, pattern);
+        GUI_Player player = new GUI_Player(name, balance, car);
+        this.guiPlayerArray.put(playerID, player);
+        player.getCar().setPosition(gui.getFields()[position]);
     }
 
     public void rollDie() {
 
     }
 
-    public void movePlayerOneField() {
-
+    private void movePlayerOneField(GUI_Player player, int position) {
+        System.out.println(gui.getFields()[position+1]);
     }
 
-    public void movePlayer(int amount) {
+    public void movePlayer(GUI_Player player, int amount) {
         for (int i = 0; i < amount; i++) {
-            movePlayerOneField();
+            movePlayerOneField(player, amount);
         }
     }
 
-    public void movePlayerTo() {
-
+    public void movePlayerTo(GUI_Player player, int position) {
+        player.getCar().setPosition(gui.getFields()[position]);
     }
 
 
