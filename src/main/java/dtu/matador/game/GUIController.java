@@ -1,14 +1,11 @@
 package dtu.matador.game;
 
-import gui_fields.GUI_Board;
 import gui_fields.GUI_Car;
-import gui_fields.GUI_Car.Type;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,12 +13,12 @@ class GUIController {
 
     private static GUIController guiControllerObject;
     private static GUI gui;
-    Map<String, GUI_Player> guiPlayerArray;
+    Map<String, GUI_Player> guiPlayerMap;
     GUI_Field[] guiFields;
 
     private GUIController(Map<String, Map<String, String>> fieldMap) {
         GUICreator fields = new GUICreator();
-        guiPlayerArray = new HashMap<>();
+        guiPlayerMap = new HashMap<>();
         guiFields = fields.setup(fieldMap);
         gui = new GUI(guiFields);
     }
@@ -50,17 +47,18 @@ class GUIController {
 
     /**
      *
+     * @param playerID
      * @param name
      * @param balance
      * @param position
      * @param primary
-     * @param pattern
      */
-    public void addPlayer(String playerID, String name, int balance, int position, Color primary, Color pattern) {
-        GUI_Car car = addCar(primary, pattern);
+    public void addPlayer(String playerID, String name, int balance, int position, Color primary) {
+        GUI_Car car = addCar(primary, Color.RED);
         GUI_Player player = new GUI_Player(name, balance, car);
-        this.guiPlayerArray.put(playerID, player);
+        this.guiPlayerMap.put(playerID, player);
         player.getCar().setPosition(gui.getFields()[position]);
+        System.out.println(player.getCar().getPosition());
     }
 
     public void rollDie() {

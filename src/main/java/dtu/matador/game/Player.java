@@ -1,15 +1,19 @@
 package dtu.matador.game;
 
+import java.awt.*;
+
 public class Player {
 
     //A player's attributes are implemented
+
+    String id;
     String name;
-    String color;
+    Color color;
     int position;
     int balance;
     static DiceCup diceCup = new DiceCup();
 
-    public Player(String name, String color, int position, int balance) {
+    public Player(String name, Color color, int position, int balance) {
         this.name = name;
         this.color = color;
         this.position = position;
@@ -18,18 +22,23 @@ public class Player {
 
     public int rollDie() { return diceCup.roll(); }
 
+    public String getId() {return this.id;}
+    public void setId(String ID) {this.id = ID;}
+
     //Return name, color and position
     public String getName(){
         return this.name;
     }
 
-    public String getColor(){
+    public Color getColor(){
         return this.color;
     }
 
     public int getPosition(){
         return this.position;
     }
+
+    public int getBalance() {return this.balance;}
 
     //Prints a move from the player and updates their position
     public void movePosition(int move){

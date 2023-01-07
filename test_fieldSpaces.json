@@ -26,5 +26,47 @@
     "subText": "tet",
     "color1": "",
     "color2": ""
+  },
+  {
+    "owner": "",
+    "price": "83",
+    "pawnForAmount": "200",
+    "buildPrice": "300",
+    "neighborhood": "yellow",
+    "position": "1",
+    "rent": "580",
+    "title": "Hejsavej",
+    "fieldType": "property",
+    "subText": "tet",
+    "color1": "",
+    "color2": ""
+  },
+  {
+    "owner": "",
+    "price": "83",
+    "pawnForAmount": "200",
+    "buildPrice": "300",
+    "neighborhood": "yellow",
+    "position": "1",
+    "rent": "580",
+    "title": "Hejsavej",
+    "fieldType": "property",
+    "subText": "tet",
+    "color1": "",
+    "color2": ""
+  },
+  {
+    "owner": "",
+    "price": "83",
+    "pawnForAmount": "200",
+    "buildPrice": "300",
+    "neighborhood": "yellow",
+    "position": "1",
+    "rent": "580",
+    "title": "Hejsavej",
+    "fieldType": "property",
+    "subText": "tet",
+    "color1": "",
+    "color2": ""
   }
 ]

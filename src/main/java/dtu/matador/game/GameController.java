@@ -1,5 +1,6 @@
 package dtu.matador.game;
 
+import java.awt.*;
 import java.util.Scanner;
 
 public class GameController {
@@ -26,10 +27,18 @@ public class GameController {
         String name = scan.nextLine();
         System.out.println("Select player color");
         String color = scan.next();
-        return new Player(name, color, 0, 5000);
+        Player player = new Player(name, Color.BLUE, 0, 5000);
+        player.setId(player.toString());
+        gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
+        return player;
     }
 
+    public void LandOn() {}
+
     public void updateGUI(Player player) {
+    }
+
+    public void updateGUI(FieldController board) {
 
     }
 

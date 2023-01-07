@@ -26,7 +26,7 @@ public class GUIControllerTest {
         Map<String, Map<String, String>> fieldMap;
         fieldMap = fieldLoader.getFieldMap();
         GUIController guiController = GUIController.getInstance(fieldMap);
-        guiController.addPlayer("@001", "Torben", 500, 0, Color.RED, Color.BLUE);
+        guiController.addPlayer("@001", "Torben", 500, 0, Color.RED);
     }
 
 }

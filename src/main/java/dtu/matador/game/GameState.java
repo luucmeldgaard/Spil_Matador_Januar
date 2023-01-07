@@ -17,7 +17,7 @@ public class GameState {
 
     public void menu() {
         controller.setBoard("fieldSpaces");
-
+        controller.addPlayer();
 
 
     }

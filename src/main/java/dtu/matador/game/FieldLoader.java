@@ -14,7 +14,6 @@ public class FieldLoader {
 
     Map<String, Map<String, String>> boardMap;
 
-
     public FieldLoader(String selectedBoard) {
         boardMap = JSONtoMapBoard(selectedBoard + ".json");
     }
