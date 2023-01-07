@@ -14,4 +14,9 @@ public class GameState {
         else {System.out.println("Gamestate instance already initialized..."); }
         return gameStateObject;
     }
+
+    public void menu() {
+        controller.setBoard("fieldSpaces");
+    }
+
 }

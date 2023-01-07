@@ -50,6 +50,10 @@ public class FieldController {
         return fields;
     }
 
+    public Map<String, Map<String, String>> getFieldMap() {
+        return fieldMap;
+    }
+
     public Map<String, String> getFieldAsMap(int position) {
         String pos = String.valueOf(position);
         return fieldMap.get(pos);
