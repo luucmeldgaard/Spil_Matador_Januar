@@ -2,7 +2,7 @@ package dtu.matador.game;
 
 public abstract class Property implements Properties {
     //Creating variables that will be used
-    String propertyName;
+    String name;
     String subtext;
     String description;
     int rent;
@@ -15,18 +15,11 @@ public abstract class Property implements Properties {
     //Takes input to create the class
     public Property(String name, String subtext, String description, String rent,
                     String color1,String color2, String price, String owner){
-        this.propertyName = name;
-        this.subtext = subtext;
-        this.description = description;
-        this.rent = Integer.parseInt(rent);
-        this.price = Integer.parseInt(price);
-        this.color1 = color1;
-        this.color2 = color2;
-        this.owner = owner;
+
     }
     //Generic getters and setters
     public String getName() {
-        return this.propertyName;
+        return this.name;
     }
 
     public String getSubtext() {
@@ -58,6 +51,9 @@ public abstract class Property implements Properties {
     public String getOwner() {
         return this.owner;
     }
+
+    public void buy() {}
+
 }
 
 

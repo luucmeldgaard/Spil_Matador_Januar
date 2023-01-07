@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
@@ -14,13 +15,11 @@ public class FieldLoader {
     Map<String, Map<String, String>> boardMap;
 
 
-    public FieldLoader(String selectedBoard) throws IOException, ParseException {
-
-        this.boardMap = JSONtoMapBoard(selectedBoard + ".json");
-
+    public FieldLoader(String selectedBoard) {
+        boardMap = JSONtoMapBoard(selectedBoard + ".json");
     }
 
-    private Map<String, Map<String, String>> JSONtoMapBoard(String filename) throws IOException, ParseException {
+    private Map<String, Map<String, String>> JSONtoMapBoard(String filename) {
 
         // The map to return
         Map<String, Map<String, String>> board = new HashMap<>();
@@ -42,15 +41,20 @@ public class FieldLoader {
             // Adds each field to the board map
             for (String item : objArray) {
                 item = item + "}";
-                System.out.println(item);
                 Map<String, String> map = mapper.readValue(item, Map.class);
                 board.put(map.get("position"), map);
             }
 
-            return board;
-
+        }
+        catch (IOException | ParseException ex) {
+            throw new RuntimeException(ex);
         }
 
+        return board;
+    }
 
+    // returns the Mapped fields
+    public Map<String, Map<String,String>> getFieldMap() {
+        return boardMap;
     }
 }
