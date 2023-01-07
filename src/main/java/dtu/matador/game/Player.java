@@ -6,18 +6,20 @@ public class Player {
     String name;
     String color;
     int position;
+    int balance;
     static DiceCup diceCup = new DiceCup();
 
-    public Player(String name, String color, int position) {
+    public Player(String name, String color, int position, int balance) {
         this.name = name;
         this.color = color;
         this.position = position;
+        this.balance = balance;
     }
 
     public int rollDie() { return diceCup.roll(); }
 
     //Return name, color and position
-    public String getname(){
+    public String getName(){
         return this.name;
     }
 
