@@ -12,7 +12,7 @@ public class FieldControllerTest {
     public void testArray() {
         FieldController fieldController = new FieldController("test_fieldSpaces");
         fieldController.setupFields();
-        int numberOfFields = fieldController.getFieldMap().size();
+        int numberOfFields = fieldController.getFieldsArray().size();
         for (int i = 0; i < numberOfFields; i++) {
             FieldSpaces field = fieldController.getField(i);
             System.out.println(field.getName());

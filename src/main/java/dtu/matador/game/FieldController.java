@@ -43,7 +43,7 @@ public class FieldController {
         return fields.get(position);
     }
 
-    public ArrayList<FieldSpaces> getFieldMap() {
+    public ArrayList<FieldSpaces> getFieldsArray() {
         return fields;
     }
 
