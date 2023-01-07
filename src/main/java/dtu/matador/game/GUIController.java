@@ -23,4 +23,36 @@ class GUIController {
         return guiControllerObject;
     }
 
+    public String buttonRequest(String message, String[] buttons){
+        return gui.getUserButtonPressed(message, buttons);
+    }
+
+    public void dropDownList() {
+
+    }
+
+    public void addPlayer() {
+
+    }
+
+    public void rollDie() {
+
+    }
+
+    public void movePlayerOneField() {
+
+    }
+
+    public void movePlayer(int amount) {
+        for (int i = 0; i < amount; i++) {
+            movePlayerOneField();
+        }
+    }
+
+    public void movePlayerTo() {
+
+    }
+
+
+
 }

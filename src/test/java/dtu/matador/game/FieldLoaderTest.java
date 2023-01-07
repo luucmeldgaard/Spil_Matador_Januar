@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.Map;
 
 public class FieldLoaderTest {
@@ -38,7 +39,7 @@ public class FieldLoaderTest {
 
     @Ignore
     @Test
-    public void printGetFieldMap() {
+    public void prettyPrintGetFieldMap() {
 
         FieldLoader fieldLoader = new FieldLoader("test_fieldSpaces");
         Map<String, Map<String, String>> testMap;
@@ -53,7 +54,26 @@ public class FieldLoaderTest {
 
     }
 
+    @Ignore
+    @Test
+    public void PrintGetFieldMap() {
 
+        FieldLoader fieldLoader = new FieldLoader("test_fieldSpaces");
+        Map<String, Map<String, String>> testMap;
+        testMap = fieldLoader.getFieldMap();
 
+        String testMapString = fieldLoader.getFieldMap().toString();
+
+        char lastLetter = ' ';
+        for (int i = 0; i < testMapString.length(); i++) {
+            char currentLetter = testMapString.charAt(i);
+            System.out.print(currentLetter);
+            if (currentLetter == ',' && lastLetter == '}') {
+                System.out.println();
+            }
+            lastLetter = currentLetter;
+        }
+
+    }
 
 }
