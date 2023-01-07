@@ -14,9 +14,6 @@ public class FieldControllerTest {
         for (int i = 0; i < numberOfFields; i++) {
             System.out.println(fieldController.getField(i).getName());
         }
-        for (int i = 0; i < numberOfFields; i++) {
-            System.out.println(fieldController.getField(i).getColor1());
-        }
 
     }
 
