@@ -85,9 +85,9 @@ public class JSONCreator {
                 System.out.print("subText: ");
                 fieldDetails.put("subText", scan.nextLine());
                 System.out.print("Color 1: ");
-                fieldDetails.put("color_1", scan.nextLine());
+                fieldDetails.put("color1", scan.nextLine());
                 System.out.print("Color 2: ");
-                fieldDetails.put("color_2", scan.nextLine());
+                fieldDetails.put("color2", scan.nextLine());
 
                 fieldList.add(fieldDetails);
 

@@ -24,7 +24,7 @@ public class FieldControllerTest {
         FieldSpaces field = fieldController.getField(0);
         ((PropertyFields) fieldController.getField(0)).setColor2("test_red");
         fieldController.updateFieldMap(0);
-        Assert.assertEquals(field.getColor2(), "test_red");
+        Assert.assertEquals(field.getColor2(), fieldController.getFieldAsMap(0).get("color2"));
     }
 
 }
