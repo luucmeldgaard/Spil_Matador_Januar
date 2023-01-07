@@ -16,6 +16,13 @@ public abstract class Property implements Properties {
     public Property(String name, String subtext, String description, String rent,
                     String color1,String color2, String price, String owner){
 
+        this.name = name;
+        this.subtext = subtext;
+        this.description = description;
+        this.rent = Integer.parseInt(rent);
+        this.color1 = color1;
+        this.color2 = color2;
+        this.price = Integer.parseInt(price);
     }
     //Generic getters and setters
     public String getName() {

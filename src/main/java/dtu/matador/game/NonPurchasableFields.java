@@ -27,11 +27,11 @@ public abstract class NonPurchasableFields implements FieldSpaces {
         return this.description;
     }
 
-    public String getColor_1() {
+    public String getColor1() {
         return this.color1;
     }
 
-    public String getColor_2() {
+    public String getColor2() {
         return this.color2;
     }
 
