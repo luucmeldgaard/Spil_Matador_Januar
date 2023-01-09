@@ -20,7 +20,16 @@ public class Player {
         this.balance = balance;
     }
 
-    public int[] rollDie() { return diceCup.roll(); }
+    /*Rolls number of dice and updates a player's
+    /position, and returns an int[] of dieFaces
+     */
+    public int[] rollDie() {
+        int[] roll = diceCup.roll();
+        for (int dieRoll : roll){
+            this.position += dieRoll;
+        }
+        return roll;
+    }
 
     public String getId() {return this.id;}
     public void setId(String ID) {this.id = ID;}
