@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="Simple gameplay features optimized">
-      <change afterPath="$PROJECT_DIR$/src/test/java/dtu/matador/game/PlayerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/Player.java" afterDir="false" />
-    </list>
+    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="Player moves forward" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -173,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673295481119</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Player moves forward">
+      <created>1673296850886</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1673296850886</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,6 +199,7 @@
     <MESSAGE value="Purchasabe Properties for den abstrakte klasse Property implementer Herunder Railroad, Street og Utility -klasserne." />
     <MESSAGE value="Begun working on landOn()" />
     <MESSAGE value="Simple gameplay features optimized" />
-    <option name="LAST_COMMIT_MESSAGE" value="Simple gameplay features optimized" />
+    <MESSAGE value="Player moves forward" />
+    <option name="LAST_COMMIT_MESSAGE" value="Player moves forward" />
   </component>
 </project>
