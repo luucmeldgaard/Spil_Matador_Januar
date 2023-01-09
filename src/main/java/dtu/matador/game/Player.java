@@ -20,7 +20,7 @@ public class Player {
         this.balance = balance;
     }
 
-    public int rollDie() { return diceCup.roll(); }
+    public int[] rollDie() { return diceCup.roll(); }
 
     public String getId() {return this.id;}
     public void setId(String ID) {this.id = ID;}

@@ -12,6 +12,7 @@ public class GameController {
         GameState currentGameState;
         currentGameState = GameState.getInstance();
         currentGameState.menu();
+        currentGameState.play();
 
     }
 
@@ -30,8 +31,12 @@ public class GameController {
         Player player = new Player(name, Color.BLUE, 0, 5000);
         player.setId(player.toString());
         gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
-        gui.movePlayerTo(player.getId(), 4);
+        gui.movePlayerTo(player.getId(), 0);
         return player;
+    }
+
+    public void playRound(Player player) {
+
     }
 
     public void LandOn() {}

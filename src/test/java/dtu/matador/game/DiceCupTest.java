@@ -10,13 +10,14 @@ public class DiceCupTest {
     @Test
     public void dieInRangeOneToSix() {
         DiceCup diceCup = new DiceCup();
-        int result;
+        int[] result;
         for (int i = 0; i < 200; i++) {
             result = diceCup.roll();
-            System.out.println(result);
-            Assert.assertTrue(result >= 2 && result <= 12);
+            for(int dieFace : result) {
+                System.out.println(dieFace);
+                Assert.assertTrue(dieFace <= 6 && dieFace >= 1);
+            }
+
         }
-
-
     }
 }
