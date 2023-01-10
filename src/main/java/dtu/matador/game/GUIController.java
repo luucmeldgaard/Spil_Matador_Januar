@@ -98,7 +98,37 @@ class GUIController {
     }
 
     public int getBoardSize() {return boardSize; }
+    public int getNumberOfPlayers(){
+        String numOfPlayers = (gui.getUserSelection(
+                "Select a number of players",
+                "1", "2", "3", "4"
+        ));
+        int numberOfPlayers = Integer.parseInt(numOfPlayers);
+        return numberOfPlayers;
+    }
+/*
+ public Color colorDropDownList() {
+        String chosenColorString = gui.getUserSelection(
+                "Select a colour",
+                "Rød", "Blå", "Lyserød", "Hvid", "Gul"
+        );
+        Color chosenColor = Color.black;
+        //This should be done with a switch case or maybe a loop to look cleaner, but this works for now
+        if (chosenColorString.equals("Rød")){ //This should be remade to pick colors from the colors.json we made
+            chosenColor = Color.red;
+            }
+        if (chosenColorString.equals("Blå")){
+            chosenColor = Color.blue;
+        }
+        if (chosenColorString.equals("Lyserød")){
+            chosenColor = Color.pink;
+        }
+        if (chosenColorString.equals("Hvid")){
+            chosenColor = Color.white;
 
+        }
+        return chosenColor;
+ */
     public String getNameFromInput(){
         String playername = gui.getUserString("Enter your name here", 1, 30, true);
         return playername;
