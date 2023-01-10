@@ -13,8 +13,9 @@ public class DiceCupTest {
         int[] result;
         for (int i = 0; i < 200; i++) {
             result = diceCup.roll();
-            for(int dieFace : result) {
-                System.out.println(dieFace);
+            for (int j = 0; j < 2; j++) {
+                int dieFace = result[j];
+                //System.out.println(dieFace);
                 Assert.assertTrue(dieFace <= 6 && dieFace >= 1);
             }
 
