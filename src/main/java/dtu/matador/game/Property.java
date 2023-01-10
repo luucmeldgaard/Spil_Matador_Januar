@@ -16,11 +16,12 @@ public abstract class Property implements PropertyFields {
     int price;
     int pawnForAmount;
     int position;
+    String owner;
 
     //Takes input to create the class
     public Property(String name, String subtext, String description, String rent,
                     String color1,String color2, String price,
-                    String pawnForAmount, String position){
+                    String pawnForAmount, String position, String owner){
 
         this.name = name;
         this.subtext = subtext;
@@ -31,6 +32,11 @@ public abstract class Property implements PropertyFields {
         this.price = Integer.parseInt(price);
         this.pawnForAmount = Integer.parseInt(pawnForAmount);
         this.position = Integer.parseInt(position);
+        this.owner = owner;
+
+        if (this.owner.equals("")) {
+            this.owner = null;
+        }
     }
     //Generic getters and setters
     public String getName() {
@@ -53,8 +59,8 @@ public abstract class Property implements PropertyFields {
 
     public void setColor2(String color) {this.color2 = color;}
 
-    public boolean getPurchasable() {
-        return purchasable;
+    public String getOwner() {
+        return this.owner;
     }
 
     public int getPrice() {

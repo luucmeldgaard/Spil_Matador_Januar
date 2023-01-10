@@ -6,6 +6,7 @@ public class Player {
 
     //A player's attributes are implemented
 
+    static int nextId = 1;
     String id;
     String name;
     Color color;
@@ -19,6 +20,7 @@ public class Player {
         this.color = color;
         this.position = position;
         this.balance = balance;
+        setId();
     }
 
     /*Rolls number of dice and updates a player's
@@ -29,7 +31,10 @@ public class Player {
     }
 
     public String getId() {return this.id;}
-    public void setId(String ID) {this.id = ID;}
+    public void setId() {
+        this.id = String.valueOf(nextId);
+        nextId += 1;
+    }
 
     //Return name, color and position
     public String getName(){

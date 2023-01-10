@@ -29,10 +29,9 @@ public class GameController {
         System.out.println("Select player color");
         String color = scan.next();
         Player player = new Player(name, Color.BLUE, 0, 5000);
-        player.setId(player.toString());
         player.setBoardSize(boardSize);
+        System.out.println(name + "'s ID is: " + player.getId());
         gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
-        gui.movePlayerTo(0);
         return player;
     }
 
@@ -45,7 +44,7 @@ public class GameController {
             gui.setDice(dieValues);
             // player moves
             player.movePosition(total);
-            gui.movePlayerTo(player.getPosition());
+            gui.movePlayerTo(player.getId(), player.getPosition());
         }
 
     }
