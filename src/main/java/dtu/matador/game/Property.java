@@ -75,13 +75,13 @@ public abstract class Property implements PropertyFields {
         return rent;
     }
 
-    public void buy() {
-        boolean purchase = controller.bill(this.price);
-        if (true) {
-            getPrice();
+    public void buy(String playerID) {
+        boolean purchase = controller.bill(playerID, this.price);
+        if (purchase) {
+            this.owner = playerID;
         }
-        else if (false) {
-
+        else {
+            System.out.println("You have insufficient funds");
         }
     }
 

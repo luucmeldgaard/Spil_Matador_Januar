@@ -8,7 +8,6 @@ import dtu.matador.game.fields.Utility;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class FieldController {
 
@@ -99,7 +98,7 @@ public class FieldController {
             System.out.println("This field is not owned by anyone!");
             String choice = this.gui.buttonRequest("Buy or auction?", "Buy", "Auction");
             if (choice.equals("Buy")) {
-                property.buy();
+                property.buy(playerID);
             }
             else if (choice.equals("Auction")){
                 property.auction();
@@ -160,7 +159,8 @@ public class FieldController {
         gui = new GUIController();
     }
 
-    public void bill(String playerID, int price) {
+    public boolean bill(String playerID, int price) {
         gui.playerAccept(playerID, price);
+        return false;
     }
 }
