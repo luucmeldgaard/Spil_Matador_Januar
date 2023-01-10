@@ -23,7 +23,8 @@ class GUIController {
     ArrayList<GUI_Player> guiPlayers;
     int currentGUIPlayer;
 
-    Map<String, String> colorMap = fieldloader.getColorMap();
+    //This isn't currently used, but should be in the future. WIP
+    // Map<String, String> colorMap = fieldloader.getColorMap();
 
     private GUIController(String selectedBoard) {
         board = new FieldController(selectedBoard);

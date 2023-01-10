@@ -29,8 +29,8 @@ public class GameController {
 
         String name = gui.getNameFromInput();
         System.out.println("Select player color");
-        //String color = scan.next();
-        Player player = new Player(name, Color.BLUE, 0, 5000);
+        Color chosencolor = gui.colorDropDownList();
+        Player player = new Player(name, chosencolor, 0, 5000);
         player.setId(player.toString());
         player.setBoardSize(boardSize);
         gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
