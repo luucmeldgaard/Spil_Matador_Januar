@@ -3,7 +3,7 @@ package dtu.matador.game;
 import dtu.matador.game.fields.Ferry;
 import dtu.matador.game.fields.Jail;
 import dtu.matador.game.fields.Street;
-import dtu.matador.game.fields.Utility;
+import dtu.matador.game.fields.Brewery;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +44,9 @@ public class FieldController {
                 }
                 case "ferry" -> {fields.set(fieldPosition, new Ferry(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
                         field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
+                }
+                case "brewery" -> {fields.set(fieldPosition, new Brewery(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
+                            field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
                 }
             }
         }
@@ -112,8 +115,8 @@ public class FieldController {
         else if (currentField instanceof Street) {
             landOnStreet(playerID, ((Street) currentField));
         }
-        else if (currentField instanceof Utility) {
-            landOnUtility(playerID, ((Utility) currentField));
+        else if (currentField instanceof Brewery) {
+            landOnUtility(playerID, ((Brewery) currentField));
         }
         else if (currentField instanceof Ferry) {
             landOnFerry(playerID, ((Ferry) currentField));
@@ -124,7 +127,7 @@ public class FieldController {
     private void landOnFerry(String playerID, Ferry currentField) {
     }
 
-    private void landOnUtility(String playerID, Utility currentField) {
+    private void landOnUtility(String playerID, Brewery currentField) {
     }
 
     public void landOnStreet(String playerID, Street street) {
