@@ -15,18 +15,20 @@ class GUIController {
     public GUI gui;
     Map<String, GUI_Player> guiPlayerMap;
     GUI_Field[] guiFields;
+    FieldController board;
 
-    private GUIController(Map<String, Map<String, String>> fieldMap) {
+    private GUIController(String selectedBoard) {
+        board = new FieldController(selectedBoard);
         GUICreator fields = new GUICreator();
         guiPlayerMap = new HashMap<>();
-        guiFields = fields.setup(fieldMap);
+        guiFields = fields.setup(board.getFieldMap());
         gui = new GUI(guiFields);
     }
 
 
-    public static GUIController getInstance(Map<String, Map<String, String>> fieldMap) {
+    public static GUIController getInstance(String selectedBoard) {
         if (guiControllerObject == null) {
-            guiControllerObject = new GUIController(fieldMap);
+            guiControllerObject = new GUIController(selectedBoard);
         }
         else {System.out.println("GUI instance already initialized..."); }
         return guiControllerObject;

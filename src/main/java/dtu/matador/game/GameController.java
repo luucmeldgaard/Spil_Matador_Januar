@@ -1,24 +1,23 @@
 package dtu.matador.game;
 
 import java.awt.*;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class GameController {
 
-    FieldController board;
     GUIController gui;
 
     public static void main(String[] args) {
         GameState currentGameState;
         currentGameState = GameState.getInstance();
         currentGameState.menu();
+        currentGameState.play();
 
     }
 
     public void setBoard(String selectedBoard) {
-        board = new FieldController(selectedBoard);
-        board.setupFields();
-        this.gui = GUIController.getInstance(board.getFieldMap());
+        gui = GUIController.getInstance(selectedBoard);
     }
 
     public Player addPlayer() {
@@ -30,11 +29,24 @@ public class GameController {
         Player player = new Player(name, Color.BLUE, 0, 5000);
         player.setId(player.toString());
         gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
-        gui.movePlayerTo(player.getId(), 4);
+        gui.movePlayerTo(player.getId(), 0);
         return player;
     }
 
-    public void LandOn() {}
+    public void playRound(Player player) {
+        // rolls die
+        // player moves
+        // landOnField method is called IN THE FIELDCONTROLLER and take params: playerID & position
+    }
+
+    public void landOn() {
+        // retrieves fieldtype from Field Controller
+
+    }
+
+    public void Property() {
+
+    }
 
     public void updateGUI(Player player) {
     }

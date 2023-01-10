@@ -70,4 +70,37 @@ public class FieldController {
         }
     }
 
+    public void landOnField(String playerID, int position) {
+        // Check for type of field
+        // Redirects to landOn "fieldType"
+        // property, chance, jail, etc.
+    }
+
+    public void landOnProperty(String playerID, Properties property) {
+        // Redirect to type of Property
+        // Street, Utility, Ferry, etc.
+    }
+
+    public void landOnStreet(String playerID, Street street) {
+        // Check for ownership
+        // if ownership = null, owned(other playerID), owned(own playerID)
+
+        // if owned(own playerID)
+        // Options: Build, Pledge, Sell housing
+
+        // if owned(other playerID)
+        // pay rent
+
+        // if null
+        // Buy, Auction
+    }
+
+
+    public void buy() {
+    }
+
+    public void landOnChance() {
+        //
+    }
+
 }
