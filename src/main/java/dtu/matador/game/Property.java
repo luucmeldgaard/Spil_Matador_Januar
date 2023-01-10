@@ -76,12 +76,14 @@ public abstract class Property implements PropertyFields {
     }
 
     public void buy(String playerID) {
-        boolean purchase = controller.bill(playerID, this.price);
+        boolean purchase = controller.bill(playerID, -this.price);
         if (purchase) {
             this.owner = playerID;
         }
         else {
             System.out.println("You have insufficient funds");
+            controller.insufficientFunds();
+            auction(playerID);
         }
     }
 
@@ -92,7 +94,7 @@ public abstract class Property implements PropertyFields {
         return field;
     }
 
-    public void auction() {
+    public void auction(String playerID) {
 
     }
 }

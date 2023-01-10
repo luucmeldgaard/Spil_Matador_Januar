@@ -15,7 +15,7 @@ public class FieldController {
     FieldLoader fieldLoader;
     Map<String, Map<String, String>> fieldMap;
     FieldSpaces currentField;
-    GUIController gui;
+    static GUIController gui;
 
 
 
@@ -101,7 +101,7 @@ public class FieldController {
                 property.buy(playerID);
             }
             else if (choice.equals("Auction")){
-                property.auction();
+                property.auction(playerID);
             }
 
         }
@@ -160,7 +160,10 @@ public class FieldController {
     }
 
     public boolean bill(String playerID, int price) {
-        gui.playerAccept(playerID, price);
-        return false;
+        return gui.playerAccept(playerID, price);
+    }
+
+    public void insufficientFunds() {
+        gui.buttonRequest("You have insufficient funds. ", "Ok");
     }
 }

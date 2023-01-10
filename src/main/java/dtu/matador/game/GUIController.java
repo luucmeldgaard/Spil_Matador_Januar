@@ -17,7 +17,7 @@ class GUIController {
 
     static ArrayList<GUI_Player> guiPlayers;
     static int currentGUIPlayer;
-    GameController gameController;
+    static GameController gameController;
 
     public GUIController(String selectedBoard) {
         board = new FieldController(selectedBoard);
