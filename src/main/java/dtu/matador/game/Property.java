@@ -8,6 +8,7 @@ import java.util.Map;
 public abstract class Property implements PropertyFields {
     static FieldController controller = new FieldController();
     //Creating variables that will be used
+    FieldController field;
     String name;
     String subtext;
     String description;
