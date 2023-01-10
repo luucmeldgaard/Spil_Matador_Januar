@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55785571-7249-47c2-8b26-a12d9a939463" name="Changes" comment="player test is merged again">
+    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="total of dieRoll also gets shown">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/DiceCup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/DiceCup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/dtu/matador/game/DiceCupTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/dtu/matador/game/DiceCupTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="development_major" />
+        <entry key="$PROJECT_DIR$" value="feature_playRound" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,21 +40,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Git.Branch.Popup.ShowAllRemotes": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\banto\IdeaProjects\Spil_Matador_Januar\src\main\resources" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
@@ -64,7 +65,7 @@
       <recent name="dtu.matador.game" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PlayerTest.playerMovesForwardOnce">
+  <component name="RunManager" selected="Application.GameController">
     <configuration name="GameController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dtu.matador.game.GameController" />
       <module name="Spil_Matador" />
@@ -94,7 +95,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FieldLoaderTest.prettyPrintGetFieldMap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Spil_Matador" />
       <extension name="coverage">
         <pattern>
@@ -103,9 +104,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="dtu.matador.game" />
-      <option name="MAIN_CLASS_NAME" value="dtu.matador.game.FieldLoaderTest" />
-      <option name="METHOD_NAME" value="prettyPrintGetFieldMap" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="dtu.matador.game.PlayerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -126,29 +126,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerTest.playerMovesForwardsOnce" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Spil_Matador" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dtu.matador.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="dtu.matador.game" />
-      <option name="MAIN_CLASS_NAME" value="dtu.matador.game.PlayerTest" />
-      <option name="METHOD_NAME" value="playerMovesForwardsOnce" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GameController" />
+        <item itemvalue="JUnit.PlayerTest" />
+        <item itemvalue="JUnit.DiceCupTest.dieInRangeOneToSix" />
         <item itemvalue="JUnit.PlayerTest.playerMovesForwardOnce" />
         <item itemvalue="JUnit.DiceCupTest.dieInRangeOneToSix" />
-        <item itemvalue="Application.GameController" />
-        <item itemvalue="JUnit.PlayerTest.playerMovesForwardsOnce" />
-        <item itemvalue="JUnit.FieldLoaderTest.prettyPrintGetFieldMap" />
       </list>
     </recent_temporary>
   </component>
@@ -187,21 +171,49 @@
       <option name="project" value="LOCAL" />
       <updated>1673018276700</updated>
     </task>
-    <task id="LOCAL-00004" summary="Major design shift">
-      <created>1673310673862</created>
+    <task id="LOCAL-00004" summary="Begun working on landOn()">
+      <created>1673262370175</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1673310673862</updated>
+      <updated>1673262370175</updated>
     </task>
-    <task id="LOCAL-00005" summary="player test is merged again">
-      <created>1673311086437</created>
+    <task id="LOCAL-00005" summary="Simple gameplay features optimized">
+      <created>1673295436258</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1673311086437</updated>
+      <updated>1673295436258</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Simple gameplay features optimized">
+      <created>1673295481119</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673295481119</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Player moves forward">
+      <created>1673296850886</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1673296850886</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Player rolls die">
+      <created>1673311640548</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1673311640548</updated>
+    </task>
+    <task id="LOCAL-00009" summary="total of dieRoll also gets shown">
+      <created>1673312251429</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1673312251429</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,8 +233,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Terning Implementeret igen" />
     <MESSAGE value="Purchasabe Properties for den abstrakte klasse Property implementer Herunder Railroad, Street og Utility -klasserne." />
-    <MESSAGE value="Major design shift" />
-    <MESSAGE value="player test is merged again" />
-    <option name="LAST_COMMIT_MESSAGE" value="player test is merged again" />
+    <MESSAGE value="Begun working on landOn()" />
+    <MESSAGE value="Simple gameplay features optimized" />
+    <MESSAGE value="Player moves forward" />
+    <MESSAGE value="Player rolls die" />
+    <MESSAGE value="total of dieRoll also gets shown" />
+    <option name="LAST_COMMIT_MESSAGE" value="total of dieRoll also gets shown" />
   </component>
 </project>

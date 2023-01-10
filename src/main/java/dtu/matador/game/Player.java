@@ -24,12 +24,7 @@ public class Player {
     /position, and returns an int[] of dieFaces
      */
     public int[] rollDie() {
-        int[] roll = diceCup.roll();
-        for (int dieRoll : roll){
-            this.position += dieRoll;
-        }
-        return roll;
-
+        return diceCup.roll();
     }
 
     public String getId() {return this.id;}

@@ -35,9 +35,11 @@ public class GameController {
 
     public void playRound(Player player) {
         // rolls die
-
+        int[] dieValues = player.rollDie();
         // player moves
-        // landOnField method is called IN THE FIELDCONTROLLER and take params: playerID & position
+        for (int dieRoll : dieValues) {
+            player.movePosition(dieRoll); }
+
     }
 
     public void landOn() {
