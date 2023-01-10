@@ -102,7 +102,7 @@ class GUIController {
         String numOfPlayers = (gui.getUserSelection(
                 "Select a number of players",
                 "1", "2", "3", "4"
-        );
+        ));
         int numberOfPlayers = Integer.parseInt(numOfPlayers);
         return numberOfPlayers;
     }
