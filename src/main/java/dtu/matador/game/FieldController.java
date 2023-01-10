@@ -146,7 +146,7 @@ public class FieldController {
         //
     }
 
-    public void setGUI(GUIController guiControllerObject) {
-        gui = guiControllerObject;
+    public void setGUI() {
+        gui = new GUIController();
     }
 }

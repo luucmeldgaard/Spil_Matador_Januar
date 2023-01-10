@@ -7,19 +7,16 @@ import gui_main.GUI;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 class GUIController {
 
-    public static GUIController guiControllerObject;
-    public GUI gui;
-    GUI_Field[] guiFields;
-    FieldController board;
-    int boardSize;
+    public static GUI gui;
+    static GUI_Field[] guiFields;
+    static FieldController board;
+    static int boardSize;
 
-    ArrayList<GUI_Player> guiPlayers;
-    int currentGUIPlayer;
+    static ArrayList<GUI_Player> guiPlayers;
+    static int currentGUIPlayer;
 
     public GUIController(String selectedBoard) {
         board = new FieldController(selectedBoard);
@@ -29,17 +26,10 @@ class GUIController {
         guiPlayers = new ArrayList<>();
         currentGUIPlayer = 0;
         boardSize = guiFields.length;
-        board.setGUI(guiControllerObject);
+        board.setGUI();
     }
 
-
-    public static GUIController getInstance(String selectedBoard) {
-        if (guiControllerObject == null) {
-            guiControllerObject = new GUIController(selectedBoard);
-        }
-        else {System.out.println("GUI instance already initialized..."); }
-        return guiControllerObject;
-    }
+    public GUIController() {}
 
     public String buttonRequest(String message, String... buttons){
         return gui.getUserButtonPressed(message, buttons);

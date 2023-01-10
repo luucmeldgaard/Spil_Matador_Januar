@@ -8,6 +8,7 @@ public class GameController {
 
 
     int boardSize;
+    GUIController gui;
 
     public static void main(String[] args) {
         GameState currentGameState;
@@ -18,7 +19,7 @@ public class GameController {
     }
 
     public void setBoard(String selectedBoard) {
-        gui = GUIController.getInstance(selectedBoard);
+        gui = new GUIController(selectedBoard);
         boardSize = gui.getBoardSize();
     }
 
