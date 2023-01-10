@@ -71,7 +71,9 @@ public abstract class Property implements PropertyFields {
         return rent;
     }
 
-    public void buy() {}
+    public void buy() {
+
+    }
 
     // Makes it possible to update Map being parsed to the gui and JSON later on
     public Map<String, String> updateGuiField() {

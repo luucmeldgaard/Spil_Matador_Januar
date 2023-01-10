@@ -8,6 +8,7 @@ import dtu.matador.game.fields.Utility;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class FieldController {
 
@@ -91,10 +92,15 @@ public class FieldController {
     public void landOnProperty(String playerID, Property property) {
         String owner = property.getOwner();
         if (owner == null){
-            this.gui.buttonRequest("Buy or auction?", "Buy", "Auction");
-            property.buy();
-            property.auction();
             System.out.println("This field is not owned by anyone!");
+            String choice = this.gui.buttonRequest("Buy or auction?", "Buy", "Auction");
+            if (choice.equals("Buy")) {
+                property.buy();
+            }
+            else if (choice.equals("Auction")){
+                property.auction();
+            }
+
         }
         // Redirect to type of Property
         else if (currentField instanceof Street) {
