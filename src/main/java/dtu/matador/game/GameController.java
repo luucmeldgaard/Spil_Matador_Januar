@@ -26,11 +26,10 @@ public class GameController {
     }
 
     public Player addPlayer() {
-        System.out.println("Enter player name");
-        Scanner scan = new Scanner(System.in);
-        String name = scan.nextLine();
+
+        String name = gui.getNameFromInput();
         System.out.println("Select player color");
-        String color = scan.next();
+        //String color = scan.next();
         Player player = new Player(name, Color.BLUE, 0, 5000);
         player.setId(player.toString());
         player.setBoardSize(boardSize);

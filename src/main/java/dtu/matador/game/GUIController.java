@@ -45,6 +45,7 @@ class GUIController {
         return gui.getUserButtonPressed(message, buttons);
     }
 
+
     public void dropDownList() {
 
     }
@@ -83,5 +84,10 @@ class GUIController {
     }
 
     public int getBoardSize() {return boardSize; }
+
+    public String getNameFromInput(){
+        String playername = gui.getUserString("Enter your name here", 1, 50, false);
+        return playername;
+    }
 
 }
