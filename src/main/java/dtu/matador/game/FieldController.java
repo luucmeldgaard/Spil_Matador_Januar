@@ -5,6 +5,7 @@ import dtu.matador.game.fields.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import static dtu.matador.game.GameController.currentGameState;
 
 public class FieldController {
 
