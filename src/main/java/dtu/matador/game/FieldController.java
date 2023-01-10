@@ -1,9 +1,6 @@
 package dtu.matador.game;
 
-import dtu.matador.game.fields.Ferry;
-import dtu.matador.game.fields.Jail;
-import dtu.matador.game.fields.Street;
-import dtu.matador.game.fields.Brewery;
+import dtu.matador.game.fields.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,18 +36,24 @@ public class FieldController {
         for (Map<String, String> field : fieldMap.values()) {
             int fieldPosition = Integer.parseInt(field.get("position"));
             switch (field.get("fieldType")) {
-                case "property" -> {fields.set(fieldPosition, new Street(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
-                        field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
+                case "property" -> {
+                    fields.set(fieldPosition, new Street(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
+                            field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
                 }
-                case "ferry" -> {fields.set(fieldPosition, new Ferry(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
-                        field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
+                case "ferry" -> {
+                    fields.set(fieldPosition, new Ferry(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
+                            field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
                 }
-                case "brewery" -> {fields.set(fieldPosition, new Brewery(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
+                case "brewery" -> {
+                    fields.set(fieldPosition, new Brewery(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
+                            field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
+                }
+                case "refuge" -> {
+                    fields.set(fieldPosition, new Refuge(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
                             field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
                 }
             }
         }
-
     }
     public FieldSpaces getField(int position) {
         return fields.get(position);
