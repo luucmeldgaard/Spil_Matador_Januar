@@ -10,7 +10,6 @@ public class GameController {
 
     GUIController gui;
     int boardSize;
-    GUIController gui;
     static GameState currentGameState;
 
     public static void main(String[] args) {
@@ -33,7 +32,7 @@ public class GameController {
         System.out.println("Select player color");
         Color chosencolor = gui.colorDropDownList();
         Player player = new Player(name, chosencolor, 0, 5000);
-        player.setId(player.toString());
+        //player.setId(player.toString());
         player.setBoardSize(boardSize);
         System.out.println(name + "'s ID is: " + player.getId());
         gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());

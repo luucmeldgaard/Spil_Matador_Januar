@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="Player can now move the total value of the dieRoll">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameController.java" afterDir="false" />
-    </list>
+    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="Player can now move the total value of the dieRoll" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,7 +20,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="development_major" />
+        <entry key="$PROJECT_DIR$" value="feature_landOn" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -115,7 +111,8 @@
         <item itemvalue="Application.GameController" />
         <item itemvalue="JUnit.PlayerTest" />
         <item itemvalue="JUnit.DiceCupTest.dieInRangeOneToSix" />
-        <item itemvalue="JUnit.DiceCupTest.dieInRangeOneToSix" />
+        <item itemvalue="Application.GameController" />
+        <item itemvalue="JUnit.PlayerTest" />
       </list>
     </recent_temporary>
   </component>
