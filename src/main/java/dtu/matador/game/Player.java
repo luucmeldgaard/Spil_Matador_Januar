@@ -47,7 +47,6 @@ public class Player {
 
     //Prints a move from the player and updates their position
     public void movePosition(int move){
-        System.out.println(this.name + " moved " + move + " fields");
         this.position += move;
     }
 

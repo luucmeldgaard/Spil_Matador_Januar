@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="Made changes to playRound()">
-      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameController.java" afterDir="false" />
+    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="player can roll Die">
+      <change beforePath="$PROJECT_DIR$/src/test/java/dtu/matador/game/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/dtu/matador/game/PlayerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +63,7 @@
       <recent name="dtu.matador.game" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GameController">
+  <component name="RunManager" selected="JUnit.PlayerTest">
     <configuration name="GameController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dtu.matador.game.GameController" />
       <module name="Spil_Matador" />
@@ -109,28 +108,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerTest.playerMovesForwardOnce" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Spil_Matador" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dtu.matador.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="dtu.matador.game" />
-      <option name="MAIN_CLASS_NAME" value="dtu.matador.game.PlayerTest" />
-      <option name="METHOD_NAME" value="playerMovesForwardOnce" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GameController" />
         <item itemvalue="JUnit.PlayerTest" />
+        <item itemvalue="Application.GameController" />
         <item itemvalue="JUnit.DiceCupTest.dieInRangeOneToSix" />
-        <item itemvalue="JUnit.PlayerTest.playerMovesForwardOnce" />
         <item itemvalue="JUnit.DiceCupTest.dieInRangeOneToSix" />
       </list>
     </recent_temporary>
@@ -219,7 +201,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673314058128</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="player can roll Die">
+      <created>1673314622859</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1673314622859</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,6 +234,18 @@
     <MESSAGE value="Player rolls die" />
     <MESSAGE value="total of dieRoll also gets shown" />
     <MESSAGE value="Made changes to playRound()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made changes to playRound()" />
+    <MESSAGE value="player can roll Die" />
+    <option name="LAST_COMMIT_MESSAGE" value="player can roll Die" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/dtu/matador/game/PlayerTest.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
