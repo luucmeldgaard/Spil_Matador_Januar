@@ -31,4 +31,19 @@ public class GameState {
     public void play() {
         controller.playRound(currentPlayer);
     }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public Player getPlayerFromID(String playerID) {
+        for (Player player : players) {
+            String id = player.getId();
+            if (id.equals(playerID)) {
+                return player;
+            }
+        }
+        return null;
+    }
+
 }

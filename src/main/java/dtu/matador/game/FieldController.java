@@ -160,7 +160,7 @@ public class FieldController {
         gui = new GUIController();
     }
 
-    public void bill(int price) {
-        gui.playerAccept(price);
+    public void bill(String playerID, int price) {
+        gui.playerAccept(playerID, price);
     }
 }

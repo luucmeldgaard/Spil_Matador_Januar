@@ -9,9 +9,9 @@ public class GameController {
 
     int boardSize;
     GUIController gui;
+    static GameState currentGameState;
 
     public static void main(String[] args) {
-        GameState currentGameState;
         currentGameState = GameState.getInstance();
         currentGameState.menu();
         currentGameState.play();
@@ -53,6 +53,11 @@ public class GameController {
     public void landOn() {
         // retrieves fieldtype from Field Controller
 
+    }
+
+    public boolean billPlayer(String playerID, int price) {
+        Player player = currentGameState.getPlayerFromID(playerID);
+        return player.setBalance(price);
     }
 
     public void Property() {
