@@ -49,7 +49,6 @@ public class FieldController {
         }
 
     }
-
     public FieldSpaces getField(int position) {
         return fields.get(position);
     }
@@ -162,8 +161,15 @@ public class FieldController {
         gui = new GUIController();
     }
 
-    public boolean bill(String playerID, int price) {
-        return gui.playerAccept(playerID, price);
+    public boolean createTransaction(String playerID, String receiverID, int price) {
+        if (receiverID != null) {
+            String message = "The player will have to pay the owner a rent of " + price;
+            return gui.transactionRequest(message, playerID, receiverID, price);
+        }
+        else {
+            String message = "The player will lose " + price;
+            return gui.transactionRequest(message, playerID, null, price);
+        }
     }
 
     public void insufficientFunds() {

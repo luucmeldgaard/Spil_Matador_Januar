@@ -58,9 +58,16 @@ public class GameController {
 
     }
 
-    public boolean billPlayer(String playerID, int price) {
+    public boolean transaction(String playerID, String recieverID, int price) {
         Player player = currentGameState.getPlayerFromID(playerID);
-        return player.setBalance(price);
+        if (recieverID == null) {
+            return player.addBalance(price);
+        }
+        else {
+            Player reciever = currentGameState.getPlayerFromID(recieverID);
+            reciever.addBalance(Math.abs(price));
+            return player.addBalance(price);
+        }
     }
 
     public void Property() {

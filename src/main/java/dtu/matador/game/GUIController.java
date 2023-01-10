@@ -105,10 +105,10 @@ class GUIController {
     }
 
     //Player gets the option to pay the bill
-    public boolean playerAccept(String playerID, int price) {
-        String accept = buttonRequest("Do you accept?", "Yes", "No");
+    public boolean transactionRequest(String msg, String playerID, String reciever, int price) {
+        String accept = buttonRequest(msg, "Yes", "No");
         if (accept.equals("Yes")) {
-            gameController.billPlayer(playerID, price);
+            gameController.transaction(playerID, reciever, price);
             return true;
         }
         else { return false; }

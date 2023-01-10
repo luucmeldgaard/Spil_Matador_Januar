@@ -60,7 +60,7 @@ public class Player {
 
     public void setBoardSize(int size) {boardSize = size; }
 
-    public boolean setBalance(int balanceChange) {
+    public boolean addBalance(int balanceChange) {
         int nextBalance = this.balance + balanceChange;
         if (nextBalance >= 0) {
             this.balance += balanceChange;
