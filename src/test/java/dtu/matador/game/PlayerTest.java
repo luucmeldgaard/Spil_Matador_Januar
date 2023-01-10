@@ -12,7 +12,7 @@ public class PlayerTest {
     public void playerMovesForwardOnce() {
         Player player = new Player("Jakob", Color.BLUE,0,5000);
         int currentPosition = player.getPosition();
-        player.rollDie();
+        player.rollDice();
         int newPosition = player.getPosition();
         Assert.assertTrue(newPosition > currentPosition);
     }
