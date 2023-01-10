@@ -42,6 +42,9 @@ public class FieldController {
                 case "property" -> {fields.set(fieldPosition, new Street(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
                         field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
                 }
+                case "ferry" -> {fields.set(fieldPosition, new Ferry(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
+                        field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
+                }
             }
         }
 
