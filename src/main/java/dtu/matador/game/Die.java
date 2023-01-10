@@ -7,7 +7,7 @@ public class Die {
 
     /**
      *
-     * @param sides
+     * @param sides - number of sides of the Die
      */
     public Die(int sides){
         this.sides = sides;

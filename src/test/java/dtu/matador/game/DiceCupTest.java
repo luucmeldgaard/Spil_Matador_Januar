@@ -13,12 +13,11 @@ public class DiceCupTest {
         int[] result;
         for (int i = 0; i < 200; i++) {
             result = diceCup.roll();
-            for (int dieFace : result) {
+            for(int dieFace : result) {
                 System.out.println(dieFace);
                 Assert.assertTrue(dieFace <= 6 && dieFace >= 1);
             }
 
         }
     }
-
 }
