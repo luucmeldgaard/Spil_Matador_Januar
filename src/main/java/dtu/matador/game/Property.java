@@ -75,7 +75,13 @@ public abstract class Property implements PropertyFields {
     }
 
     public void buy() {
-        controller.bill(this.price);
+        boolean purchase = controller.bill(this.price);
+        if (true) {
+            getPrice();
+        }
+        else if (false) {
+
+        }
     }
 
     // Makes it possible to update Map being parsed to the gui and JSON later on
