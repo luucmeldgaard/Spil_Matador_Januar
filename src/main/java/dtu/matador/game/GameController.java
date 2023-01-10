@@ -3,8 +3,6 @@ package dtu.matador.game;
 import gui_main.GUI;
 
 import java.awt.*;
-import java.util.Properties;
-import java.util.Scanner;
 
 public class GameController {
 
@@ -20,13 +18,17 @@ public class GameController {
 
     }
 
+    public int getNumberOfPlayers{
+
+    }
+
     public void setBoard(String selectedBoard) {
         gui = GUIController.getGUIInstance(selectedBoard);
         boardSize = gui.getBoardSize();
     }
 
-    public Player addPlayer() {
-
+    public Player addPlayers() {
+        int numOfPlayers = gui.getNumberOfPlayers();
         String name = gui.getNameFromInput();
         System.out.println("Select player color");
         Color chosencolor = gui.colorDropDownList();
@@ -37,6 +39,8 @@ public class GameController {
         gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
         return player;
     }
+
+
 
     public void playRound(Player player) {
         // roll dice
