@@ -7,26 +7,19 @@ import gui_main.GUI;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 class GUIController {
 
-    private static GUIController guiControllerObject;
-    public GUI gui;
+    public static GUI gui;
+    static GUI_Field[] guiFields;
+    static FieldController board;
+    static int boardSize;
 
-    public FieldLoader fieldloader;
-    GUI_Field[] guiFields;
-    FieldController board;
-    int boardSize;
+    static ArrayList<GUI_Player> guiPlayers;
+    static int currentGUIPlayer;
+    static GameController gameController;
 
-    ArrayList<GUI_Player> guiPlayers;
-    int currentGUIPlayer;
-
-    //This isn't currently used, but should be in the future. WIP
-    // Map<String, String> colorMap = fieldloader.getColorMap();
-
-    private GUIController(String selectedBoard) {
+    public GUIController(String selectedBoard) {
         board = new FieldController(selectedBoard);
         GUICreator fields = new GUICreator();
         guiFields = fields.setup(board.getFieldMap());
@@ -34,17 +27,11 @@ class GUIController {
         guiPlayers = new ArrayList<>();
         currentGUIPlayer = 0;
         boardSize = guiFields.length;
-
+        board.setGUI();
+        gameController = new GameController();
     }
 
-
-    public static GUIController getInstance(String selectedBoard) {
-        if (guiControllerObject == null) {
-            guiControllerObject = new GUIController(selectedBoard);
-        }
-        else {System.out.println("GUI instance already initialized..."); }
-        return guiControllerObject;
-    }
+    public GUIController() {}
 
     public String buttonRequest(String message, String... buttons){
         return gui.getUserButtonPressed(message, buttons);
@@ -104,8 +91,10 @@ class GUIController {
 
     }
 
-    public void movePlayerTo(int position) {
+    public void movePlayerTo(String playerID, int position) {
         guiPlayers.get(currentGUIPlayer).getCar().setPosition(gui.getFields()[position]);
+        board.landOnField(playerID, position);
+
     }
 
     public int getBoardSize() {return boardSize; }
@@ -115,4 +104,13 @@ class GUIController {
         return playername;
     }
 
+    //Player gets the option to pay the bill
+    public boolean playerAccept(String playerID, int price) {
+        String accept = buttonRequest("Do you accept?", "Yes", "No");
+        if (accept.equals("Yes")) {
+            gameController.billPlayer(playerID, price);
+            return true;
+        }
+        else { return false; }
+    }
 }

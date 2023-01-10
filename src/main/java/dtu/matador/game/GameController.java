@@ -10,6 +10,8 @@ public class GameController {
 
     GUIController gui;
     int boardSize;
+    GUIController gui;
+    static GameState currentGameState;
 
     public static void main(String[] args) {
         GUI.setNull_fields_allowed(true); //This messes up the GUI but allows it to render with null fields, making troublefixing easier
@@ -21,7 +23,7 @@ public class GameController {
     }
 
     public void setBoard(String selectedBoard) {
-        gui = GUIController.getInstance(selectedBoard);
+        gui = new GUIController(selectedBoard);
         boardSize = gui.getBoardSize();
     }
 
@@ -33,8 +35,8 @@ public class GameController {
         Player player = new Player(name, chosencolor, 0, 5000);
         player.setId(player.toString());
         player.setBoardSize(boardSize);
+        System.out.println(name + "'s ID is: " + player.getId());
         gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
-        gui.movePlayerTo(0);
         return player;
     }
 
@@ -47,7 +49,7 @@ public class GameController {
             gui.setDice(dieValues);
             // player moves
             player.movePosition(total);
-            gui.movePlayerTo(player.getPosition());
+            gui.movePlayerTo(player.getId(), player.getPosition());
         }
 
     }
@@ -55,6 +57,11 @@ public class GameController {
     public void landOn() {
         // retrieves fieldtype from Field Controller
 
+    }
+
+    public boolean billPlayer(String playerID, int price) {
+        Player player = currentGameState.getPlayerFromID(playerID);
+        return player.setBalance(price);
     }
 
     public void Property() {

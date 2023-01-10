@@ -2,14 +2,14 @@ package dtu.matador.game.fields;
 
 import dtu.matador.game.NonPurchasableFields;
 
-public class JailField extends NonPurchasableFields {
+public class Jail extends NonPurchasableFields {
     String name;
     String subtext;
     String description;
     String color1;
     String color2;
 
-    public JailField(String name, String subtext, String description, String color1, String color2) {
+    public Jail(String name, String subtext, String description, String color1, String color2) {
         super(name, subtext, description, color1, color2);
         this.name = name;
         this.subtext = subtext;
