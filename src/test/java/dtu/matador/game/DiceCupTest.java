@@ -18,6 +18,7 @@ public class DiceCupTest {
                 Assert.assertTrue(dieFace <= 6 && dieFace >= 1);
             }
 
+
         }
     }
 }

@@ -29,6 +29,7 @@ public class Player {
             this.position += dieRoll;
         }
         return roll;
+
     }
 
     public String getId() {return this.id;}

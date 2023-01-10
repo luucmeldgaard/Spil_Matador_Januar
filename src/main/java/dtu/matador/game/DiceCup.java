@@ -7,4 +7,5 @@ public class DiceCup {
         return new int[] {die1.roll(), die2.roll()};
     }
 
+
 }

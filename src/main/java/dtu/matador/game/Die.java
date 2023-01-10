@@ -19,4 +19,5 @@ public class Die {
         return rand.nextInt(0,sides)+1;
     }
 
+
 }
