@@ -14,12 +14,16 @@ class GUIController {
 
     private static GUIController guiControllerObject;
     public GUI gui;
+
+    public FieldLoader fieldloader;
     GUI_Field[] guiFields;
     FieldController board;
     int boardSize;
 
     ArrayList<GUI_Player> guiPlayers;
     int currentGUIPlayer;
+
+    Map<String, String> colorMap = fieldloader.getColorMap();
 
     private GUIController(String selectedBoard) {
         board = new FieldController(selectedBoard);
@@ -46,9 +50,29 @@ class GUIController {
     }
 
 
-    public void dropDownList() {
+    public Color colorDropDownList() {
+        String chosenColorString = gui.getUserSelection(
+                "Select a colour",
+                "Rød", "Blå", "Lyserød", "Hvid", "Gul"
+        );
+        Color chosenColor = Color.black;
+        //This should be done with a switch case or maybe a loop to look cleaner, but this works for now
+        if (chosenColorString.equals("Rød")){ //This should be remade to pick colors from the colors.json we made
+            chosenColor = Color.red;
+            }
+        if (chosenColorString.equals("Blå")){
+            chosenColor = Color.blue;
+        }
+        if (chosenColorString.equals("Lyserød")){
+            chosenColor = Color.pink;
+        }
+        if (chosenColorString.equals("Hvid")){
+            chosenColor = Color.white;
 
+        }
+        return chosenColor;
     }
+
 
     public GUI_Car addCar(Color primaryColor, Color patternColor) {
         GUI_Car car = new GUI_Car(primaryColor, patternColor, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL);
