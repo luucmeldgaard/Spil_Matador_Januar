@@ -79,4 +79,6 @@ public class FieldLoader {
     public Map<String, Map<String,String>> getFieldMap() {
         return boardMap;
     }
+
+    public Map<String, String> getColorMap(){return colorMap;}
 }
