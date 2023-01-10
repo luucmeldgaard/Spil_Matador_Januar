@@ -23,7 +23,7 @@ public class GameState {
     }
 
     public void menu() {
-        controller.setBoard("fieldSpaces");
+        controller.setBoard("FieldData");
         players.add(controller.addPlayer());
         currentPlayer = players.get(0);
     }

@@ -1,5 +1,7 @@
 package dtu.matador.game;
 
+import gui_main.GUI;
+
 import java.awt.*;
 import java.util.Properties;
 import java.util.Scanner;
@@ -10,6 +12,7 @@ public class GameController {
     int boardSize;
 
     public static void main(String[] args) {
+        GUI.setNull_fields_allowed(true); //This messes up the GUI but allows it to render with null fields, making troublefixing easier
         GameState currentGameState;
         currentGameState = GameState.getInstance();
         currentGameState.menu();
