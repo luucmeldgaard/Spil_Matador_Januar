@@ -29,18 +29,18 @@ public class GameController {
         Player player = new Player(name, Color.BLUE, 0, 5000);
         player.setId(player.toString());
         gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
-        gui.movePlayerTo(player.getId(), 0);
+        gui.movePlayerTo(0);
         return player;
     }
 
     public void playRound(Player player) {
         // rolls die
         int[] dieValues = player.rollDie();
+        int total = dieValues[0] + dieValues[1];
         gui.setDice(dieValues);
         // player moves
-        for (int dieRoll : dieValues) {
-            player.movePosition(dieRoll); }
-
+        player.movePosition(total);
+        gui.movePlayer(total);
     }
 
     public void landOn() {

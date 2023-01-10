@@ -6,6 +6,7 @@ import gui_fields.GUI_Player;
 import gui_main.GUI;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,16 +14,19 @@ class GUIController {
 
     private static GUIController guiControllerObject;
     public GUI gui;
-    Map<String, GUI_Player> guiPlayerMap;
     GUI_Field[] guiFields;
     FieldController board;
+
+    ArrayList<GUI_Player> guiPlayers;
+    int currentGUIPlayer;
 
     private GUIController(String selectedBoard) {
         board = new FieldController(selectedBoard);
         GUICreator fields = new GUICreator();
-        guiPlayerMap = new HashMap<>();
         guiFields = fields.setup(board.getFieldMap());
         gui = new GUI(guiFields);
+        guiPlayers = new ArrayList<>();
+        currentGUIPlayer = 0;
     }
 
 
@@ -60,7 +64,7 @@ class GUIController {
         GUI_Player player = new GUI_Player(name, balance, car);
         gui.addPlayer(player);
         player.getCar().setPosition(gui.getFields()[position]);
-        guiPlayerMap.put(playerID, player);
+        guiPlayers.add(player);
     }
 
     public void setDice(int[] dice) {
@@ -71,18 +75,19 @@ class GUIController {
 
     }
 
-    private void movePlayerOneField(GUI_Player player, int position) {
-        guiPlayerMap.get(player).getCar().setPosition(gui.getFields()[position + 1]);
+    private void movePlayerOneField(int position) {
+        guiPlayers.get(currentGUIPlayer).getCar().setPosition(gui.getFields()[position]);
     }
 
-    public void movePlayer(GUI_Player player, int amount) {
+    public void movePlayer(int amount) {
+
         for (int i = 0; i < amount; i++) {
-            movePlayerOneField(player, amount);
+            movePlayerOneField(amount);
         }
     }
 
-    public void movePlayerTo(String playerID, int position) {
-        guiPlayerMap.get(playerID).getCar().setPosition(gui.getFields()[position]);
+    public void movePlayerTo(int position) {
+        guiPlayers.get(currentGUIPlayer).getCar().setPosition(gui.getFields()[position]);
     }
 
 
