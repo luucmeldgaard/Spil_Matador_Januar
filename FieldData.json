@@ -490,7 +490,7 @@
     "title": "Gedser - Rostock",
     "fieldType": "ferry",
     "subText": "Du ser godt ud idag",
-    "color1": "myWhite",
+    "color1": "myLightGrey",
     "color2": "myBlue"
   },
   {
@@ -509,7 +509,7 @@
     "title": "Bredgade",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myWhite",
+    "color1": "myLightGrey",
     "color2": "myBlue"
   },
   {
@@ -566,7 +566,7 @@
     "title": "Østergade",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myWhite",
+    "color1": "myLightGrey",
     "color2": "myBlue"
   },
   {
