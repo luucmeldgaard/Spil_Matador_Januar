@@ -9,6 +9,7 @@ public class GUICreator {
     public GUICreator() {
 
     }
+
     public GUI_Field[] setup(Map<String, Map<String, String>> fieldMap) {
 
         GUI_Field[] guiFields = new GUI_Field[fieldMap.size()];
@@ -32,6 +33,9 @@ public class GUICreator {
                 }
                 case "free-parking" -> {
                     guiFields[Integer.parseInt(field.get("position"))] = new GUI_Refuge("default", field.get("title"), field.get("subText"), field.get("subText"), Color.getColor(field.get("color1")), Color.getColor(field.get("color2")));
+                }
+                case "ferry" -> {
+                    guiFields[Integer.parseInt(field.get("position"))] = new GUI_Shipping("default", field.get("title"), field.get("subText") ,"Det her er en VARM beskrivelse af en båd", field.get("subText"), Color.getColor(field.get("color1")), Color.getColor(field.get("color2")));
                 }
             }
         }
