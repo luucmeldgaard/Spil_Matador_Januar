@@ -21,7 +21,7 @@ class GUIController {
     ArrayList<GUI_Player> guiPlayers;
     int currentGUIPlayer;
 
-    private GUIController(String selectedBoard) {
+    public GUIController(String selectedBoard) {
         board = new FieldController(selectedBoard);
         GUICreator fields = new GUICreator();
         guiFields = fields.setup(board.getFieldMap());
@@ -29,6 +29,7 @@ class GUIController {
         guiPlayers = new ArrayList<>();
         currentGUIPlayer = 0;
         boardSize = guiFields.length;
+        board.setGUI(guiControllerObject);
     }
 
 
