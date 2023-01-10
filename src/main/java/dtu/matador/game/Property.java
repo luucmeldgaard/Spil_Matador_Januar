@@ -76,7 +76,7 @@ public abstract class Property implements PropertyFields {
     }
 
     public void buy(String playerID) {
-        boolean purchase = controller.bill(playerID, -this.price);
+        boolean purchase = controller.createTransaction(playerID,null, -this.price);
         if (purchase) {
             this.owner = playerID;
         }
