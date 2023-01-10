@@ -24,6 +24,7 @@ public class GameState {
 
     public void menu() {
         controller.setBoard("FieldData");
+        //TODO: Make loop for adding more players
         players.add(controller.addPlayer());
         currentPlayer = players.get(0);
     }
