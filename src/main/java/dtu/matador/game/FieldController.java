@@ -94,8 +94,14 @@ public class FieldController {
     }
 
     public void landOnProperty(String playerID, Property property) {
+        String owner = property.getOwner();
+        if (owner == null){
+            property.buy();
+            property.auction();
+            System.out.println("This field is not owned by anyone!");
+        }
         // Redirect to type of Property
-        if (currentField instanceof Street) {
+        else if (currentField instanceof Street) {
             landOnStreet(playerID, ((Street) currentField));
         }
         else if (currentField instanceof Utility) {
@@ -118,11 +124,8 @@ public class FieldController {
         // if ownership = null, owned(other playerID), owned(own playerID)
         String owner = street.getOwner();
         System.out.println(owner);
-        if (owner == null) {
-            System.out.println("This field is not owned by anyone!");
 
-        }
-        else if (owner.equals(playerID)) {
+        if (owner.equals(playerID)) {
             System.out.println("This field is owned by you. ");
         }
         else {

@@ -80,6 +80,9 @@ public abstract class Property implements PropertyFields {
         return field;
     }
 
+    public void auction() {
+
+    }
 }
 
 
