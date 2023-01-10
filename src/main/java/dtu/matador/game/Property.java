@@ -1,9 +1,12 @@
 package dtu.matador.game;
 
+import com.sun.jdi.Field;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Property implements PropertyFields {
+    static FieldController controller = new FieldController();
     //Creating variables that will be used
     String name;
     String subtext;
@@ -72,7 +75,7 @@ public abstract class Property implements PropertyFields {
     }
 
     public void buy() {
-
+        controller.bill(this.price);
     }
 
     // Makes it possible to update Map being parsed to the gui and JSON later on

@@ -32,6 +32,10 @@ public class FieldController {
         setupFields();
     }
 
+    public FieldController(){
+
+    }
+
     public void setupFields() {
         for (Map<String, String> field : fieldMap.values()) {
             int fieldPosition = Integer.parseInt(field.get("position"));
@@ -154,5 +158,9 @@ public class FieldController {
 
     public void setGUI() {
         gui = new GUIController();
+    }
+
+    public void bill(int price) {
+        gui.playerAccept(price);
     }
 }

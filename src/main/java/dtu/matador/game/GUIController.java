@@ -17,6 +17,7 @@ class GUIController {
 
     static ArrayList<GUI_Player> guiPlayers;
     static int currentGUIPlayer;
+    GameController gameController;
 
     public GUIController(String selectedBoard) {
         board = new FieldController(selectedBoard);
@@ -27,6 +28,7 @@ class GUIController {
         currentGUIPlayer = 0;
         boardSize = guiFields.length;
         board.setGUI();
+        gameController = new GameController();
     }
 
     public GUIController() {}
@@ -76,4 +78,11 @@ class GUIController {
 
     public int getBoardSize() {return boardSize; }
 
+    public boolean playerAccept(int price) {
+        String accept = buttonRequest("Do you accept?", "Yes", "No");
+        if (accept.equals("Yes")) {
+            return true;
+        }
+        else { return false; }
+    }
 }
