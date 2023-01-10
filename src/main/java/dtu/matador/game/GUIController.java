@@ -78,6 +78,7 @@ class GUIController {
 
     public int getBoardSize() {return boardSize; }
 
+    //Player gets the option to pay the bill
     public boolean playerAccept(int price) {
         String accept = buttonRequest("Do you accept?", "Yes", "No");
         if (accept.equals("Yes")) {
