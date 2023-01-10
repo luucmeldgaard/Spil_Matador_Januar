@@ -31,7 +31,7 @@ public class GUICreator {
                 case "start" -> {
                     guiFields[Integer.parseInt(field.get("position"))] = new GUI_Start(field.get("title"), field.get("subText"), field.get("subText"), Color.getColor(field.get("color1")), Color.getColor(field.get("color2")));
                 }
-                case "free-parking" -> {
+                case "refuge" -> {
                     guiFields[Integer.parseInt(field.get("position"))] = new GUI_Refuge("default", field.get("title"), field.get("subText"), field.get("subText"), Color.getColor(field.get("color1")), Color.getColor(field.get("color2")));
                 }
                 case "ferry" -> {
