@@ -15,7 +15,7 @@
     "title": "Start",
     "fieldType": "start",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -34,7 +34,7 @@
     "title": "Rødovrevej",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myBlue",
     "color2": "myBlue"
   },
   {
@@ -53,7 +53,7 @@
     "title": "Prøv lykken",
     "fieldType": "chance",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -72,7 +72,7 @@
     "title": "Hvidovrevej",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myBlue",
     "color2": "myBlue"
   },
   {
@@ -91,7 +91,7 @@
     "title": "Indkomstskat",
     "fieldType": "tax",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -110,7 +110,7 @@
     "title": "Helsingør - Helsingborg",
     "fieldType": "ferry",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -129,7 +129,7 @@
     "title": "Roskildevej",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myPink",
     "color2": "myBlue"
   },
   {
@@ -148,7 +148,7 @@
     "title": "Prøv lykken",
     "fieldType": "chance",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -167,7 +167,7 @@
     "title": "Valby Langgade",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myPink",
     "color2": "myBlue"
   },
   {
@@ -186,7 +186,7 @@
     "title": "Allégade",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myPink",
     "color2": "myBlue"
   },
   {
@@ -205,7 +205,7 @@
     "title": "I fængsel/På besøg",
     "fieldType": "jail",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -224,7 +224,7 @@
     "title": "Frederiksberg Allé",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "mySand",
     "color2": "myBlue"
   },
   {
@@ -243,7 +243,7 @@
     "title": "Tuborg Squash",
     "fieldType": "brewery",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -262,7 +262,7 @@
     "title": "Bülowsvej",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "mySand",
     "color2": "myBlue"
   },
   {
@@ -281,7 +281,7 @@
     "title": "Gl. Kongevej",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "mySand",
     "color2": "myBlue"
   },
   {
@@ -300,7 +300,7 @@
     "title": "Mols-Linien",
     "fieldType": "ferry",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -319,7 +319,7 @@
     "title": "Bernstorffsvej",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myGrey",
     "color2": "myBlue"
   },
   {
@@ -338,7 +338,7 @@
     "title": "Prøv lykken",
     "fieldType": "chance",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -357,7 +357,7 @@
     "title": "Hellerupvej",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myGrey",
     "color2": "myBlue"
   },
   {
@@ -376,7 +376,7 @@
     "title": "Strandvejen",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myGrey",
     "color2": "myBlue"
   },
   {
@@ -395,7 +395,7 @@
     "title": "Parkering",
     "fieldType": "refugee",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -414,7 +414,7 @@
     "title": "Trianglen",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myRed",
     "color2": "myBlue"
   },
   {
@@ -433,7 +433,7 @@
     "title": "Prøv lykken",
     "fieldType": "chance",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -452,7 +452,7 @@
     "title": "Øserbrogade",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myRed",
     "color2": "myBlue"
   },
   {
@@ -471,7 +471,7 @@
     "title": "Grønningen",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myRed",
     "color2": "myBlue"
   },
   {
@@ -490,7 +490,7 @@
     "title": "Gedser - Rostock",
     "fieldType": "ferry",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -509,7 +509,7 @@
     "title": "Bredgade",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -528,7 +528,7 @@
     "title": "Kgs. Nytorv",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -547,7 +547,7 @@
     "title": "Coca Cola",
     "fieldType": "brewery",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -566,7 +566,7 @@
     "title": "Østergade",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -585,7 +585,7 @@
     "title": "Fængsel",
     "fieldType": "jail",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -604,7 +604,7 @@
     "title": "Amagertorv",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myYellow",
     "color2": "myBlue"
   },
   {
@@ -623,7 +623,7 @@
     "title": "Vimmelskaftet",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myYellow",
     "color2": "myBlue"
   },
   {
@@ -642,7 +642,7 @@
     "title": "Prøv lykken",
     "fieldType": "chance",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -661,7 +661,7 @@
     "title": "Nygade",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myYellow",
     "color2": "myBlue"
   },
   {
@@ -680,7 +680,7 @@
     "title": "Rødby - Puttgarden",
     "fieldType": "ferry",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -699,7 +699,7 @@
     "title": "Prøv lykken",
     "fieldType": "chance",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -718,7 +718,7 @@
     "title": "Frederiksberggade",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myPurple",
     "color2": "myBlue"
   },
   {
@@ -737,7 +737,7 @@
     "title": "Ekstraordinær statsskat",
     "fieldType": "tax",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myWhite",
     "color2": "myBlue"
   },
   {
@@ -756,7 +756,7 @@
     "title": "Rådhuspladsen",
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
-    "color1": "myTurquoise",
+    "color1": "myPurple",
     "color2": "myBlue"
   }
 ]
