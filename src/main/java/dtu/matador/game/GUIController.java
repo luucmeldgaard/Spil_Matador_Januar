@@ -100,7 +100,7 @@ class GUIController {
     public int getBoardSize() {return boardSize; }
 
     public String getNameFromInput(){
-        String playername = gui.getUserString("Enter your name here", 1, 50, true);
+        String playername = gui.getUserString("Enter your name here", 1, 30, true);
         return playername;
     }
 
