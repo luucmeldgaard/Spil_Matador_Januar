@@ -17,7 +17,7 @@ public class GUIControllerTest {
         FieldLoader fieldLoader = new FieldLoader("test_fieldSpaces");
         Map<String, Map<String, String>> fieldMap;
         fieldMap = fieldLoader.getFieldMap();
-        GUIController guiController = new GUIController("test_fieldSpaces");
+        GUIController guiController = GUIController.getGUIInstance("test_fieldSpaces");
     }
 
     @Test
@@ -25,7 +25,7 @@ public class GUIControllerTest {
         FieldLoader fieldLoader = new FieldLoader("test_fieldSpaces");
         Map<String, Map<String, String>> fieldMap;
         fieldMap = fieldLoader.getFieldMap();
-        GUIController guiController = new GUIController("test_fieldSpaces");
+        GUIController guiController = GUIController.getGUIInstance("test_fieldSpaces");
         guiController.addPlayer("@001", "Torben", 500, 0, Color.RED);
     }
 

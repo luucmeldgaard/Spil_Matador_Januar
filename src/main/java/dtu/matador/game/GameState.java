@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class GameState {
     GameController controller;
-    private static GameState gameStateObject;
+    public static GameState gameStateObject;
 
     ArrayList<Player> players;
     Player currentPlayer;
@@ -14,7 +14,7 @@ public class GameState {
         players = new ArrayList<Player>();
     }
 
-    public static GameState getInstance() {
+    public static GameState getStateInstance() {
         if (gameStateObject == null) {
             gameStateObject = new GameState();
         }
@@ -26,6 +26,10 @@ public class GameState {
         controller.setBoard("FieldData");
         players.add(controller.addPlayer());
         currentPlayer = players.get(0);
+    }
+
+    public String tester() {
+        return "Test";
     }
 
     public void play() {

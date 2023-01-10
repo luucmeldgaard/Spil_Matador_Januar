@@ -14,15 +14,14 @@ public class GameController {
 
     public static void main(String[] args) {
         GUI.setNull_fields_allowed(true); //This messes up the GUI but allows it to render with null fields, making troublefixing easier
-        GameState currentGameState;
-        currentGameState = GameState.getInstance();
+        currentGameState = GameState.getStateInstance();
         currentGameState.menu();
         currentGameState.play();
 
     }
 
     public void setBoard(String selectedBoard) {
-        gui = new GUIController(selectedBoard);
+        gui = GUIController.getGUIInstance(selectedBoard);
         boardSize = gui.getBoardSize();
     }
 
