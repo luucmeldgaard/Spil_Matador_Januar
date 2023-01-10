@@ -63,7 +63,11 @@ class GUIController {
         guiPlayerMap.put(playerID, player);
     }
 
-    public void rollDie() {
+    public void setDice(int[] dice) {
+        int die1 = dice[0];
+        int die2 = dice[1];
+
+        gui.setDice(die1,die2);
 
     }
 

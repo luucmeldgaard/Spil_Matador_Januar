@@ -36,6 +36,7 @@ public class GameController {
     public void playRound(Player player) {
         // rolls die
         int[] dieValues = player.rollDie();
+        gui.setDice(dieValues);
         // player moves
         for (int dieRoll : dieValues) {
             player.movePosition(dieRoll); }

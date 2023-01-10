@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="total of dieRoll also gets shown">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="Made changes to playRound()">
+      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GUIController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature_playRound" />
+        <entry key="$PROJECT_DIR$" value="development_major" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -213,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673312251429</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Made changes to playRound()">
+      <created>1673314058128</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1673314058128</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,6 +244,7 @@
     <MESSAGE value="Player moves forward" />
     <MESSAGE value="Player rolls die" />
     <MESSAGE value="total of dieRoll also gets shown" />
-    <option name="LAST_COMMIT_MESSAGE" value="total of dieRoll also gets shown" />
+    <MESSAGE value="Made changes to playRound()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made changes to playRound()" />
   </component>
 </project>
