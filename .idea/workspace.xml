@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="Player changes made. Created test: player moves the dieRoll forward">
+    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="Player can now move the total value of the dieRoll">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GUIController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameController.java" afterDir="false" />
@@ -217,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673315840230</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Player can now move the total value of the dieRoll">
+      <created>1673317264825</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1673317264825</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,6 +252,7 @@
     <MESSAGE value="Made changes to playRound()" />
     <MESSAGE value="player can roll Die" />
     <MESSAGE value="Player changes made. Created test: player moves the dieRoll forward" />
-    <option name="LAST_COMMIT_MESSAGE" value="Player changes made. Created test: player moves the dieRoll forward" />
+    <MESSAGE value="Player can now move the total value of the dieRoll" />
+    <option name="LAST_COMMIT_MESSAGE" value="Player can now move the total value of the dieRoll" />
   </component>
 </project>

@@ -34,13 +34,17 @@ public class GameController {
     }
 
     public void playRound(Player player) {
-        // rolls die
-        int[] dieValues = player.rollDie();
-        int total = dieValues[0] + dieValues[1];
-        gui.setDice(dieValues);
-        // player moves
-        player.movePosition(total);
-        gui.movePlayer(total);
+        // roll dice
+        while (true){
+            gui.buttonRequest("Roll Dice", "Roll");
+            int[] dieValues = player.rollDie();
+            int total = dieValues[0] + dieValues[1];
+            gui.setDice(dieValues);
+            // player moves
+            player.movePosition(total);
+            gui.movePlayer(player.getPosition(),total);
+        }
+
     }
 
     public void landOn() {

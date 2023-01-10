@@ -38,7 +38,7 @@ class GUIController {
         return guiControllerObject;
     }
 
-    public String buttonRequest(String message, String[] buttons){
+    public String buttonRequest(String message, String... buttons){
         return gui.getUserButtonPressed(message, buttons);
     }
 
@@ -75,12 +75,11 @@ class GUIController {
 
     }
 
-    private void movePlayerOneField(int position) {
-        guiPlayers.get(currentGUIPlayer).getCar().setPosition(gui.getFields()[position]);
+    private void movePlayerOneField(int currentPosition) {
+        guiPlayers.get(currentGUIPlayer).getCar().setPosition(gui.getFields()[currentPosition]);
     }
 
-    public void movePlayer(int amount) {
-
+    public void movePlayer(int currentPosition, int amount) {
         for (int i = 0; i < amount; i++) {
             movePlayerOneField(amount);
         }
@@ -91,5 +90,4 @@ class GUIController {
     }
 
 
-
-}
+    }
