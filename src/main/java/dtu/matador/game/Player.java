@@ -12,6 +12,7 @@ public class Player {
     int position;
     int balance;
     static DiceCup diceCup = new DiceCup();
+    static int boardSize;
 
     public Player(String name, Color color, int position, int balance) {
         this.name = name;
@@ -45,9 +46,13 @@ public class Player {
 
     public int getBalance() {return this.balance;}
 
+    public void setPosition(int position) {this.position = position % boardSize; }
+
     //Prints a move from the player and updates their position
     public void movePosition(int move){
-        this.position += move;
+        setPosition(this.position += move);
     }
+
+    public void setBoardSize(int size) {boardSize = size; }
 
 }

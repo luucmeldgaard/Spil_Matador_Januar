@@ -16,6 +16,7 @@ class GUIController {
     public GUI gui;
     GUI_Field[] guiFields;
     FieldController board;
+    int boardSize;
 
     ArrayList<GUI_Player> guiPlayers;
     int currentGUIPlayer;
@@ -27,6 +28,7 @@ class GUIController {
         gui = new GUI(guiFields);
         guiPlayers = new ArrayList<>();
         currentGUIPlayer = 0;
+        boardSize = guiFields.length;
     }
 
 
@@ -75,19 +77,10 @@ class GUIController {
 
     }
 
-    private void movePlayerOneField(int currentPosition) {
-        guiPlayers.get(currentGUIPlayer).getCar().setPosition(gui.getFields()[currentPosition]);
-    }
-
-    public void movePlayer(int currentPosition, int amount) {
-        for (int i = 0; i < amount; i++) {
-            movePlayerOneField(amount);
-        }
-    }
-
     public void movePlayerTo(int position) {
         guiPlayers.get(currentGUIPlayer).getCar().setPosition(gui.getFields()[position]);
     }
 
+    public int getBoardSize() {return boardSize; }
 
-    }
+}

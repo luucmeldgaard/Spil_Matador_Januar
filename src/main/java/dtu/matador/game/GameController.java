@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class GameController {
 
     GUIController gui;
+    int boardSize;
 
     public static void main(String[] args) {
         GameState currentGameState;
@@ -18,6 +19,7 @@ public class GameController {
 
     public void setBoard(String selectedBoard) {
         gui = GUIController.getInstance(selectedBoard);
+        boardSize = gui.getBoardSize();
     }
 
     public Player addPlayer() {
@@ -28,6 +30,7 @@ public class GameController {
         String color = scan.next();
         Player player = new Player(name, Color.BLUE, 0, 5000);
         player.setId(player.toString());
+        player.setBoardSize(boardSize);
         gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
         gui.movePlayerTo(0);
         return player;
@@ -42,7 +45,7 @@ public class GameController {
             gui.setDice(dieValues);
             // player moves
             player.movePosition(total);
-            gui.movePlayer(player.getPosition(),total);
+            gui.movePlayerTo(player.getPosition());
         }
 
     }
