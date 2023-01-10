@@ -29,6 +29,7 @@ class GUIController {
         guiPlayers = new ArrayList<>();
         currentGUIPlayer = 0;
         boardSize = guiFields.length;
+
     }
 
 
