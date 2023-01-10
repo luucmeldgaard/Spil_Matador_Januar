@@ -12,7 +12,7 @@ import java.util.Map;
 
 class GUIController {
 
-    private static GUIController guiControllerObject;
+    public static GUIController guiControllerObject;
     public GUI gui;
     GUI_Field[] guiFields;
     FieldController board;

@@ -15,6 +15,7 @@ public class FieldController {
     FieldLoader fieldLoader;
     Map<String, Map<String, String>> fieldMap;
     FieldSpaces currentField;
+    GUIController gui;
 
 
 
@@ -29,6 +30,8 @@ public class FieldController {
         }
 
         setupFields();
+
+        gui = GUIController.guiControllerObject;
 
     }
 
@@ -117,6 +120,7 @@ public class FieldController {
         System.out.println(owner);
         if (owner == null) {
             System.out.println("This field is not owned by anyone!");
+
         }
         else if (owner.equals(playerID)) {
             System.out.println("This field is owned by you. ");
