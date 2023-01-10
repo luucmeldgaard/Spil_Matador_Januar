@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class GameState {
     GameController controller;
-    public static GameState gameStateObject;
+    private static GameState gameStateObject;
 
     ArrayList<Player> players;
     Player currentPlayer;
