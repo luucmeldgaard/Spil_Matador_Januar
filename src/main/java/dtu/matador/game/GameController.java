@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class GameController {
 
-    GUIController gui;
+
     int boardSize;
 
     public static void main(String[] args) {

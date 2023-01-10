@@ -28,13 +28,8 @@ public class FieldController {
         for (int i = 0; i < fieldMap.size(); i++) {
             fields.add(null);
         }
-
         setupFields();
-
-        gui = GUIController.guiControllerObject;
-
     }
-
 
     public void setupFields() {
         for (Map<String, String> field : fieldMap.values()) {
@@ -96,6 +91,7 @@ public class FieldController {
     public void landOnProperty(String playerID, Property property) {
         String owner = property.getOwner();
         if (owner == null){
+            this.gui.buttonRequest("Buy or auction?", "Buy", "Auction");
             property.buy();
             property.auction();
             System.out.println("This field is not owned by anyone!");
@@ -150,4 +146,7 @@ public class FieldController {
         //
     }
 
+    public void setGUI(GUIController guiControllerObject) {
+        gui = guiControllerObject;
+    }
 }
