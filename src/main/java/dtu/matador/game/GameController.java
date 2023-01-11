@@ -26,7 +26,7 @@ public class GameController {
     }
 
     public ArrayList<Player> addPlayers() {
-        int numPlayers = gui.getNumberOfPlayers();
+        int numPlayers = (gui.getNumberOfPlayers());
         ArrayList<Player> players = new ArrayList<>();
         for (int i = 0; i < numPlayers; i++) {
             String name = gui.getNameFromInput();
@@ -51,9 +51,10 @@ public class GameController {
         int[] dieValues = player.rollDie();
         int total = dieValues[0] + dieValues[1];
         gui.setDice(dieValues);
+        int oldplayerpos = player.getPosition();
         // player moves
         player.movePosition(total);
-        gui.movePlayerTo(player.getId(), player.getPosition());
+        gui.movePlayerTo(player.getId(), oldplayerpos, player.getPosition());
         System.out.println(player.getId());
 
     }

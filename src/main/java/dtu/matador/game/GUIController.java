@@ -107,12 +107,33 @@ class GUIController {
 
     }
 
-    public void movePlayerTo(String playerID, int position) {
-        GUI_Player guiPlayer = guiPlayers.get(Integer.parseInt(playerID));
-        guiPlayers.get(Integer.parseInt(playerID)).getCar().setPosition(gui.getFields()[position]);
-        board.landOnField(playerID, position);
 
+
+    public void movePlayerTo(String playerID, int beforeposition,int positionafter) {
+        GUI_Player guiPlayer = guiPlayers.get(Integer.parseInt(playerID));
+        for (int i = beforeposition;i <= positionafter;i++){
+            try {
+                Thread.sleep(150);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            if ((beforeposition+i)+1 == getBoardSize()){
+                guiPlayers.get(Integer.parseInt(playerID)).getCar().setPosition((gui.getFields()[0]));
+                beforeposition = 0;
+            }
+            else {
+                System.out.println(gui.getFields()[beforeposition + i].getTitle());
+                guiPlayers.get(Integer.parseInt(playerID)).getCar().setPosition((gui.getFields()[beforeposition + i]));
+                if ((gui.getFields()[beforeposition + i].getTitle()).equals("Start")) {
+                    System.out.println("DET VIRKER");
+                }
+            }
+
+
+        }
+        board.landOnField(playerID, positionafter);
     }
+
 
     public int getBoardSize() {return boardSize; }
 
@@ -123,29 +144,6 @@ class GUIController {
         )));
     }
 
-    /*
- public Color colorDropDownList() {
-        String chosenColorString = gui.getUserSelection(
-                "Select a colour",
-                "Rød", "Blå", "Lyserød", "Hvid", "Gul"
-        );
-        Color chosenColor = Color.black;
-        //This should be done with a switch case or maybe a loop to look cleaner, but this works for now
-        if (chosenColorString.equals("Rød")){ //This should be remade to pick colors from the colors.json we made
-            chosenColor = Color.red;
-            }
-        if (chosenColorString.equals("Blå")){
-            chosenColor = Color.blue;
-        }
-        if (chosenColorString.equals("Lyserød")){
-            chosenColor = Color.pink;
-        }
-        if (chosenColorString.equals("Hvid")){
-            chosenColor = Color.white;
-
-        }
-        return chosenColor;
- */
     public String getNameFromInput(){
         String playername = gui.getUserString("Enter your name here", 1, 30, true);
         return playername;
