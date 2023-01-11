@@ -142,14 +142,28 @@ public class FieldController {
         // Check for ownership
         // if ownership = null, owned(other playerID), owned(own playerID)
         String owner = street.getOwner();
+        if (owner == null) return;
         System.out.println(owner);
+        Player player = currentGameState.getPlayerFromID(playerID);
+        int balance = player.getBalance();
 
+        //If the field is owned by the current player, they have the choice to buy a house if they have sufficient funds
         if (owner.equals(playerID)) {
             System.out.println("This field is owned by you. ");
+
+            //checks if the owner has sufficient funds to buy a house
+            if (balance >= street.getBuildPrice()){
+                String response = gui.buttonRequest("Do you want to buy a house?","Buy","No");
+                if (response.equals("Buy")) {
+                    street.buildHouse();
+                    bill(playerID, street.getBuildPrice());
+                }
+            }
         }
         else {
             System.out.println("This field is owned by someone else!");
-        }
+            street.getRent();
+            street.getOwner();
 
         // if owned(own playerID)
         // Options: Build, Pledge, Sell housing

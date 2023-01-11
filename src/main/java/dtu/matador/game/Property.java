@@ -97,6 +97,14 @@ public abstract class Property implements PropertyFields {
     public void auction(String playerID) {
 
     }
+
+    public int getBuildPrice(){
+        return buildPrice;
+    }
+
+    public void buildHouse(){
+
+    }
 }
 
 
