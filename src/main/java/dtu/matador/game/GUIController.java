@@ -108,12 +108,65 @@ class GUIController {
 
     }
 
-    public void movePlayerTo(String playerID, int position) {
-        GUI_Player guiPlayer = guiPlayers.get(Integer.parseInt(playerID));
-        guiPlayers.get(Integer.parseInt(playerID)).getCar().setPosition(gui.getFields()[position]);
-        board.landOnField(playerID, position);
+    public void movePlayerOnce(String playerID, int nextPosition) {
+        if (nextPosition >= boardSize) {
+            nextPosition = nextPosition % boardSize;
+        }
+        GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
+        player.getCar().setPosition(guiFields[nextPosition]);
 
+        System.out.println(guiFields[nextPosition].getTitle());
+
+        if (nextPosition != 0){
+            if (guiFields[nextPosition - 1].getTitle().equals("Start")) {
+                System.out.println("__________START_______________");
+                board.landOnField(playerID, nextPosition);
+            }
+        }
+
+        /*if (nextPosition >= boardSize) {
+            nextPosition = nextPosition % boardSize; // if next position exceed board size, get the mod
+        }
+        GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
+        player.getCar().setPosition((guiFields[nextPosition]));
+        System.out.println(guiFields[nextPosition].getTitle());*/
     }
+
+
+    public void movePlayerTo(String playerID, int startPosition, int endPosition) {
+        int steps = endPosition - startPosition;
+        int currentPosition = startPosition;
+        if (steps < 0) {
+            steps += boardSize;
+        }
+        for (int i = 0; i < steps; i++) {
+            currentPosition++;
+            if (currentPosition >= boardSize) {
+                currentPosition = 0;
+            }
+            movePlayerOnce(playerID, currentPosition);
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        board.landOnField(playerID, endPosition);
+    }
+
+    /*
+        GUI_Player guiPlayer = guiPlayers.get(Integer.parseInt(playerID));
+        int nextPosition;
+        for (int i = 0; i < positionAfter; i++) {
+            try {
+                Thread.sleep(150);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            currentPosition += 1;
+            movePlayerOnce(playerID, currentPosition);
+        }*/
+
 
     public int getBoardSize() {return boardSize; }
 
@@ -124,29 +177,6 @@ class GUIController {
         )));
     }
 
-    /*
- public Color colorDropDownList() {
-        String chosenColorString = gui.getUserSelection(
-                "Select a colour",
-                "Rød", "Blå", "Lyserød", "Hvid", "Gul"
-        );
-        Color chosenColor = Color.black;
-        //This should be done with a switch case or maybe a loop to look cleaner, but this works for now
-        if (chosenColorString.equals("Rød")){ //This should be remade to pick colors from the colors.json we made
-            chosenColor = Color.red;
-            }
-        if (chosenColorString.equals("Blå")){
-            chosenColor = Color.blue;
-        }
-        if (chosenColorString.equals("Lyserød")){
-            chosenColor = Color.pink;
-        }
-        if (chosenColorString.equals("Hvid")){
-            chosenColor = Color.white;
-
-        }
-        return chosenColor;
- */
     public String getNameFromInput(){
         String playername = gui.getUserString("Enter your name here", 1, 30, true);
         return playername;
