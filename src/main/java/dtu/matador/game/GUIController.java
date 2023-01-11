@@ -108,7 +108,8 @@ class GUIController {
     }
 
     public void movePlayerTo(String playerID, int position) {
-        guiPlayers.get(currentGUIPlayer).getCar().setPosition(gui.getFields()[position]);
+        GUI_Player guiPlayer = guiPlayers.get(Integer.parseInt(playerID));
+        guiPlayers.get(Integer.parseInt(playerID)).getCar().setPosition(gui.getFields()[position]);
         board.landOnField(playerID, position);
 
     }

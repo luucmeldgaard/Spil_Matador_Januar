@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static dtu.matador.game.GUIController.currentGUIPlayer;
-import static dtu.matador.game.GameState.getStateInstance;
 import static dtu.matador.game.GUIController.getGUIInstance;
 
 public class FieldController {
@@ -17,12 +16,11 @@ public class FieldController {
     Map<String, Map<String, String>> fieldMap;
     FieldSpaces currentField;
     static GUIController gui;
-    static GameState currentGameState = getStateInstance();
+    GameState currentGameState = new GameState();
 
 
 
     public FieldController(String selectedBoard) {
-        System.out.println(currentGameState.tester());
         fieldLoader = new FieldLoader(selectedBoard);
         fieldMap = fieldLoader.getFieldMap();
 
@@ -109,7 +107,6 @@ public class FieldController {
     }
 
     public void landOnProperty(String playerID, Property property) {
-        System.out.println(currentGameState.tester());
         String owner = property.getOwner();
         if (owner == null){
             System.out.println("This field is not owned by anyone!");

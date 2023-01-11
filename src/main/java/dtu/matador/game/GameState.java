@@ -4,41 +4,30 @@ import java.util.ArrayList;
 
 public class GameState {
     GameController controller;
-    private static GameState gameStateObject;
+    static ArrayList<Player> players;
+    static Player currentPlayer;
+    static int currentPlayerNum;
 
-    ArrayList<Player> players;
-    Player currentPlayer;
-
-    private GameState() {
+    public GameState() {
         controller = new GameController();
         players = new ArrayList<Player>();
-    }
-
-    public static GameState getStateInstance() {
-        if (gameStateObject == null) {
-            gameStateObject = new GameState();
-        }
-        else {System.out.println("Gamestate instance already initialized..."); }
-        return gameStateObject;
+        currentPlayerNum = 0;
     }
 
     public void menu() {
         controller.setBoard("FieldData");
         //TODO: Make loop for adding more players
-        players.add(controller.addPlayers());
+        players = controller.addPlayers();
         currentPlayer = players.get(0);
     }
 
-    public String tester() {
-        return "Test";
-    }
-
     public void play() {
+        System.out.println(currentPlayer);
         controller.playRound(currentPlayer);
     }
 
     public Player getCurrentPlayer() {
-        return currentPlayer;
+        return players.get(currentPlayerNum);
     }
 
     public Player getPlayerFromID(String playerID) {
