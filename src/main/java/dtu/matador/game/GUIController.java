@@ -62,6 +62,9 @@ class GUIController {
         colorNamesArrayList.add("Blå");
         colorNamesArrayList.add("Lyserød");
         colorNamesArrayList.add("Hvid");
+        colorNamesArrayList.add("Sort");
+        colorNamesArrayList.add("Tyrkis");
+
     }
 
     public String colorDropDownList() {
@@ -84,13 +87,21 @@ class GUIController {
         if (chosenColorString.equals("Lyserød")){
             chosenColor = "myPink";
             colorNamesArrayList.remove("Lyserød");
-
         }
+
         if (chosenColorString.equals("Hvid")){
             chosenColor = "myWhite";
-            colorNamesArrayList.remove("Lyserød");
+            colorNamesArrayList.remove("Hvid");
+        }
 
+        if (chosenColorString.equals("Sort")) {
+            chosenColor = "myBlack";
+            colorNamesArrayList.remove("Sort");
+        }
 
+        if (chosenColorString.equals("Tyrkis")) {
+            chosenColor = "myTurqouise";
+            colorNamesArrayList.remove("Tyrkis");
         }
         return chosenColor;
     }
