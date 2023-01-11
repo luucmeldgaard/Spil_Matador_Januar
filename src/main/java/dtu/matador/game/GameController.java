@@ -49,11 +49,14 @@ public class GameController {
         System.out.println(player.getName());
         gui.buttonRequest("Roll Dice", "Roll");
         int[] dieValues = player.rollDie();
-        int total = dieValues[0] + dieValues[1];
+        int total = (dieValues[0] + dieValues[1]);
+        System.out.println("dieValues[0]" + dieValues[0] + " " + "dieValues[1]" + dieValues[1]);
         gui.setDice(dieValues);
         int oldplayerpos = player.getPosition();
         // player moves
         player.movePosition(total);
+        int newplayerpost = player.getPosition();
+        System.out.println("Old and new player pos:" + oldplayerpos + " " + newplayerpost);
         gui.movePlayerTo(player.getId(), oldplayerpos, player.getPosition());
         System.out.println(player.getId());
 

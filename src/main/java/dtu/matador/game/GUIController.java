@@ -111,7 +111,9 @@ class GUIController {
 
     public void movePlayerTo(String playerID, int beforeposition,int positionafter) {
         GUI_Player guiPlayer = guiPlayers.get(Integer.parseInt(playerID));
-        for (int i = beforeposition;i <= positionafter;i++){
+        int i = beforeposition;
+
+        for (;i <= positionafter;i++){
             try {
                 Thread.sleep(150);
             } catch (InterruptedException e) {
