@@ -19,6 +19,7 @@ public class GameController {
         currentGameState.menu();
         currentGameState.play();
 
+
     }
 
     //Sets the board in the GUI
@@ -31,6 +32,7 @@ public class GameController {
     public ArrayList<Player> addPlayers() {
         int numPlayers = (gui.getNumberOfPlayers());
         ArrayList<Player> players = new ArrayList<>();
+        gui.fillColorSelector();
         for (int i = 0; i < numPlayers; i++) {
             String name = gui.getNameFromInput();
             System.out.println("Select player color");
@@ -49,21 +51,42 @@ public class GameController {
     //This method makes it possible for a player to move forward equal to the value of their dice roll
     public void playRound(Player player) {
         // roll dice
-        System.out.println(player.getName());
         gui.buttonRequest("Roll Dice", "Roll");
         int[] dieValues = player.rollDie();
         int total = (dieValues[0] + dieValues[1]);
-        System.out.println("dieValues[0]" + dieValues[0] + " " + "dieValues[1]" + dieValues[1]);
         gui.setDice(dieValues);
         int oldplayerpos = player.getPosition();
-        // player moves
-        player.movePosition(total);
-        int newplayerpost = player.getPosition();
-        System.out.println("Old and new player pos:" + oldplayerpos + " " + newplayerpost);
-        gui.movePlayerTo(player.getId(), oldplayerpos, player.getPosition());
-        System.out.println(player.getId());
 
+
+
+
+        // player moves
+        //TODO: MAKE THIS MOVE ONLY ONCE player.movePosition(total);
+        int newplayerpost = player.getPosition();
+        gui.movePlayerTo(player.getId(), oldplayerpos, player.getPosition());
     }
+
+    /*
+
+        public void movePlayerTo(String playerID, int startPosition, int endPosition) {
+        playersPassedStartOnce += 1;
+        int steps = endPosition - startPosition;
+        int currentPosition = startPosition;
+        if (steps < 0) {
+            steps += boardSize;
+        }
+        for (int i = 0; i < steps; i++) {
+            currentPosition++;
+            if (currentPosition >= boardSize) {
+                currentPosition = 0;
+            }
+            movePlayerOnce(playerID, currentPosition);
+            try {
+                Thread.sleep(20);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+     */
 
     public void landOn() {
         // retrieves fieldtype from Field Controller
