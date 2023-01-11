@@ -62,12 +62,11 @@ public class GameState {
                 Player receiver = getPlayerFromID(receiverID);
                 int playerActualBalance = player.getBalance();
                 receiver.addBalance(playerActualBalance);
-                return false;
             }
             if (critical) {
                 // TODO player has lost and will be removed
                 System.out.println("The player has lost");
-                return false;
+                players.remove(player);
             }
             return false;
         }

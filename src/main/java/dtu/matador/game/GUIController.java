@@ -165,7 +165,7 @@ class GUIController {
         GUI_Player guiPlayer = guiPlayers.get(Integer.parseInt(playerID));
         guiPlayer.setBalance(balance);
 
-    }
+     }
 
     public void updateProperty(int fieldPosition, String color, int housing) {
         Color newColor = Color.getColor(color);

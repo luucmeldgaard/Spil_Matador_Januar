@@ -268,6 +268,11 @@ public class FieldController {
             gui.updateGUIPlayerBalance(receiverID, newReceiverBalance);
         }
 
+        if (currentGameState.getPlayerFromID(playerID) == null) {
+            gui.buttonRequest("You are broke and have lost the game... ", "Ok");
+            gui.removePlayer(playerID);
+        }
+
         return transactionSuccess;
 
     }
