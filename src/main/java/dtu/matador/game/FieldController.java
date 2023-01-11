@@ -189,6 +189,7 @@ public class FieldController {
         gui.updateGUIPlayerBalance(playerID, playerBalanceChange);
 
         return currentGameState.handleTransaction(playerID, receiverID, price, critical);
+
     }
 
 

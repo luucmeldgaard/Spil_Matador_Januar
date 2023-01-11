@@ -153,6 +153,7 @@ class GUIController {
     public void updateGUIPlayerBalance(String playerID, int balance) {
         GUI_Player guiPlayer = guiPlayers.get(Integer.parseInt(playerID));
         guiPlayer.setBalance(balance);
+
     }
 
 }
