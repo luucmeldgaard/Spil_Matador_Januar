@@ -128,6 +128,10 @@ public class FieldController {
             String choice = gui.buttonRequest("Buy or auction?", "Buy", "Auction");
             if (choice.equals("Buy")) {
                 property.buy(playerID);
+                if (property.getOwner().equals(playerID)) {
+                    updateFieldMap(property);
+                    updateGUI(property);
+                }
             } else if (choice.equals("Auction")) {
                 property.auction(playerID);
             }
