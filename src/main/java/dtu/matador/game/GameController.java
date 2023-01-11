@@ -56,13 +56,10 @@ public class GameController {
         int total = (dieValues[0] + dieValues[1]);
         gui.setDice(dieValues);
         int oldplayerpos = player.getPosition();
-
-
-
-
         // player moves
         //TODO: MAKE THIS MOVE ONLY ONCE player.movePosition(total);
-        int newplayerpost = player.getPosition();
+        //int newplayerpost = player.getPosition();
+        player.setPosition(oldplayerpos + total);
         gui.movePlayerTo(player.getId(), oldplayerpos, player.getPosition());
     }
 
