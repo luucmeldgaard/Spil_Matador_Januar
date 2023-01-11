@@ -159,6 +159,9 @@ public class FieldController {
                     bill(playerID, street.getBuildPrice());
                 }
             }
+            else {
+                System.out.println("You do not have sufficient funds");
+            }
         }
         else {
             System.out.println("This field is owned by someone else!");
