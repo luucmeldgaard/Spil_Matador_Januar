@@ -245,7 +245,7 @@ public class FieldController {
                 }
                 }
             else {
-                message = "You recieved " + price;
+                message = "You received " + price;
                 userRequest = gui.buttonRequest(message, "Ok");
             }
         }
