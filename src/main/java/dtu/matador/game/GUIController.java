@@ -150,13 +150,9 @@ class GUIController {
         return playername;
     }
 
-    //Player gets the option to pay the bill
-    public boolean transactionRequest(String msg, String playerID, String reciever, int price) {
-        String accept = buttonRequest(msg, "Yes", "No");
-        if (accept.equals("Yes")) {
-            gameController.transaction(playerID, reciever, price);
-            return true;
-        }
-        else { return false; }
+    public void updateGUIPlayerBalance(String playerID, int balance) {
+        GUI_Player guiPlayer = guiPlayers.get(Integer.parseInt(playerID));
+        guiPlayer.setBalance(balance);
     }
+
 }

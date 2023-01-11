@@ -5,6 +5,8 @@ import dtu.matador.game.fields.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static dtu.matador.game.GUIController.currentGUIPlayer;
 import static dtu.matador.game.GameState.getStateInstance;
 import static dtu.matador.game.GUIController.getGUIInstance;
 
@@ -170,18 +172,30 @@ public class FieldController {
         //
     }
 
-    public boolean createTransaction(String playerID, String receiverID, int price) {
+    public boolean createTransaction(String playerID, String receiverID, int price, boolean critical) {
         if (receiverID != null) {
             String message = "The player will have to pay the owner a rent of " + price;
-            return gui.transactionRequest(message, playerID, receiverID, price);
-        }
-        else {
+            gui.buttonRequest(message, "Pay rent");
+            int receiverBalanceChange = currentGameState.getPlayerFromID(receiverID).getBalance();
+            gui.updateGUIPlayerBalance(receiverID, receiverBalanceChange);
+        } else {
             String message = "The player will lose " + price;
-            return gui.transactionRequest(message, playerID, null, price);
+            String userRequest = gui.buttonRequest(message, "Pay", "Cancel");
+            if (userRequest.equals("Cancel")) {
+                return false;
+            }
         }
+        int playerBalanceChange = currentGameState.getPlayerFromID(playerID).getBalance();
+        gui.updateGUIPlayerBalance(playerID, playerBalanceChange);
+
+        return currentGameState.handleTransaction(playerID, receiverID, price, critical);
     }
+
+
+
 
     public void insufficientFunds() {
         gui.buttonRequest("You have insufficient funds. ", "Ok");
     }
+
 }

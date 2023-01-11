@@ -51,4 +51,23 @@ public class GameState {
         return null;
     }
 
+    public boolean handleTransaction(String playerID, String receiverID, int price, boolean critical) {
+        Player player = getPlayerFromID(playerID);
+        boolean confirmation = false;
+        if (receiverID == null) {
+            confirmation = player.addBalance(price);
+        }
+        else {
+            Player receiver = getPlayerFromID(receiverID);
+            receiver.addBalance(Math.abs(price));
+            confirmation =  player.addBalance(price);
+        }
+        if (critical) {
+            // THE PLAYER HAS LOST THE GAME
+            System.out.println("You have lost the game. ");
+
+        }
+        return confirmation;
+    }
+
 }
