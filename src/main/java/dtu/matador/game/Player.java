@@ -6,7 +6,7 @@ public class Player {
 
     //A player's attributes are implemented
 
-    static int nextId = 1;
+    static int nextId = 0;
     String id;
     String name;
     Color color;
