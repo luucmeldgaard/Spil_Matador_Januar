@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="Player can now move the total value of the dieRoll" />
+    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="Changed subtext to show field price">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,10 +24,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature_landOn" />
+        <entry key="$PROJECT_DIR$" value="development" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="SOFT" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -108,9 +113,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GameController" />
         <item itemvalue="JUnit.PlayerTest" />
         <item itemvalue="JUnit.DiceCupTest.dieInRangeOneToSix" />
+        <item itemvalue="Application.GameController" />
         <item itemvalue="Application.GameController" />
         <item itemvalue="JUnit.PlayerTest" />
       </list>
@@ -221,7 +226,28 @@
       <option name="project" value="LOCAL" />
       <updated>1673317264825</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="added &quot;income&quot;">
+      <created>1673419928863</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1673419928863</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Reverted back to previous thingymajingy">
+      <created>1673460126580</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1673460126580</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Changed subtext to show field price">
+      <created>1673460696265</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1673460696265</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +258,44 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="development" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="development" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+            </list>
           </value>
         </entry>
       </map>
@@ -250,6 +313,14 @@
     <MESSAGE value="player can roll Die" />
     <MESSAGE value="Player changes made. Created test: player moves the dieRoll forward" />
     <MESSAGE value="Player can now move the total value of the dieRoll" />
-    <option name="LAST_COMMIT_MESSAGE" value="Player can now move the total value of the dieRoll" />
+    <MESSAGE value="added &quot;income&quot;" />
+    <MESSAGE value="Reverted back to previous thingymajingy" />
+    <MESSAGE value="Changed subtext to show field price" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed subtext to show field price" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Spil_Matador_Januar$GameController.ic" NAME="GameController Coverage Results" MODIFIED="1673410974328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>dtu.matador.game.*</FILTER>
+    </SUITE>
   </component>
 </project>
