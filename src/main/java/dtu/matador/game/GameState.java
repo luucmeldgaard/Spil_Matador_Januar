@@ -11,7 +11,6 @@ public class GameState {
 
     public GameState() {
         controller = new GameController();
-        //players = new ArrayList<Player>();
         currentPlayerNum = 0;
     }
 
