@@ -2,6 +2,7 @@ package dtu.matador.game;
 
 import java.util.Map;
 
+//NonPurchasableFields is implemented as an abstract class
 public abstract class NonPurchasableFields implements FieldSpaces {
     String name;
     String subtext;
@@ -10,6 +11,7 @@ public abstract class NonPurchasableFields implements FieldSpaces {
     String color2;
     int position;
 
+    //NonPurchasableFields has all the parameters that the properties which you cannot own, have in common
     public NonPurchasableFields(String name, String subtext, String description, String color1, String color2, String position) {
         this.name = name;
         this.subtext = subtext;

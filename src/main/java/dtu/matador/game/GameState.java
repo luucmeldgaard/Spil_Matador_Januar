@@ -3,6 +3,7 @@ package dtu.matador.game;
 import java.util.ArrayList;
 
 public class GameState {
+    //Instances of classes are added
     GameController controller;
     static ArrayList<Player> players;
     static Player currentPlayer;

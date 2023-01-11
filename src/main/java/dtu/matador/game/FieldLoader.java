@@ -48,13 +48,14 @@ public class FieldLoader {
             }
 
         }
+        //throws an exception
         catch (IOException | ParseException ex) {
             throw new RuntimeException(ex);
         }
 
         return board;
     }
-
+    //Converts JSON to colors on map
     private Map<String, String> JSONtoMapColors(String filename) {
         JSONParser jsonParser = new JSONParser();
         try (FileReader fieldFileReader = new FileReader(filename)) {

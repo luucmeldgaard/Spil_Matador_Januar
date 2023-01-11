@@ -81,6 +81,7 @@ public abstract class Property implements PropertyFields {
         return rent;
     }
 
+    //A player can buy with the help of a transaction
     public void buy(String playerID) {
         boolean purchase = controller.createTransaction(playerID,null, -this.price, false);
         if (purchase) {

@@ -7,10 +7,12 @@ import java.util.ArrayList;
 
 public class GameController {
 
+    //Initiating instances and an int boardSize
     GUIController gui;
     int boardSize;
     static GameState currentGameState;
 
+    //Main method. Runs the program
     public static void main(String[] args) {
         //GUI.setNull_fields_allowed(true); //This messes up the GUI but allows it to render with null fields, making troublefixing easier
         currentGameState = new GameState();
@@ -19,12 +21,13 @@ public class GameController {
 
     }
 
-
+    //Sets the board in the GUI
     public void setBoard(String selectedBoard) {
         gui = GUIController.getGUIInstance(selectedBoard);
         boardSize = gui.getBoardSize();
     }
 
+    //Adds a player, a player color and a playerID to the GUI
     public ArrayList<Player> addPlayers() {
         int numPlayers = (gui.getNumberOfPlayers());
         ArrayList<Player> players = new ArrayList<>();
@@ -43,7 +46,7 @@ public class GameController {
     }
 
 
-
+    //This method makes it possible for a player to move forward equal to the value of their dice roll
     public void playRound(Player player) {
         // roll dice
         System.out.println(player.getName());

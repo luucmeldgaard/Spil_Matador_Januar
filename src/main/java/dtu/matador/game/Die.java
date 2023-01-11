@@ -13,7 +13,7 @@ public class Die {
         this.sides = sides;
     }
 
-//Each dice will show a number between 1 and 6.
+//Each die will show a number between 1 and 6.
     public int roll() {
         Random rand = new Random();
         return rand.nextInt(0,sides)+1;
