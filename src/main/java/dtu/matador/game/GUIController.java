@@ -57,7 +57,7 @@ class GUIController {
 
     public String colorDropDownList() {
         String chosenColorString = gui.getUserSelection(
-                "Select a colour",
+                "Select a color",
                 "Rød", "Blå", "Lyserød", "Hvid", "Gul"
         );
         String chosenColor = "";
