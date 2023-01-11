@@ -9,7 +9,7 @@ public class GUICreator {
     public GUICreator() {
 
     }
-
+    //Checks what fieldType is used
     public GUI_Field[] setup(Map<String, Map<String, String>> fieldMap) {
 
         GUI_Field[] guiFields = new GUI_Field[fieldMap.size()];
