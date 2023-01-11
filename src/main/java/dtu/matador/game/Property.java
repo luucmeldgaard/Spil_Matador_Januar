@@ -32,7 +32,7 @@ public abstract class Property implements PropertyFields {
         this.name = name;
         this.subtext = subtext;
         this.description = description;
-        this.rent = Integer.parseInt(rent);
+        this.rent = -Integer.parseInt(rent);
         this.color1 = color1;
         this.color2 = color2;
         this.price = Integer.parseInt(price);

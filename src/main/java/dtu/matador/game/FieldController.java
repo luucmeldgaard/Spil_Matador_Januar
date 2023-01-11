@@ -188,8 +188,10 @@ public class FieldController {
         }
         else {
             System.out.println("This field is owned by someone else!");
-            street.getRent();
-            street.getOwner();
+            int rent = street.getRent();
+            String receiverID = street.getOwner();
+
+            createTransaction(playerID, receiverID, rent, true);
 
             // if owned(own playerID)
             // Options: Build, Pledge, Sell housing
