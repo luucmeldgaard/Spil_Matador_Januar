@@ -26,7 +26,7 @@ public class GameController {
     }
 
     public ArrayList<Player> addPlayers() {
-        int numPlayers = Integer.parseInt(gui.buttonRequest("Number of players", "2", "3"));
+        int numPlayers = gui.getNumberOfPlayers();
         ArrayList<Player> players = new ArrayList<>();
         for (int i = 0; i < numPlayers; i++) {
             String name = gui.getNameFromInput();
