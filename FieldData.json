@@ -14,11 +14,11 @@
     "rent5": "",
     "title": "Start",
     "fieldType": "start",
-    "subText": "Du ser godt ud idag",
+    "subText": "",
     "color1": "myWhite",
     "color2": "myBlue",
     "housing": "0",
-    "income": "5000"
+    "income": "4000"
   },
   {
     "owner": "",
@@ -35,10 +35,11 @@
     "rent5": "6000",
     "title": "Rødovrevej",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "1200",
     "color1": "myBlue",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -55,10 +56,11 @@
     "rent5": "",
     "title": "Prøv lykken",
     "fieldType": "chance",
-    "subText": "Du ser godt ud idag",
+    "subText": "",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -75,10 +77,11 @@
     "rent5": "6000",
     "title": "Hvidovrevej",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "1200",
     "color1": "myBlue",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -95,10 +98,11 @@
     "rent5": "",
     "title": "Indkomstskat",
     "fieldType": "tax",
-    "subText": "Du ser godt ud idag",
+    "subText": "4000",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -115,10 +119,11 @@
     "rent5": "",
     "title": "Helsingør - Helsingborg",
     "fieldType": "ferry",
-    "subText": "Du ser godt ud idag",
+    "subText": "4000",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -135,10 +140,11 @@
     "rent5": "11000",
     "title": "Roskildevej",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "2000",
     "color1": "myPink",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -155,10 +161,11 @@
     "rent5": "",
     "title": "Prøv lykken",
     "fieldType": "chance",
-    "subText": "Du ser godt ud idag",
+    "subText": "",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -175,10 +182,11 @@
     "rent5": "11000",
     "title": "Valby Langgade",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "2000",
     "color1": "myPink",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -195,10 +203,11 @@
     "rent5": "12000",
     "title": "Allégade",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "2400",
     "color1": "myPink",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -215,10 +224,11 @@
     "rent5": "",
     "title": "I fængsel/På besøg",
     "fieldType": "jail",
-    "subText": "Du ser godt ud idag",
+    "subText": "",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -235,10 +245,11 @@
     "rent5": "15000",
     "title": "Frederiksberg Allé",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "2800",
     "color1": "mySand",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -255,10 +266,11 @@
     "rent5": "",
     "title": "Tuborg Squash",
     "fieldType": "brewery",
-    "subText": "Du ser godt ud idag",
+    "subText": "3000",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -275,10 +287,11 @@
     "rent5": "15000",
     "title": "Bülowsvej",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "2800",
     "color1": "mySand",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -295,10 +308,11 @@
     "rent5": "18000",
     "title": "Gl. Kongevej",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "3200",
     "color1": "mySand",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -315,10 +329,11 @@
     "rent5": "",
     "title": "Mols-Linien",
     "fieldType": "ferry",
-    "subText": "Du ser godt ud idag",
+    "subText": "4000",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -335,10 +350,11 @@
     "rent5": "19000",
     "title": "Bernstorffsvej",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "3600",
     "color1": "myGrey",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -355,10 +371,11 @@
     "rent5": "",
     "title": "Prøv lykken",
     "fieldType": "chance",
-    "subText": "Du ser godt ud idag",
+    "subText": "",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -375,10 +392,11 @@
     "rent5": "19000",
     "title": "Hellerupvej",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "3600",
     "color1": "myGrey",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -395,10 +413,11 @@
     "rent5": "20000",
     "title": "Strandvejen",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "4000",
     "color1": "myGrey",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -415,10 +434,11 @@
     "rent5": "",
     "title": "Parkering",
     "fieldType": "refuge",
-    "subText": "Du ser godt ud idag",
+    "subText": "",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -435,10 +455,11 @@
     "rent5": "21000",
     "title": "Trianglen",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "4400",
     "color1": "myRed",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -455,10 +476,11 @@
     "rent5": "",
     "title": "Prøv lykken",
     "fieldType": "chance",
-    "subText": "Du ser godt ud idag",
+    "subText": "",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -475,10 +497,11 @@
     "rent5": "21000",
     "title": "Øserbrogade",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "4400",
     "color1": "myRed",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -495,10 +518,11 @@
     "rent5": "22000",
     "title": "Grønningen",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "4800",
     "color1": "myRed",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -515,10 +539,11 @@
     "rent5": "",
     "title": "Gedser - Rostock",
     "fieldType": "ferry",
-    "subText": "Du ser godt ud idag",
+    "subText": "4000",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -535,10 +560,11 @@
     "rent5": "23000",
     "title": "Bredgade",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "5200",
     "color1": "myLightGrey",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -555,10 +581,11 @@
     "rent5": "23000",
     "title": "Kgs. Nytorv",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "5200",
     "color1": "myLightGrey",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -575,10 +602,11 @@
     "rent5": "",
     "title": "Coca Cola",
     "fieldType": "brewery",
-    "subText": "Du ser godt ud idag",
+    "subText": "3000",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -595,10 +623,11 @@
     "rent5": "24000",
     "title": "Østergade",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "5600",
     "color1": "myLightGrey",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -615,10 +644,11 @@
     "rent5": "",
     "title": "Fængsel",
     "fieldType": "jail",
-    "subText": "Du ser godt ud idag",
+    "subText": "",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -635,10 +665,11 @@
     "rent5": "25000",
     "title": "Amagertorv",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "6000",
     "color1": "myYellow",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -655,10 +686,11 @@
     "rent5": "25000",
     "title": "Vimmelskaftet",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "6000",
     "color1": "myYellow",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -675,10 +707,11 @@
     "rent5": "",
     "title": "Prøv lykken",
     "fieldType": "chance",
-    "subText": "Du ser godt ud idag",
+    "subText": "",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -695,10 +728,11 @@
     "rent5": "28000",
     "title": "Nygade",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "6400",
     "color1": "myYellow",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -715,10 +749,11 @@
     "rent5": "",
     "title": "Rødby - Puttgarden",
     "fieldType": "ferry",
-    "subText": "Du ser godt ud idag",
+    "subText": "4000",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -735,10 +770,11 @@
     "rent5": "",
     "title": "Prøv lykken",
     "fieldType": "chance",
-    "subText": "Du ser godt ud idag",
+    "subText": "",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -755,10 +791,11 @@
     "rent5": "30000",
     "title": "Frederiksberggade",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "7000",
     "color1": "myPurple",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -775,10 +812,11 @@
     "rent5": "",
     "title": "Ekstraordinær statsskat",
     "fieldType": "tax",
-    "subText": "Du ser godt ud idag",
+    "subText": "2000",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -795,9 +833,10 @@
     "rent5": "40000",
     "title": "Rådhuspladsen",
     "fieldType": "property",
-    "subText": "Du ser godt ud idag",
+    "subText": "8000",
     "color1": "myPurple",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   }
 ]
