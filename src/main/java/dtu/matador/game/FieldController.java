@@ -173,9 +173,11 @@ public class FieldController {
     }
 
     public boolean createTransaction(String playerID, String receiverID, int price, boolean critical) {
+        boolean transactionSuccess = false;
         if (receiverID != null) {
             String message = "The player will have to pay the owner a rent of " + price;
             gui.buttonRequest(message, "Pay rent");
+            transactionSuccess = currentGameState.handleTransaction(playerID, receiverID, price, critical);
             int receiverBalanceChange = currentGameState.getPlayerFromID(receiverID).getBalance();
             gui.updateGUIPlayerBalance(receiverID, receiverBalanceChange);
         } else {
@@ -185,10 +187,11 @@ public class FieldController {
                 return false;
             }
         }
+        transactionSuccess = currentGameState.handleTransaction(playerID, receiverID, price, critical);
         int playerBalanceChange = currentGameState.getPlayerFromID(playerID).getBalance();
         gui.updateGUIPlayerBalance(playerID, playerBalanceChange);
 
-        return currentGameState.handleTransaction(playerID, receiverID, price, critical);
+        return transactionSuccess;
 
     }
 
