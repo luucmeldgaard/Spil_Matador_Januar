@@ -17,7 +17,7 @@ public class GUICreator {
             System.out.println("Creating gui instance, nr.: " + Integer.parseInt(field.get("position")));
             switch (field.get("fieldType")) {
                 case "property" -> {
-                    guiFields[Integer.parseInt(field.get("position"))] = new GUI_Street(field.get("title"), field.get("subText"), field.get("subText"), field.get("rent"), Color.getColor(field.get("color1")), Color.getColor(field.get("color2")));
+                    guiFields[Integer.parseInt(field.get("position"))] = new GUI_Street(field.get("title"), field.get("subText"), field.get("title"), field.get("rent"), Color.getColor(field.get("color1")), Color.getColor(field.get("color2")));
                 }
                 case "chance" -> {
                     guiFields[Integer.parseInt(field.get("position"))] = new GUI_Chance(field.get("title"), field.get("subText"), field.get("subText"), Color.getColor(field.get("color1")), Color.getColor(field.get("color2")));
