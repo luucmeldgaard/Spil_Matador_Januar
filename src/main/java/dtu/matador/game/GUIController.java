@@ -114,15 +114,15 @@ class GUIController {
     }
 
     public int getBoardSize() {return boardSize; }
+
     public int getNumberOfPlayers(){
-        String numOfPlayers = (gui.getUserSelection(
+        return Integer.parseInt((gui.getUserSelection(
                 "Select a number of players",
-                "1", "2", "3", "4"
-        ));
-        int numberOfPlayers = Integer.parseInt(numOfPlayers);
-        return numberOfPlayers;
+                "2", "3", "4", "5", "6"
+        )));
     }
-/*
+
+    /*
  public Color colorDropDownList() {
         String chosenColorString = gui.getUserSelection(
                 "Select a colour",
