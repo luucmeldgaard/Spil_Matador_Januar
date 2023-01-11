@@ -197,13 +197,14 @@ class GUIController {
 
     public void updateProperty(int fieldPosition, String color, int housing) {
         Color newColor = Color.getColor(color);
-        gui.getFields()[fieldPosition].setBackGroundColor(newColor);
+        GUI_Street field = ((GUI_Street) gui.getFields()[fieldPosition]);
+        field.setBackGroundColor(newColor);
         if (housing == 5) {
-            ((GUI_Street) gui.getFields()[fieldPosition]).setHotel(true);
+            field.setHotel(true);
         }
         else if (housing >= 0 && housing < 5) {
-            ((GUI_Street) gui.getFields()[fieldPosition]).setHotel(false);
-            ((GUI_Street) gui.getFields()[fieldPosition]).setHouses(housing);
+            field.setHotel(false);
+            field.setHouses(housing);
         }
     }
 
