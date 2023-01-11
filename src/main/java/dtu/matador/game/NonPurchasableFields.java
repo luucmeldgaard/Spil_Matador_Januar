@@ -20,7 +20,6 @@ public abstract class NonPurchasableFields implements FieldSpaces {
         this.color2 = color2;
         this.position = Integer.parseInt(position);
     }
-
     public String getName() {
         return this.name;
     }
