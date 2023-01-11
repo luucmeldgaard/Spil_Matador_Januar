@@ -3,6 +3,7 @@ package dtu.matador.game;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
+import gui_fields.GUI_Street;
 import gui_main.GUI;
 
 import java.awt.*;
@@ -155,6 +156,23 @@ class GUIController {
         GUI_Player guiPlayer = guiPlayers.get(Integer.parseInt(playerID));
         guiPlayer.setBalance(balance);
 
+    }
+
+    public void updateProperty(int fieldPosition, String color, int housing) {
+        Color newColor = Color.getColor(color);
+        gui.getFields()[fieldPosition].setBackGroundColor(newColor);
+        if (housing == 5) {
+            ((GUI_Street) gui.getFields()[fieldPosition]).setHotel(true);
+        }
+        else if (housing >= 0 && housing < 5) {
+            ((GUI_Street) gui.getFields()[fieldPosition]).setHotel(false);
+            ((GUI_Street) gui.getFields()[fieldPosition]).setHouses(housing);
+        }
+    }
+
+    public void updateProperty(int fieldPosition, String color) {
+        Color newColor = Color.getColor(color);
+        gui.getFields()[fieldPosition].setBackGroundColor(newColor);
     }
 
 }

@@ -2,6 +2,7 @@ package dtu.matador.game;
 
 import dtu.matador.game.fields.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +44,7 @@ public class FieldController {
             switch (field.get("fieldType")) {
                 case "property" -> {
                     fields.set(fieldPosition, new Street(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
-                            field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
+                            field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner"), field.get("housing")));
                 }
                 case "ferry" -> {
                     fields.set(fieldPosition, new Ferry(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
@@ -79,13 +80,16 @@ public class FieldController {
     }
 
     // overwrites chosen values of a specific field in the fieldMap
-    public void updateFieldMap(int position) {
-        System.out.println(fieldMap.get(String.valueOf(position)));
+    public void updateFieldMap(Property property) {
         Map<String, String> updatedFieldInfo = new HashMap<>();
-        updatedFieldInfo = ((PropertyFields) fields.get(position)).updateGuiField();
-        for (String key : updatedFieldInfo.keySet()) {
-            //fieldMap.get(String.valueOf(position)).remove(key);
-            fieldMap.get(String.valueOf(position)).replace(key, updatedFieldInfo.get(key));
+
+        String fieldPosition = String.valueOf(property.getPosition());
+        String color2 = property.getColor2();
+        String housing = null;
+        fieldMap.get(fieldPosition).replace("color2", color2);
+        if (property instanceof Street) {
+            housing = String.valueOf(((Street) property).getHousing());
+            fieldMap.get(fieldPosition).replace("housing", housing);
         }
     }
 
@@ -113,6 +117,11 @@ public class FieldController {
             String choice = gui.buttonRequest("Buy or auction?", "Buy", "Auction");
             if (choice.equals("Buy")) {
                 property.buy(playerID);
+                String ownerOfField = property.getOwner();
+                if (ownerOfField.equals(playerID)) {
+                    updateGUI(property);
+                    updateFieldMap(property);
+                }
             } else if (choice.equals("Auction")) {
                 property.auction(playerID);
             }
@@ -142,7 +151,7 @@ public class FieldController {
         if (owner == null) return;
         System.out.println(owner);
         Player player = currentGameState.getPlayerFromID(playerID);
-        int balance = player.getBalance();
+        int balance = currentGameState.getPlayerFromID(playerID).getBalance();
 
         //If the field is owned by the current player, they have the choice to buy a house if they have sufficient funds
         if (owner.equals(playerID)) {
@@ -150,15 +159,23 @@ public class FieldController {
 
             //checks if the owner has sufficient funds to buy a house
             if (balance >= street.getBuildPrice()) {
-                /*String response = gui.buttonRequest("Do you want to buy a house?","Buy","No");
+                int nextBuildPrice = street.getBuildPrice();
+                String response = gui.buttonRequest("Do you want to buy a house for " + nextBuildPrice + "?","Buy","No");
                 if (response.equals("Buy")) {
-                    street.buildHouse();
-                    board.(playerID, street.getBuildPrice());
-                }*/
-            } else {
-                System.out.println("You do not have sufficient funds");
+                    boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false);
+                    if (transactionSuccess) {
+                        street.buildHouse();
+                        updateGUI(((Property) street));
+                        updateFieldMap(((Property) street));
+
+                    }
+                }
             }
-        } else {
+            else {
+                // player does not care about housing because he doesn't have the money for it.
+            }
+        }
+        else {
             System.out.println("This field is owned by someone else!");
             street.getRent();
             street.getOwner();
@@ -175,40 +192,53 @@ public class FieldController {
 
     }
 
-    public void buy () {
-        //
-    }
-
     public void landOnChance () {
         //
     }
 
-        public boolean createTransaction (String playerID, String receiverID,int price, boolean critical) {
-            boolean transactionSuccess = false;
-            if (receiverID != null) {
-                String message = "The player will have to pay the owner a rent of " + price;
-                gui.buttonRequest(message, "Pay rent");
-                transactionSuccess = currentGameState.handleTransaction(playerID, receiverID, price, critical);
-                int receiverBalanceChange = currentGameState.getPlayerFromID(receiverID).getBalance();
-                gui.updateGUIPlayerBalance(receiverID, receiverBalanceChange);
-            } else {
-                String message = "The player will lose " + price;
-                String userRequest = gui.buttonRequest(message, "Pay", "Cancel");
-                if (userRequest.equals("Cancel")) {
-                    return false;
-                }
-            }
+    /**
+     *
+     * @param playerID
+     * @param receiverID
+     * @param price
+     * @param critical
+     * @return
+     */
+    public boolean createTransaction (String playerID, String receiverID,int price, boolean critical) {
+        boolean transactionSuccess = false;
+        if (receiverID != null) {
+            String message = "The player will have to pay the owner a rent of " + price;
+            gui.buttonRequest(message, "Pay rent");
             transactionSuccess = currentGameState.handleTransaction(playerID, receiverID, price, critical);
-            int playerBalanceChange = currentGameState.getPlayerFromID(playerID).getBalance();
-            gui.updateGUIPlayerBalance(playerID, playerBalanceChange);
-
-            return transactionSuccess;
-
+            int receiverBalanceChange = currentGameState.getPlayerFromID(receiverID).getBalance();
+            gui.updateGUIPlayerBalance(receiverID, receiverBalanceChange);
+        } else {
+            String message = "The player will lose " + price;
+            String userRequest = gui.buttonRequest(message, "Pay", "Cancel");
+            if (userRequest.equals("Cancel")) {
+                return false;
+            }
         }
+        transactionSuccess = currentGameState.handleTransaction(playerID, receiverID, price, critical);
+        int playerBalanceChange = currentGameState.getPlayerFromID(playerID).getBalance();
+        gui.updateGUIPlayerBalance(playerID, playerBalanceChange);
+
+        return transactionSuccess;
+
+    }
 
 
-        public void insufficientFunds () {
-            gui.buttonRequest("You have insufficient funds. ", "Ok");
+    public void insufficientFunds () {
+        gui.buttonRequest("You have insufficient funds. ", "Ok");
+    }
+
+    public void updateGUI(Property property) {
+        if (property instanceof Street) {
+            gui.updateProperty(property.getPosition(), property.getColor2(), ((Street) property).getHousing());
         }
+        else {
+            gui.updateProperty(property.getPosition(), property.getColor2());
+        }
+    }
 
 }

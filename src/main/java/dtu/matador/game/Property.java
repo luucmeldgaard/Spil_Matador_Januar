@@ -22,6 +22,7 @@ public abstract class Property implements PropertyFields {
     int position;
     String owner;
     int buildPrice;
+    protected int housing; // MÅSKE VIRKER DENNE HER IKKE?????
 
     //Takes input to create the class
     public Property(String name, String subtext, String description, String rent,
@@ -60,7 +61,7 @@ public abstract class Property implements PropertyFields {
         return this.color1;
     }
 
-    public String getColor2() {return this.color2;}
+    public String getColor2() {return this.color2; }
 
     public void setColor2(String color) {this.color2 = color;}
 
@@ -70,6 +71,10 @@ public abstract class Property implements PropertyFields {
 
     public int getPrice() {
         return price;
+    }
+
+    public int getPosition() {
+        return this.position;
     }
 
     public int getRent() {
