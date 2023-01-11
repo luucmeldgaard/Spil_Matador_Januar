@@ -32,7 +32,7 @@ public abstract class Property implements PropertyFields {
         this.name = name;
         this.subtext = subtext;
         this.description = description;
-        this.rent = -Integer.parseInt(rent);
+        this.rent = Integer.parseInt(rent);
         this.color1 = color1;
         this.color2 = color2;
         this.price = Integer.parseInt(price);
@@ -78,11 +78,12 @@ public abstract class Property implements PropertyFields {
     }
 
     public int getRent() {
-        return rent;
+        return -rent;
     }
 
     public void buy(String playerID) {
-        boolean purchase = controller.createTransaction(playerID,null, -this.price, false);
+        String message = "Do you want to purchase " + this.name + "?";
+        boolean purchase = controller.createTransaction(playerID,null, -this.price, false, message);
         if (purchase) {
             this.owner = playerID;
         }

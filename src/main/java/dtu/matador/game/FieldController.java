@@ -122,7 +122,8 @@ public class FieldController {
 
     public void landOnStart(String playerID, StartField start) {
         int income = start.getIncome();
-        createTransaction(playerID, null, income, false);
+        String message = "You passed start, gain " + income + "!";
+        createTransaction(playerID, null, income, false, message);
     }
 
     public void landOnProperty(String playerID, Property property) {
@@ -176,7 +177,7 @@ public class FieldController {
                 int nextBuildPrice = street.getBuildPrice();
                 String response = gui.buttonRequest("Do you want to buy a house for " + nextBuildPrice + "?","Buy","No");
                 if (response.equals("Buy")) {
-                    boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false);
+                    boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false, "Buying house for " + street.getBuildPrice());
                     if (transactionSuccess) {
                         street.buildHouse();
                         updateGUI(((Property) street), playerID);
@@ -190,12 +191,12 @@ public class FieldController {
             }
         }
         else {
-            System.out.println("This field is owned by someone else!");
+            String message = "This field is owned by someone else!";
+            int rent = street.getRent();
+            System.out.println(rent);
+            String receiverID = street.getOwner();
 
-            //int rent = street.getRent();
-            //String receiverID = street.getOwner();
-
-            //createTransaction(playerID, receiverID, rent, true);
+            createTransaction(playerID, receiverID, rent, true, message);
 
             // if owned(own playerID)
             // Options: Build, Pledge, Sell housing
@@ -219,39 +220,53 @@ public class FieldController {
 
     /**
      *
-     * @param playerID
-     * @param receiverID
-     * @param price
-     * @param critical
+     * @param playerID - the current player
+     * @param receiverID - a potential receiving player (null if none)
+     * @param amount - the size of the transaction (payment should be negative int)
+     * @param critical - does the current player NEED to pay
      * @return
      */
-    public boolean createTransaction (String playerID, String receiverID,int price, boolean critical) {
+    public boolean createTransaction (String playerID, String receiverID, int amount, boolean critical, String message) {
         boolean transactionSuccess = false;
         String userRequest;
-        String message;
+
+        // If a player needs to make a payment to another player
         if (receiverID != null) {
-            message = "The player will have to pay the owner a rent of " + price;
-            gui.buttonRequest(message, "Pay rent");
-            transactionSuccess = currentGameState.handleTransaction(playerID, receiverID, price, critical);
-            int receiverBalanceChange = currentGameState.getPlayerFromID(receiverID).getBalance();
-            gui.updateGUIPlayerBalance(receiverID, receiverBalanceChange);
+            gui.buttonRequest(message + " Pay " + currentGameState.getPlayerFromID(receiverID).getName() + " " + Math.abs(amount), "Pay");
         }
         else {
-            if (price <= 0) {
-                message = "The player will lose " + price;
-                userRequest = gui.buttonRequest(message, "Pay", "Cancel");
-                if (userRequest.equals("Cancel")) {
-                    return false;
+            // Payments to the bank
+            if (amount <= 0) {
+                if (critical) {
+                    userRequest = gui.buttonRequest(message, "Pay");
+                }
+                else {
+                    userRequest = gui.buttonRequest(message, "Pay", "Cancel");
+                    if (userRequest.equals("Cancel")) {
+                        return false;
+                    }
                 }
                 }
+            // A type of player income
             else {
-                message = "You recieved " + price;
                 userRequest = gui.buttonRequest(message, "Ok");
             }
         }
-        transactionSuccess = currentGameState.handleTransaction(playerID, receiverID, price, critical);
-        int playerBalanceChange = currentGameState.getPlayerFromID(playerID).getBalance();
-        gui.updateGUIPlayerBalance(playerID, playerBalanceChange);
+
+        // Handles the transaction and returns a boolean for transaction success
+        transactionSuccess = currentGameState.handleTransaction(playerID, receiverID, amount, critical);
+
+        // updates balance to gui if transaction is successful
+        if (transactionSuccess) {
+            int newPlayerBalance = currentGameState.getPlayerFromID(playerID).getBalance();
+            gui.updateGUIPlayerBalance(playerID, newPlayerBalance);
+        }
+
+        // updates a potential receiving player's balance to the gui
+        if (receiverID != null) {
+            int newReceiverBalance = currentGameState.getPlayerFromID(receiverID).getBalance();
+            gui.updateGUIPlayerBalance(receiverID, newReceiverBalance);
+        }
 
         return transactionSuccess;
 
@@ -271,5 +286,6 @@ public class FieldController {
             gui.updateProperty(property.getPosition(), playerColor);
         }
     }
+
 
 }
