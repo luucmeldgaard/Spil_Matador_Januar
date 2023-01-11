@@ -21,6 +21,7 @@ public abstract class Property implements PropertyFields {
     int pawnForAmount;
     int position;
     String owner;
+    int buildPrice;
 
     //Takes input to create the class
     public Property(String name, String subtext, String description, String rent,
