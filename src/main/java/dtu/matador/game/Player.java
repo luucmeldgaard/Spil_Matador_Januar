@@ -9,13 +9,13 @@ public class Player {
     static int nextId = 0;
     String id;
     String name;
-    Color color;
+    String color;
     int position;
     int balance;
     static DiceCup diceCup = new DiceCup();
     static int boardSize;
 
-    public Player(String name, Color color, int position, int balance) {
+    public Player(String name, String color, int position, int balance) {
         this.name = name;
         this.color = color;
         this.position = position;
@@ -41,7 +41,7 @@ public class Player {
         return this.name;
     }
 
-    public Color getColor(){
+    public String getColor(){
         return this.color;
     }
 

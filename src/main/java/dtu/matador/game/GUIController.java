@@ -57,24 +57,24 @@ class GUIController {
     }
 
 
-    public Color colorDropDownList() {
+    public String colorDropDownList() {
         String chosenColorString = gui.getUserSelection(
                 "Select a colour",
                 "Rød", "Blå", "Lyserød", "Hvid", "Gul"
         );
-        Color chosenColor = Color.black;
+        String chosenColor = "";
         //This should be done with a switch case or maybe a loop to look cleaner, but this works for now
         if (chosenColorString.equals("Rød")){ //This should be remade to pick colors from the colors.json we made
-            chosenColor = Color.red;
+            chosenColor = "myRed";
             }
         if (chosenColorString.equals("Blå")){
-            chosenColor = Color.blue;
+            chosenColor = "myBlue";
         }
         if (chosenColorString.equals("Lyserød")){
-            chosenColor = Color.pink;
+            chosenColor = "myPink";
         }
         if (chosenColorString.equals("Hvid")){
-            chosenColor = Color.white;
+            chosenColor = "myWhite";
 
         }
         return chosenColor;
@@ -94,8 +94,8 @@ class GUIController {
      * @param position
      * @param primary
      */
-    public void addPlayer(String playerID, String name, int balance, int position, Color primary) {
-        GUI_Car car = addCar(primary, Color.BLACK);
+    public void addPlayer(String playerID, String name, int balance, int position, String primary) {
+        GUI_Car car = addCar(Color.getColor(primary), Color.BLACK);
         GUI_Player player = new GUI_Player(name, balance, car);
         gui.addPlayer(player);
         player.getCar().setPosition(gui.getFields()[position]);
@@ -118,7 +118,6 @@ class GUIController {
         }
         GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
         player.getCar().setPosition(guiFields[nextPosition]);
-
         System.out.println(guiFields[nextPosition].getTitle());
 
 
@@ -130,12 +129,6 @@ class GUIController {
             }
         }
 
-        /*if (nextPosition >= boardSize) {
-            nextPosition = nextPosition % boardSize; // if next position exceed board size, get the mod
-        }
-        GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
-        player.getCar().setPosition((guiFields[nextPosition]));
-        System.out.println(guiFields[nextPosition].getTitle());*/
     }
 
 
@@ -161,20 +154,6 @@ class GUIController {
         board.landOnField(playerID, endPosition);
     }
 
-    /*
-        GUI_Player guiPlayer = guiPlayers.get(Integer.parseInt(playerID));
-        int nextPosition;
-        for (int i = 0; i < positionAfter; i++) {
-            try {
-                Thread.sleep(150);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            currentPosition += 1;
-            movePlayerOnce(playerID, currentPosition);
-        }*/
-
-
     public int getBoardSize() {return boardSize; }
 
     public int getNumberOfPlayers(){
@@ -198,7 +177,7 @@ class GUIController {
     public void updateProperty(int fieldPosition, String color, int housing) {
         Color newColor = Color.getColor(color);
         GUI_Street field = ((GUI_Street) gui.getFields()[fieldPosition]);
-        field.setBackGroundColor(newColor);
+        field.setBorder(newColor);
         if (housing == 5) {
             field.setHotel(true);
         }

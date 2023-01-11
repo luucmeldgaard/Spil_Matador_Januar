@@ -31,7 +31,7 @@ public class GameController {
         for (int i = 0; i < numPlayers; i++) {
             String name = gui.getNameFromInput();
             System.out.println("Select player color");
-            Color chosenColor = gui.colorDropDownList();
+            String chosenColor = gui.colorDropDownList();
             Player player = new Player(name, chosenColor, 0, 500000);
             //player.setId(player.toString());
             player.setBoardSize(boardSize);

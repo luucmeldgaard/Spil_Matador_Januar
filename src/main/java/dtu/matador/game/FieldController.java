@@ -2,6 +2,7 @@ package dtu.matador.game;
 
 import dtu.matador.game.fields.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -130,7 +131,7 @@ public class FieldController {
                 property.buy(playerID);
                 if (property.getOwner().equals(playerID)) {
                     updateFieldMap(property);
-                    updateGUI(property);
+                    updateGUI(property, playerID);
                 }
             } else if (choice.equals("Auction")) {
                 property.auction(playerID);
@@ -175,7 +176,7 @@ public class FieldController {
                     boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false);
                     if (transactionSuccess) {
                         street.buildHouse();
-                        updateGUI(((Property) street));
+                        updateGUI(((Property) street), playerID);
                         updateFieldMap(((Property) street));
 
                     }
@@ -255,12 +256,13 @@ public class FieldController {
         gui.buttonRequest("You have insufficient funds. ", "Ok");
     }
 
-    public void updateGUI(Property property) {
+    public void updateGUI(Property property, String playerID) {
+        String playerColor = currentGameState.getPlayerFromID(playerID).getColor();
         if (property instanceof Street) {
-            gui.updateProperty(property.getPosition(), property.getColor2(), ((Street) property).getHousing());
+            gui.updateProperty(property.getPosition(), playerColor, ((Street) property).getHousing());
         }
         else {
-            gui.updateProperty(property.getPosition(), property.getColor2());
+            gui.updateProperty(property.getPosition(), playerColor);
         }
     }
 
