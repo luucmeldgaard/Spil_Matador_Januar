@@ -62,7 +62,7 @@ class GUIController {
         colorNamesArrayList.add("Blå");
         colorNamesArrayList.add("Lyserød");
         colorNamesArrayList.add("Hvid");
-        colorNamesArrayList.add("Sort");
+        colorNamesArrayList.add("Lilla");
         colorNamesArrayList.add("Tyrkis");
 
     }
@@ -75,7 +75,7 @@ class GUIController {
 
         String chosenColor = "";
         //This should be done with a switch case or maybe a loop to look cleaner, but this works for now
-        if (chosenColorString.equals("Rød")){ //This should be remade to pick colors from the colors.json we made
+        if (chosenColorString.equals("Rød")){
             chosenColor = "myRed";
             colorNamesArrayList.remove("Rød");
             }
@@ -94,9 +94,9 @@ class GUIController {
             colorNamesArrayList.remove("Hvid");
         }
 
-        if (chosenColorString.equals("Sort")) {
-            chosenColor = "myBlack";
-            colorNamesArrayList.remove("Sort");
+        if (chosenColorString.equals("Lilla")) {
+            chosenColor = "myPurple";
+            colorNamesArrayList.remove("Lilla");
         }
 
         if (chosenColorString.equals("Tyrkis")) {
