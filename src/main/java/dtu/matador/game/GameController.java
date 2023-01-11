@@ -26,7 +26,7 @@ public class GameController {
     }
 
     public ArrayList<Player> addPlayers() {
-        int numPlayers = Integer.parseInt(gui.buttonRequest("Number of players", "1", "2", "3"));
+        int numPlayers = Integer.parseInt(gui.buttonRequest("Number of players", "2", "3"));
         ArrayList<Player> players = new ArrayList<>();
         for (int i = 0; i < numPlayers; i++) {
             String name = gui.getNameFromInput();
@@ -46,17 +46,15 @@ public class GameController {
 
     public void playRound(Player player) {
         // roll dice
-        while (true){
-            System.out.println(player.getName());
-            gui.buttonRequest("Roll Dice", "Roll");
-            int[] dieValues = player.rollDie();
-            int total = dieValues[0] + dieValues[1];
-            gui.setDice(dieValues);
-            // player moves
-            player.movePosition(total);
-            gui.movePlayerTo(player.getId(), player.getPosition());
-            System.out.println(player.getId());
-        }
+        System.out.println(player.getName());
+        gui.buttonRequest("Roll Dice", "Roll");
+        int[] dieValues = player.rollDie();
+        int total = dieValues[0] + dieValues[1];
+        gui.setDice(dieValues);
+        // player moves
+        player.movePosition(total);
+        gui.movePlayerTo(player.getId(), player.getPosition());
+        System.out.println(player.getId());
 
     }
 

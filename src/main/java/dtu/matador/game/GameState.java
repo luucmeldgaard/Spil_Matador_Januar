@@ -10,20 +10,28 @@ public class GameState {
 
     public GameState() {
         controller = new GameController();
-        players = new ArrayList<Player>();
+        //players = new ArrayList<Player>();
         currentPlayerNum = 0;
     }
 
     public void menu() {
         controller.setBoard("FieldData");
-        //TODO: Make loop for adding more players
         players = controller.addPlayers();
+        System.out.println(players);
         currentPlayer = players.get(0);
     }
 
     public void play() {
-        System.out.println(currentPlayer);
-        controller.playRound(currentPlayer);
+        while (true) {
+            System.out.println(currentPlayer);
+            controller.playRound(currentPlayer);
+            nextPlayer();
+        }
+    }
+
+    public void nextPlayer(){
+        currentPlayerNum = ((currentPlayerNum +1)%players.size());
+        currentPlayer = players.get(currentPlayerNum);
     }
 
     public Player getCurrentPlayer() {
