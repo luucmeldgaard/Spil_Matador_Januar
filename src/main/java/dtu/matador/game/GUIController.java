@@ -18,6 +18,8 @@ class GUIController {
     static FieldController board;
     static int boardSize;
 
+    static int playersInGame;
+    static int playersPassedStartOnce = 0;
     static ArrayList<GUI_Player> guiPlayers;
     static int currentGUIPlayer;
     static GameController gameController;
@@ -98,6 +100,8 @@ class GUIController {
         gui.addPlayer(player);
         player.getCar().setPosition(gui.getFields()[position]);
         guiPlayers.add(player);
+        playersInGame += 1;
+        System.out.println(playersInGame + "________________");
     }
 
     public void setDice(int[] dice) {
@@ -117,10 +121,12 @@ class GUIController {
 
         System.out.println(guiFields[nextPosition].getTitle());
 
-        if (nextPosition != 0){
+
+
+        if (nextPosition != 0 && playersPassedStartOnce > playersInGame){
             if (guiFields[nextPosition - 1].getTitle().equals("Start")) {
                 System.out.println("__________START_______________");
-                board.landOnField(playerID, nextPosition);
+                board.landOnField(playerID, nextPosition-1);
             }
         }
 
@@ -134,6 +140,7 @@ class GUIController {
 
 
     public void movePlayerTo(String playerID, int startPosition, int endPosition) {
+        playersPassedStartOnce += 1;
         int steps = endPosition - startPosition;
         int currentPosition = startPosition;
         if (steps < 0) {
@@ -146,7 +153,7 @@ class GUIController {
             }
             movePlayerOnce(playerID, currentPosition);
             try {
-                Thread.sleep(200);
+                Thread.sleep(20);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
