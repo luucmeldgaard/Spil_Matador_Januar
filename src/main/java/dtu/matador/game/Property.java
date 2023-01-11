@@ -93,13 +93,6 @@ public abstract class Property implements PropertyFields {
         }
     }
 
-    // Makes it possible to update Map being parsed to the gui and JSON later on
-    public Map<String, String> updateGuiField() {
-        Map<String, String> field = new HashMap<>();
-        field.put("color2", this.color2);
-        return field;
-    }
-
     public void auction(String playerID) {
 
     }

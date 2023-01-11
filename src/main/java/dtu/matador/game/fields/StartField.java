@@ -9,8 +9,8 @@ public class StartField extends NonPurchasableFields {
     String color1;
     String color2;
 
-    public StartField(String name, String subtext, String description, String color1, String color2) {
-        super(name, subtext, description, color1, color2);
+    public StartField(String name, String subtext, String description, String color1, String color2, String position) {
+        super(name, subtext, description, color1, color2, position);
         this.name = name;
         this.subtext = subtext;
         this.description = description;
