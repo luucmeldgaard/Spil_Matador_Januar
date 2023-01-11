@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static dtu.matador.game.GUIController.currentGUIPlayer;
-import static dtu.matador.game.GUIController.getGUIInstance;
+import static dtu.matador.game.GUIController.*;
 
 public class FieldController {
 
@@ -97,9 +96,13 @@ public class FieldController {
         }
     }
 
-    public void landOnField(String playerID, int position) {
+    public void landOnField(String playerID, int startPosition, int currentPosition) {
+        if (startPosition > currentPosition || startPosition == 0) {
+            System.out.println("Player passed start");
+                landOnStart(playerID, ((StartField) fields.get(0)));
+            }
         // Check for type of field
-        currentField = fields.get(position);
+        currentField = fields.get(currentPosition);
         // Redirects to landOn "fieldType"
         if (currentField instanceof Property) {
             landOnProperty(playerID, ((Property) currentField));
@@ -108,7 +111,7 @@ public class FieldController {
             landOnJail(playerID, ((Jail) currentField));
         }
         else if (currentField instanceof StartField) {
-            landOnStart(playerID, ((StartField) currentField));
+            //landOnStart(playerID, ((StartField) currentField));
         }
         // property, chance, jail, etc.
     }
@@ -188,10 +191,11 @@ public class FieldController {
         }
         else {
             System.out.println("This field is owned by someone else!");
-            int rent = street.getRent();
-            String receiverID = street.getOwner();
 
-            createTransaction(playerID, receiverID, rent, true);
+            //int rent = street.getRent();
+            //String receiverID = street.getOwner();
+
+            //createTransaction(playerID, receiverID, rent, true);
 
             // if owned(own playerID)
             // Options: Build, Pledge, Sell housing

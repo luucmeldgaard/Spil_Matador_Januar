@@ -17,9 +17,6 @@ class GUIController {
     static GUI_Field[] guiFields;
     static FieldController board;
     static int boardSize;
-
-    static int playersInGame;
-    static int playersPassedStartOnce = 0;
     static ArrayList<GUI_Player> guiPlayers;
     static int currentGUIPlayer;
     static GameController gameController;
@@ -100,8 +97,6 @@ class GUIController {
         gui.addPlayer(player);
         player.getCar().setPosition(gui.getFields()[position]);
         guiPlayers.add(player);
-        playersInGame += 1;
-        System.out.println(playersInGame + "________________");
     }
 
     public void setDice(int[] dice) {
@@ -120,20 +115,17 @@ class GUIController {
         player.getCar().setPosition(guiFields[nextPosition]);
         System.out.println(guiFields[nextPosition].getTitle());
 
+    }
 
+    public void removePlayer(String playerID) {
+        GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
+        player.getCar().setPosition(null);
 
-        if (nextPosition != 0 && playersPassedStartOnce > playersInGame){
-            if (guiFields[nextPosition - 1].getTitle().equals("Start")) {
-                System.out.println("__________START_______________");
-                board.landOnField(playerID, nextPosition-1);
-            }
-        }
 
     }
 
 
     public void movePlayerTo(String playerID, int startPosition, int endPosition) {
-        playersPassedStartOnce += 1;
         int steps = endPosition - startPosition;
         int currentPosition = startPosition;
         if (steps < 0) {
@@ -151,7 +143,7 @@ class GUIController {
                 e.printStackTrace();
             }
         }
-        board.landOnField(playerID, endPosition);
+        board.landOnField(playerID, startPosition, currentPosition);
     }
 
     public int getBoardSize() {return boardSize; }

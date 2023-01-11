@@ -48,6 +48,11 @@ public class GameState {
         return null;
     }
 
+    public void removePlayerFromState(String playerID) {
+        Player player = getPlayerFromID(playerID);
+        players.remove(player);
+    }
+
     public boolean handleTransaction(String playerID, String receiverID, int price, boolean critical) {
         Player player = getPlayerFromID(playerID);
 
@@ -61,6 +66,7 @@ public class GameState {
             }
             if (critical) {
                 // TODO player has lost and will be removed
+                System.out.println("The player has lost");
                 return false;
             }
             return false;
