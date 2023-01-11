@@ -111,27 +111,25 @@ class GUIController {
 
     public void movePlayerTo(String playerID, int beforeposition,int positionafter) {
         GUI_Player guiPlayer = guiPlayers.get(Integer.parseInt(playerID));
-        int i = beforeposition;
-
-        for (;i <= positionafter;i++){
+        int j = 0;
+        for (int i = 0;i + beforeposition <= positionafter;i++){
             try {
                 Thread.sleep(150);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            if ((beforeposition+i)+1 == getBoardSize()){
-                guiPlayers.get(Integer.parseInt(playerID)).getCar().setPosition((gui.getFields()[0]));
-                beforeposition = 0;
+            if ((gui.getFields()[beforeposition + i].getTitle()).equals("Start")){
+                for(;j<positionafter;j++) {
+                    guiPlayers.get(Integer.parseInt(playerID)).getCar().setPosition((gui.getFields()[0]));
+                    beforeposition = 0;
+                }
+                break;
             }
             else {
                 System.out.println(gui.getFields()[beforeposition + i].getTitle());
                 guiPlayers.get(Integer.parseInt(playerID)).getCar().setPosition((gui.getFields()[beforeposition + i]));
-                if ((gui.getFields()[beforeposition + i].getTitle()).equals("Start")) {
-                    System.out.println("DET VIRKER");
-                }
+                j++;
             }
-
-
         }
         board.landOnField(playerID, positionafter);
     }
