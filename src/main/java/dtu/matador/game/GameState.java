@@ -50,21 +50,30 @@ public class GameState {
 
     public boolean handleTransaction(String playerID, String receiverID, int price, boolean critical) {
         Player player = getPlayerFromID(playerID);
-        boolean confirmation = false;
-        if (receiverID == null) {
-            confirmation = player.addBalance(price);
-        }
-        else {
-            Player receiver = getPlayerFromID(receiverID);
-            receiver.addBalance(Math.abs(price));
-            confirmation =  player.addBalance(price);
-        }
-        if (critical) {
-            // THE PLAYER HAS LOST THE GAME
-            System.out.println("You have lost the game. ");
 
+        boolean confirmation = player.balanceCheck(price);
+        if (!confirmation) {
+            if (receiverID != null) {
+                Player receiver = getPlayerFromID(receiverID);
+                int playerActualBalance = player.getBalance();
+                receiver.addBalance(playerActualBalance);
+                return false;
+            }
+            if (critical) {
+                // TODO player has lost and will be removed
+                return false;
+            }
+            return false;
         }
-        return confirmation;
+
+        else {
+            player.addBalance(price);
+            if (receiverID != null) {
+                Player receiver = getPlayerFromID(receiverID);
+                receiver.addBalance(Math.abs(price));
+            }
+            return true;
+        }
     }
 
 }

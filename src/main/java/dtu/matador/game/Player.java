@@ -60,12 +60,13 @@ public class Player {
 
     public void setBoardSize(int size) {boardSize = size; }
 
-    public boolean addBalance(int balanceChange) {
-        int nextBalance = this.balance + balanceChange;
-        if (nextBalance >= 0) {
-            this.balance += balanceChange;
-            return true;
-        }
-        else {return false; }
+    public void addBalance(int amount) {
+        this.balance += amount;
     }
+
+    public boolean balanceCheck(int amount) {
+        int nextBalance = this.balance + amount;
+        return nextBalance >= 0;
+    }
+
 }
