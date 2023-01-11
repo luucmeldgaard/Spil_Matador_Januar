@@ -7,7 +7,9 @@ import java.awt.*;
 
 import static org.junit.Assert.*;
 
+
 public class PlayerTest {
+    //Tests if the player can move forward (irrelevant how much)
     @Test
     public void playerMovesForwardFromStart() {
         Player player = new Player("Jakob", Color.BLUE,0,5000);
@@ -19,6 +21,7 @@ public class PlayerTest {
         int newPosition = player.getPosition();
         assertTrue(newPosition > currentPosition);
     }
+    //Tests if the move of a player equals the dice roll
 @Test
     public void RollEqualsPositionalChange(){
         Player player = new Player("Jakob", Color.BLUE,5,5000);
