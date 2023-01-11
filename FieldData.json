@@ -17,7 +17,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "4000"
   },
   {
     "owner": "",
@@ -37,7 +38,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myBlue",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -57,7 +59,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -77,7 +80,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myBlue",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -97,7 +101,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -117,7 +122,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -137,7 +143,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myPink",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -157,7 +164,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -177,7 +185,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myPink",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -197,7 +206,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myPink",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -217,7 +227,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -237,7 +248,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "mySand",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -257,7 +269,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -277,7 +290,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "mySand",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -297,7 +311,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "mySand",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -317,7 +332,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -337,7 +353,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myGrey",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -357,7 +374,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -377,7 +395,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myGrey",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -397,7 +416,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myGrey",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -417,7 +437,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -437,7 +458,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myRed",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -457,7 +479,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -477,7 +500,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myRed",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -497,7 +521,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myRed",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -517,7 +542,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -537,7 +563,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myLightGrey",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -557,7 +584,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myLightGrey",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -577,7 +605,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -597,7 +626,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myLightGrey",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -617,7 +647,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -637,7 +668,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myYellow",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -657,7 +689,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myYellow",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -677,7 +710,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -697,7 +731,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myYellow",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -717,7 +752,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -737,7 +773,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -757,7 +794,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myPurple",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -777,7 +815,8 @@
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   },
   {
     "owner": "",
@@ -797,6 +836,7 @@
     "subText": "Du ser godt ud idag",
     "color1": "myPurple",
     "color2": "myBlue",
-    "housing": "0"
+    "housing": "0",
+    "income": "0"
   }
 ]
