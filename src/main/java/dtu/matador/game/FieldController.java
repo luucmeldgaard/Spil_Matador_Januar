@@ -19,7 +19,6 @@ public class FieldController {
     GameState currentGameState = new GameState();
 
 
-
     public FieldController(String selectedBoard) {
         fieldLoader = new FieldLoader(selectedBoard);
         fieldMap = fieldLoader.getFieldMap();
@@ -31,7 +30,7 @@ public class FieldController {
         setupFields();
     }
 
-    public FieldController(){
+    public FieldController() {
     }
 
     public void setGUI() {
@@ -61,6 +60,7 @@ public class FieldController {
             }
         }
     }
+
     public FieldSpaces getField(int position) {
         return fields.get(position);
     }
@@ -108,13 +108,12 @@ public class FieldController {
 
     public void landOnProperty(String playerID, Property property) {
         String owner = property.getOwner();
-        if (owner == null){
+        if (owner == null) {
             System.out.println("This field is not owned by anyone!");
             String choice = gui.buttonRequest("Buy or auction?", "Buy", "Auction");
             if (choice.equals("Buy")) {
                 property.buy(playerID);
-            }
-            else if (choice.equals("Auction")){
+            } else if (choice.equals("Auction")) {
                 property.auction(playerID);
             }
 
@@ -122,11 +121,9 @@ public class FieldController {
         // Redirect to type of Property
         else if (currentField instanceof Street) {
             landOnStreet(playerID, ((Street) currentField));
-        }
-        else if (currentField instanceof Brewery) {
+        } else if (currentField instanceof Brewery) {
             landOnUtility(playerID, ((Brewery) currentField));
-        }
-        else if (currentField instanceof Ferry) {
+        } else if (currentField instanceof Ferry) {
             landOnFerry(playerID, ((Ferry) currentField));
         }
         // Street, Utility, Ferry, etc.
@@ -152,68 +149,66 @@ public class FieldController {
             System.out.println("This field is owned by you. ");
 
             //checks if the owner has sufficient funds to buy a house
-            if (balance >= street.getBuildPrice()){
-                String response = gui.buttonRequest("Do you want to buy a house?","Buy","No");
+            if (balance >= street.getBuildPrice()) {
+                /*String response = gui.buttonRequest("Do you want to buy a house?","Buy","No");
                 if (response.equals("Buy")) {
                     street.buildHouse();
-                    bill(playerID, street.getBuildPrice());
-                }
-            }
-            else {
+                    board.(playerID, street.getBuildPrice());
+                }*/
+            } else {
                 System.out.println("You do not have sufficient funds");
             }
-        }
-        else {
+        } else {
             System.out.println("This field is owned by someone else!");
             street.getRent();
             street.getOwner();
 
-        // if owned(own playerID)
-        // Options: Build, Pledge, Sell housing
+            // if owned(own playerID)
+            // Options: Build, Pledge, Sell housing
 
-        // if owned(other playerID)
-        // pay rent
+            // if owned(other playerID)
+            // pay rent
 
-        // if null
-        // Buy, Auction
+            // if null
+            // Buy, Auction
+        }
+
     }
 
-
-    public void buy() {
-    }
-
-    public void landOnChance() {
+    public void buy () {
         //
     }
 
-    public boolean createTransaction(String playerID, String receiverID, int price, boolean critical) {
-        boolean transactionSuccess = false;
-        if (receiverID != null) {
-            String message = "The player will have to pay the owner a rent of " + price;
-            gui.buttonRequest(message, "Pay rent");
-            transactionSuccess = currentGameState.handleTransaction(playerID, receiverID, price, critical);
-            int receiverBalanceChange = currentGameState.getPlayerFromID(receiverID).getBalance();
-            gui.updateGUIPlayerBalance(receiverID, receiverBalanceChange);
-        } else {
-            String message = "The player will lose " + price;
-            String userRequest = gui.buttonRequest(message, "Pay", "Cancel");
-            if (userRequest.equals("Cancel")) {
-                return false;
+    public void landOnChance () {
+        //
+    }
+
+        public boolean createTransaction (String playerID, String receiverID,int price, boolean critical) {
+            boolean transactionSuccess = false;
+            if (receiverID != null) {
+                String message = "The player will have to pay the owner a rent of " + price;
+                gui.buttonRequest(message, "Pay rent");
+                transactionSuccess = currentGameState.handleTransaction(playerID, receiverID, price, critical);
+                int receiverBalanceChange = currentGameState.getPlayerFromID(receiverID).getBalance();
+                gui.updateGUIPlayerBalance(receiverID, receiverBalanceChange);
+            } else {
+                String message = "The player will lose " + price;
+                String userRequest = gui.buttonRequest(message, "Pay", "Cancel");
+                if (userRequest.equals("Cancel")) {
+                    return false;
+                }
             }
+            transactionSuccess = currentGameState.handleTransaction(playerID, receiverID, price, critical);
+            int playerBalanceChange = currentGameState.getPlayerFromID(playerID).getBalance();
+            gui.updateGUIPlayerBalance(playerID, playerBalanceChange);
+
+            return transactionSuccess;
+
         }
-        transactionSuccess = currentGameState.handleTransaction(playerID, receiverID, price, critical);
-        int playerBalanceChange = currentGameState.getPlayerFromID(playerID).getBalance();
-        gui.updateGUIPlayerBalance(playerID, playerBalanceChange);
-
-        return transactionSuccess;
-
-    }
 
 
-
-
-    public void insufficientFunds() {
-        gui.buttonRequest("You have insufficient funds. ", "Ok");
-    }
+        public void insufficientFunds () {
+            gui.buttonRequest("You have insufficient funds. ", "Ok");
+        }
 
 }
