@@ -16,7 +16,8 @@
     "fieldType": "start",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -35,7 +36,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myBlue",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -54,7 +56,8 @@
     "fieldType": "chance",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -73,7 +76,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myBlue",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -92,7 +96,8 @@
     "fieldType": "tax",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -111,7 +116,8 @@
     "fieldType": "ferry",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -130,7 +136,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myPink",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -149,7 +156,8 @@
     "fieldType": "chance",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -168,7 +176,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myPink",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -187,7 +196,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myPink",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -206,7 +216,8 @@
     "fieldType": "jail",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -225,7 +236,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "mySand",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -244,7 +256,8 @@
     "fieldType": "brewery",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -263,7 +276,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "mySand",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -282,7 +296,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "mySand",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -301,7 +316,8 @@
     "fieldType": "ferry",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -320,7 +336,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myGrey",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -339,7 +356,8 @@
     "fieldType": "chance",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -358,7 +376,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myGrey",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -377,7 +396,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myGrey",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -396,7 +416,8 @@
     "fieldType": "refuge",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -415,7 +436,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myRed",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -434,7 +456,8 @@
     "fieldType": "chance",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -453,7 +476,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myRed",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -472,7 +496,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myRed",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -490,8 +515,9 @@
     "title": "Gedser - Rostock",
     "fieldType": "ferry",
     "subText": "Du ser godt ud idag",
-    "color1": "myLightGrey",
-    "color2": "myBlue"
+    "color1": "myWhite",
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -510,7 +536,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myLightGrey",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -529,7 +556,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myLightGrey",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -548,7 +576,8 @@
     "fieldType": "brewery",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -567,7 +596,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myLightGrey",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -586,7 +616,8 @@
     "fieldType": "jail",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -605,7 +636,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myYellow",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -624,7 +656,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myYellow",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -643,7 +676,8 @@
     "fieldType": "chance",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -662,7 +696,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myYellow",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -681,7 +716,8 @@
     "fieldType": "ferry",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -700,7 +736,8 @@
     "fieldType": "chance",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -719,7 +756,8 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myPurple",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -738,7 +776,8 @@
     "fieldType": "tax",
     "subText": "Du ser godt ud idag",
     "color1": "myWhite",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   },
   {
     "owner": "",
@@ -757,6 +796,7 @@
     "fieldType": "property",
     "subText": "Du ser godt ud idag",
     "color1": "myPurple",
-    "color2": "myBlue"
+    "color2": "myBlue",
+    "housing": ""
   }
 ]
