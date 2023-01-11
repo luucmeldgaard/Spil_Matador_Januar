@@ -216,17 +216,26 @@ public class FieldController {
      */
     public boolean createTransaction (String playerID, String receiverID,int price, boolean critical) {
         boolean transactionSuccess = false;
+        String userRequest;
+        String message;
         if (receiverID != null) {
-            String message = "The player will have to pay the owner a rent of " + price;
+            message = "The player will have to pay the owner a rent of " + price;
             gui.buttonRequest(message, "Pay rent");
             transactionSuccess = currentGameState.handleTransaction(playerID, receiverID, price, critical);
             int receiverBalanceChange = currentGameState.getPlayerFromID(receiverID).getBalance();
             gui.updateGUIPlayerBalance(receiverID, receiverBalanceChange);
-        } else {
-            String message = "The player will lose " + price;
-            String userRequest = gui.buttonRequest(message, "Pay", "Cancel");
-            if (userRequest.equals("Cancel")) {
-                return false;
+        }
+        else {
+            if (price <= 0) {
+                message = "The player will lose " + price;
+                userRequest = gui.buttonRequest(message, "Pay", "Cancel");
+                if (userRequest.equals("Cancel")) {
+                    return false;
+                }
+                }
+            else {
+                message = "You recieved " + price;
+                userRequest = gui.buttonRequest(message, "Ok");
             }
         }
         transactionSuccess = currentGameState.handleTransaction(playerID, receiverID, price, critical);
