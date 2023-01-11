@@ -5,10 +5,9 @@ import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_fields.GUI_Street;
 import gui_main.GUI;
-
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Map;
+
 
 class GUIController {
 
@@ -23,6 +22,7 @@ class GUIController {
     static ArrayList<GUI_Player> guiPlayers;
     static int currentGUIPlayer;
     static GameController gameController;
+
 
     private GUIController(String selectedBoard) {
         board = new FieldController(selectedBoard);
@@ -56,25 +56,40 @@ class GUIController {
         return gui.getUserButtonPressed(message, buttons);
     }
 
+    public ArrayList<String> colorNamesArrayList = new ArrayList<String>();
+    public void fillColorSelector(){
+        colorNamesArrayList.add("Rød");
+        colorNamesArrayList.add("Blå");
+        colorNamesArrayList.add("Lyserød");
+        colorNamesArrayList.add("Hvid");
+    }
 
     public String colorDropDownList() {
+        String[] colorNamesArray = new String[colorNamesArrayList.size()];
+        colorNamesArray = colorNamesArrayList.toArray(colorNamesArray);
         String chosenColorString = gui.getUserSelection(
-                "Select a colour",
-                "Rød", "Blå", "Lyserød", "Hvid", "Gul"
-        );
+                "Vælg en farve", colorNamesArray);
+
         String chosenColor = "";
         //This should be done with a switch case or maybe a loop to look cleaner, but this works for now
         if (chosenColorString.equals("Rød")){ //This should be remade to pick colors from the colors.json we made
             chosenColor = "myRed";
+            colorNamesArrayList.remove("Rød");
             }
         if (chosenColorString.equals("Blå")){
             chosenColor = "myBlue";
+            colorNamesArrayList.remove("Blå");
+
         }
         if (chosenColorString.equals("Lyserød")){
             chosenColor = "myPink";
+            colorNamesArrayList.remove("Lyserød");
+
         }
         if (chosenColorString.equals("Hvid")){
             chosenColor = "myWhite";
+            colorNamesArrayList.remove("Lyserød");
+
 
         }
         return chosenColor;
@@ -121,7 +136,6 @@ class GUIController {
         System.out.println(guiFields[nextPosition].getTitle());
 
 
-
         if (nextPosition != 0 && playersPassedStartOnce > playersInGame){
             if (guiFields[nextPosition - 1].getTitle().equals("Start")) {
                 System.out.println("__________START_______________");
@@ -152,6 +166,7 @@ class GUIController {
             }
         }
         board.landOnField(playerID, endPosition);
+
     }
 
     public int getBoardSize() {return boardSize; }
