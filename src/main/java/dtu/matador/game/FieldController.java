@@ -1,6 +1,7 @@
 package dtu.matador.game;
 
 import dtu.matador.game.fields.*;
+import gui_fields.GUI_Street;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -42,16 +43,19 @@ public class FieldController {
             int fieldPosition = Integer.parseInt(field.get("position"));
             switch (field.get("fieldType")) {
                 case "property" -> {
-                    fields.set(fieldPosition, new Street(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("color1"),
-                            field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner"), field.get("housing")));
+                    fields.set(fieldPosition, new Street(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"),field.get("rent2"),
+                            field.get("rent3"), field.get("rent4"), field.get("rent5"),field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
+                            field.get("position"), field.get("owner"), field.get("housing")));
                 }
                 case "ferry" -> {
-                    fields.set(fieldPosition, new Ferry(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("color1"),
-                            field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
+                    fields.set(fieldPosition, new Ferry(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"),field.get("rent"),
+                            field.get("rent"), field.get("rent"), field.get("rent"),field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
+                            field.get("position"), field.get("owner")));
                 }
                 case "brewery" -> {
-                    fields.set(fieldPosition, new Brewery(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("color1"),
-                            field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
+                    fields.set(fieldPosition, new Brewery(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"),field.get("rent"),
+                            field.get("rent"), field.get("rent"), field.get("rent"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
+                            field.get("position"), field.get("owner")));
                 }
                 case "refuge" -> {
                     fields.set(fieldPosition, new Refuge(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
@@ -181,29 +185,68 @@ public class FieldController {
             //checks if the owner has sufficient funds to buy a house
             if (balance >= street.getBuildPrice()) {
                 int nextBuildPrice = street.getBuildPrice();
-                String response = gui.buttonRequest("Do you want to buy a house for " + nextBuildPrice + "?","Buy","No");
-                if (response.equals("Buy")) {
-                    boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false, "Buying house for " + street.getBuildPrice());
-                    if (transactionSuccess) {
-                        street.buildHouse();
-                        updateGUI(((Property) street), playerID);
-                        updateFieldMap(((Property) street));
+                if (street.housing < 5) {
+                    String response = gui.buttonRequest("Do you want to buy a house for " + nextBuildPrice + "?", "Buy", "No");
+                    if (response.equals("Buy")) {
+                        boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false, "Buying house for " + street.getBuildPrice());
+                        if (transactionSuccess) {
+                            street.buildHouse();
+                            updateGUI(((Property) street), playerID);
+                            updateFieldMap(((Property) street));
 
+                        }
                     }
                 }
             }
-            else {
-                // player does not care about housing because he doesn't have the money for it.
-            }
+            // player does not care about housing because he doesn't have the money for it.
+
         }
         else {
             String message = "This field is owned by someone else!";
-            int rent = street.getRent();
-            System.out.println(rent);
-            String receiverID = street.getOwner();
+            switch (street.housing) {
+                case 0 -> {
+                    int rent = street.getRent();
+                    System.out.println(rent);
+                    String receiverID = street.getOwner();
 
-            createTransaction(playerID, receiverID, rent, true, message);
+                    createTransaction(playerID, receiverID, rent, true, message);
+                }
+                case 1 -> {
+                    int rent = street.getRent1();
+                    System.out.println(rent);
+                    String receiverID = street.getOwner();
 
+                    createTransaction(playerID, receiverID, rent, true, message);
+                }
+                case 2 -> {
+                    int rent = street.getRent2();
+                    System.out.println(rent);
+                    String receiverID = street.getOwner();
+
+                    createTransaction(playerID, receiverID, rent, true, message);
+                }
+                case 3 -> {
+                    int rent = street.getRent3();
+                    System.out.println(rent);
+                    String receiverID = street.getOwner();
+
+                    createTransaction(playerID, receiverID, rent, true, message);
+                }
+                case 4 -> {
+                    int rent = street.getRent4();
+                    System.out.println(rent);
+                    String receiverID = street.getOwner();
+
+                    createTransaction(playerID, receiverID, rent, true, message);
+                }
+                case 5 -> {
+                    int rent = street.getRent5();
+                    System.out.println(rent);
+                    String receiverID = street.getOwner();
+
+                    createTransaction(playerID, receiverID, rent, true, message);
+                }
+            }
             // if owned(own playerID)
             // Options: Build, Pledge, Sell housing
 

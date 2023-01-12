@@ -13,6 +13,11 @@ public abstract class Property implements PropertyFields {
     String subtext;
     String description;
     int rent;
+    int rent1;
+    int rent2;
+    int rent3;
+    int rent4;
+    int rent5;
     String color1;
     String color2;
     String neighborhood;
@@ -26,6 +31,7 @@ public abstract class Property implements PropertyFields {
 
     //Takes input to create the class
     public Property(String name, String subtext, String description, String rent,
+                    String rent1, String rent2, String rent3, String rent4, String rent5,
                     String color1,String color2, String price,
                     String pawnForAmount, String position, String owner){
 
@@ -33,6 +39,11 @@ public abstract class Property implements PropertyFields {
         this.subtext = subtext;
         this.description = description;
         this.rent = Integer.parseInt(rent);
+        this.rent1 =Integer.parseInt(rent1);
+        this.rent2 =Integer.parseInt(rent2);
+        this.rent3 =Integer.parseInt(rent3);
+        this.rent4 =Integer.parseInt(rent4);
+        this.rent5 =Integer.parseInt(rent5);
         this.color1 = color1;
         this.color2 = color2;
         this.price = Integer.parseInt(price);
@@ -79,6 +90,21 @@ public abstract class Property implements PropertyFields {
 
     public int getRent() {
         return -rent;
+    }
+    public int getRent1() {
+        return -rent1;
+    }
+    public int getRent2() {
+        return -rent2;
+    }
+    public int getRent3() {
+        return -rent3;
+    }
+    public int getRent4() {
+        return -rent4;
+    }
+    public int getRent5() {
+        return -rent5;
     }
 
     //A player can buy with the help of a transaction
