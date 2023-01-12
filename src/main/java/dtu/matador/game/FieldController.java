@@ -102,7 +102,7 @@ public class FieldController {
     }
 
     public void landOnField(String playerID, int startPosition, int currentPosition) {
-        if (startPosition > currentPosition || startPosition == 0) {
+        if (startPosition > currentPosition) {
             System.out.println("Player passed start");
                 landOnStart(playerID, ((StartField) fields.get(0)));
             }
@@ -128,12 +128,7 @@ public class FieldController {
     public void landOnStart(String playerID, StartField start) {
         int income = start.getIncome();
         String message = "You passed start, gain " + income + "!";
-        if (!currentGameState.getPlayerFromID(playerID).getFirstturn())
-            createTransaction(playerID, null, income, false, message);
-        else {
-            currentGameState.getPlayerFromID(playerID).changeFirstturn();
-            return;
-        }
+        createTransaction(playerID, null, income, false, message);
     }
 
     public void landOnProperty(String playerID, Property property) {
