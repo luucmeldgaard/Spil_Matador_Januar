@@ -24,6 +24,7 @@ public class Player {
         this.position = position;
         this.balance = balance;
         this.firstturn = firstturn;
+        this.playerHousing = new PlayerHousing();
         setId();
     }
 
@@ -79,6 +80,7 @@ public class Player {
         return nextBalance >= 0;
     }
 
-
-
+    public PlayerHousing getPlayerHousing() {
+        return playerHousing;
+    }
 }

@@ -15,6 +15,7 @@ public class PlayerHousing {
 
     public void addProperty(String color, ArrayList<Property> property){
         getPropertyMap().put(color, property);
+
     }
 
     public ArrayList<Property> getPropertiesFromColor(String color){
