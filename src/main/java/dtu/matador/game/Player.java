@@ -14,7 +14,6 @@ public class Player {
     int balance;
     static DiceCup diceCup = new DiceCup();
     static int boardSize;
-    boolean firstturn;
 
     private PlayerHousing playerHousing;
 
