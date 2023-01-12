@@ -42,24 +42,24 @@ public class FieldController {
             int fieldPosition = Integer.parseInt(field.get("position"));
             switch (field.get("fieldType")) {
                 case "property" -> {
-                    fields.set(fieldPosition, new Street(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
-                                                         field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner"), field.get("housing")));
+                    fields.set(fieldPosition, new Street(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("color1"),
+                            field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner"), field.get("housing")));
                 }
                 case "ferry" -> {
-                    fields.set(fieldPosition, new Ferry(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
-                            field.get("color1"),        field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
+                    fields.set(fieldPosition, new Ferry(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("color1"),
+                            field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
                 }
                 case "brewery" -> {
-                    fields.set(fieldPosition, new Brewery(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"),
-                            field.get("color1"),          field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
+                    fields.set(fieldPosition, new Brewery(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("color1"),
+                            field.get("color2"), field.get("price"), field.get("pawnForAmount"), field.get("position"), field.get("owner")));
                 }
                 case "refuge" -> {
-                    fields.set(fieldPosition, new Refuge(field.get("title"), field.get("subtext"), field.get("subtext"),
-                                                         field.get("color1"), field.get("color2"), field.get("position")));
+                    fields.set(fieldPosition, new Refuge(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
+                            field.get("position")));
                 }
                 case "start" -> {
-                    fields.set(fieldPosition, new StartField(field.get("title"), field.get("subtext"), field.get("subtext"),
-                                                             field.get("color1"), field.get("color2"), field.get("position"), field.get("income")));
+                    fields.set(fieldPosition, new StartField(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
+                            field.get("position"), field.get("income")));
                 }
             }
         }
