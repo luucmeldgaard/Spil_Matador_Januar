@@ -30,8 +30,7 @@ public class PlayerHousing {
 
         if(propertyList == null) return false;
 
-       // int size = propertyList.get(0).getGroupSize();
-        int size = 3;
+       int size = propertyList.get(0).getGroupSize();
         return propertyList.size() == size;
 
     }
