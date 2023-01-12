@@ -16,6 +16,9 @@ public class Player {
     static int boardSize;
     boolean firstturn;
 
+    //This is an int and not a boolean because you can be jailed for 3 rounds
+    int jailed;
+
     public Player(String name, String color, int position, int balance, boolean firstturn) {
         this.name = name;
         this.color = color;
