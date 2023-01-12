@@ -14,16 +14,14 @@ public class Player {
     int balance;
     static DiceCup diceCup = new DiceCup();
     static int boardSize;
-    boolean firstturn;
 
     private PlayerHousing playerHousing;
 
-    public Player(String name, String color, int position, int balance, boolean firstturn) {
+    public Player(String name, String color, int position, int balance) {
         this.name = name;
         this.color = color;
         this.position = position;
         this.balance = balance;
-        this.firstturn = firstturn;
         this.playerHousing = new PlayerHousing();
         setId();
     }
