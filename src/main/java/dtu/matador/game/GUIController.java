@@ -21,6 +21,8 @@ class GUIController {
     static int currentGUIPlayer;
     static GameController gameController;
 
+    static int numberOfPlayers;
+
     private GUIController(String selectedBoard) {
         board = new FieldController(selectedBoard);
         GUICreator fields = new GUICreator();
@@ -175,15 +177,32 @@ class GUIController {
     public int getBoardSize() {return boardSize; }
 
     public int getNumberOfPlayers(){
-        return Integer.parseInt((gui.getUserSelection(
+         numberOfPlayers = Integer.parseInt((gui.getUserSelection(
                 "Select a number of players",
                 "2", "3", "4", "5", "6"
         )));
+         return numberOfPlayers;
     }
 
+    public static ArrayList<String> takenNames = new ArrayList<String>();
+
+
     public String getNameFromInput(){
-        String playername = gui.getUserString("Enter your name here", 1, 30, true);
-        return playername;
+        while (true) {
+            String playername = retrieveNameFromInput();
+            if (!(takenNames.contains(playername))){
+                takenNames.add(playername);
+                System.out.println("!(takenNames.contains(playername))");
+                return playername;
+            }
+            else{
+                gui.showMessage("Another player already has this name. Please pick a new one");
+            }
+        }
+    }
+    public String retrieveNameFromInput(){
+        String name = gui.getUserString("Enter your name here", 1, 30, true);
+        return name;
     }
 
     public void updateGUIPlayerBalance(String playerID, int balance) {
