@@ -76,30 +76,23 @@ public class GameController {
         movePlayer(player, dieValues);
     }
 
-    public void playRoundJailed(Player player){
+    public void playRoundJailed(Player player) {
         String playerName = player.getName();
-        if (player.jailed == 1 || player.jailed == 2){
-            if (gui.payOrRoll()){ //If this is true, the player picked "Slå med terningerne"
+        if (player.jailed == 1 || player.jailed == 2) {
+            if (gui.payOrRoll()) { //If this is true, the player picked "Slå med terningerne"
                 int[] dieValues = player.rollDie();
-                if (dieValues[0] == dieValues[1]){
+                if (dieValues[0] == dieValues[1]) {
                     player.jailed = 0;
-
+                    gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
+                    movePlayer(player, dieValues);
+                } else {
+                    gui.displayGeneralMessage("Det var desværre ikke to ens");
                 }
-            }
-            else{
+            } else {
 
             }
+        } else {
         }
-
-        gui.buttonRequest(("Det er " + playerName + "'s tur. Kast med terningerne og slå to ens, for at komme ud af fængsel"), "Kast");
-        int[] dieValues = player.rollDie();
-        int total = (dieValues[0] + dieValues[1]);
-        gui.setDice(dieValues);
-        int oldplayerpos = player.getPosition();
-        // player moves
-        //int newplayerpost = player.getPosition();
-        player.setPosition(oldplayerpos + total);
-        gui.movePlayerTo(player.getId(), oldplayerpos, player.getPosition());
     }
 
     public void landOn() {
