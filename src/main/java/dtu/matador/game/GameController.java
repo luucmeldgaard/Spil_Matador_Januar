@@ -51,7 +51,8 @@ public class GameController {
     //This method makes it possible for a player to move forward equal to the value of their dice roll
     public void playRound(Player player) {
         // roll dice
-        gui.buttonRequest("Roll Dice", "Roll");
+        String playerName = player.getName();
+        gui.buttonRequest(("It is " + playerName + "'s turn. Please roll the dice"), "Roll");
         int[] dieValues = player.rollDie();
         int total = (dieValues[0] + dieValues[1]);
         gui.setDice(dieValues);
