@@ -231,50 +231,11 @@ public class FieldController {
         }
         else {
             String message = "This field is owned by someone else!";
-            switch (street.housing) {
-                case 0 -> {
-                    int rent = street.getRent();
-                    System.out.println(rent);
-                    String receiverID = street.getOwner();
+            int rent = street.getRent();
+            System.out.println(rent);
+            String receiverID = street.getOwner();
 
-                    createTransaction(playerID, receiverID, rent, true, message);
-                }
-                case 1 -> {
-                    int rent = street.getRent1();
-                    System.out.println(rent);
-                    String receiverID = street.getOwner();
-
-                    createTransaction(playerID, receiverID, rent, true, message);
-                }
-                case 2 -> {
-                    int rent = street.getRent2();
-                    System.out.println(rent);
-                    String receiverID = street.getOwner();
-
-                    createTransaction(playerID, receiverID, rent, true, message);
-                }
-                case 3 -> {
-                    int rent = street.getRent3();
-                    System.out.println(rent);
-                    String receiverID = street.getOwner();
-
-                    createTransaction(playerID, receiverID, rent, true, message);
-                }
-                case 4 -> {
-                    int rent = street.getRent4();
-                    System.out.println(rent);
-                    String receiverID = street.getOwner();
-
-                    createTransaction(playerID, receiverID, rent, true, message);
-                }
-                case 5 -> {
-                    int rent = street.getRent5();
-                    System.out.println(rent);
-                    String receiverID = street.getOwner();
-
-                    createTransaction(playerID, receiverID, rent, true, message);
-                }
-            }
+            createTransaction(playerID, receiverID, rent, true, message);
             // if owned(own playerID)
             // Options: Build, Pledge, Sell housing
 

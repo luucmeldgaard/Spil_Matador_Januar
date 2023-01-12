@@ -2,6 +2,7 @@ package dtu.matador.game;
 
 import com.sun.jdi.Field;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ public abstract class Property implements PropertyFields {
     String subtext;
     String description;
     int rent;
+    int rent0;
     int rent1;
     int rent2;
     int rent3;
@@ -41,7 +43,7 @@ public abstract class Property implements PropertyFields {
         this.name = name;
         this.subtext = subtext;
         this.description = description;
-        this.rent = Integer.parseInt(rent);
+        this.rent0 = Integer.parseInt(rent);
         this.rent1 =Integer.parseInt(rent1);
         this.rent2 =Integer.parseInt(rent2);
         this.rent3 =Integer.parseInt(rent3);
@@ -93,23 +95,13 @@ public abstract class Property implements PropertyFields {
         return this.position;
     }
 
+    private int currentRent() {
+        int[] rent = new int[] {this.rent0, this.rent1, this.rent2, this.rent3, this.rent4, this.rent5};
+        return rent[this.housing];
+    }
     public int getRent() {
-        return -rent;
-    }
-    public int getRent1() {
-        return -rent1;
-    }
-    public int getRent2() {
-        return -rent2;
-    }
-    public int getRent3() {
-        return -rent3;
-    }
-    public int getRent4() {
-        return -rent4;
-    }
-    public int getRent5() {
-        return -rent5;
+        System.out.println("normal rent: " + this.rent0 + " actual rent with " + this.housing + " housing: " + currentRent());
+        return currentRent();
     }
 
     //A player can buy with the help of a transaction
