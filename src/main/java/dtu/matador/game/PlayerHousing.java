@@ -23,4 +23,16 @@ public class PlayerHousing {
     public ArrayList<Property> getPropertiesFromColor(String color){
         return getPropertyMap().get(color);
     }
+
+    public boolean canBuyHouse(String color){
+
+        ArrayList<Property> propertyList = getPropertiesFromColor(color);
+
+        if(propertyList == null) return false;
+
+       // int size = propertyList.get(0).getGroupSize();
+        int size = 3;
+        return propertyList.size() == size;
+
+    }
 }
