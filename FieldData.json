@@ -18,7 +18,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "4000"
+    "income": "4000",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -39,7 +40,8 @@
     "color1": "myBlue",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "2"
   },
   {
     "owner": "",
@@ -60,7 +62,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -81,7 +84,8 @@
     "color1": "myBlue",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "2"
   },
   {
     "owner": "",
@@ -102,7 +106,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -123,7 +128,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -144,7 +150,8 @@
     "color1": "myPink",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -165,7 +172,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -186,7 +194,8 @@
     "color1": "myPink",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -207,7 +216,8 @@
     "color1": "myPink",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -228,7 +238,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -249,7 +260,8 @@
     "color1": "mySand",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -270,7 +282,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -291,7 +304,8 @@
     "color1": "mySand",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -312,7 +326,8 @@
     "color1": "mySand",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -333,7 +348,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -354,7 +370,8 @@
     "color1": "myGrey",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -375,7 +392,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -396,7 +414,8 @@
     "color1": "myGrey",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -417,7 +436,8 @@
     "color1": "myGrey",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -438,7 +458,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -459,7 +480,8 @@
     "color1": "myRed",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -480,7 +502,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -501,7 +524,8 @@
     "color1": "myRed",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -522,7 +546,8 @@
     "color1": "myRed",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -543,7 +568,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -564,7 +590,8 @@
     "color1": "myLightGrey",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -585,7 +612,8 @@
     "color1": "myLightGrey",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -606,7 +634,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -627,7 +656,8 @@
     "color1": "myLightGrey",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -648,7 +678,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -669,7 +700,8 @@
     "color1": "myYellow",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -690,7 +722,8 @@
     "color1": "myYellow",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -711,7 +744,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -732,7 +766,8 @@
     "color1": "myYellow",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "3"
   },
   {
     "owner": "",
@@ -753,7 +788,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -774,7 +810,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -795,7 +832,8 @@
     "color1": "myPurple",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "2"
   },
   {
     "owner": "",
@@ -816,7 +854,8 @@
     "color1": "myWhite",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": ""
   },
   {
     "owner": "",
@@ -837,7 +876,7 @@
     "color1": "myPurple",
     "color2": "myBlack",
     "housing": "0",
-    "income": "0"
+    "income": "0",
+    "groupsize": "2"
   }
-
 ]
