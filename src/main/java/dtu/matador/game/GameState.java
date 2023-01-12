@@ -13,7 +13,6 @@ public class GameState {
         controller = new GameController();
         currentPlayerNum = 0;
     }
-
     public void menu() {
         controller.setBoard("FieldData");
         players = controller.addPlayers();
