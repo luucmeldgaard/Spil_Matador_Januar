@@ -29,11 +29,12 @@ public abstract class Property implements PropertyFields {
     int buildPrice;
     protected int housing; // MÅSKE VIRKER DENNE HER IKKE?????
 
+
     //Takes input to create the class
     public Property(String name, String subtext, String description, String rent,
                     String rent1, String rent2, String rent3, String rent4, String rent5,
                     String color1,String color2, String price,
-                    String pawnForAmount, String position, String owner){
+                    String pawnForAmount, String position, String owner, String neighborhood){
 
         this.name = name;
         this.subtext = subtext;
@@ -50,6 +51,7 @@ public abstract class Property implements PropertyFields {
         this.pawnForAmount = Integer.parseInt(pawnForAmount);
         this.position = Integer.parseInt(position);
         this.owner = owner;
+        this.neighborhood = neighborhood;
 
         if (this.owner.equals("")) {
             this.owner = null;
@@ -128,7 +130,9 @@ public abstract class Property implements PropertyFields {
     public int getBuildPrice(){
         return buildPrice;
     }
-
+    public String getNeighborhood(){
+        return neighborhood;
+    }
     public void buildHouse(){
         this.housing += 1;
     }
