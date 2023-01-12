@@ -65,6 +65,10 @@ public class FieldController {
                     fields.set(fieldPosition, new StartField(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
                             field.get("position"), field.get("income")));
                 }
+                case "chance" -> {
+                    fields.set(fieldPosition, new Chance(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
+                            field.get("position")));
+                }
 
             }
         }
@@ -117,6 +121,9 @@ public class FieldController {
         }
         else if (currentField instanceof StartField) {
             //landOnStart(playerID, ((StartField) currentField));
+        }
+        else if (currentField instanceof Chance) {
+            landOnChance(playerID, ((Chance) currentField));
         }
         // property, chance, jail, etc.
     }
@@ -263,7 +270,7 @@ public class FieldController {
         //
     }
 
-    public void landOnChance () {
+    public void landOnChance (String playerID, Chance chance) {
         //
     }
 
