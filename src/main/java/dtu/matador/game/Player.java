@@ -54,12 +54,6 @@ public class Player {
 
     public int getBalance() {return this.balance;}
 
-    public boolean getFirstturn(){return this.firstturn;}
-
-    public boolean changeFirstturn() {
-        return firstturn = false;
-    }
-
     public void setPosition(int position) {this.position = position % boardSize; }
 
     //Prints a move from the player and updates their position
