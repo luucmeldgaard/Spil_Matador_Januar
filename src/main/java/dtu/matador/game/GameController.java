@@ -50,7 +50,30 @@ public class GameController {
 
     //This method makes it possible for a player to move forward equal to the value of their dice roll
     public void playRound(Player player) {
+        if (player.jailed == 0){
+            playRoundUnjailed(player);
+        }
+        else {
+            playRoundJailed(player);
+        }
         // roll dice
+
+    }
+
+    public void playRoundUnjailed(Player player){
+        String playerName = player.getName();
+        gui.buttonRequest(("It is " + playerName + "'s turn. Please roll the dice"), "Roll");
+        int[] dieValues = player.rollDie();
+        int total = (dieValues[0] + dieValues[1]);
+        gui.setDice(dieValues);
+        int oldplayerpos = player.getPosition();
+        // player moves
+        //int newplayerpost = player.getPosition();
+        player.setPosition(oldplayerpos + total);
+        gui.movePlayerTo(player.getId(), oldplayerpos, player.getPosition());
+    }
+
+    public void playRoundJailed(Player player){
         String playerName = player.getName();
         gui.buttonRequest(("It is " + playerName + "'s turn. Please roll the dice"), "Roll");
         int[] dieValues = player.rollDie();
