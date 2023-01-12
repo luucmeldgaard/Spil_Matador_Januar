@@ -124,7 +124,12 @@ public class FieldController {
     public void landOnStart(String playerID, StartField start) {
         int income = start.getIncome();
         String message = "You passed start, gain " + income + "!";
-        createTransaction(playerID, null, income, false, message);
+        if (!currentGameState.getPlayerFromID(playerID).getFirstturn())
+            createTransaction(playerID, null, income, false, message);
+        else {
+            currentGameState.getPlayerFromID(playerID).changeFirstturn();
+            return;
+        }
     }
 
     public void landOnProperty(String playerID, Property property) {
