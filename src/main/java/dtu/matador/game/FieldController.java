@@ -290,6 +290,7 @@ public class FieldController {
             switch (key) {
                 case "Cash added" -> {
                     System.out.println("Cash added");
+
                 }
                 case "CashAddedPerHouse" -> {
                     System.out.println("CashAddedPerHouse");
