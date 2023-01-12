@@ -63,28 +63,6 @@ public class GameController {
         gui.movePlayerTo(player.getId(), oldplayerpos, player.getPosition());
     }
 
-    /*
-
-        public void movePlayerTo(String playerID, int startPosition, int endPosition) {
-        playersPassedStartOnce += 1;
-        int steps = endPosition - startPosition;
-        int currentPosition = startPosition;
-        if (steps < 0) {
-            steps += boardSize;
-        }
-        for (int i = 0; i < steps; i++) {
-            currentPosition++;
-            if (currentPosition >= boardSize) {
-                currentPosition = 0;
-            }
-            movePlayerOnce(playerID, currentPosition);
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-     */
-
     public void landOn() {
         // retrieves fieldtype from Field Controller
 

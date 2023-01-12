@@ -21,7 +21,7 @@ public class GameState {
     }
     public void play() {
         while (true) {
-            System.out.println(currentPlayer);
+            System.out.println(currentPlayer.name);
             controller.playRound(currentPlayer);
             nextPlayer();
         }
