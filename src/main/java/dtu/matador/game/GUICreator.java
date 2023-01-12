@@ -18,6 +18,7 @@ public class GUICreator {
                 case "property" -> {
                     guiFields[Integer.parseInt(field.get("position"))] = new GUI_Street(field.get("title"), field.get("subText"), field.get("title"), field.get("rent"), Color.getColor(field.get("color1")), Color.getColor(field.get("color2")));
                 }
+
                 case "chance" -> {
                     guiFields[Integer.parseInt(field.get("position"))] = new GUI_Chance(field.get("title"), field.get("subText"), field.get("subText"), Color.getColor(field.get("color1")), Color.getColor(field.get("color2")));
                 }
@@ -25,7 +26,7 @@ public class GUICreator {
                     guiFields[Integer.parseInt(field.get("position"))] = new GUI_Jail("default", field.get("title"), field.get("subText"), field.get("subText"), Color.getColor(field.get("color1")), Color.getColor(field.get("color2")));
                 }
                 case "tax" -> {
-                    guiFields[Integer.parseInt(field.get("position"))] = new GUI_Tax(field.get("title"), field.get("subText"), field.get("subText"), Color.getColor(field.get("color1")), Color.getColor(field.get("color2")));
+                    guiFields[Integer.parseInt(field.get("position"))] = new GUI_Tax(field.get("title"), field.get("subText"), field.get("title"), Color.getColor(field.get("color1")), Color.getColor(field.get("color2")));
                 }
                 case "start" -> {
                     guiFields[Integer.parseInt(field.get("position"))] = new GUI_Start(field.get("title"), field.get("subText"), field.get("subText"), Color.getColor(field.get("color1")), Color.getColor(field.get("color2")));
