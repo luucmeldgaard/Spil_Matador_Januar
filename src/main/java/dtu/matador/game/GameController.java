@@ -85,13 +85,20 @@ public class GameController {
                     player.jailed = 0;
                     gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
                     movePlayer(player, dieValues);
-                } else {
+                }
+                else {
                     gui.displayGeneralMessage("Det var desværre ikke to ens");
+                    player.jailed += 1;
                 }
             } else {
-
+                //TODO: TRÆK 1000 kroner fra spillerens balance
+                playRoundUnjailed(player);
             }
-        } else {
+        }
+        else {
+            //TODO: TRÆK 1000 kroner fra spillerens balance
+            player.jailed = 0;
+
         }
     }
 
