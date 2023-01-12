@@ -130,7 +130,9 @@ public abstract class Property implements PropertyFields {
     public int getBuildPrice(){
         return buildPrice;
     }
-
+    public String getNeighborhood(){
+        return neighborhood;
+    }
     public void buildHouse(){
         this.housing += 1;
     }
