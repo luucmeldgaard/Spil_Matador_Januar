@@ -287,40 +287,60 @@ public class FieldController {
         }
         for (String key : card.keySet()) {
             System.out.println(key + ": " + card.get(key));
+            String message = card.get("Text");
             switch (key) {
                 case "Cash added" -> {
                     System.out.println("Cash added");
-
+                    int amount = Integer.parseInt(card.get(key));
+                    createTransaction(playerID, null, amount, true, message);
                 }
                 case "CashAddedPerHouse" -> {
                     System.out.println("CashAddedPerHouse");
+                    // TODO the player has an amount of houses. For the number of houses,
+                    // TODO the player needs to pay/receive an amount of money
                 }
                 case "CashAddedPerHotel" -> {
                     System.out.println("CashAddedPerHotel");
+                    // TODO the player has an amount of hotels. For the number of hotels,
+                    // TODO the player needs to pay/receive an amount of money
                 }
                 case "CashTakenFromPlayers" -> {
                     System.out.println("CashTakenFromPlayers");
+                    ArrayList<String> allPlayerIDs = currentGameState.getAllPlayerIDs();
+                    int amount = Integer.parseInt(card.get(key));
+                    for (String id : allPlayerIDs) {
+                        if (!id.equals(playerID)) {
+                            createTransaction(id, playerID, amount, true, message);
+                        }
+                    }
                 }
                 case "MoveBy" -> {
                     System.out.println("MoveBy");
+                    // TODO make player move
                 }
                 case "MoveToType" -> {
                     System.out.println("MoveToType");
+                    // TODO make player move to the next instance of a specific field type
                 }
                 case "MoveTo" -> {
                     System.out.println("MoveTo");
+                    // TODO make player move to specific field
                 }
                 case "PayIfCrossStart" -> {
                     System.out.println("PayIfCrossStart");
+                    // TODO boolean statement that runs landOnStart
                 }
                 case "Condition" -> {
                     System.out.println("Condition");
+                    // TODO card will only be run of condition is true
                 }
                 case "RentMultiplier" -> {
                     System.out.println("RentMultiplier");
+                    // TODO double the rent that the player needs to play if a field is owned by someone else
                 }
                 case "JailFreeCard" -> {
                     System.out.println("JailFreeCard");
+                    // TODO the player receives a "get-out-of-jail"-card
                 }
             }
         }
