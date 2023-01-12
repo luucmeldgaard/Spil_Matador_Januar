@@ -14,14 +14,13 @@ public class Player {
     int balance;
     static DiceCup diceCup = new DiceCup();
     static int boardSize;
-    boolean firstturn;
 
-    public Player(String name, String color, int position, int balance, boolean firstturn) {
+
+    public Player(String name, String color, int position, int balance) {
         this.name = name;
         this.color = color;
         this.position = position;
         this.balance = balance;
-        this.firstturn = firstturn;
         setId();
     }
 
@@ -52,12 +51,6 @@ public class Player {
     }
 
     public int getBalance() {return this.balance;}
-
-    public boolean getFirstturn(){return this.firstturn;}
-
-    public boolean changeFirstturn() {
-        return firstturn = false;
-    }
 
     public void setPosition(int position) {this.position = position % boardSize; }
 
