@@ -7,6 +7,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import static dtu.matador.game.GUIController.*;
 
@@ -15,6 +16,7 @@ public class FieldController {
     ArrayList<FieldSpaces> fields;
     FieldLoader fieldLoader;
     Map<String, Map<String, String>> fieldMap;
+    Map<String, Map<String, String>> chanceMap;
     FieldSpaces currentField;
     static GUIController gui;
     GameState currentGameState = new GameState();
@@ -29,6 +31,9 @@ public class FieldController {
             fields.add(null);
         }
         setupFields();
+
+        chanceMap = fieldLoader.getChanceMap();
+
     }
 
     public FieldController() {
@@ -271,7 +276,54 @@ public class FieldController {
     }
 
     public void landOnChance (String playerID, Chance chance) {
-        //
+        Random rand = new Random();
+        String cardNumber = String.valueOf(rand.nextInt(0, chanceMap.size() - 1));
+        Map <String, String> rawCard = chanceMap.get(cardNumber);
+        Map <String, String> card = new HashMap<>();
+        for (String key : rawCard.keySet()) {
+            if (!rawCard.get(key).equals("")) {
+                card.put(key, rawCard.get(key));
+            }
+        }
+        for (String key : card.keySet()) {
+            System.out.println(key + ": " + card.get(key));
+            switch (key) {
+                case "Cash added" -> {
+                    System.out.println("Cash added");
+                }
+                case "CashAddedPerHouse" -> {
+                    System.out.println("CashAddedPerHouse");
+                }
+                case "CashAddedPerHotel" -> {
+                    System.out.println("CashAddedPerHotel");
+                }
+                case "CashTakenFromPlayers" -> {
+                    System.out.println("CashTakenFromPlayers");
+                }
+                case "MoveBy" -> {
+                    System.out.println("MoveBy");
+                }
+                case "MoveToType" -> {
+                    System.out.println("MoveToType");
+                }
+                case "MoveTo" -> {
+                    System.out.println("MoveTo");
+                }
+                case "PayIfCrossStart" -> {
+                    System.out.println("PayIfCrossStart");
+                }
+                case "Condition" -> {
+                    System.out.println("Condition");
+                }
+                case "RentMultiplier" -> {
+                    System.out.println("RentMultiplier");
+                }
+                case "JailFreeCard" -> {
+                    System.out.println("JailFreeCard");
+                }
+            }
+        }
+
     }
 
     /**
