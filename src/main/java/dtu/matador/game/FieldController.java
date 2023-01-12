@@ -61,6 +61,7 @@ public class FieldController {
                     fields.set(fieldPosition, new StartField(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
                             field.get("position"), field.get("income")));
                 }
+
             }
         }
     }
