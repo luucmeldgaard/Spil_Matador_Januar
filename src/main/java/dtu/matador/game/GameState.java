@@ -60,29 +60,30 @@ public class GameState {
         players.remove(player);
     }
 
-    public boolean handleTransaction(String playerID, String receiverID, int price, boolean critical) {
-        Player player = getPlayerFromID(playerID);
+    public boolean handleTransaction(String targetPlayerID, String beneficiaryID, int amount, boolean critical) {
+        Player targetPlayer = getPlayerFromID(targetPlayerID);
 
-        boolean confirmation = player.balanceCheck(price);
+        boolean confirmation = targetPlayer.balanceCheck(amount);
         if (!confirmation) {
-            if (receiverID != null) {
-                Player receiver = getPlayerFromID(receiverID);
-                int playerActualBalance = player.getBalance();
-                receiver.addBalance(playerActualBalance);
+            if (beneficiaryID != null) {
+                Player beneficiary = getPlayerFromID(beneficiaryID);
+                int targetActualBalance = targetPlayer.getBalance();
+                beneficiary.addBalance(targetActualBalance);
             }
             if (critical) {
                 // TODO player has lost and will be removed
                 System.out.println("The player has lost");
-                players.remove(player);
+                players.remove(targetPlayer);
             }
             return false;
         }
 
+
         else {
-            player.addBalance(price);
-            if (receiverID != null) {
-                Player receiver = getPlayerFromID(receiverID);
-                receiver.addBalance(Math.abs(price));
+            targetPlayer.addBalance(amount);
+            if (beneficiaryID != null) {
+                Player beneficiary = getPlayerFromID(beneficiaryID);
+                beneficiary.addBalance(Math.abs(amount));
             }
             return true;
         }
