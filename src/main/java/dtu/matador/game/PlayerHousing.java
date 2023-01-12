@@ -1,5 +1,6 @@
 package dtu.matador.game;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,7 +17,7 @@ public class PlayerHousing {
         getPropertyMap().put(color, property);
     }
 
-    public ArrayList<Property> getPropertiesFromColors(String color){
-
+    public ArrayList<Property> getPropertiesFromColor(String color){
+        return getPropertyMap().get(color);
     }
 }
