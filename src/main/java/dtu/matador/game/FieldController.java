@@ -100,7 +100,6 @@ public class FieldController {
             fieldMap.get(fieldPosition).replace("housing", housing);
         }
     }
-
     public void landOnField(String playerID, int startPosition, int currentPosition) {
         if (startPosition > currentPosition) {
             System.out.println("Player passed start");
