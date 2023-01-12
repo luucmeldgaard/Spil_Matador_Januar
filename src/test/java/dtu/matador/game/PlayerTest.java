@@ -12,7 +12,7 @@ public class PlayerTest {
     //Tests if the player can move forward (irrelevant how much)
     @Test
     public void playerMovesForwardFromStart() {
-        Player player = new Player("Jakob", Color.BLUE,0,5000);
+        Player player = new Player("Jakob", "myBlue",0,5000);
         int currentPosition = player.getPosition();
         int[] dieValues = player.rollDie();
         for (int dieRoll : dieValues) {
@@ -24,7 +24,7 @@ public class PlayerTest {
     //Tests if the move of a player equals the dice roll
 @Test
     public void RollEqualsPositionalChange(){
-        Player player = new Player("Jakob", Color.BLUE,5,5000);
+        Player player = new Player("Jakob","myBlue",5,5000);
         int startPosition = player.getPosition();
         int[] dieValues = player.rollDie();
 
