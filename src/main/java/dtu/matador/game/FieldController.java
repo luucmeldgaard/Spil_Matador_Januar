@@ -206,8 +206,11 @@ public class FieldController {
                         if (transactionSuccess) {
                             street.buildHouse();
 
-                            updateGUI(property, playerID);
-                            updateFieldMap(property);
+                            for(Property propertyList : player.getPlayerHousing().getPropertiesFromColor(property.getNeighborhood())){
+                                updateGUI(propertyList, playerID);
+                                updateFieldMap(propertyList);
+                            }
+
 
 
 
