@@ -16,6 +16,8 @@ public class Player {
     static int boardSize;
     boolean firstturn;
 
+    private PlayerHousing playerHousing;
+
     public Player(String name, String color, int position, int balance, boolean firstturn) {
         this.name = name;
         this.color = color;
@@ -76,5 +78,7 @@ public class Player {
         int nextBalance = this.balance + amount;
         return nextBalance >= 0;
     }
+
+
 
 }
