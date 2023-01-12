@@ -45,7 +45,7 @@ public class FieldController {
                 case "property" -> {
                     fields.set(fieldPosition, new Street(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"),field.get("rent2"),
                             field.get("rent3"), field.get("rent4"), field.get("rent5"),field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
-                            field.get("position"), field.get("owner"), field.get("housing")));
+                            field.get("position"), field.get("owner"), field.get("housing"), field.get("neighborhood")));
                 }
                 case "ferry" -> {
                     fields.set(fieldPosition, new Ferry(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"),field.get("rent"),
@@ -138,6 +138,7 @@ public class FieldController {
 
     public void landOnProperty(String playerID, Property property) {
         String owner = property.getOwner();
+        Player player = currentGameState.getPlayerFromID(playerID);
         if (owner == null) {
             System.out.println("This field is not owned by anyone!");
             String choice = gui.buttonRequest("Buy or auction?", "Buy", "Auction");
@@ -146,6 +147,16 @@ public class FieldController {
                 if (property.getOwner().equals(playerID)) {
                     updateFieldMap(property);
                     updateGUI(property, playerID);
+
+                    ArrayList<Property> propertyList = player.getPlayerHousing().getPropertiesFromColor(property.getNeighborhood());
+
+                    if(propertyList == null){
+                        propertyList = new ArrayList<>();
+                        propertyList.add(property);
+                    }else{
+                        propertyList.add(property);
+                    }
+                    player.getPlayerHousing().addProperty(property.getNeighborhood(), propertyList);
                 }
             } else if (choice.equals("Auction")) {
                 property.auction(playerID);
@@ -191,8 +202,11 @@ public class FieldController {
                         boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false, "Buying house for " + street.getBuildPrice());
                         if (transactionSuccess) {
                             street.buildHouse();
-                            updateGUI(((Property) street), playerID);
-                            updateFieldMap(((Property) street));
+                            Property property = (Property) street;
+                            updateGUI(property, playerID);
+                            updateFieldMap(property);
+
+
 
                         }
                     }
