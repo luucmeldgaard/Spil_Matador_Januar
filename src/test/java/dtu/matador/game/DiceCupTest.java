@@ -27,7 +27,7 @@ public class DiceCupTest {
         DiceCup diceCup = new DiceCup();
         for (int i = 0;i<10000;i++) {
             int[] nums = diceCup.roll();
-            assert (nums[0] + nums[1] != nums[2]);
+            assert (nums[0] + nums[1] == nums[2]);
 
         }
     }
