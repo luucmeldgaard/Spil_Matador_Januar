@@ -46,6 +46,15 @@ public class GameState {
         return null;
     }
 
+    public ArrayList<String> getAllPlayerIDs() {
+        ArrayList<String> playerIDs = new ArrayList<>();
+        for (Player player : players) {
+            String id = player.getId();
+            playerIDs.add(id);
+        }
+        return playerIDs;
+    }
+
     public void removePlayerFromState(String playerID) {
         Player player = getPlayerFromID(playerID);
         players.remove(player);
