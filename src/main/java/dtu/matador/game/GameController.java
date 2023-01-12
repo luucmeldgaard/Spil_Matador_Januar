@@ -59,11 +59,8 @@ public class GameController {
         // roll dice
 
     }
-
-    public void playRoundUnjailed(Player player){
+    public void movePlayer(Player player, int[] dieValues){
         String playerName = player.getName();
-        gui.buttonRequest(("It is " + playerName + "'s turn. Please roll the dice"), "Roll");
-        int[] dieValues = player.rollDie();
         int total = (dieValues[0] + dieValues[1]);
         gui.setDice(dieValues);
         int oldplayerpos = player.getPosition();
@@ -72,10 +69,29 @@ public class GameController {
         player.setPosition(oldplayerpos + total);
         gui.movePlayerTo(player.getId(), oldplayerpos, player.getPosition());
     }
+    public void playRoundUnjailed(Player player){
+        String playerName = player.getName();
+        gui.buttonRequest(("Det er " + playerName + "'s tur. Kast med terningerne"), "Kast");
+        int[] dieValues = player.rollDie();
+        movePlayer(player, dieValues);
+    }
 
     public void playRoundJailed(Player player){
         String playerName = player.getName();
-        gui.buttonRequest(("It is " + playerName + "'s turn. Please roll the dice"), "Roll");
+        if (player.jailed == 1 || player.jailed == 2){
+            if (gui.payOrRoll()){ //If this is true, the player picked "Slå med terningerne"
+                int[] dieValues = player.rollDie();
+                if (dieValues[0] == dieValues[1]){
+                    player.jailed = 0;
+
+                }
+            }
+            else{
+
+            }
+        }
+
+        gui.buttonRequest(("Det er " + playerName + "'s tur. Kast med terningerne og slå to ens, for at komme ud af fængsel"), "Kast");
         int[] dieValues = player.rollDie();
         int total = (dieValues[0] + dieValues[1]);
         gui.setDice(dieValues);
