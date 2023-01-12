@@ -1,0 +1,27 @@
+@startuml
+start
+:targetPlayer = getPlayerFromID(targetPlayerID);
+:confirmation = targetPlayer.balanceCheck(amount);
+
+if (confirmation) then (yes)
+    :targetPlayer.addBalance(amount);
+    if (beneficiaryID != null) then (yes)
+        :beneficiary = getPlayerFromID(beneficiaryID);
+        :beneficiary.addBalance(Math.abs(amount));
+    else (no)
+    endif
+    :return true;
+else (no)
+    if (beneficiaryID != null) then (yes)
+        :beneficiary = getPlayerFromID(beneficiaryID);
+        :beneficiary.addBalance(targetPlayer.getBalance());
+    else (no)
+    endif
+    if (critical) then (yes)
+        :players.remove(targetPlayer);
+    else (no)
+    endif
+    :return false;
+endif
+stop
+@enduml
