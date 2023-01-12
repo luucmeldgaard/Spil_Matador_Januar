@@ -104,7 +104,7 @@ public abstract class Property implements PropertyFields {
     }
 
     public void buildHouse(){
-
+        this.housing += 1;
     }
 }
 
