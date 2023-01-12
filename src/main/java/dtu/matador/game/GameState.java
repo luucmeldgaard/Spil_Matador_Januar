@@ -19,7 +19,6 @@ public class GameState {
         System.out.println(players);
         currentPlayer = players.get(0);
     }
-
     public void play() {
         while (true) {
             System.out.println(currentPlayer);
