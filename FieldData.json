@@ -19,7 +19,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "4000",
-    "groupsize": ""
+    "groupsize": "0"
   },
   {
     "owner": "",
@@ -63,7 +63,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "0"
   },
   {
     "owner": "",
@@ -107,7 +107,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "0"
   },
   {
     "owner": "",
@@ -129,7 +129,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "4"
   },
   {
     "owner": "",
@@ -173,7 +173,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "0"
   },
   {
     "owner": "",
@@ -239,7 +239,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "0"
   },
   {
     "owner": "",
@@ -283,7 +283,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "2"
   },
   {
     "owner": "",
@@ -349,7 +349,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "4"
   },
   {
     "owner": "",
@@ -393,7 +393,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "0"
   },
   {
     "owner": "",
@@ -459,7 +459,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "0"
   },
   {
     "owner": "",
@@ -503,7 +503,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "0"
   },
   {
     "owner": "",
@@ -569,7 +569,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "4"
   },
   {
     "owner": "",
@@ -635,7 +635,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "2"
   },
   {
     "owner": "",
@@ -679,7 +679,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "0"
   },
   {
     "owner": "",
@@ -745,7 +745,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "0"
   },
   {
     "owner": "",
@@ -789,7 +789,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "4"
   },
   {
     "owner": "",
@@ -811,7 +811,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "0"
   },
   {
     "owner": "",
@@ -855,7 +855,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": ""
+    "groupsize": "0"
   },
   {
     "owner": "",
