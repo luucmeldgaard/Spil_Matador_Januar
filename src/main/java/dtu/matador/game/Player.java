@@ -14,13 +14,17 @@ public class Player {
     int balance;
     static DiceCup diceCup = new DiceCup();
     static int boardSize;
+    boolean firstturn;
 
+    private PlayerHousing playerHousing;
 
-    public Player(String name, String color, int position, int balance) {
+    public Player(String name, String color, int position, int balance, boolean firstturn) {
         this.name = name;
         this.color = color;
         this.position = position;
         this.balance = balance;
+        this.firstturn = firstturn;
+        this.playerHousing = new PlayerHousing();
         setId();
     }
 
@@ -52,6 +56,12 @@ public class Player {
 
     public int getBalance() {return this.balance;}
 
+    public boolean getFirstturn(){return this.firstturn;}
+
+    public boolean changeFirstturn() {
+        return firstturn = false;
+    }
+
     public void setPosition(int position) {this.position = position % boardSize; }
 
     //Prints a move from the player and updates their position
@@ -70,4 +80,7 @@ public class Player {
         return nextBalance >= 0;
     }
 
+    public PlayerHousing getPlayerHousing() {
+        return playerHousing;
+    }
 }
