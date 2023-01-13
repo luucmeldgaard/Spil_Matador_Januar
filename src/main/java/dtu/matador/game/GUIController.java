@@ -12,23 +12,19 @@ import java.util.Map;
 class GUIController {
 
     private static GUI gui;
-    GUICreator fields;
-    GUI_Field[] guiFields;
+    private GUI_Field[] guiFields;
     int boardSize;
     ArrayList<GUI_Player> guiPlayers;
-    int currentGUIPlayer;
-
     int numberOfPlayers;
 
     public GUIController(String selectedBoard) {
         gui = new GUI(new GUI_Field[0]);
         //gui = new GUI(guiFields);
         this.guiPlayers = new ArrayList<>();
-        this.currentGUIPlayer = 0;
     }
 
     public void setGUI(Map<String, Map<String, String>> fieldMap) {
-        this.fields = new GUICreator();
+        GUICreator fields = new GUICreator();
         guiFields = fields.setup(fieldMap);
         boardSize = guiFields.length;
         GUI.setNull_fields_allowed(false);
@@ -90,7 +86,7 @@ class GUIController {
     }
 
 
-    public GUI_Car addCar(Color primaryColor, Color patternColor) {
+    private GUI_Car addCar(Color primaryColor, Color patternColor) {
         GUI_Car car = new GUI_Car(primaryColor, patternColor, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL);
         return car;
     }
@@ -119,7 +115,7 @@ class GUIController {
 
     }
 
-    public void movePlayerOnce(String playerID, int nextPosition) {
+    private void movePlayerOnce(String playerID, int nextPosition) {
         if (nextPosition >= boardSize) {
             nextPosition = nextPosition % boardSize;
         }
@@ -128,14 +124,6 @@ class GUIController {
         System.out.println(guiFields[nextPosition].getTitle());
 
     }
-
-    public void removePlayer(String playerID) {
-        GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
-        player.getCar().setPosition(null);
-
-
-    }
-
 
     public void movePlayerTo(String playerID, int startPosition, int endPosition) {
         int steps = endPosition - startPosition;
@@ -155,6 +143,11 @@ class GUIController {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void removePlayer(String playerID) {
+        GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
+        player.getCar().setPosition(null);
     }
 
     public int getBoardSize() {return boardSize; }
