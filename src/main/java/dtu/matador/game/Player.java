@@ -15,11 +15,14 @@ public class Player {
     static DiceCup diceCup = new DiceCup();
     static int boardSize;
 
+    private PlayerHousing playerHousing;
+
     public Player(String name, String color, int position, int balance) {
         this.name = name;
         this.color = color;
         this.position = position;
         this.balance = balance;
+        this.playerHousing = new PlayerHousing();
         setId();
     }
 
@@ -69,4 +72,7 @@ public class Player {
         return nextBalance >= 0;
     }
 
+    public PlayerHousing getPlayerHousing() {
+        return playerHousing;
+    }
 }

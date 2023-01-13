@@ -2,6 +2,7 @@ package dtu.matador.game;
 
 import com.sun.jdi.Field;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,12 @@ public abstract class Property implements PropertyFields {
     String subtext;
     String description;
     int rent;
+    int rent0;
+    int rent1;
+    int rent2;
+    int rent3;
+    int rent4;
+    int rent5;
     String color1;
     String color2;
     String neighborhood;
@@ -24,21 +31,32 @@ public abstract class Property implements PropertyFields {
     int buildPrice;
     protected int housing; // MÅSKE VIRKER DENNE HER IKKE?????
 
+    int groupSize;
+
+
     //Takes input to create the class
     public Property(String name, String subtext, String description, String rent,
+                    String rent1, String rent2, String rent3, String rent4, String rent5,
                     String color1,String color2, String price,
-                    String pawnForAmount, String position, String owner){
+                    String pawnForAmount, String position, String owner, String neighborhood, String groupSize){
 
         this.name = name;
         this.subtext = subtext;
         this.description = description;
-        this.rent = Integer.parseInt(rent);
+        this.rent0 = Integer.parseInt(rent);
+        this.rent1 =Integer.parseInt(rent1);
+        this.rent2 =Integer.parseInt(rent2);
+        this.rent3 =Integer.parseInt(rent3);
+        this.rent4 =Integer.parseInt(rent4);
+        this.rent5 =Integer.parseInt(rent5);
         this.color1 = color1;
         this.color2 = color2;
         this.price = Integer.parseInt(price);
         this.pawnForAmount = Integer.parseInt(pawnForAmount);
         this.position = Integer.parseInt(position);
         this.owner = owner;
+        this.neighborhood = neighborhood;
+        this.groupSize = Integer.parseInt(groupSize);
 
         if (this.owner.equals("")) {
             this.owner = null;
@@ -77,12 +95,19 @@ public abstract class Property implements PropertyFields {
         return this.position;
     }
 
+    private int currentRent() {
+        int[] rent = new int[] {this.rent0, this.rent1, this.rent2, this.rent3, this.rent4, this.rent5};
+        return rent[this.housing];
+    }
     public int getRent() {
-        return rent;
+        System.out.println("normal rent: " + this.rent0 + " actual rent with " + this.housing + " housing: " + currentRent());
+        return currentRent();
     }
 
+    //A player can buy with the help of a transaction
     public void buy(String playerID) {
-        boolean purchase = controller.createTransaction(playerID,null, -this.price, false);
+        String message = "Do you want to purchase " + this.name + "?";
+        boolean purchase = controller.createTransaction(playerID,null, -this.price, false, message);
         if (purchase) {
             this.owner = playerID;
         }
@@ -100,9 +125,15 @@ public abstract class Property implements PropertyFields {
     public int getBuildPrice(){
         return buildPrice;
     }
-
+    public String getNeighborhood(){
+        return neighborhood;
+    }
     public void buildHouse(){
+        this.housing += 1;
+    }
 
+    public int getGroupSize(){
+        return groupSize;
     }
 }
 

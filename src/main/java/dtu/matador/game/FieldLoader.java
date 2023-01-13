@@ -14,14 +14,16 @@ public class FieldLoader {
 
     Map<String, Map<String, String>> boardMap;
     Map<String, String> colorMap;
+    Map<String, Map<String, String>> chanceMap;
 
     public FieldLoader(String selectedBoard) {
-        boardMap = JSONtoMapBoard(selectedBoard + ".json");
+        boardMap = JSONtoMap(selectedBoard + ".json", "position");
         this.colorMap = new HashMap<>();
         this.colorMap = JSONtoMapColors("colors.json");
+        this.chanceMap = JSONtoMap("chance" + ".json", "Number");
     }
 
-    private Map<String, Map<String, String>> JSONtoMapBoard(String filename) {
+    private Map<String, Map<String, String>> JSONtoMap(String filename, String outerMapKey) {
 
         // The map to return
         Map<String, Map<String, String>> board = new HashMap<>();
@@ -44,17 +46,18 @@ public class FieldLoader {
             for (String item : objArray) {
                 item = item + "}";
                 Map<String, String> map = mapper.readValue(item, Map.class);
-                board.put(map.get("position"), map);
+                board.put(map.get(outerMapKey), map);
             }
 
         }
+        //throws an exception
         catch (IOException | ParseException ex) {
             throw new RuntimeException(ex);
         }
 
         return board;
     }
-
+    //Converts JSON to colors on map
     private Map<String, String> JSONtoMapColors(String filename) {
         JSONParser jsonParser = new JSONParser();
         try (FileReader fieldFileReader = new FileReader(filename)) {
@@ -81,4 +84,6 @@ public class FieldLoader {
     }
 
     public Map<String, String> getColorMap(){return colorMap;}
+
+    public Map<String, Map<String,String>> getChanceMap() {return chanceMap; }
 }

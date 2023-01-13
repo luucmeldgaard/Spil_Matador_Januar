@@ -5,24 +5,23 @@ import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_fields.GUI_Street;
 import gui_main.GUI;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Map;
 
 class GUIController {
 
+    //Instances of classes added
     private static GUIController guiControllerObject;
     private static GUI gui;
     static GUI_Field[] guiFields;
     static FieldController board;
     static int boardSize;
-
-    static int playersInGame;
-    static int playersPassedStartOnce = 0;
     static ArrayList<GUI_Player> guiPlayers;
     static int currentGUIPlayer;
     static GameController gameController;
+
+    static int numberOfPlayers;
 
     private GUIController(String selectedBoard) {
         board = new FieldController(selectedBoard);
@@ -56,26 +55,52 @@ class GUIController {
         return gui.getUserButtonPressed(message, buttons);
     }
 
+    public ArrayList<String> colorNamesArrayList = new ArrayList<String>();
+    public void fillColorSelector(){
+        colorNamesArrayList.add("Rød");
+        colorNamesArrayList.add("Blå");
+        colorNamesArrayList.add("Lyserød");
+        colorNamesArrayList.add("Hvid");
+        colorNamesArrayList.add("Lilla");
+        colorNamesArrayList.add("Tyrkis");
+
+    }
 
     public String colorDropDownList() {
+        String[] colorNamesArray = new String[colorNamesArrayList.size()];
+        colorNamesArray = colorNamesArrayList.toArray(colorNamesArray);
         String chosenColorString = gui.getUserSelection(
-                "Select a colour",
-                "Rød", "Blå", "Lyserød", "Hvid", "Gul"
-        );
+                "Vælg en farve", colorNamesArray);
+
         String chosenColor = "";
         //This should be done with a switch case or maybe a loop to look cleaner, but this works for now
-        if (chosenColorString.equals("Rød")){ //This should be remade to pick colors from the colors.json we made
+        if (chosenColorString.equals("Rød")){
             chosenColor = "myRed";
+            colorNamesArrayList.remove("Rød");
             }
         if (chosenColorString.equals("Blå")){
             chosenColor = "myBlue";
+            colorNamesArrayList.remove("Blå");
+
         }
         if (chosenColorString.equals("Lyserød")){
             chosenColor = "myPink";
+            colorNamesArrayList.remove("Lyserød");
         }
+
         if (chosenColorString.equals("Hvid")){
             chosenColor = "myWhite";
+            colorNamesArrayList.remove("Hvid");
+        }
 
+        if (chosenColorString.equals("Lilla")) {
+            chosenColor = "myPurple";
+            colorNamesArrayList.remove("Lilla");
+        }
+
+        if (chosenColorString.equals("Tyrkis")) {
+            chosenColor = "myTurqouise";
+            colorNamesArrayList.remove("Tyrkis");
         }
         return chosenColor;
     }
@@ -100,8 +125,6 @@ class GUIController {
         gui.addPlayer(player);
         player.getCar().setPosition(gui.getFields()[position]);
         guiPlayers.add(player);
-        playersInGame += 1;
-        System.out.println(playersInGame + "________________");
     }
 
     public void setDice(int[] dice) {
@@ -120,20 +143,17 @@ class GUIController {
         player.getCar().setPosition(guiFields[nextPosition]);
         System.out.println(guiFields[nextPosition].getTitle());
 
+    }
 
+    public void removePlayer(String playerID) {
+        GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
+        player.getCar().setPosition(null);
 
-        if (nextPosition != 0 && playersPassedStartOnce > playersInGame){
-            if (guiFields[nextPosition - 1].getTitle().equals("Start")) {
-                System.out.println("__________START_______________");
-                board.landOnField(playerID, nextPosition-1);
-            }
-        }
 
     }
 
 
     public void movePlayerTo(String playerID, int startPosition, int endPosition) {
-        playersPassedStartOnce += 1;
         int steps = endPosition - startPosition;
         int currentPosition = startPosition;
         if (steps < 0) {
@@ -151,27 +171,43 @@ class GUIController {
                 e.printStackTrace();
             }
         }
-        board.landOnField(playerID, endPosition);
+        board.landOnField(playerID, startPosition, currentPosition);
     }
 
     public int getBoardSize() {return boardSize; }
 
     public int getNumberOfPlayers(){
-        return Integer.parseInt((gui.getUserSelection(
+         numberOfPlayers = Integer.parseInt((gui.getUserSelection(
                 "Select a number of players",
                 "2", "3", "4", "5", "6"
         )));
+         return numberOfPlayers;
     }
 
+    public static ArrayList<String> takenNames = new ArrayList<String>();
+
+
     public String getNameFromInput(){
-        String playername = gui.getUserString("Enter your name here", 1, 30, true);
-        return playername;
+        while (true) {
+            String playername = retrieveNameFromInput();
+            if (!(takenNames.contains(playername))){
+                takenNames.add(playername);
+                System.out.println("!(takenNames.contains(playername))");
+                return playername;
+            }
+            else{
+                gui.showMessage("Another player already has this name. Please pick a new one");
+            }
+        }
+    }
+    public String retrieveNameFromInput(){
+        String name = gui.getUserString("Enter your name here", 1, 30, true);
+        return name;
     }
 
     public void updateGUIPlayerBalance(String playerID, int balance) {
         GUI_Player guiPlayer = guiPlayers.get(Integer.parseInt(playerID));
         guiPlayer.setBalance(balance);
-
     }
 
     public void updateProperty(int fieldPosition, String color, int housing) {

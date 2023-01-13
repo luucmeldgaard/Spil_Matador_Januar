@@ -22,4 +22,13 @@ public class DiceCupTest {
 
         }
     }
+    @Test
+    public void totalIsRight(){
+        DiceCup diceCup = new DiceCup();
+        for (int i = 0;i<10000;i++) {
+            int[] nums = diceCup.roll();
+            assert (nums[0] + nums[1] == nums[2]);
+
+        }
+    }
 }

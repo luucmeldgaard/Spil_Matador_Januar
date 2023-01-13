@@ -3,6 +3,7 @@ package dtu.matador.game;
 import java.util.ArrayList;
 
 public class GameState {
+    //Instances of classes are added
     GameController controller;
     static ArrayList<Player> players;
     static Player currentPlayer;
@@ -10,17 +11,14 @@ public class GameState {
 
     public GameState() {
         controller = new GameController();
-        //players = new ArrayList<Player>();
         currentPlayerNum = 0;
     }
-
     public void menu() {
         controller.setBoard("FieldData");
         players = controller.addPlayers();
         System.out.println(players);
         currentPlayer = players.get(0);
     }
-
     public void play() {
         while (true) {
             System.out.println(currentPlayer);
@@ -48,29 +46,44 @@ public class GameState {
         return null;
     }
 
-    public boolean handleTransaction(String playerID, String receiverID, int price, boolean critical) {
-        Player player = getPlayerFromID(playerID);
+    public ArrayList<String> getAllPlayerIDs() {
+        ArrayList<String> playerIDs = new ArrayList<>();
+        for (Player player : players) {
+            String id = player.getId();
+            playerIDs.add(id);
+        }
+        return playerIDs;
+    }
 
-        boolean confirmation = player.balanceCheck(price);
+    public void removePlayerFromState(String playerID) {
+        Player player = getPlayerFromID(playerID);
+        players.remove(player);
+    }
+
+    public boolean handleTransaction(String targetPlayerID, String beneficiaryID, int amount, boolean critical) {
+        Player targetPlayer = getPlayerFromID(targetPlayerID);
+
+        boolean confirmation = targetPlayer.balanceCheck(amount);
         if (!confirmation) {
-            if (receiverID != null) {
-                Player receiver = getPlayerFromID(receiverID);
-                int playerActualBalance = player.getBalance();
-                receiver.addBalance(playerActualBalance);
-                return false;
+            if (beneficiaryID != null) {
+                Player beneficiary = getPlayerFromID(beneficiaryID);
+                int targetActualBalance = targetPlayer.getBalance();
+                beneficiary.addBalance(targetActualBalance);
             }
             if (critical) {
                 // TODO player has lost and will be removed
-                return false;
+                System.out.println("The player has lost");
+                players.remove(targetPlayer);
             }
             return false;
         }
 
+
         else {
-            player.addBalance(price);
-            if (receiverID != null) {
-                Player receiver = getPlayerFromID(receiverID);
-                receiver.addBalance(Math.abs(price));
+            targetPlayer.addBalance(amount);
+            if (beneficiaryID != null) {
+                Player beneficiary = getPlayerFromID(beneficiaryID);
+                beneficiary.addBalance(Math.abs(amount));
             }
             return true;
         }
