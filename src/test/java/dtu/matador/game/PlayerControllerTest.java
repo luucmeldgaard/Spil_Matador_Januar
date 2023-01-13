@@ -16,8 +16,8 @@ public class PlayerControllerTest {
         Player targetPlayer = new Player(targetPlayerName, "myBlue", 5, 5000);
         Player beneficiary = new Player(beneficiaryName, "myRed", 10, 5000);
 
-        PlayerController.players.add(targetPlayer);
-        PlayerController.players.add(beneficiary);
+        playerController.players.add(targetPlayer);
+        playerController.players.add(beneficiary);
 
         boolean result = playerController.handleTransaction(targetPlayer.getId(), beneficiary.getId(), amount, critical);
 
