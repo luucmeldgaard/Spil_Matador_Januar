@@ -11,44 +11,28 @@ import java.util.Map;
 
 class GUIController {
 
-    //Instances of classes added
-    private static GUIController guiControllerObject;
     private static GUI gui;
-    static GUI_Field[] guiFields;
-    static FieldController board;
-    static int boardSize;
-    static ArrayList<GUI_Player> guiPlayers;
-    static int currentGUIPlayer;
-    static GameController gameController;
+    GUICreator fields;
+    GUI_Field[] guiFields;
+    int boardSize;
+    ArrayList<GUI_Player> guiPlayers;
+    int currentGUIPlayer;
 
-    static int numberOfPlayers;
+    int numberOfPlayers;
 
-    private GUIController(String selectedBoard) {
-        board = new FieldController(selectedBoard);
-        GUICreator fields = new GUICreator();
-        guiFields = fields.setup(board.getFieldMap());
-        gui = new GUI(guiFields);
-        guiPlayers = new ArrayList<>();
-        currentGUIPlayer = 0;
+    public GUIController(String selectedBoard) {
+        gui = new GUI(new GUI_Field[0]);
+        //gui = new GUI(guiFields);
+        this.guiPlayers = new ArrayList<>();
+        this.currentGUIPlayer = 0;
+    }
+
+    public void setGUI(Map<String, Map<String, String>> fieldMap) {
+        this.fields = new GUICreator();
+        guiFields = fields.setup(fieldMap);
         boardSize = guiFields.length;
-        gameController = new GameController();
-    }
-
-    public static GUIController getGUIInstance(String selectedBoard) {
-        if (guiControllerObject == null) {
-            guiControllerObject = new GUIController(selectedBoard);
-        }
-        else {System.out.println("GUI instance already initialized..."); }
-        board.setGUI();
-        return guiControllerObject;
-    }
-
-    public static GUIController getGUIInstance() {
-        if (guiControllerObject != null) {
-            System.out.println("GUI instance already initialized...");
-            return guiControllerObject;
-        }
-        else {return null; }
+        GUI.setNull_fields_allowed(false);
+        gui = new GUI(guiFields);
     }
 
     public String buttonRequest(String message, String... buttons){
@@ -171,7 +155,6 @@ class GUIController {
                 e.printStackTrace();
             }
         }
-        board.landOnField(playerID, startPosition, currentPosition);
     }
 
     public int getBoardSize() {return boardSize; }
@@ -226,6 +209,10 @@ class GUIController {
     public void updateProperty(int fieldPosition, String color) {
         Color newColor = Color.getColor(color);
         gui.getFields()[fieldPosition].setBackGroundColor(newColor);
+    }
+
+    public void close(){
+        gui.close();
     }
 
 }

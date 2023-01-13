@@ -1,55 +1,64 @@
 package dtu.matador.game;
 
 import gui_main.GUI;
-
-import java.awt.*;
 import java.util.ArrayList;
 
 public class GameController {
 
-    //Initiating instances and an int boardSize
-    GUIController gui;
-    int boardSize;
-    static GameState currentGameState;
+    static PlayerController playerController;
+    static GUIController gui;
+    static FieldController board;
+    static String chosenBoard;
 
     //Main method. Runs the program
     public static void main(String[] args) {
-        //GUI.setNull_fields_allowed(true); //This messes up the GUI but allows it to render with null fields, making troublefixing easier
-        currentGameState = new GameState();
-        currentGameState.menu();
-        currentGameState.play();
+        playerController = new PlayerController();
+        GUI.setNull_fields_allowed(true);
+        gui = new GUIController("FieldData");
+        menu();
+        play();
+    }
 
-
+    public static void menu() {
+        chosenBoard = gui.buttonRequest("Choose board", "fieldData");
+        gui.close();
+        setBoard(chosenBoard);
+        setupPlayers();
+    }
+    public static void play() {
+        while (true) {
+            playRound(playerController.getCurrentPlayer()); // set later
+            playerController.nextPlayer(); // set later
+        }
     }
 
     //Sets the board in the GUI
-    public void setBoard(String selectedBoard) {
-        gui = GUIController.getGUIInstance(selectedBoard);
-        boardSize = gui.getBoardSize();
+    public static void setBoard(String selectedBoard) {
+        board = new FieldController(playerController, gui, selectedBoard);
     }
 
     //Adds a player, a player color and a playerID to the GUI
-    public ArrayList<Player> addPlayers() {
-        int numPlayers = (gui.getNumberOfPlayers());
+    public static void setupPlayers() {
+        int numPlayers = gui.getNumberOfPlayers();
         ArrayList<Player> players = new ArrayList<>();
         gui.fillColorSelector();
         for (int i = 0; i < numPlayers; i++) {
             String name = gui.getNameFromInput();
             System.out.println("Select player color");
             String chosenColor = gui.colorDropDownList();
-            Player player = new Player(name, chosenColor, 0, 50000);
-            //player.setId(player.toString());
-            player.setBoardSize(boardSize);
-            System.out.println(name + "'s ID is: " + player.getId());
-            gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
-            players.add(player);
+            playerController.addPlayer(name, chosenColor, 0, 50000);
         }
-        return players;
+        for (String id : playerController.getAllPlayerIDs()) {
+            Player player = playerController.getPlayerFromID(id);
+            player.setBoardSize(gui.getBoardSize()); // set later
+            gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
+        }
     }
 
 
     //This method makes it possible for a player to move forward equal to the value of their dice roll
-    public void playRound(Player player) {
+    public static void playRound(Player player) {
+        player = playerController.getCurrentPlayer();
         // roll dice
         String playerName = player.getName();
         gui.buttonRequest(("It is " + playerName + "'s turn. Please roll the dice"), "Roll");
@@ -61,45 +70,7 @@ public class GameController {
         //int newplayerpost = player.getPosition();
         player.setPosition(oldplayerpos + total);
         gui.movePlayerTo(player.getId(), oldplayerpos, player.getPosition());
+        board.landOnField(player.getId(), oldplayerpos, player.getPosition());
     }
-
-    /*
-
-        public void movePlayerTo(String playerID, int startPosition, int endPosition) {
-        playersPassedStartOnce += 1;
-        int steps = endPosition - startPosition;
-        int currentPosition = startPosition;
-        if (steps < 0) {
-            steps += boardSize;
-        }
-        for (int i = 0; i < steps; i++) {
-            currentPosition++;
-            if (currentPosition >= boardSize) {
-                currentPosition = 0;
-            }
-            movePlayerOnce(playerID, currentPosition);
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-     */
-
-    public void landOn() {
-        // retrieves fieldtype from Field Controller
-
-    }
-
-    public void Property() {
-
-    }
-
-    public void updateGUI(Player player) {
-    }
-
-    public void updateGUI(FieldController board) {
-
-    }
-
 
 }

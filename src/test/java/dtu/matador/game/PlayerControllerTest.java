@@ -3,10 +3,8 @@ package dtu.matador.game;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import java.awt.*;
-
-public class GameStateTest {
-    GameState gameState = new GameState();
+public class PlayerControllerTest {
+    PlayerController playerController = new PlayerController();
 
     @Test
     public void testHandleTransactionPositive() {
@@ -18,10 +16,10 @@ public class GameStateTest {
         Player targetPlayer = new Player(targetPlayerName, "myBlue", 5, 5000);
         Player beneficiary = new Player(beneficiaryName, "myRed", 10, 5000);
 
-        GameState.players.add(targetPlayer);
-        GameState.players.add(beneficiary);
+        PlayerController.players.add(targetPlayer);
+        PlayerController.players.add(beneficiary);
 
-        boolean result = gameState.handleTransaction(targetPlayer.getId(), beneficiary.getId(), amount, critical);
+        boolean result = playerController.handleTransaction(targetPlayer.getId(), beneficiary.getId(), amount, critical);
 
         assertTrue(result);
         assertEquals(4000, targetPlayer.getBalance());
@@ -40,7 +38,7 @@ public class GameStateTest {
 
 
 
-        boolean result = gameState.handleTransaction(targetPlayer.getId(), beneficiary.getId(), amount, critical);
+        boolean result = playerController.handleTransaction(targetPlayer.getId(), beneficiary.getId(), amount, critical);
 
         assertFalse(result);
         assertEquals(0, targetPlayer.getBalance());

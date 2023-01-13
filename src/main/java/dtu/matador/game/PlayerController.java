@@ -2,34 +2,25 @@ package dtu.matador.game;
 
 import java.util.ArrayList;
 
-public class GameState {
-    //Instances of classes are added
-    GameController controller;
-    static ArrayList<Player> players;
-    static Player currentPlayer;
-    static int currentPlayerNum;
+public class PlayerController {
 
-    public GameState() {
-        controller = new GameController();
-        currentPlayerNum = 0;
+    ArrayList<Player> players;
+    Player currentPlayer;
+    int currentPlayerNum;
+
+    public PlayerController() {
+        this.players = new ArrayList<>();
+        this.currentPlayerNum = 0;
     }
-    public void menu() {
-        controller.setBoard("FieldData");
-        players = controller.addPlayers();
-        System.out.println(players);
-        currentPlayer = players.get(0);
-    }
-    public void play() {
-        while (true) {
-            System.out.println(currentPlayer);
-            controller.playRound(currentPlayer);
-            nextPlayer();
-        }
+
+    public void addPlayer(String name, String chosenColor, int position, int balance) {
+        Player player = new Player(name, chosenColor, position, balance);
+        this.players.add(player);
     }
 
     public void nextPlayer(){
-        currentPlayerNum = ((currentPlayerNum +1)%players.size());
-        currentPlayer = players.get(currentPlayerNum);
+        this.currentPlayerNum = ((currentPlayerNum +1)%players.size());
+        this.currentPlayer = players.get(currentPlayerNum);
     }
 
     public Player getCurrentPlayer() {
@@ -55,7 +46,7 @@ public class GameState {
         return playerIDs;
     }
 
-    public void removePlayerFromState(String playerID) {
+    public void removePlayerFromController(String playerID) {
         Player player = getPlayerFromID(playerID);
         players.remove(player);
     }
