@@ -3,34 +3,24 @@ package dtu.matador.game;
 import java.util.ArrayList;
 
 public class GameState {
-    //Instances of classes are added
-    GameController controller;
-    static ArrayList<Player> players;
-    static Player currentPlayer;
-    static int currentPlayerNum;
 
-    public void menu() {
-        controller.setBoard("FieldData");
-        players = controller.addPlayers();
-        System.out.println(players);
-        currentPlayer = players.get(0);
-    }
-    public void play() {
-        while (true) {
-            System.out.println(currentPlayer);
-            controller.playRound(currentPlayer);
-            nextPlayer();
-        }
+    ArrayList<Player> players;
+    Player currentPlayer;
+    int currentPlayerNum;
+
+    public GameState() {
+        this.players = new ArrayList<>();
+        this.currentPlayerNum = 0;
     }
 
     public void addPlayer(String name, String chosenColor, int position, int balance) {
         Player player = new Player(name, chosenColor, position, balance);
-        players.add(player);
+        this.players.add(player);
     }
 
     public void nextPlayer(){
-        currentPlayerNum = ((currentPlayerNum +1)%players.size());
-        currentPlayer = players.get(currentPlayerNum);
+        this.currentPlayerNum = ((currentPlayerNum +1)%players.size());
+        this.currentPlayer = players.get(currentPlayerNum);
     }
 
     public Player getCurrentPlayer() {

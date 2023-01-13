@@ -11,8 +11,6 @@ import java.util.Map;
 
 class GUIController {
 
-    //Instances of classes added
-    private static GUIController guiControllerObject;
     private static GUI gui;
     static GUI_Field[] guiFields;
     static FieldController board;
@@ -23,7 +21,7 @@ class GUIController {
 
     static int numberOfPlayers;
 
-    private GUIController(String selectedBoard) {
+    public GUIController(String selectedBoard) {
         board = new FieldController(selectedBoard);
         GUICreator fields = new GUICreator();
         guiFields = fields.setup(board.getFieldMap());
@@ -32,23 +30,6 @@ class GUIController {
         currentGUIPlayer = 0;
         boardSize = guiFields.length;
         gameController = new GameController();
-    }
-
-    public static GUIController getGUIInstance(String selectedBoard) {
-        if (guiControllerObject == null) {
-            guiControllerObject = new GUIController(selectedBoard);
-        }
-        else {System.out.println("GUI instance already initialized..."); }
-        board.setGUI();
-        return guiControllerObject;
-    }
-
-    public static GUIController getGUIInstance() {
-        if (guiControllerObject != null) {
-            System.out.println("GUI instance already initialized...");
-            return guiControllerObject;
-        }
-        else {return null; }
     }
 
     public String buttonRequest(String message, String... buttons){

@@ -9,12 +9,15 @@ public class GameController {
 
     static GameState currentGameState;
     static GUIController gui;
+    static FieldController board;
+
     int boardSize;
 
     //Main method. Runs the program
     public static void main(String[] args) {
         //GUI.setNull_fields_allowed(true); //This messes up the GUI but allows it to render with null fields, making troublefixing easier
         currentGameState = new GameState();
+        gui = new GUIController("FieldData");
         menu();
         play();
 
@@ -22,27 +25,27 @@ public class GameController {
     }
 
     public static void menu() {
+        setupPlayers();
+        gui.buttonRequest("Choose board", "the only board we have");
         setBoard("FieldData");
-        addPlayers();
-        System.out.println(players);
-        currentPlayer = players.get(0);
+        // currentPlayer = players.get(0); set later
     }
     public static void play() {
         while (true) {
-            System.out.println(currentPlayer);
-            controller.playRound(currentPlayer);
-            nextPlayer();
+            //playRound(currentPlayer); // set later
+            //nextPlayer(); // set later
         }
     }
 
     //Sets the board in the GUI
     public static void setBoard(String selectedBoard) {
-        gui = GUIController.getGUIInstance(selectedBoard);
-        boardSize = gui.getBoardSize();
+        //gui = GUIController.getGUIInstance(selectedBoard);
+        board = new FieldController(currentGameState, gui, selectedBoard);
+        //boardSize = gui.getBoardSize(); set later
     }
 
     //Adds a player, a player color and a playerID to the GUI
-    public static ArrayList<Player> addPlayers() {
+    public static void setupPlayers() {
         int numPlayers = (gui.getNumberOfPlayers());
         ArrayList<Player> players = new ArrayList<>();
         gui.fillColorSelector();
@@ -50,19 +53,18 @@ public class GameController {
             String name = gui.getNameFromInput();
             System.out.println("Select player color");
             String chosenColor = gui.colorDropDownList();
-            Player player = new Player(name, chosenColor, 0, 50000);
-            //player.setId(player.toString());
-            player.setBoardSize(boardSize);
-            System.out.println(name + "'s ID is: " + player.getId());
-            gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
-            currentGameState.addPlayer(player)
+            currentGameState.addPlayer(name, chosenColor, 0, 50000);
         }
-        return players;
+        for (String id : currentGameState.getAllPlayerIDs()) {
+            Player player = currentGameState.getPlayerFromID(id);
+            //player.setBoardSize(boardSize); // set later
+            gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
+        }
     }
 
 
     //This method makes it possible for a player to move forward equal to the value of their dice roll
-    public void playRound(Player player) {
+    public static void playRound(Player player) {
         // roll dice
         String playerName = player.getName();
         gui.buttonRequest(("It is " + playerName + "'s turn. Please roll the dice"), "Roll");

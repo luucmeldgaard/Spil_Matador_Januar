@@ -20,9 +20,11 @@ public class FieldController {
     FieldSpaces currentField;
     static GUIController gui;
     GameState currentGameState = new GameState();
+    private final GameState gameState;
 
 
-    public FieldController(String selectedBoard) {
+    public FieldController(GameState injectGameState, GUIController injectGui, String selectedBoard) {
+        gameState = injectGameState;
         fieldLoader = new FieldLoader(selectedBoard);
         fieldMap = fieldLoader.getFieldMap();
 
@@ -36,12 +38,8 @@ public class FieldController {
 
     }
 
-    public FieldController() {
-    }
-
-    public void setGUI() {
-        gui = getGUIInstance();
-    }
+    //public FieldController() {
+    //}
 
     public void setupFields() {
         for (Map<String, String> field : fieldMap.values()) {
