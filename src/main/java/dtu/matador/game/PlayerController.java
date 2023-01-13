@@ -27,6 +27,15 @@ public class PlayerController {
         return players.get(currentPlayerNum);
     }
 
+    public Player getPlayerFromName(String name) {
+        for (Player player : players) {
+            if (player.getName().equals(name)) {
+                return player;
+            }
+        }
+        return null;
+    }
+
     public Player getPlayerFromID(String playerID) {
         for (Player player : players) {
             String id = player.getId();
