@@ -1,6 +1,8 @@
 package dtu.matador.game;
 
 import gui_main.GUI;
+
+import java.awt.*;
 import java.util.ArrayList;
 
 public class GameController {
@@ -58,7 +60,16 @@ public class GameController {
     //This method makes it possible for a player to move forward equal to the value of their dice roll
     private static void playRound(Player player) {
         player = playerController.getCurrentPlayer();
+        if (player.jailed == 0){
+            playRoundUnjailed(player);
+        }
+        else {
+            playRoundJailed(player);
+        }
         // roll dice
+
+    }
+    private void movePlayer(Player player, int[] dieValues){
         String playerName = player.getName();
         gui.buttonRequest(("It is " + playerName + "'s turn. Please roll the dice"), "Roll");
         int[] dieValues = player.rollDie();
@@ -71,5 +82,54 @@ public class GameController {
         gui.movePlayerTo(player.getId(), oldplayerpos, player.getPosition());
         board.landOnField(player.getId(), oldplayerpos, player.getPosition());
     }
+    private void playRoundUnjailed(Player player){
+        String playerName = player.getName();
+        gui.buttonRequest(("Det er " + playerName + "'s tur. Kast med terningerne"), "Kast");
+        int[] dieValues = player.rollDie();
+        movePlayer(player, dieValues);
+    }
+
+    private void playRoundJailed(Player player) {
+        //String playerName = player.getName(); //Ununsed code
+        if (player.jailed == 1 || player.jailed == 2) {
+            if (gui.payOrRoll()) { //If this is true, the player picked "Slå med terningerne"
+                int[] dieValues = player.rollDie();
+                if (dieValues[0] == dieValues[1]) {
+                    player.jailed = 0;
+                    gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
+                    movePlayer(player, dieValues);
+                }
+                else {
+                    gui.displayGeneralMessage("Det var desværre ikke to ens");
+                    player.jailed += 1;
+                }
+            } else {
+                //TODO: TRÆK 1000 kroner fra spillerens balance
+                playRoundUnjailed(player);
+            }
+        }
+        else {
+            //TODO: TRÆK 1000 kroner fra spillerens balance
+            player.jailed = 0;
+
+        }
+    }
+
+    public void landOn() {
+        // retrieves fieldtype from Field Controller
+
+    }
+
+    public void Property() {
+
+    }
+
+    public void updateGUI(Player player) {
+    }
+
+    public void updateGUI(FieldController board) {
+
+    }
+
 
 }
