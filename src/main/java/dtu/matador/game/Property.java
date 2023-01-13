@@ -63,6 +63,7 @@ public abstract class Property implements PropertyFields {
         }
     }
     //Generic getters and setters
+
     public String getName() {
         return this.name;
     }
@@ -103,6 +104,9 @@ public abstract class Property implements PropertyFields {
         System.out.println("normal rent: " + this.rent0 + " actual rent with " + this.housing + " housing: " + currentRent());
         return currentRent();
     }
+    public int getRent1(){return rent1;}
+    public int getRent2(){return rent2;}
+    public int getRent3(){return rent3;}
 
     //A player can buy with the help of a transaction
     public void buy(String playerID) {

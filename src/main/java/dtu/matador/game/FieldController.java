@@ -151,9 +151,14 @@ public class FieldController {
             if (choice.equals("Buy")) {
                 property.buy(playerID);
                 if (property.getOwner() != null) {
+                    if (property.getPosition() == 5 || property.getPosition() == 15 || property.getPosition() == 25 || property.getPosition() == 35){
+                        player.addFerries();
+                        System.out.println(player.getFerries());
+                    }
                     if (property.getOwner().equals(playerID)) {
                         updateFieldMap(property);
                         updateGUI(property, playerID);
+
 
                         ArrayList<Property> propertyList = player.getPlayerHousing().getPropertiesFromColor(property.getNeighborhood());
 
@@ -182,7 +187,56 @@ public class FieldController {
         // Street, Utility, Ferry, etc.
     }
 
-    private void landOnFerry(String playerID, Ferry currentField) {
+    private void landOnFerry(String playerID, Ferry ferry) {
+        String owner = ferry.getOwner();
+        if (owner == null) return;
+        System.out.println(owner);
+        Player player = currentGameState.getPlayerFromID(playerID);
+        int balance = currentGameState.getPlayerFromID(playerID).getBalance();
+
+        if (owner.equals(playerID)) {
+            System.out.println("This ferry is owned by you. ");
+        }
+        else {
+            String message = "This ferry is owned by someone else!";
+            //TODO den nedenstående variable skal ændres således at den ser på ejerens ferries og ikke den nuværende spillers...
+            switch (player.getFerries()) {
+                case 1 -> {
+                    int rent = ferry.getRent();
+                    System.out.println(rent);
+                    String receiverID = ferry.getOwner();
+
+                    createTransaction(playerID, receiverID, rent, true, message);
+                }
+                case 2 -> {
+                    int rent1 = ferry.getRent1();
+                    System.out.println(rent1);
+                    String receiverID = ferry.getOwner();
+
+                    createTransaction(playerID, receiverID, rent1, true, message);
+                }
+                case 3 -> {
+                    int rent2 = ferry.getRent2();
+                    System.out.println(rent2);
+                    String receiverID = ferry.getOwner();
+
+                    createTransaction(playerID, receiverID, rent2, true, message);
+                }
+                case 4 -> {
+                    int rent3 = ferry.getRent3();
+                    System.out.println(rent3);
+                    String receiverID = ferry.getOwner();
+
+                    createTransaction(playerID, receiverID, rent3, true, message);
+                }
+            }
+
+            /*int rent = ferry.getRent();
+            System.out.println(rent);
+            String receiverID = ferry.getOwner();
+
+            createTransaction(playerID, receiverID, rent, true, message);*/
+        }
     }
 
     private void landOnUtility(String playerID, Brewery currentField) {
@@ -218,10 +272,6 @@ public class FieldController {
                                 updateGUI(propertyList, playerID);
                                 updateFieldMap(propertyList);
                             }
-
-
-
-
                         }
                     }
                 }
