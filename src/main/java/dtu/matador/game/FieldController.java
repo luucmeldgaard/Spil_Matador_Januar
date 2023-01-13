@@ -13,18 +13,20 @@ import static dtu.matador.game.GUIController.*;
 
 public class FieldController {
 
+    String selectedBoard;
     ArrayList<FieldSpaces> fields;
     FieldLoader fieldLoader;
     Map<String, Map<String, String>> fieldMap;
     Map<String, Map<String, String>> chanceMap;
     FieldSpaces currentField;
-    static GUIController gui;
-    GameState currentGameState = new GameState();
-    private final GameState gameState;
+    private final GameState currentGameState;
+    private final GUIController gui;
 
 
     public FieldController(GameState injectGameState, GUIController injectGui, String selectedBoard) {
-        gameState = injectGameState;
+        this.currentGameState = injectGameState;
+        this.gui = injectGui;
+        this.selectedBoard = selectedBoard;
         fieldLoader = new FieldLoader(selectedBoard);
         fieldMap = fieldLoader.getFieldMap();
 
@@ -34,42 +36,49 @@ public class FieldController {
         }
         setupFields();
 
+        gui.setGUI(fieldMap);
+
         chanceMap = fieldLoader.getChanceMap();
 
     }
 
-    //public FieldController() {
-    //}
+    public FieldController(GameState injectGameState, GUIController injectGui) {
+        this.currentGameState = injectGameState;
+        this.gui = injectGui;
+    }
+
+
 
     public void setupFields() {
+        FieldController controller = new FieldController(this.currentGameState, gui);
         for (Map<String, String> field : fieldMap.values()) {
             int fieldPosition = Integer.parseInt(field.get("position"));
             switch (field.get("fieldType")) {
                 case "property" -> {
-                    fields.set(fieldPosition, new Street(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"),field.get("rent2"),
+                    fields.set(fieldPosition, new Street(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"),field.get("rent2"),
                             field.get("rent3"), field.get("rent4"), field.get("rent5"),field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
                             field.get("position"), field.get("owner"), field.get("housing"), field.get("neighborhood"), field.get("groupsize")));
                 }
                 case "ferry" -> {
-                    fields.set(fieldPosition, new Ferry(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"),field.get("rent"),
+                    fields.set(fieldPosition, new Ferry(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"),field.get("rent"),
                             field.get("rent"), field.get("rent"), field.get("rent"),field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
                             field.get("position"), field.get("owner"),field.get("neighborhood"),field.get("groupsize")));
                 }
                 case "brewery" -> {
-                    fields.set(fieldPosition, new Brewery(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"),field.get("rent"),
+                    fields.set(fieldPosition, new Brewery(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"),field.get("rent"),
                             field.get("rent"), field.get("rent"), field.get("rent"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
                             field.get("position"), field.get("owner"), field.get("neighborhood"),field.get("groupsize")));
                 }
                 case "refuge" -> {
-                    fields.set(fieldPosition, new Refuge(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
+                    fields.set(fieldPosition, new Refuge(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
                             field.get("position")));
                 }
                 case "start" -> {
-                    fields.set(fieldPosition, new StartField(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
+                    fields.set(fieldPosition, new StartField(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
                             field.get("position"), field.get("income")));
                 }
                 case "chance" -> {
-                    fields.set(fieldPosition, new Chance(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
+                    fields.set(fieldPosition, new Chance(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
                             field.get("position")));
                 }
 

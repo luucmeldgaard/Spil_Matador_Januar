@@ -10,6 +10,7 @@ public class GameController {
     static GameState currentGameState;
     static GUIController gui;
     static FieldController board;
+    static String chosenBoard;
 
     int boardSize;
 
@@ -20,20 +21,19 @@ public class GameController {
         gui = new GUIController("FieldData");
         menu();
         play();
-
-
     }
 
     public static void menu() {
+        chosenBoard = gui.buttonRequest("Choose board", "fieldData");
+        gui.close();
+        setBoard(chosenBoard);
         setupPlayers();
-        gui.buttonRequest("Choose board", "the only board we have");
-        setBoard("FieldData");
         // currentPlayer = players.get(0); set later
     }
     public static void play() {
         while (true) {
-            //playRound(currentPlayer); // set later
-            //nextPlayer(); // set later
+            playRound(currentGameState.getCurrentPlayer()); // set later
+            currentGameState.nextPlayer(); // set later
         }
     }
 
@@ -57,7 +57,7 @@ public class GameController {
         }
         for (String id : currentGameState.getAllPlayerIDs()) {
             Player player = currentGameState.getPlayerFromID(id);
-            //player.setBoardSize(boardSize); // set later
+            player.setBoardSize(gui.getBoardSize()); // set later
             gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
         }
     }
@@ -65,6 +65,7 @@ public class GameController {
 
     //This method makes it possible for a player to move forward equal to the value of their dice roll
     public static void playRound(Player player) {
+        String playerID = currentGameState.getCurrentPlayer().getId();
         // roll dice
         String playerName = player.getName();
         gui.buttonRequest(("It is " + playerName + "'s turn. Please roll the dice"), "Roll");
@@ -76,45 +77,7 @@ public class GameController {
         //int newplayerpost = player.getPosition();
         player.setPosition(oldplayerpos + total);
         gui.movePlayerTo(player.getId(), oldplayerpos, player.getPosition());
+        board.landOnField(player.getId(), oldplayerpos, player.getPosition());
     }
-
-    /*
-
-        public void movePlayerTo(String playerID, int startPosition, int endPosition) {
-        playersPassedStartOnce += 1;
-        int steps = endPosition - startPosition;
-        int currentPosition = startPosition;
-        if (steps < 0) {
-            steps += boardSize;
-        }
-        for (int i = 0; i < steps; i++) {
-            currentPosition++;
-            if (currentPosition >= boardSize) {
-                currentPosition = 0;
-            }
-            movePlayerOnce(playerID, currentPosition);
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-     */
-
-    public void landOn() {
-        // retrieves fieldtype from Field Controller
-
-    }
-
-    public void Property() {
-
-    }
-
-    public void updateGUI(Player player) {
-    }
-
-    public void updateGUI(FieldController board) {
-
-    }
-
 
 }

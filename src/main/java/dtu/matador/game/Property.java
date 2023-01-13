@@ -1,15 +1,13 @@
 package dtu.matador.game;
 
-import com.sun.jdi.Field;
-
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Property implements PropertyFields {
-    static FieldController controller = new FieldController();
     //Creating variables that will be used
-    FieldController field;
+    FieldController controller;
     String name;
     String subtext;
     String description;
@@ -35,11 +33,12 @@ public abstract class Property implements PropertyFields {
 
 
     //Takes input to create the class
-    public Property(String name, String subtext, String description, String rent,
+    public Property(FieldController controller, String name, String subtext, String description, String rent,
                     String rent1, String rent2, String rent3, String rent4, String rent5,
-                    String color1,String color2, String price,
+                    String color1, String color2, String price,
                     String pawnForAmount, String position, String owner, String neighborhood, String groupSize){
 
+        this.controller = controller;
         this.name = name;
         this.subtext = subtext;
         this.description = description;
