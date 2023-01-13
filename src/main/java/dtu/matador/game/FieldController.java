@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import static dtu.matador.game.GUIController.*;
-
 public class FieldController {
 
     String selectedBoard;
@@ -16,12 +14,12 @@ public class FieldController {
     Map<String, Map<String, String>> fieldMap;
     Map<String, Map<String, String>> chanceMap;
     FieldSpaces currentField;
-    private final GameState currentGameState;
+    private final PlayerController playerController;
     private final GUIController gui;
 
 
-    public FieldController(GameState injectGameState, GUIController injectGui, String selectedBoard) {
-        this.currentGameState = injectGameState;
+    public FieldController(PlayerController injectPlayerController, GUIController injectGui, String selectedBoard) {
+        this.playerController = injectPlayerController;
         this.gui = injectGui;
         this.selectedBoard = selectedBoard;
         fieldLoader = new FieldLoader(selectedBoard);
@@ -39,15 +37,15 @@ public class FieldController {
 
     }
 
-    public FieldController(GameState injectGameState, GUIController injectGui) {
-        this.currentGameState = injectGameState;
+    public FieldController(PlayerController injectPlayerController, GUIController injectGui) {
+        this.playerController = injectPlayerController;
         this.gui = injectGui;
     }
 
 
 
     public void setupFields() {
-        FieldController controller = new FieldController(this.currentGameState, gui);
+        FieldController controller = new FieldController(this.playerController, gui);
         for (Map<String, String> field : fieldMap.values()) {
             int fieldPosition = Integer.parseInt(field.get("position"));
             switch (field.get("fieldType")) {
@@ -148,7 +146,7 @@ public class FieldController {
 
     public void landOnProperty(String playerID, Property property) {
         String owner = property.getOwner();
-        Player player = currentGameState.getPlayerFromID(playerID);
+        Player player = playerController.getPlayerFromID(playerID);
         if (owner == null) {
             System.out.println("This field is not owned by anyone!");
             String choice = gui.buttonRequest("Buy or auction?", "Buy", "Auction");
@@ -198,8 +196,8 @@ public class FieldController {
         String owner = street.getOwner();
         if (owner == null) return;
         System.out.println(owner);
-        Player player = currentGameState.getPlayerFromID(playerID);
-        int balance = currentGameState.getPlayerFromID(playerID).getBalance();
+        Player player = playerController.getPlayerFromID(playerID);
+        int balance = playerController.getPlayerFromID(playerID).getBalance();
 
         //If the field is owned by the current player, they have the choice to buy a house if they have sufficient funds
         if (owner.equals(playerID)) {
@@ -287,7 +285,7 @@ public class FieldController {
                 }
                 case "CashTakenFromPlayers" -> {
                     System.out.println("CashTakenFromPlayers");
-                    ArrayList<String> allPlayerIDs = currentGameState.getAllPlayerIDs();
+                    ArrayList<String> allPlayerIDs = playerController.getAllPlayerIDs();
                     int amount = Integer.parseInt(card.get(key));
                     for (String id : allPlayerIDs) {
                         if (!id.equals(playerID)) {
@@ -342,7 +340,7 @@ public class FieldController {
 
         // If a player needs to make a payment to another player
         if (receiverID != null) {
-            gui.buttonRequest(message + " Pay " + currentGameState.getPlayerFromID(receiverID).getName() + " " + Math.abs(amount), "Pay");
+            gui.buttonRequest(message + " Pay " + playerController.getPlayerFromID(receiverID).getName() + " " + Math.abs(amount), "Pay");
         }
         else {
             // Payments to the bank
@@ -364,21 +362,21 @@ public class FieldController {
         }
 
         // Handles the transaction and returns a boolean for transaction success
-        transactionSuccess = currentGameState.handleTransaction(playerID, receiverID, amount, critical);
+        transactionSuccess = playerController.handleTransaction(playerID, receiverID, amount, critical);
 
         // updates balance to gui if transaction is successful
         if (transactionSuccess) {
-            int newPlayerBalance = currentGameState.getPlayerFromID(playerID).getBalance();
+            int newPlayerBalance = playerController.getPlayerFromID(playerID).getBalance();
             gui.updateGUIPlayerBalance(playerID, newPlayerBalance);
         }
 
         // updates a potential receiving player's balance to the gui
         if (receiverID != null) {
-            int newReceiverBalance = currentGameState.getPlayerFromID(receiverID).getBalance();
+            int newReceiverBalance = playerController.getPlayerFromID(receiverID).getBalance();
             gui.updateGUIPlayerBalance(receiverID, newReceiverBalance);
         }
 
-        if (currentGameState.getPlayerFromID(playerID) == null) {
+        if (playerController.getPlayerFromID(playerID) == null) {
             gui.buttonRequest("You are broke and have lost the game... ", "Ok");
             gui.removePlayer(playerID);
         }
@@ -393,7 +391,7 @@ public class FieldController {
     }
 
     public void updateGUI(Property property, String playerID) {
-        String playerColor = currentGameState.getPlayerFromID(playerID).getColor();
+        String playerColor = playerController.getPlayerFromID(playerID).getColor();
         if (property instanceof Street) {
             gui.updateProperty(property.getPosition(), playerColor, ((Street) property).getHousing());
         }

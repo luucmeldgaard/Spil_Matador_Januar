@@ -5,14 +5,14 @@ import java.util.ArrayList;
 
 public class GameController {
 
-    static GameState currentGameState;
+    static PlayerController playerController;
     static GUIController gui;
     static FieldController board;
     static String chosenBoard;
 
     //Main method. Runs the program
     public static void main(String[] args) {
-        currentGameState = new GameState();
+        playerController = new PlayerController();
         GUI.setNull_fields_allowed(true);
         gui = new GUIController("FieldData");
         menu();
@@ -27,14 +27,14 @@ public class GameController {
     }
     public static void play() {
         while (true) {
-            playRound(currentGameState.getCurrentPlayer()); // set later
-            currentGameState.nextPlayer(); // set later
+            playRound(playerController.getCurrentPlayer()); // set later
+            playerController.nextPlayer(); // set later
         }
     }
 
     //Sets the board in the GUI
     public static void setBoard(String selectedBoard) {
-        board = new FieldController(currentGameState, gui, selectedBoard);
+        board = new FieldController(playerController, gui, selectedBoard);
     }
 
     //Adds a player, a player color and a playerID to the GUI
@@ -46,10 +46,10 @@ public class GameController {
             String name = gui.getNameFromInput();
             System.out.println("Select player color");
             String chosenColor = gui.colorDropDownList();
-            currentGameState.addPlayer(name, chosenColor, 0, 50000);
+            playerController.addPlayer(name, chosenColor, 0, 50000);
         }
-        for (String id : currentGameState.getAllPlayerIDs()) {
-            Player player = currentGameState.getPlayerFromID(id);
+        for (String id : playerController.getAllPlayerIDs()) {
+            Player player = playerController.getPlayerFromID(id);
             player.setBoardSize(gui.getBoardSize()); // set later
             gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
         }
@@ -58,7 +58,7 @@ public class GameController {
 
     //This method makes it possible for a player to move forward equal to the value of their dice roll
     public static void playRound(Player player) {
-        player = currentGameState.getCurrentPlayer();
+        player = playerController.getCurrentPlayer();
         // roll dice
         String playerName = player.getName();
         gui.buttonRequest(("It is " + playerName + "'s turn. Please roll the dice"), "Roll");

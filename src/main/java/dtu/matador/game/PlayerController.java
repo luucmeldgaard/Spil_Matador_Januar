@@ -2,13 +2,13 @@ package dtu.matador.game;
 
 import java.util.ArrayList;
 
-public class GameState {
+public class PlayerController {
 
     ArrayList<Player> players;
     Player currentPlayer;
     int currentPlayerNum;
 
-    public GameState() {
+    public PlayerController() {
         this.players = new ArrayList<>();
         this.currentPlayerNum = 0;
     }
@@ -46,7 +46,7 @@ public class GameState {
         return playerIDs;
     }
 
-    public void removePlayerFromState(String playerID) {
+    public void removePlayerFromController(String playerID) {
         Player player = getPlayerFromID(playerID);
         players.remove(player);
     }
