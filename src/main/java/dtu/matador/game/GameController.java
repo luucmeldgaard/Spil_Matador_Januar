@@ -8,7 +8,6 @@ public class GameController {
     static PlayerController playerController;
     static GUIController gui;
     static FieldController board;
-    static String chosenBoard;
 
     //Main method. Runs the program
     public static void main(String[] args) {
@@ -19,13 +18,13 @@ public class GameController {
         play();
     }
 
-    public static void menu() {
-        chosenBoard = gui.buttonRequest("Choose board", "fieldData");
+    private static void menu() {
+        String chosenBoard = gui.buttonRequest("Choose board", "fieldData");
         gui.close();
         setBoard(chosenBoard);
         setupPlayers();
     }
-    public static void play() {
+    private static void play() {
         while (true) {
             playRound(playerController.getCurrentPlayer()); // set later
             playerController.nextPlayer(); // set later
@@ -33,12 +32,12 @@ public class GameController {
     }
 
     //Sets the board in the GUI
-    public static void setBoard(String selectedBoard) {
+    private static void setBoard(String selectedBoard) {
         board = new FieldController(playerController, gui, selectedBoard);
     }
 
     //Adds a player, a player color and a playerID to the GUI
-    public static void setupPlayers() {
+    private static void setupPlayers() {
         int numPlayers = gui.getNumberOfPlayers();
         ArrayList<Player> players = new ArrayList<>();
         gui.fillColorSelector();
@@ -57,7 +56,7 @@ public class GameController {
 
 
     //This method makes it possible for a player to move forward equal to the value of their dice roll
-    public static void playRound(Player player) {
+    private static void playRound(Player player) {
         player = playerController.getCurrentPlayer();
         // roll dice
         String playerName = player.getName();
