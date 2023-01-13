@@ -2,29 +2,29 @@ package dtu.matador.game;
 
 public abstract class Property implements PropertyFields {
     //Creating variables that will be used
-    FieldController controller;
-    String name;
-    String subtext;
-    String description;
-    int rent;
-    int rent0;
-    int rent1;
-    int rent2;
-    int rent3;
-    int rent4;
-    int rent5;
-    String color1;
-    String color2;
-    String neighborhood;
-    boolean purchasable = false;
-    int price;
-    int pawnForAmount;
-    int position;
-    String owner;
-    int buildPrice;
-    protected int housing; // MÅSKE VIRKER DENNE HER IKKE?????
+    private static FieldController controller;
+    private final String name;
+    private final String subtext;
+    private final String description;
+    private int rent;
+    private final int rent0;
+    private final int rent1;
+    private final int rent2;
+    private final int rent3;
+    private final int rent4;
+    private final int rent5;
+    private final String color1;
+    private String color2;
+    private final String neighborhood;
+    //boolean purchasable = false;
+    private final int price;
+    private final int pawnForAmount;
+    private final int position;
+    private String owner;
+    private int buildPrice;
+    protected int housing;
 
-    int groupSize;
+    private final int groupSize;
 
 
     //Takes input to create the class
