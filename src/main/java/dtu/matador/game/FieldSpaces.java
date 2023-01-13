@@ -1,7 +1,5 @@
 package dtu.matador.game;
 
-import java.util.Map;
-
 //Fieldspaces is implemented as an interface
 public interface FieldSpaces {
 

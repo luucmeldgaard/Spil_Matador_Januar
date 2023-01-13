@@ -1,10 +1,5 @@
 package dtu.matador.game;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 public abstract class Property implements PropertyFields {
     //Creating variables that will be used
     FieldController controller;

@@ -1,9 +1,6 @@
 package dtu.matador.game;
 
 import dtu.matador.game.fields.*;
-import gui_fields.GUI_Street;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

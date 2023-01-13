@@ -1,7 +1,5 @@
 package dtu.matador.game;
 
-import java.awt.*;
-
 public class Player {
 
     //A player's attributes are implemented

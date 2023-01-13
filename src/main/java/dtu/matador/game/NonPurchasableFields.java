@@ -1,7 +1,5 @@
 package dtu.matador.game;
 
-import java.util.Map;
-
 //NonPurchasableFields is implemented as an abstract class
 public abstract class NonPurchasableFields implements FieldSpaces {
     FieldController controller;

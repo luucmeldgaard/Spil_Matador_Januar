@@ -21,8 +21,6 @@ class GUIController {
     int numberOfPlayers;
 
     public GUIController(String selectedBoard) {
-        //guiFields = fields.setup(board.getFieldMap());
-        //gui = new GUI(new GUI_Field[0]);
         gui = new GUI(new GUI_Field[0]);
         //gui = new GUI(guiFields);
         this.guiPlayers = new ArrayList<>();
@@ -33,6 +31,7 @@ class GUIController {
         this.fields = new GUICreator();
         guiFields = fields.setup(fieldMap);
         boardSize = guiFields.length;
+        GUI.setNull_fields_allowed(false);
         gui = new GUI(guiFields);
     }
 
