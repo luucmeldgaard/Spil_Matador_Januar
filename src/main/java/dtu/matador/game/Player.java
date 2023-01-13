@@ -5,14 +5,14 @@ public class Player {
     //A player's attributes are implemented
 
     static int nextId = 0;
-    String id;
-    String name;
-    String color;
-    int position;
-    int balance;
-    int ferries;
-    static DiceCup diceCup = new DiceCup();
-    static int boardSize;
+    private String id;
+    private final String name;
+    private final String color;
+    private int position;
+    private int balance;
+    private int ferries;
+    private static final DiceCup diceCup = new DiceCup();
+    private static int boardSize;
 
     private PlayerHousing playerHousing;
 
@@ -28,7 +28,7 @@ public class Player {
     /*Rolls number of dice and updates a player's
     /position, and returns an int[] of dieFaces
      */
-    public int[] rollDie() {
+    protected int[] rollDie() {
         return diceCup.roll();
     }
 
