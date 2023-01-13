@@ -4,9 +4,8 @@ import java.util.ArrayList;
 
 public class PlayerController {
 
-    ArrayList<Player> players;
-    Player currentPlayer;
-    int currentPlayerNum;
+    protected ArrayList<Player> players;
+    private int currentPlayerNum;
 
     public PlayerController() {
         this.players = new ArrayList<>();
@@ -20,7 +19,7 @@ public class PlayerController {
 
     public void nextPlayer(){
         this.currentPlayerNum = ((currentPlayerNum +1)%players.size());
-        this.currentPlayer = players.get(currentPlayerNum);
+        Player currentPlayer = players.get(currentPlayerNum);
     }
 
     public Player getCurrentPlayer() {
@@ -55,7 +54,7 @@ public class PlayerController {
         return playerIDs;
     }
 
-    public void removePlayerFromController(String playerID) {
+    public void removePlayer(String playerID) {
         Player player = getPlayerFromID(playerID);
         players.remove(player);
     }
