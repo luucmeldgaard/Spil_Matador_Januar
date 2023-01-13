@@ -265,9 +265,10 @@ public class FieldController {
                     if (response.equals("Buy")) {
                         boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false, "Buying house for " + street.getBuildPrice());
                         if (transactionSuccess) {
-                            street.buildHouse();
+
 
                             for(Property propertyList : player.getPlayerHousing().getPropertiesFromColor(property.getNeighborhood())){
+                                street.buildHouse();
                                 updateGUI(propertyList, playerID);
                                 updateFieldMap(propertyList);
                             }
