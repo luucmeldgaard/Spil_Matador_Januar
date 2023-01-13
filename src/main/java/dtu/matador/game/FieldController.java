@@ -8,12 +8,10 @@ import java.util.Random;
 
 public class FieldController {
 
-    String selectedBoard;
-    ArrayList<FieldSpaces> fields;
-    FieldLoader fieldLoader;
-    Map<String, Map<String, String>> fieldMap;
-    Map<String, Map<String, String>> chanceMap;
-    FieldSpaces currentField;
+    private ArrayList<FieldSpaces> fields;
+    private Map<String, Map<String, String>> fieldMap;
+    private Map<String, Map<String, String>> chanceMap;
+    private FieldSpaces currentField;
     private final PlayerController playerController;
     private final GUIController gui;
 
@@ -21,8 +19,7 @@ public class FieldController {
     public FieldController(PlayerController injectPlayerController, GUIController injectGui, String selectedBoard) {
         this.playerController = injectPlayerController;
         this.gui = injectGui;
-        this.selectedBoard = selectedBoard;
-        fieldLoader = new FieldLoader(selectedBoard);
+        FieldLoader fieldLoader = new FieldLoader(selectedBoard);
         fieldMap = fieldLoader.getFieldMap();
 
         fields = new ArrayList<>();
@@ -44,7 +41,7 @@ public class FieldController {
 
 
 
-    public void setupFields() {
+    protected void setupFields() {
         FieldController controller = new FieldController(this.playerController, gui);
         for (Map<String, String> field : fieldMap.values()) {
             int fieldPosition = Integer.parseInt(field.get("position"));
@@ -81,25 +78,25 @@ public class FieldController {
         }
     }
 
-    public FieldSpaces getField(int position) {
+    protected FieldSpaces getField(int position) {
         return fields.get(position);
     }
 
-    public ArrayList<FieldSpaces> getFieldsArray() {
+    protected ArrayList<FieldSpaces> getFieldsArray() {
         return fields;
     }
 
-    public Map<String, Map<String, String>> getFieldMap() {
+    protected Map<String, Map<String, String>> getFieldMap() {
         return fieldMap;
     }
 
-    public Map<String, String> getFieldAsMap(int position) {
+    protected Map<String, String> getFieldAsMap(int position) {
         String pos = String.valueOf(position);
         return fieldMap.get(pos);
     }
 
     // overwrites chosen values of a specific field in the fieldMap
-    public void updateFieldMap(Property property) {
+    protected void updateFieldMap(Property property) {
         Map<String, String> updatedFieldInfo = new HashMap<>();
 
         String fieldPosition = String.valueOf(property.getPosition());
@@ -111,7 +108,7 @@ public class FieldController {
             fieldMap.get(fieldPosition).replace("housing", housing);
         }
     }
-    public void landOnField(String playerID, int startPosition, int currentPosition) {
+    protected void landOnField(String playerID, int startPosition, int currentPosition) {
         if (startPosition > currentPosition) {
             System.out.println("Player passed start");
                 landOnStart(playerID, ((StartField) fields.get(0)));
@@ -138,13 +135,13 @@ public class FieldController {
 
     }
 
-    public void landOnStart(String playerID, StartField start) {
+    private void landOnStart(String playerID, StartField start) {
         int income = start.getIncome();
         String message = "You passed start, gain " + income + "!";
         createTransaction(playerID, null, income, false, message);
     }
 
-    public void landOnProperty(String playerID, Property property) {
+    private void landOnProperty(String playerID, Property property) {
         String owner = property.getOwner();
         Player player = playerController.getPlayerFromID(playerID);
         if (owner == null) {
@@ -244,7 +241,7 @@ public class FieldController {
     private void landOnUtility(String playerID, Brewery currentField) {
     }
 
-    public void landOnStreet(String playerID, Street street) {
+    private void landOnStreet(String playerID, Street street) {
         // Check for ownership
         // if ownership = null, owned(other playerID), owned(own playerID)
         String owner = street.getOwner();
@@ -300,11 +297,7 @@ public class FieldController {
 
     }
 
-    public void buy () {
-        //
-    }
-
-    public void landOnChance (String playerID, Chance chance) {
+    private void landOnChance (String playerID, Chance chance) {
         Random rand = new Random();
         String cardNumber = String.valueOf(rand.nextInt(0, chanceMap.size() - 1));
         Map <String, String> rawCard = chanceMap.get(cardNumber);
@@ -384,7 +377,7 @@ public class FieldController {
      * @param critical - does the current player NEED to pay
      * @return
      */
-    public boolean createTransaction (String playerID, String receiverID, int amount, boolean critical, String message) {
+    protected boolean createTransaction (String playerID, String receiverID, int amount, boolean critical, String message) {
         boolean transactionSuccess = false;
         String userRequest;
 
@@ -436,11 +429,11 @@ public class FieldController {
     }
 
 
-    public void insufficientFunds () {
+    protected void insufficientFunds () {
         gui.buttonRequest("You have insufficient funds. ", "Ok");
     }
 
-    public void updateGUI(Property property, String playerID) {
+    protected void updateGUI(Property property, String playerID) {
         String playerColor = playerController.getPlayerFromID(playerID).getColor();
         if (property instanceof Street) {
             gui.updateProperty(property.getPosition(), playerColor, ((Street) property).getHousing());
