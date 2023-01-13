@@ -7,7 +7,7 @@ public class FieldControllerTest {
 
     @Test
     public void testArray() {
-        FieldController fieldController = new FieldController("test_fieldSpaces");
+        FieldController fieldController = new FieldController(null, new GUIController("FieldData"), "FieldData");
         fieldController.setupFields();
         int numberOfFields = fieldController.getFieldsArray().size();
         for (int i = 0; i < numberOfFields; i++) {
@@ -18,7 +18,7 @@ public class FieldControllerTest {
 
     @Test
     public void updateFieldZeroWithNewColor() {
-        FieldController fieldController = new FieldController("test_fieldSpaces");
+        FieldController fieldController = new FieldController(null, new GUIController("FieldData"), "FieldData");
         fieldController.setupFields();
         fieldController.getFieldAsMap(0);
         FieldSpaces field = fieldController.getField(0);
