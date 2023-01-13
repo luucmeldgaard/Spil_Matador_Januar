@@ -7,29 +7,42 @@ import java.util.ArrayList;
 
 public class GameController {
 
-    //Initiating instances and an int boardSize
-    GUIController gui;
-    int boardSize;
     static GameState currentGameState;
+    static GUIController gui;
+    int boardSize;
 
     //Main method. Runs the program
     public static void main(String[] args) {
         //GUI.setNull_fields_allowed(true); //This messes up the GUI but allows it to render with null fields, making troublefixing easier
         currentGameState = new GameState();
-        currentGameState.menu();
-        currentGameState.play();
+        menu();
+        play();
 
 
     }
 
+    public static void menu() {
+        setBoard("FieldData");
+        addPlayers();
+        System.out.println(players);
+        currentPlayer = players.get(0);
+    }
+    public static void play() {
+        while (true) {
+            System.out.println(currentPlayer);
+            controller.playRound(currentPlayer);
+            nextPlayer();
+        }
+    }
+
     //Sets the board in the GUI
-    public void setBoard(String selectedBoard) {
+    public static void setBoard(String selectedBoard) {
         gui = GUIController.getGUIInstance(selectedBoard);
         boardSize = gui.getBoardSize();
     }
 
     //Adds a player, a player color and a playerID to the GUI
-    public ArrayList<Player> addPlayers() {
+    public static ArrayList<Player> addPlayers() {
         int numPlayers = (gui.getNumberOfPlayers());
         ArrayList<Player> players = new ArrayList<>();
         gui.fillColorSelector();
@@ -42,7 +55,7 @@ public class GameController {
             player.setBoardSize(boardSize);
             System.out.println(name + "'s ID is: " + player.getId());
             gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
-            players.add(player);
+            currentGameState.addPlayer(player)
         }
         return players;
     }

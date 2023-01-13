@@ -9,10 +9,6 @@ public class GameState {
     static Player currentPlayer;
     static int currentPlayerNum;
 
-    public GameState() {
-        controller = new GameController();
-        currentPlayerNum = 0;
-    }
     public void menu() {
         controller.setBoard("FieldData");
         players = controller.addPlayers();
@@ -25,6 +21,11 @@ public class GameState {
             controller.playRound(currentPlayer);
             nextPlayer();
         }
+    }
+
+    public void addPlayer(String name, String chosenColor, int position, int balance) {
+        Player player = new Player(name, chosenColor, position, balance);
+        players.add(player);
     }
 
     public void nextPlayer(){
