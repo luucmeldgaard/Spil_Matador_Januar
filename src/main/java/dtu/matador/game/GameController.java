@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class GameController {
 
-    static PlayerController playerController;
-    static GUIController gui;
-    static FieldController board;
+    private static PlayerController playerController;
+    private static GUIController gui;
+    private static FieldController board;
 
     //Main method. Runs the program
     public static void main(String[] args) {
