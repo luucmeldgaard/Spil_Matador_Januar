@@ -193,8 +193,8 @@ public class FieldController {
         String owner = ferry.getOwner();
         if (owner == null) return;
         System.out.println(owner);
-        Player player = currentGameState.getPlayerFromID(playerID);
-        int balance = currentGameState.getPlayerFromID(playerID).getBalance();
+        Player player = playerController.getPlayerFromID(playerID);
+        int balance = playerController.getPlayerFromID(playerID).getBalance();
 
         if (owner.equals(playerID)) {
             System.out.println("This ferry is owned by you. ");
