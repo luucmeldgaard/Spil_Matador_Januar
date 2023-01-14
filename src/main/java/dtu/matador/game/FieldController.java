@@ -28,8 +28,6 @@ public class FieldController {
         }
         setupFields();
 
-        gui.setGUI(fieldMap);
-
         chanceMap = fieldLoader.getChanceMap();
 
     }
@@ -440,13 +438,12 @@ public class FieldController {
     }
 
     protected void updateGUI(Property property, String playerID) {
-        String playerColor = playerController.getPlayerFromID(playerID).getColor();
-        if (property instanceof Street) {
-            gui.updateProperty(property.getPosition(), playerColor, ((Street) property).getHousing());
-        }
-        else {
-            gui.updateProperty(property.getPosition(), playerColor);
-        }
+            String playerColor = playerController.getPlayerFromID(playerID).getColor();
+            if (property instanceof Street) {
+                gui.updateProperty(property.getPosition(), playerColor, ((Street) property).getHousing());
+            } else {
+                gui.updateProperty(property.getPosition(), playerColor);
+            }
     }
 
 
