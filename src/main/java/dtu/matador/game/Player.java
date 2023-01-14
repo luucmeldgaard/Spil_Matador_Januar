@@ -1,6 +1,7 @@
 package dtu.matador.game;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Player {
 
@@ -18,6 +19,8 @@ public class Player {
 
     private int jailed = 0;
 
+    private int jailCards;
+
     private int[] lastPlayedDieRoll;
 
     private PlayerHousing playerHousing;
@@ -28,6 +31,7 @@ public class Player {
         this.position = position;
         this.balance = balance;
         this.playerHousing = new PlayerHousing();
+        this.jailCards = 0;
         setId();
     }
 
@@ -91,6 +95,18 @@ public class Player {
 
     public PlayerHousing getPlayerHousing() {
         return playerHousing;
+    }
+
+    public void addJailCard() {
+        this.jailCards += 1;
+    }
+
+    public boolean useJailCard() {
+        if (this.jailCards >= 1) {
+            this.jailCards -= 1;
+            return true;
+        }
+        else {return false; }
     }
 
     public int[] getLastPlayedDieRoll() {

@@ -114,10 +114,10 @@ public class FieldController {
         }
     }
 
-    public List<FieldSpaces> lookUpFields(String searchKey, String searchValue) {
-        List<FieldSpaces> fieldsFound = new ArrayList<>();
+    public ArrayList<FieldSpaces> lookUpFields(ArrayList<FieldSpaces> lookUp, String searchKey, String searchValue) {
+        ArrayList<FieldSpaces> fieldsFound = new ArrayList<>();
         Map <String, String> fieldAsMap;
-        for (FieldSpaces field : this.fields) {
+        for (FieldSpaces field : lookUp) {
             fieldAsMap = getFieldAsMap(field.getPosition());
             if (fieldAsMap.get(searchKey).equals(searchValue)) {
                 fieldsFound.add(field);
@@ -353,6 +353,7 @@ public class FieldController {
     }
 
     private void landOnChance (String playerID, Chance chance) {
+        Player player = playerController.getPlayerFromID(playerID);
         Random rand = new Random();
         int cardNumber = 0;
         if (chanceMap.size() != 1) {
@@ -362,6 +363,7 @@ public class FieldController {
         Map <String, String> card = new HashMap<>();
         boolean payIfCrossStart = false;
         boolean condition = false;
+        int rentMultiplier = 1;
 
         for (String key : rawCard.keySet()) {
             if (!rawCard.get(key).equals("")) {
@@ -371,9 +373,13 @@ public class FieldController {
                 System.out.println("PayIfCrossStart = true");
                 payIfCrossStart = true;
             }
-            if (key.equals("condition") && rawCard.get(key).equals("Condition")) {
+            if (key.equals("condition") && rawCard.get(key).equals("1")) {
                 System.out.println("Condition");
                 condition = true;
+            }
+            if (key.equals("RentMultiplier") && !rawCard.get(key).equals("")) {
+                System.out.println("RentMultiplier");
+                rentMultiplier = Integer.parseInt(rawCard.get(key));
             }
         }
 
@@ -388,13 +394,34 @@ public class FieldController {
                 }
                 case "CashAddedPerHouse" -> {
                     System.out.println("CashAddedPerHouse");
-                    // TODO the player has an amount of houses. For the number of houses,
-                    // TODO the player needs to pay/receive an amount of money
+                    int ownedHouses = 0;
+                    ArrayList<FieldSpaces> ownedFields = lookUpFields(fields,"owner", playerID);
+                    ArrayList<FieldSpaces> ownedStreets = lookUpFields(ownedFields,"street", playerID);
+                    for (FieldSpaces field : ownedFields) {
+                        int housingOnField = ((Street) field).getHousing();
+                        if (housingOnField < 5) {
+                            ownedHouses += housingOnField;
+                        }
+                    }
+                    int amount = Integer.parseInt(card.get(key)) * ownedHouses;
+                    createTransaction(playerID, null, amount, true, message);
+
                 }
                 case "CashAddedPerHotel" -> {
                     System.out.println("CashAddedPerHotel");
-                    // TODO the player has an amount of hotels. For the number of hotels,
-                    // TODO the player needs to pay/receive an amount of money
+                    System.out.println("CashAddedPerHouse");
+                    int ownedHotels = 0;
+                    ArrayList<FieldSpaces> ownedFields = lookUpFields(fields,"owner", playerID);
+                    ArrayList<FieldSpaces> ownedStreets = lookUpFields(ownedFields,"street", playerID);
+                    for (FieldSpaces field : ownedFields) {
+                        int housingOnField = ((Street) field).getHousing();
+                        if (housingOnField == 5) {
+                            ownedHotels += 1;
+                        }
+                    }
+                    int amount = Integer.parseInt(card.get(key)) * ownedHotels;
+                    createTransaction(playerID, null, amount, true, message);
+
                 }
                 case "CashTakenFromPlayers" -> {
                     System.out.println("CashTakenFromPlayers");
@@ -408,7 +435,6 @@ public class FieldController {
                 }
                 case "MoveBy" -> {
                     System.out.println("MoveBy");
-                    // TODO make player move
                     int moveBy = Integer.parseInt(card.get(key));
                     int currentPosition = playerController.getPlayerFromID(playerID).getPosition();
                     playerController.getPlayerFromID(playerID).movePosition(moveBy);
@@ -420,11 +446,10 @@ public class FieldController {
                     System.out.println("MoveToType");
                     gui.buttonRequest(message, "Ok");
                     // TODO make player move to the next instance of a specific field type
-                    Player player = playerController.getPlayerFromID(playerID);
                     int currentPlayerPosition = player.getPosition();
 
                     List<Integer> allFieldTypePositions = new ArrayList<>();
-                    List<FieldSpaces> allFieldsOfType = lookUpFields("fieldType", "ferry");
+                    List<FieldSpaces> allFieldsOfType = lookUpFields(fields, "fieldType", "ferry");
                     for (FieldSpaces field : allFieldsOfType) {
                         int fieldPosition = field.getPosition();
                         allFieldTypePositions.add(fieldPosition);
@@ -438,11 +463,10 @@ public class FieldController {
                     }
                     FieldSpaces fieldShortestDistance = fields.get(closest);
 
-
                     if (fieldShortestDistance instanceof Property) {
                         String owner = ((Property) fieldShortestDistance).getOwner();
                         if (owner != null && owner != playerID) {
-                            int rentToPay = ((Property) fieldShortestDistance).getRent() * 2;
+                            int rentToPay = ((Property) fieldShortestDistance).getRent() * rentMultiplier;
                             player.setPosition(closest);
                             gui.movePlayerTo(playerID, currentPlayerPosition, closest);
                             createTransaction(playerID, owner, rentToPay, true, message);
@@ -462,15 +486,15 @@ public class FieldController {
                 }
                 case "MoveTo" -> {
                     System.out.println("MoveTo");
-                    // TODO make player move to specific field
-                }
-                case "RentMultiplier" -> {
-                    System.out.println("RentMultiplier");
-                    // TODO double the rent that the player needs to play if a field is owned by someone else
+                    int cardPosition  = Integer.parseInt(card.get(key));
+                    int startPlayerPosition = player.getPosition();
+                    player.setPosition(cardPosition);
+                    gui.movePlayerTo(playerID, startPlayerPosition, player.getPosition());
+                    landOnField(playerID, startPlayerPosition, player.getPosition(), payIfCrossStart);
                 }
                 case "JailFreeCard" -> {
                     System.out.println("JailFreeCard");
-                    // TODO the player receives a "get-out-of-jail"-card
+                    player.addJailCard();
                 }
             }
         }
