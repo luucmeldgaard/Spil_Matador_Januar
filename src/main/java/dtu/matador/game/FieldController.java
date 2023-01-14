@@ -415,8 +415,11 @@ public class FieldController {
             createTransaction(player.getId(),null,1000,true,"Du betaler for at komme ud af fængsel");
             player.setjailed(0);
             int oldpos = player.getPosition();
-            player.setPosition(
-            playRoundUnjailed(player);
+            gui.buttonRequest(("Slå med terningerne"), "Kast");
+            int[] dieValues = player.rollDie();
+            gui.setDice(dieValues);
+            player.setPosition(oldpos + dieValues[2]);
+
         }
     }
 
