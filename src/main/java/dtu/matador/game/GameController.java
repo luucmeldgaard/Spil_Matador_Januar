@@ -87,36 +87,6 @@ public class GameController {
         movePlayer(player, dieValues);
     }
 
-    private static void playRoundJailed(Player player) {
-        //String playerName = player.getName(); //Ununsed code
-        if (player.getjailed() == 1 || player.getjailed() == 2) {
-            if (gui.payOrRoll()) { //If this is true, the player picked "Slå med terningerne"
-                int[] dieValues = player.rollDie();
-                gui.setDice(dieValues);
-                if (dieValues[0] == dieValues[1]) {
-                    player.setjailed(0);
-                    gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
-                    movePlayer(player, dieValues);
-                }
-                else {
-                    gui.displayGeneralMessage("Det var desværre ikke to ens");
-                    int currentjailed = player.getjailed();
-                    player.setjailed(currentjailed+1);
-                }
-            }
-            else {
-                playerController.handleTransaction(player.getId(),null,1000,true);
-                player.setjailed(0);
-                playRoundUnjailed(player);
-            }
-        }
-        else {
-            playerController.handleTransaction(player.getId(),null,1000,true);
-            player.setjailed(0);
-            playRoundUnjailed(player);
-        }
-    }
-
     public void landOn() {
         // retrieves fieldtype from Field Controller
 
