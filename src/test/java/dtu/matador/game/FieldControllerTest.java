@@ -13,8 +13,12 @@ public class FieldControllerTest {
 
     @Test
     public void testMapAndFieldsAreOfEqualSize() {
+        // creates a mock object of GUIController
+        GUIController gui = mock(GUIController.class);
+
         // Creates a new instance of the FieldController
-        FieldController fieldController = new FieldController(null, new GUIController("test_FieldData"), "test_FieldData");
+        FieldController fieldController = new FieldController(null, gui, "test_FieldData");
+
 
         // asserts that the size of the fieldMap and
         // the fields ArrayList, are the same
@@ -26,8 +30,10 @@ public class FieldControllerTest {
     @Test
     public void testPropertyFieldUpdatesFieldMap() {
 
+        GUIController gui = mock(GUIController.class);
+
         // Creates a new instance of the FieldController
-        FieldController fieldController = new FieldController(null, new GUIController("test_FieldData"), "test_FieldData");
+        FieldController fieldController = new FieldController(null, gui, "test_FieldData");
 
         // Casts a known property field from the ArrayList
         // of Fieldspaces objects to Property
