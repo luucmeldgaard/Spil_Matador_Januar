@@ -139,29 +139,29 @@ public class FieldController {
         if (currentField.getInstanceOfJail() == 0) {
             if (currentplayer.getjailed() > 0) {
                 //String playerName = player.getName(); //Ununsed code
-                if (player.getjailed() == 1 || player.getjailed() == 2) {
+                if (currentplayer.getjailed() == 1 || currentplayer.getjailed() == 2) {
                     if (gui.payOrRoll()) { //If this is true, the player picked "Slå med terningerne"
-                        int[] dieValues = player.rollDie();
+                        int[] dieValues = currentplayer.rollDie();
                         gui.setDice(dieValues);
                         if (dieValues[0] == dieValues[1]) {
-                            player.setjailed(0);
+                            currentplayer.setjailed(0);
                             gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
-                            int oldpos = player.getPosition();
-                            player.movePosition(dieValues[2]);
-                            gui.movePlayerTo(player.getId(),oldpos,player.getPosition());
+                            int oldpos = currentplayer.getPosition();
+                            currentplayer.movePosition(dieValues[2]);
+                            gui.movePlayerTo(currentplayer.getId(),oldpos,currentplayer.getPosition());
                         }
                         else {
                             gui.displayGeneralMessage("Det var desværre ikke to ens");
-                            int currentjailed = player.getjailed();
-                            player.setjailed(currentjailed+1);
+                            int currentjailed = currentplayer.getjailed();
+                            currentplayer.setjailed(currentjailed+1);
                         }
                     }
                     else {
-                        payForJail(player);
+                        payForJail(currentplayer);
                     }
                 }
                 else {
-                    payForJail(player);
+                    payForJail(currentplayer);
                 }
             } else {
                 gui.displayGeneralMessage(gui.buttonRequest("Du er på besøg i fængslet", "ok"));
