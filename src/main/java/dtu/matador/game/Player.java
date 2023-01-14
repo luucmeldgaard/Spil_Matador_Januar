@@ -1,5 +1,7 @@
 package dtu.matador.game;
 
+import java.awt.*;
+
 public class Player {
 
     //A player's attributes are implemented
@@ -13,6 +15,8 @@ public class Player {
     private int ferries;
     private static final DiceCup diceCup = new DiceCup();
     private static int boardSize;
+
+    private int jailed = 0;
 
     private PlayerHousing playerHousing;
 
@@ -66,6 +70,13 @@ public class Player {
 
     public void addBalance(int amount) {
         this.balance += amount;
+    }
+    public void setjailed (int jailedstatus){
+        jailed = jailedstatus;
+    }
+
+    public int getjailed(){
+        return jailed;
     }
 
     public void addFerries() {this.ferries += 1;}
