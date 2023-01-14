@@ -27,7 +27,7 @@ public class FieldController {
             fields.add(null);
         }
         setupFields();
-
+        gui.setGUI(fieldMap);
         chanceMap = fieldLoader.getChanceMap();
 
     }
