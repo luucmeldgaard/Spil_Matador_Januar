@@ -64,14 +64,13 @@ public class GameController {
             playRoundUnjailed(player);
         }
         else {
+            gui.displayGeneralMessage("Det er " + player.getName() + "'s tur");
             playRoundJailed(player);
         }
         // roll dice
 
     }
     private static void movePlayer(Player player, int[] dieValues){
-        String playerName = player.getName();
-        gui.buttonRequest(("It is " + playerName + "'s turn. Please roll the dice"), "Roll");
         int total = dieValues[2];
         gui.setDice(dieValues);
         int oldplayerpos = player.getPosition();
@@ -93,25 +92,28 @@ public class GameController {
         if (player.getjailed() == 1 || player.getjailed() == 2) {
             if (gui.payOrRoll()) { //If this is true, the player picked "Slå med terningerne"
                 int[] dieValues = player.rollDie();
+                gui.setDice(dieValues);
                 if (dieValues[0] == dieValues[1]) {
-                    player.setjailed(player.getjailed()+1);
+                    player.setjailed(0);
                     gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
                     movePlayer(player, dieValues);
                 }
                 else {
                     gui.displayGeneralMessage("Det var desværre ikke to ens");
                     int currentjailed = player.getjailed();
-                    player.setjailed(currentjailed);
+                    player.setjailed(currentjailed+1);
                 }
-            } else {
-                //TODO: TRÆK 1000 kroner fra spillerens balance
+            }
+            else {
+                playerController.handleTransaction(player.getId(),null,1000,true);
+                player.setjailed(0);
                 playRoundUnjailed(player);
             }
         }
         else {
-            //TODO: TRÆK 1000 kroner fra spillerens balance
+            playerController.handleTransaction(player.getId(),null,1000,true);
             player.setjailed(0);
-
+            playRoundUnjailed(player);
         }
     }
 
