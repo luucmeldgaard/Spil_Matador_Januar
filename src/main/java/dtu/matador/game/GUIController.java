@@ -1,9 +1,7 @@
 package dtu.matador.game;
 
-import gui_fields.GUI_Car;
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Player;
-import gui_fields.GUI_Street;
+import gui_codebehind.GUI_Center;
+import gui_fields.*;
 import gui_main.GUI;
 import java.awt.*;
 import java.util.ArrayList;
@@ -17,9 +15,10 @@ class GUIController {
     ArrayList<GUI_Player> guiPlayers;
     int numberOfPlayers;
 
-    public GUIController(String selectedBoard) {
-        gui = new GUI(new GUI_Field[0]);
-        //gui = new GUI(guiFields);
+    public GUIController() {
+        gui = new GUI(new GUI_Field[0], Color.DARK_GRAY);
+        GUI_Center.getInstance().clearLabels();
+        GUI_Center.getInstance().setBGColor(Color.DARK_GRAY);
         this.guiPlayers = new ArrayList<>();
     }
 
@@ -28,6 +27,7 @@ class GUIController {
         guiFields = fields.setup(fieldMap);
         boardSize = guiFields.length;
         GUI.setNull_fields_allowed(false);
+        GUI_Center.getInstance().displayDefault();
         gui = new GUI(guiFields);
     }
 

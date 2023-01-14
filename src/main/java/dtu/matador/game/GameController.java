@@ -15,7 +15,7 @@ public class GameController {
     public static void main(String[] args) {
         playerController = new PlayerController();
         GUI.setNull_fields_allowed(true);
-        gui = new GUIController("FieldData");
+        gui = new GUIController();
         menu();
         play();
     }
