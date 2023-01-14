@@ -396,7 +396,7 @@ public class FieldController {
                     System.out.println("CashAddedPerHouse");
                     int ownedHouses = 0;
                     ArrayList<FieldSpaces> ownedFields = lookUpFields(fields,"owner", playerID);
-                    ArrayList<FieldSpaces> ownedStreets = lookUpFields(ownedFields,"street", playerID);
+                    ArrayList<FieldSpaces> ownedStreets = lookUpFields(ownedFields,"fieldType", "street");
                     for (FieldSpaces field : ownedFields) {
                         int housingOnField = ((Street) field).getHousing();
                         if (housingOnField < 5) {
@@ -409,10 +409,9 @@ public class FieldController {
                 }
                 case "CashAddedPerHotel" -> {
                     System.out.println("CashAddedPerHotel");
-                    System.out.println("CashAddedPerHouse");
                     int ownedHotels = 0;
                     ArrayList<FieldSpaces> ownedFields = lookUpFields(fields,"owner", playerID);
-                    ArrayList<FieldSpaces> ownedStreets = lookUpFields(ownedFields,"street", playerID);
+                    ArrayList<FieldSpaces> ownedStreets = lookUpFields(ownedFields,"fieldType", "street" );
                     for (FieldSpaces field : ownedFields) {
                         int housingOnField = ((Street) field).getHousing();
                         if (housingOnField == 5) {
