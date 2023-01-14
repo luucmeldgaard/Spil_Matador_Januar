@@ -76,6 +76,10 @@ public class FieldController {
                             field.get("position")));
 
                 }
+                case "tax" -> {
+                    fields.set(fieldPosition, new TaxField(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
+                            field.get("price"), field.get("position")));
+                }
             }
         }
     }
@@ -109,6 +113,19 @@ public class FieldController {
             fieldList.get(fieldPosition).replace("housing", housing);
         }
     }
+
+    public List<FieldSpaces> lookUpFields(String searchKey, String searchValue) {
+        List<FieldSpaces> fieldsFound = new ArrayList<>();
+        Map <String, String> fieldAsMap;
+        for (FieldSpaces field : this.fields) {
+            fieldAsMap = getFieldAsMap(field.getPosition());
+            if (fieldAsMap.get(searchKey).equals(searchValue)) {
+                fieldsFound.add(field);
+            }
+        }
+        return fieldsFound;
+    }
+
     protected void landOnField(String playerID, int startPosition, int currentPosition, boolean passStart) {
         if (startPosition > currentPosition && passStart) {
             System.out.println("Player passed start");
@@ -405,12 +422,12 @@ public class FieldController {
                     // TODO make player move to the next instance of a specific field type
                     Player player = playerController.getPlayerFromID(playerID);
                     int currentPlayerPosition = player.getPosition();
+
                     List<Integer> allFieldTypePositions = new ArrayList<>();
-                    for (Map<String, String> field : fieldList) {
-                        if (field.get("fieldType").equals(card.get(key))) {
-                            int fieldPosition = Integer.parseInt(field.get("position"));
-                            allFieldTypePositions.add(fieldPosition);
-                        }
+                    List<FieldSpaces> allFieldsOfType = lookUpFields("fieldType", "ferry");
+                    for (FieldSpaces field : allFieldsOfType) {
+                        int fieldPosition = field.getPosition();
+                        allFieldTypePositions.add(fieldPosition);
                     }
 
                     int closest = boardSize;
@@ -423,17 +440,14 @@ public class FieldController {
 
 
                     if (fieldShortestDistance instanceof Property) {
-                        System.out.println("IT IS A PROPERTY");
                         String owner = ((Property) fieldShortestDistance).getOwner();
                         if (owner != null && owner != playerID) {
-                            System.out.println("THERE IS AN OWNER");
                             int rentToPay = ((Property) fieldShortestDistance).getRent() * 2;
                             player.setPosition(closest);
                             gui.movePlayerTo(playerID, currentPlayerPosition, closest);
                             createTransaction(playerID, owner, rentToPay, true, message);
                         }
                         else {
-                            System.out.println("NO OWNER");
                             player.setPosition(closest);
                             gui.movePlayerTo(playerID, currentPlayerPosition, closest);
                             landOnField(playerID, currentPlayerPosition, player.getPosition(), payIfCrossStart);
