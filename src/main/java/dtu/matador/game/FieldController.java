@@ -135,13 +135,23 @@ public class FieldController {
     }
 
     private void landOnJail(String playerID, Jail currentField) {
-        System.out.println("SØREN RYGE (der burde nok ske noget fængselsrelateret her)");
-        gui.displayGeneralMessage("Du er desværre kommet i fængsel");
-        Player player = playerController.getPlayerFromID(playerID);
-        player.setjailed(1);
-        int oldpos = player.getPosition();
-        player.setPosition(10);
-        gui.movePlayerTo(playerID,oldpos,player.getPosition());
+        Player currentplayer = playerController.getPlayerFromID(playerID);
+        if (currentField.getInstanceOfJail() == 0) {
+            if (currentplayer.getjailed() > 0) {
+                playRoundJailed(currentplayer);
+            } else {
+                gui.displayGeneralMessage(gui.buttonRequest("Du er på besøg i fængslet", "ok"));
+            }
+        }
+        else{
+            System.out.println("SØREN RYGE (der burde nok ske noget fængselsrelateret her)");
+            gui.displayGeneralMessage("Du er desværre kommet i fængsel");
+            Player player = playerController.getPlayerFromID(playerID);
+            player.setjailed(1);
+            int oldpos = player.getPosition();
+            player.setPosition(10);
+            gui.movePlayerTo(playerID,oldpos,player.getPosition());
+        }
     }
 
     private void landOnStart(String playerID, StartField start) {
