@@ -16,6 +16,8 @@ public class Player {
     private static final DiceCup diceCup = new DiceCup();
     private static int boardSize;
 
+    private int jailed = 0;
+
     private PlayerHousing playerHousing;
 
     public Player(String name, String color, int position, int balance) {
@@ -68,6 +70,13 @@ public class Player {
 
     public void addBalance(int amount) {
         this.balance += amount;
+    }
+    public void setjailed (int jailedstatus){
+        jailed = jailedstatus;
+    }
+
+    public int getjailed(){
+        return jailed;
     }
 
     public void addFerries() {this.ferries += 1;}

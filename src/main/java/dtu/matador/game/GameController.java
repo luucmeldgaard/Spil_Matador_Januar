@@ -60,7 +60,7 @@ public class GameController {
     //This method makes it possible for a player to move forward equal to the value of their dice roll
     private static void playRound(Player player) {
         player = playerController.getCurrentPlayer();
-        if (player.jailed == 0){
+        if (player.getjailed() == 0){
             playRoundUnjailed(player);
         }
         else {
@@ -69,11 +69,10 @@ public class GameController {
         // roll dice
 
     }
-    private void movePlayer(Player player, int[] dieValues){
+    private static void movePlayer(Player player, int[] dieValues){
         String playerName = player.getName();
         gui.buttonRequest(("It is " + playerName + "'s turn. Please roll the dice"), "Roll");
-        int[] dieValues = player.rollDie();
-        int total = (dieValues[0] + dieValues[1]);
+        int total = dieValues[2];
         gui.setDice(dieValues);
         int oldplayerpos = player.getPosition();
         // player moves
@@ -82,26 +81,27 @@ public class GameController {
         gui.movePlayerTo(player.getId(), oldplayerpos, player.getPosition());
         board.landOnField(player.getId(), oldplayerpos, player.getPosition());
     }
-    private void playRoundUnjailed(Player player){
+    static private void playRoundUnjailed(Player player){
         String playerName = player.getName();
         gui.buttonRequest(("Det er " + playerName + "'s tur. Kast med terningerne"), "Kast");
         int[] dieValues = player.rollDie();
         movePlayer(player, dieValues);
     }
 
-    private void playRoundJailed(Player player) {
+    private static void playRoundJailed(Player player) {
         //String playerName = player.getName(); //Ununsed code
-        if (player.jailed == 1 || player.jailed == 2) {
+        if (player.getjailed() == 1 || player.getjailed() == 2) {
             if (gui.payOrRoll()) { //If this is true, the player picked "Slå med terningerne"
                 int[] dieValues = player.rollDie();
                 if (dieValues[0] == dieValues[1]) {
-                    player.jailed = 0;
+                    player.setjailed(player.getjailed()+1);
                     gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
                     movePlayer(player, dieValues);
                 }
                 else {
                     gui.displayGeneralMessage("Det var desværre ikke to ens");
-                    player.jailed += 1;
+                    int currentjailed = player.getjailed();
+                    player.setjailed(currentjailed);
                 }
             } else {
                 //TODO: TRÆK 1000 kroner fra spillerens balance
@@ -110,7 +110,7 @@ public class GameController {
         }
         else {
             //TODO: TRÆK 1000 kroner fra spillerens balance
-            player.jailed = 0;
+            player.setjailed(0);
 
         }
     }

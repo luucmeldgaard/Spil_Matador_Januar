@@ -132,13 +132,15 @@ public class FieldController {
     }
 
     private void landOnJail(String playerID, Jail currentField) {
+        System.out.println("SØREN RYGE");
+        /*
         currentGameState.getPlayerFromID(playerID).jailed = 1;
         int oldpos = currentGameState.getPlayerFromID(playerID).getPosition();
         currentGameState.getPlayerFromID(playerID).setPosition(30);
         int newpos = currentGameState.getPlayerFromID(playerID).getPosition();
         gui.movePlayerTo(playerID,oldpos,newpos);
 
-
+*/
 
     }
 
