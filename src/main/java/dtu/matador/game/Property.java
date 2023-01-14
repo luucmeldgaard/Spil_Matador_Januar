@@ -1,45 +1,39 @@
 package dtu.matador.game;
 
-import com.sun.jdi.Field;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 public abstract class Property implements PropertyFields {
-    static FieldController controller = new FieldController();
     //Creating variables that will be used
-    FieldController field;
-    String name;
-    String subtext;
-    String description;
-    int rent;
-    int rent0;
-    int rent1;
-    int rent2;
-    int rent3;
-    int rent4;
-    int rent5;
-    String color1;
-    String color2;
-    String neighborhood;
-    boolean purchasable = false;
-    int price;
-    int pawnForAmount;
-    int position;
-    String owner;
-    int buildPrice;
-    protected int housing; // MÅSKE VIRKER DENNE HER IKKE?????
+    private static FieldController controller;
+    private final String name;
+    private final String subtext;
+    private final String description;
+    private int rent;
+    private final int rent0;
+    private final int rent1;
+    private final int rent2;
+    private final int rent3;
+    private final int rent4;
+    private final int rent5;
+    private final String color1;
+    private String color2;
+    private final String neighborhood;
+    //boolean purchasable = false;
+    private final int price;
+    private final int pawnForAmount;
+    private final int position;
+    private String owner;
+    private int buildPrice;
+    protected int housing;
 
-    int groupSize;
+    private final int groupSize;
 
 
     //Takes input to create the class
-    public Property(String name, String subtext, String description, String rent,
+    public Property(FieldController controller, String name, String subtext, String description, String rent,
                     String rent1, String rent2, String rent3, String rent4, String rent5,
-                    String color1,String color2, String price,
+                    String color1, String color2, String price,
                     String pawnForAmount, String position, String owner, String neighborhood, String groupSize){
 
+        this.controller = controller;
         this.name = name;
         this.subtext = subtext;
         this.description = description;
@@ -63,6 +57,7 @@ public abstract class Property implements PropertyFields {
         }
     }
     //Generic getters and setters
+
     public String getName() {
         return this.name;
     }
@@ -103,6 +98,9 @@ public abstract class Property implements PropertyFields {
         System.out.println("normal rent: " + this.rent0 + " actual rent with " + this.housing + " housing: " + currentRent());
         return currentRent();
     }
+    public int getRent1(){return rent1;}
+    public int getRent2(){return rent2;}
+    public int getRent3(){return rent3;}
 
     //A player can buy with the help of a transaction
     public void buy(String playerID) {

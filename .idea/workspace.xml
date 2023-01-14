@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="Changed subtext to show field price">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/FieldController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/FieldController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,9 +112,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GameController" />
         <item itemvalue="JUnit.PlayerTest" />
         <item itemvalue="JUnit.DiceCupTest.dieInRangeOneToSix" />
-        <item itemvalue="Application.GameController" />
         <item itemvalue="Application.GameController" />
         <item itemvalue="JUnit.PlayerTest" />
       </list>
@@ -124,7 +123,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="55785571-7249-47c2-8b26-a12d9a939463" name="Changes" comment="" />
+      <changelist id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="Changed subtext to show field price" />
       <created>1672850485778</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -134,6 +133,7 @@
       <workItem from="1673019693088" duration="845000" />
       <workItem from="1673023635483" duration="1868000" />
       <workItem from="1673037372622" duration="842000" />
+      <workItem from="1673629515948" duration="1351000" />
     </task>
     <task id="LOCAL-00001" summary="Terning implementeret">
       <created>1672853831020</created>

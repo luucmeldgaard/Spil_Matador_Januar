@@ -11,44 +11,24 @@ import java.util.Map;
 
 class GUIController {
 
-    //Instances of classes added
-    private static GUIController guiControllerObject;
     private static GUI gui;
-    static GUI_Field[] guiFields;
-    static FieldController board;
-    static int boardSize;
-    static ArrayList<GUI_Player> guiPlayers;
-    static int currentGUIPlayer;
-    static GameController gameController;
+    private GUI_Field[] guiFields;
+    int boardSize;
+    ArrayList<GUI_Player> guiPlayers;
+    int numberOfPlayers;
 
-    static int numberOfPlayers;
+    public GUIController(String selectedBoard) {
+        gui = new GUI(new GUI_Field[0]);
+        //gui = new GUI(guiFields);
+        this.guiPlayers = new ArrayList<>();
+    }
 
-    private GUIController(String selectedBoard) {
-        board = new FieldController(selectedBoard);
+    public void setGUI(Map<String, Map<String, String>> fieldMap) {
         GUICreator fields = new GUICreator();
-        guiFields = fields.setup(board.getFieldMap());
-        gui = new GUI(guiFields);
-        guiPlayers = new ArrayList<>();
-        currentGUIPlayer = 0;
+        guiFields = fields.setup(fieldMap);
         boardSize = guiFields.length;
-        gameController = new GameController();
-    }
-
-    public static GUIController getGUIInstance(String selectedBoard) {
-        if (guiControllerObject == null) {
-            guiControllerObject = new GUIController(selectedBoard);
-        }
-        else {System.out.println("GUI instance already initialized..."); }
-        board.setGUI();
-        return guiControllerObject;
-    }
-
-    public static GUIController getGUIInstance() {
-        if (guiControllerObject != null) {
-            System.out.println("GUI instance already initialized...");
-            return guiControllerObject;
-        }
-        else {return null; }
+        GUI.setNull_fields_allowed(false);
+        gui = new GUI(guiFields);
     }
 
     public String buttonRequest(String message, String... buttons){
@@ -106,7 +86,7 @@ class GUIController {
     }
 
 
-    public GUI_Car addCar(Color primaryColor, Color patternColor) {
+    private GUI_Car addCar(Color primaryColor, Color patternColor) {
         GUI_Car car = new GUI_Car(primaryColor, patternColor, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL);
         return car;
     }
@@ -135,7 +115,7 @@ class GUIController {
 
     }
 
-    public void movePlayerOnce(String playerID, int nextPosition) {
+    private void movePlayerOnce(String playerID, int nextPosition) {
         if (nextPosition >= boardSize) {
             nextPosition = nextPosition % boardSize;
         }
@@ -144,14 +124,6 @@ class GUIController {
         System.out.println(guiFields[nextPosition].getTitle());
 
     }
-
-    public void removePlayer(String playerID) {
-        GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
-        player.getCar().setPosition(null);
-
-
-    }
-
 
     public void movePlayerTo(String playerID, int startPosition, int endPosition) {
         int steps = endPosition - startPosition;
@@ -171,7 +143,11 @@ class GUIController {
                 e.printStackTrace();
             }
         }
-        board.landOnField(playerID, startPosition, currentPosition);
+    }
+
+    public void removePlayer(String playerID) {
+        GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
+        player.getCar().setPosition(null);
     }
 
     public int getBoardSize() {return boardSize; }
@@ -226,6 +202,10 @@ class GUIController {
     public void updateProperty(int fieldPosition, String color) {
         Color newColor = Color.getColor(color);
         gui.getFields()[fieldPosition].setBackGroundColor(newColor);
+    }
+
+    public void close(){
+        gui.close();
     }
 
 }

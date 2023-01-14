@@ -1,19 +1,18 @@
 package dtu.matador.game;
 
-import java.awt.*;
-
 public class Player {
 
     //A player's attributes are implemented
 
     static int nextId = 0;
-    String id;
-    String name;
-    String color;
-    int position;
-    int balance;
-    static DiceCup diceCup = new DiceCup();
-    static int boardSize;
+    private String id;
+    private final String name;
+    private final String color;
+    private int position;
+    private int balance;
+    private int ferries;
+    private static final DiceCup diceCup = new DiceCup();
+    private static int boardSize;
 
     private PlayerHousing playerHousing;
 
@@ -29,7 +28,7 @@ public class Player {
     /*Rolls number of dice and updates a player's
     /position, and returns an int[] of dieFaces
      */
-    public int[] rollDie() {
+    protected int[] rollDie() {
         return diceCup.roll();
     }
 
@@ -54,6 +53,8 @@ public class Player {
 
     public int getBalance() {return this.balance;}
 
+    public int getFerries() {return this.ferries;}
+
     public void setPosition(int position) {this.position = position % boardSize; }
 
     //Prints a move from the player and updates their position
@@ -66,6 +67,8 @@ public class Player {
     public void addBalance(int amount) {
         this.balance += amount;
     }
+
+    public void addFerries() {this.ferries += 1;}
 
     public boolean balanceCheck(int amount) {
         int nextBalance = this.balance + amount;

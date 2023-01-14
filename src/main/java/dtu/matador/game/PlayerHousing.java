@@ -1,8 +1,5 @@
 package dtu.matador.game;
 
-import dtu.matador.game.fields.Street;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -17,6 +14,7 @@ public class PlayerHousing {
 
     public void addProperty(String color, ArrayList<Property> property){
         getPropertyMap().put(color, property);
+        System.out.println("I now own " + propertyMap.size() + " properties! ");
 
     }
 

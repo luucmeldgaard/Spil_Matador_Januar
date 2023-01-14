@@ -1,7 +1,6 @@
 package dtu.matador.game;
 
 import gui_fields.*;
-
 import java.awt.*;
 import java.util.Map;
 
