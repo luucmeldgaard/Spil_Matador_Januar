@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.awt.*;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class FieldLoaderTest {
@@ -31,21 +32,21 @@ public class FieldLoaderTest {
     public void getFieldMapReturnsHashmap() {
         FieldLoader fieldLoader = new FieldLoader("test_fieldSpaces");
 
-        Map<String, Map<String, String>> testMap;
-        testMap = fieldLoader.getFieldMap();
+        ArrayList<Map<String, String>> fieldMap;
+        fieldMap = fieldLoader.getFieldMap();
 
-        assertEquals(java.util.HashMap.class, testMap.getClass());
+        assertEquals(java.util.ArrayList.class, fieldMap.getClass());
     }
 
     @Ignore
     @Test
     public void prettyPrintGetFieldMap() {
 
-        FieldLoader fieldLoader = new FieldLoader("test_fieldSpaces");
-        Map<String, Map<String, String>> testMap;
+        FieldLoader fieldLoader = new FieldLoader("test_FieldData");
+        ArrayList<Map<String, String>> testMap;
         testMap = fieldLoader.getFieldMap();
 
-        for (Map<String, String> field : testMap.values()) {
+        for (Map<String, String> field : testMap) {
             System.out.println("_____field_____");
             for (String key : field.keySet()) {
                 System.out.println(key + ": " + field.get(key));
@@ -58,8 +59,8 @@ public class FieldLoaderTest {
     @Test
     public void PrintGetFieldMap() {
 
-        FieldLoader fieldLoader = new FieldLoader("test_fieldSpaces");
-        Map<String, Map<String, String>> testMap;
+        FieldLoader fieldLoader = new FieldLoader("test_FieldData");
+        ArrayList<Map<String, String>> testMap;
         testMap = fieldLoader.getFieldMap();
 
         String testMapString = fieldLoader.getFieldMap().toString();

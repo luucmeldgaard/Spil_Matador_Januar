@@ -10,9 +10,9 @@ import java.util.*;
 
 public class FieldLoader {
 
-    Map<String, Map<String, String>> boardMap;
+    ArrayList<Map<String, String>> boardMap;
     Map<String, String> colorMap;
-    Map<String, Map<String, String>> chanceMap;
+    ArrayList<Map<String, String>> chanceMap;
 
     public FieldLoader(String selectedBoard) {
         boardMap = JSONtoMap(selectedBoard + ".json", "position");
@@ -21,10 +21,10 @@ public class FieldLoader {
         this.chanceMap = JSONtoMap("chance" + ".json", "Number");
     }
 
-    private Map<String, Map<String, String>> JSONtoMap(String filename, String outerMapKey) {
+    private ArrayList<Map<String, String>> JSONtoMap(String filename, String outerMapKey) {
 
         // The map to return
-        Map<String, Map<String, String>> board = new HashMap<>();
+        ArrayList<Map<String, String>> board = new ArrayList<>();
 
         // Makes it possible to parse JSON and map JSON text
         JSONParser jsonParser = new JSONParser();
@@ -39,12 +39,16 @@ public class FieldLoader {
             String objString = obj.toString();
             objString = objString.substring(1, objString.length() - 1);
             String[] objArray = objString.split("},");
+            for (int i = 0; i < objArray.length; i++) {
+                board.add(null);
+            }
 
             // Adds each field to the board map
             for (String item : objArray) {
                 item = item + "}";
                 Map<String, String> map = mapper.readValue(item, Map.class);
-                board.put(map.get(outerMapKey), map);
+                int position = Integer.parseInt(map.get(outerMapKey));
+                board.set(position, map);
             }
 
         }
@@ -77,11 +81,11 @@ public class FieldLoader {
     }
 
     // returns the Mapped fields
-    public Map<String, Map<String,String>> getFieldMap() {
+    public ArrayList<Map<String,String>> getFieldMap() {
         return boardMap;
     }
 
     public Map<String, String> getColorMap(){return colorMap;}
 
-    public Map<String, Map<String,String>> getChanceMap() {return chanceMap; }
+    public ArrayList<Map<String,String>> getChanceMap() {return chanceMap; }
 }

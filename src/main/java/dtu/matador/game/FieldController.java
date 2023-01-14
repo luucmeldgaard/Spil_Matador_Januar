@@ -9,8 +9,8 @@ import java.util.Random;
 public class FieldController {
 
     private ArrayList<FieldSpaces> fields;
-    private Map<String, Map<String, String>> fieldMap;
-    private Map<String, Map<String, String>> chanceMap;
+    private ArrayList<Map<String,String>> fieldMap;
+    private ArrayList<Map<String,String>> chanceMap;
     public FieldSpaces currentField;
     private final PlayerController playerController;
     public final GUIController gui;
@@ -41,7 +41,7 @@ public class FieldController {
 
     protected void setupFields() {
         FieldController controller = new FieldController(this.playerController, gui);
-        for (Map<String, String> field : fieldMap.values()) {
+        for (Map<String, String> field : fieldMap) {
             int fieldPosition = Integer.parseInt(field.get("position"));
             switch (field.get("fieldType")) {
                 case "property" -> {
@@ -88,20 +88,19 @@ public class FieldController {
         return fields;
     }
 
-    protected Map<String, Map<String, String>> getFieldMap() {
+    protected ArrayList<Map<String, String>> getFieldMap() {
         return fieldMap;
     }
 
     protected Map<String, String> getFieldAsMap(int position) {
-        String pos = String.valueOf(position);
-        return fieldMap.get(pos);
+        return fieldMap.get(position);
     }
 
     // overwrites chosen values of a specific field in the fieldMap
     protected void updateFieldMap(Property property) {
         Map<String, String> updatedFieldInfo = new HashMap<>();
 
-        String fieldPosition = String.valueOf(property.getPosition());
+        int fieldPosition = property.getPosition();
         String color2 = property.getColor2();
         String housing = null;
         fieldMap.get(fieldPosition).replace("color2", color2);
@@ -338,7 +337,7 @@ public class FieldController {
 
     private void landOnChance (String playerID, Chance chance) {
         Random rand = new Random();
-        String cardNumber = String.valueOf(rand.nextInt(0, chanceMap.size() - 1));
+        int cardNumber = rand.nextInt(0, chanceMap.size() - 1);
         Map <String, String> rawCard = chanceMap.get(cardNumber);
         Map <String, String> card = new HashMap<>();
         for (String key : rawCard.keySet()) {

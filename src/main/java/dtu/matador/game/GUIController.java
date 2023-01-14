@@ -22,7 +22,7 @@ class GUIController {
         this.guiPlayers = new ArrayList<>();
     }
 
-    public void setGUI(Map<String, Map<String, String>> fieldMap) {
+    public void setGUI(ArrayList<Map<String,String>> fieldMap) {
         GUICreator fields = new GUICreator();
         guiFields = fields.setup(fieldMap);
         boardSize = guiFields.length;
