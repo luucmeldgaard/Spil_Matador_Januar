@@ -40,4 +40,6 @@ public abstract class NonPurchasableFields implements FieldSpaces {
         return this.color2;
     }
 
+    public int getPosition() {return this.position;}
+
 }
