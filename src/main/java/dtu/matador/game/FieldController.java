@@ -340,6 +340,11 @@ public class FieldController {
                 case "MoveBy" -> {
                     System.out.println("MoveBy");
                     // TODO make player move
+                    int moveBy = Integer.parseInt(card.get(key));
+                    int currentPosition = playerController.getPlayerFromID(playerID).getPosition();
+                    playerController.getPlayerFromID(playerID).movePosition(moveBy);
+                    int endPosition = playerController.getPlayerFromID(playerID).getPosition();
+                    gui.movePlayerTo(playerID, currentPosition, endPosition);
                 }
                 case "MoveToType" -> {
                     System.out.println("MoveToType");
