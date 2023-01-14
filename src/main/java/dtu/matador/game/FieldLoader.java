@@ -10,18 +10,18 @@ import java.util.*;
 
 public class FieldLoader {
 
-    ArrayList<Map<String, String>> boardMap;
+    ArrayList<Map<String, String>> boardList;
     Map<String, String> colorMap;
-    ArrayList<Map<String, String>> chanceMap;
+    ArrayList<Map<String, String>> chanceList;
 
     public FieldLoader(String selectedBoard) {
-        boardMap = JSONtoMap(selectedBoard + ".json", "position");
+        boardList = JSONtoList(selectedBoard + ".json", "position");
         this.colorMap = new HashMap<>();
         this.colorMap = JSONtoMapColors("colors.json");
-        this.chanceMap = JSONtoMap("chance" + ".json", "Number");
+        this.chanceList = JSONtoList("chance" + ".json", "Number");
     }
 
-    private ArrayList<Map<String, String>> JSONtoMap(String filename, String outerMapKey) {
+    private ArrayList<Map<String, String>> JSONtoList(String filename, String outerMapKey) {
 
         // The map to return
         ArrayList<Map<String, String>> board = new ArrayList<>();
@@ -81,11 +81,11 @@ public class FieldLoader {
     }
 
     // returns the Mapped fields
-    public ArrayList<Map<String,String>> getFieldMap() {
-        return boardMap;
+    public ArrayList<Map<String,String>> getFieldList() {
+        return boardList;
     }
 
     public Map<String, String> getColorMap(){return colorMap;}
 
-    public ArrayList<Map<String,String>> getChanceMap() {return chanceMap; }
+    public ArrayList<Map<String,String>> getChanceList() {return chanceList; }
 }

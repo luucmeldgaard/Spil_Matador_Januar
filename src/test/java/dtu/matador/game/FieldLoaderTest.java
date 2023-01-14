@@ -32,10 +32,10 @@ public class FieldLoaderTest {
     public void getFieldMapReturnsHashmap() {
         FieldLoader fieldLoader = new FieldLoader("test_fieldSpaces");
 
-        ArrayList<Map<String, String>> fieldMap;
-        fieldMap = fieldLoader.getFieldMap();
+        ArrayList<Map<String, String>> fieldList;
+        fieldList = fieldLoader.getFieldList();
 
-        assertEquals(java.util.ArrayList.class, fieldMap.getClass());
+        assertEquals(java.util.ArrayList.class, fieldList.getClass());
     }
 
     @Ignore
@@ -43,10 +43,10 @@ public class FieldLoaderTest {
     public void prettyPrintGetFieldMap() {
 
         FieldLoader fieldLoader = new FieldLoader("test_FieldData");
-        ArrayList<Map<String, String>> testMap;
-        testMap = fieldLoader.getFieldMap();
+        ArrayList<Map<String, String>> testList;
+        testList = fieldLoader.getFieldList();
 
-        for (Map<String, String> field : testMap) {
+        for (Map<String, String> field : testList) {
             System.out.println("_____field_____");
             for (String key : field.keySet()) {
                 System.out.println(key + ": " + field.get(key));
@@ -60,10 +60,10 @@ public class FieldLoaderTest {
     public void PrintGetFieldMap() {
 
         FieldLoader fieldLoader = new FieldLoader("test_FieldData");
-        ArrayList<Map<String, String>> testMap;
-        testMap = fieldLoader.getFieldMap();
+        ArrayList<Map<String, String>> testList;
+        testList = fieldLoader.getFieldList();
 
-        String testMapString = fieldLoader.getFieldMap().toString();
+        String testMapString = fieldLoader.getFieldList().toString();
 
         char lastLetter = ' ';
         for (int i = 0; i < testMapString.length(); i++) {
@@ -89,7 +89,7 @@ public class FieldLoaderTest {
     @Test
     public void testChanceMapIsCreated() {
         FieldLoader fieldLoader = new FieldLoader("test_fieldSpaces");
-        assertNotNull(fieldLoader.getChanceMap());
+        assertNotNull(fieldLoader.getChanceList());
     }
 
     @Test

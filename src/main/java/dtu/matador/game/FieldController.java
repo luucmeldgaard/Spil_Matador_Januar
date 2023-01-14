@@ -9,7 +9,7 @@ import java.util.Random;
 public class FieldController {
 
     private ArrayList<FieldSpaces> fields;
-    private ArrayList<Map<String,String>> fieldMap;
+    private ArrayList<Map<String,String>> fieldList;
     private ArrayList<Map<String,String>> chanceMap;
     public FieldSpaces currentField;
     private final PlayerController playerController;
@@ -20,15 +20,15 @@ public class FieldController {
         this.playerController = injectPlayerController;
         this.gui = injectGui;
         FieldLoader fieldLoader = new FieldLoader(selectedBoard);
-        fieldMap = fieldLoader.getFieldMap();
+        fieldList = fieldLoader.getFieldList();
 
         fields = new ArrayList<>();
-        for (int i = 0; i < fieldMap.size(); i++) {
+        for (int i = 0; i < fieldList.size(); i++) {
             fields.add(null);
         }
         setupFields();
-        gui.setGUI(fieldMap);
-        chanceMap = fieldLoader.getChanceMap();
+        gui.setGUI(fieldList);
+        chanceMap = fieldLoader.getChanceList();
 
     }
 
@@ -41,7 +41,7 @@ public class FieldController {
 
     protected void setupFields() {
         FieldController controller = new FieldController(this.playerController, gui);
-        for (Map<String, String> field : fieldMap) {
+        for (Map<String, String> field : fieldList) {
             int fieldPosition = Integer.parseInt(field.get("position"));
             switch (field.get("fieldType")) {
                 case "property" -> {
@@ -84,16 +84,16 @@ public class FieldController {
         return fields.get(position);
     }
 
-    protected ArrayList<FieldSpaces> getFieldsArray() {
+    protected ArrayList<FieldSpaces> getAllFieldSpaces() {
         return fields;
     }
 
-    protected ArrayList<Map<String, String>> getFieldMap() {
-        return fieldMap;
+    protected ArrayList<Map<String, String>> getFieldList() {
+        return fieldList;
     }
 
     protected Map<String, String> getFieldAsMap(int position) {
-        return fieldMap.get(position);
+        return fieldList.get(position);
     }
 
     // overwrites chosen values of a specific field in the fieldMap
@@ -103,10 +103,10 @@ public class FieldController {
         int fieldPosition = property.getPosition();
         String color2 = property.getColor2();
         String housing = null;
-        fieldMap.get(fieldPosition).replace("color2", color2);
+        fieldList.get(fieldPosition).replace("color2", color2);
         if (property instanceof Street) {
             housing = String.valueOf(((Street) property).getHousing());
-            fieldMap.get(fieldPosition).replace("housing", housing);
+            fieldList.get(fieldPosition).replace("housing", housing);
         }
     }
     protected void landOnField(String playerID, int startPosition, int currentPosition) {

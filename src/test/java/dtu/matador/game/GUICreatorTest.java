@@ -3,10 +3,7 @@ package dtu.matador.game;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.Assert.*;
 
 public class GUICreatorTest {
 
@@ -23,7 +20,7 @@ public class GUICreatorTest {
         GUICreator guiCreator = new GUICreator();
         FieldLoader fieldLoader = new FieldLoader("test_FieldData");
         ArrayList<Map<String, String>> fieldMap;
-        fieldMap = fieldLoader.getFieldMap();
+        fieldMap = fieldLoader.getFieldList();
         guiCreator.setup(fieldMap);
     }
 

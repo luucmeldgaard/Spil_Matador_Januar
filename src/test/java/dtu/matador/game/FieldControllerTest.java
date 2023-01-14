@@ -1,7 +1,5 @@
 package dtu.matador.game;
 
-import org.junit.Assert;
-import org.junit.Assert.*;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 
@@ -22,8 +20,8 @@ public class FieldControllerTest {
 
         // asserts that the size of the fieldMap and
         // the fields ArrayList, are the same
-        int fieldMapSize = fieldController.getFieldMap().size();
-        int fieldsSize = fieldController.getFieldsArray().size();
+        int fieldMapSize = fieldController.getFieldList().size();
+        int fieldsSize = fieldController.getAllFieldSpaces().size();
         assertEquals(fieldMapSize, fieldsSize);
     }
 
