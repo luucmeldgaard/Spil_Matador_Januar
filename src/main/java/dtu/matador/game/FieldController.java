@@ -350,7 +350,7 @@ public class FieldController {
             if (!rawCard.get(key).equals("")) {
                 card.put(key, rawCard.get(key));
             }
-            if (key.equals("PayIfCrossStart") && rawCard.get(key).equals("true")) {
+            if (key.equals("PayIfCrossStart") && rawCard.get(key).equals("1")) {
                 System.out.println("PayIfCrossStart = true");
                 payIfCrossStart = true;
             }
