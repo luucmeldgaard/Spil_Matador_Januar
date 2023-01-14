@@ -13,7 +13,7 @@ public class FieldController {
     private Map<String, Map<String, String>> chanceMap;
     public FieldSpaces currentField;
     private final PlayerController playerController;
-    private final GUIController gui;
+    public static final GUIController gui;
 
 
     public FieldController(PlayerController injectPlayerController, GUIController injectGui, String selectedBoard) {
@@ -142,13 +142,6 @@ public class FieldController {
         int oldpos = player.getPosition();
         player.setPosition(10);
         gui.movePlayerTo(playerID,oldpos,player.getPosition());
-        /*
-        currentGameState.getPlayerFromID(playerID).jailed = 1;
-        int oldpos = currentGameState.getPlayerFromID(playerID).getPosition();
-        currentGameState.getPlayerFromID(playerID).setPosition(30);
-        int newpos = currentGameState.getPlayerFromID(playerID).getPosition();
-        gui.movePlayerTo(playerID,oldpos,newpos);
-        */
     }
 
     private void landOnStart(String playerID, StartField start) {
@@ -389,6 +382,42 @@ public class FieldController {
             }
         }
 
+    }
+    public void playRoundJailed(Player player) {
+        //String playerName = player.getName(); //Ununsed code
+        if (player.getjailed() == 1 || player.getjailed() == 2) {
+            if (gui.payOrRoll()) { //If this is true, the player picked "Slå med terningerne"
+                int[] dieValues = player.rollDie();
+                gui.setDice(dieValues);
+                if (dieValues[0] == dieValues[1]) {
+                    player.setjailed(0);
+                    gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
+                    int oldpos = player.getPosition();
+                    player.movePosition(dieValues[2]);
+                    gui.movePlayerTo(player.getId(),oldpos,player.getPosition());
+                }
+                else {
+                    gui.displayGeneralMessage("Det var desværre ikke to ens");
+                    int currentjailed = player.getjailed();
+                    player.setjailed(currentjailed+1);
+                }
+            }
+            else {
+                createTransaction(player.getId(),null,1000,true,"Du betaler for at komme ud af fængsel");
+                player.setjailed(0);
+                gui.displayGeneralMessage("Du er kommet ud af fængsel for 1000kr. Tillykke!");
+                gui.buttonRequest(("Slå med terningerne"), "Kast");
+                int[] dieValues = player.rollDie();
+                move(player, dieValues);
+            }
+        }
+        else {
+            createTransaction(player.getId(),null,1000,true,"Du betaler for at komme ud af fængsel");
+            player.setjailed(0);
+            int oldpos = player.getPosition();
+            player.setPosition(
+            playRoundUnjailed(player);
+        }
     }
 
     /**
