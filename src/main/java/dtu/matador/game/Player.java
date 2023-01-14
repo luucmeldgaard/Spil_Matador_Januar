@@ -18,6 +18,8 @@ public class Player {
 
     private int jailed = 0;
 
+    private int[] lastPlayedDieRoll;
+
     private PlayerHousing playerHousing;
 
     public Player(String name, String color, int position, int balance) {
@@ -33,7 +35,8 @@ public class Player {
     /position, and returns an int[] of dieFaces
      */
     protected int[] rollDie() {
-        return diceCup.roll();
+        this.lastPlayedDieRoll = diceCup.roll();
+        return this.lastPlayedDieRoll;
     }
 
     public String getId() {return this.id;}
@@ -88,5 +91,9 @@ public class Player {
 
     public PlayerHousing getPlayerHousing() {
         return playerHousing;
+    }
+
+    public int[] getLastPlayedDieRoll() {
+        return this.lastPlayedDieRoll;
     }
 }
