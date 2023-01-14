@@ -11,7 +11,7 @@ public class FieldController {
     private ArrayList<FieldSpaces> fields;
     private Map<String, Map<String, String>> fieldMap;
     private Map<String, Map<String, String>> chanceMap;
-    private FieldSpaces currentField;
+    public FieldSpaces currentField;
     private final PlayerController playerController;
     private final GUIController gui;
 
@@ -47,19 +47,19 @@ public class FieldController {
             int fieldPosition = Integer.parseInt(field.get("position"));
             switch (field.get("fieldType")) {
                 case "property" -> {
-                    fields.set(fieldPosition, new Street(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"),field.get("rent2"),
-                            field.get("rent3"), field.get("rent4"), field.get("rent5"),field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
+                    fields.set(fieldPosition, new Street(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"), field.get("rent2"),
+                            field.get("rent3"), field.get("rent4"), field.get("rent5"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
                             field.get("position"), field.get("owner"), field.get("housing"), field.get("neighborhood"), field.get("groupsize")));
                 }
                 case "ferry" -> {
-                    fields.set(fieldPosition, new Ferry(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"),field.get("rent"),
-                            field.get("rent"), field.get("rent"), field.get("rent"),field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
-                            field.get("position"), field.get("owner"),field.get("neighborhood"),field.get("groupsize")));
+                    fields.set(fieldPosition, new Ferry(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"), field.get("rent"),
+                            field.get("rent"), field.get("rent"), field.get("rent"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
+                            field.get("position"), field.get("owner"), field.get("neighborhood"), field.get("groupsize")));
                 }
                 case "brewery" -> {
-                    fields.set(fieldPosition, new Brewery(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"),field.get("rent"),
+                    fields.set(fieldPosition, new Brewery(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"), field.get("rent"),
                             field.get("rent"), field.get("rent"), field.get("rent"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
-                            field.get("position"), field.get("owner"), field.get("neighborhood"),field.get("groupsize")));
+                            field.get("position"), field.get("owner"), field.get("neighborhood"), field.get("groupsize")));
                 }
                 case "refuge" -> {
                     fields.set(fieldPosition, new Refuge(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
@@ -73,7 +73,11 @@ public class FieldController {
                     fields.set(fieldPosition, new Chance(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
                             field.get("position")));
                 }
+                case "jail" -> {
+                    fields.set(fieldPosition, new Jail(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
+                            field.get("position")));
 
+                }
             }
         }
     }
@@ -128,6 +132,7 @@ public class FieldController {
         else if (currentField instanceof Chance) {
             landOnChance(playerID, ((Chance) currentField));
         }
+
         // property, chance, jail, etc.
     }
 
