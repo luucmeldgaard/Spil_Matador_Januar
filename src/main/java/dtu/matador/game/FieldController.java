@@ -138,7 +138,31 @@ public class FieldController {
         Player currentplayer = playerController.getPlayerFromID(playerID);
         if (currentField.getInstanceOfJail() == 0) {
             if (currentplayer.getjailed() > 0) {
-                playRoundJailed(currentplayer);
+                //String playerName = player.getName(); //Ununsed code
+                if (player.getjailed() == 1 || player.getjailed() == 2) {
+                    if (gui.payOrRoll()) { //If this is true, the player picked "Slå med terningerne"
+                        int[] dieValues = player.rollDie();
+                        gui.setDice(dieValues);
+                        if (dieValues[0] == dieValues[1]) {
+                            player.setjailed(0);
+                            gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
+                            int oldpos = player.getPosition();
+                            player.movePosition(dieValues[2]);
+                            gui.movePlayerTo(player.getId(),oldpos,player.getPosition());
+                        }
+                        else {
+                            gui.displayGeneralMessage("Det var desværre ikke to ens");
+                            int currentjailed = player.getjailed();
+                            player.setjailed(currentjailed+1);
+                        }
+                    }
+                    else {
+                        payForJail(player);
+                    }
+                }
+                else {
+                    payForJail(player);
+                }
             } else {
                 gui.displayGeneralMessage(gui.buttonRequest("Du er på besøg i fængslet", "ok"));
             }
@@ -394,31 +418,7 @@ public class FieldController {
 
     }
     public void playRoundJailed(Player player) {
-        //String playerName = player.getName(); //Ununsed code
-        if (player.getjailed() == 1 || player.getjailed() == 2) {
-            if (gui.payOrRoll()) { //If this is true, the player picked "Slå med terningerne"
-                int[] dieValues = player.rollDie();
-                gui.setDice(dieValues);
-                if (dieValues[0] == dieValues[1]) {
-                    player.setjailed(0);
-                    gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
-                    int oldpos = player.getPosition();
-                    player.movePosition(dieValues[2]);
-                    gui.movePlayerTo(player.getId(),oldpos,player.getPosition());
-                }
-                else {
-                    gui.displayGeneralMessage("Det var desværre ikke to ens");
-                    int currentjailed = player.getjailed();
-                    player.setjailed(currentjailed+1);
-                }
-            }
-            else {
-                payForJail(player);
-            }
-        }
-        else {
-            payForJail(player);
-        }
+
     }
 
     private void payForJail(Player player){
