@@ -403,26 +403,24 @@ public class FieldController {
                 }
             }
             else {
-                createTransaction(player.getId(),null,1000,true,"Du betaler for at komme ud af fængsel");
-                player.setjailed(0);
-                gui.displayGeneralMessage("Du er kommet ud af fængsel for 1000kr. Tillykke!");
-                gui.buttonRequest(("Slå med terningerne"), "Kast");
-                int[] dieValues = player.rollDie();
-                move(player, dieValues);
+                payForJail(player);
             }
         }
         else {
-            createTransaction(player.getId(),null,1000,true,"Du betaler for at komme ud af fængsel");
-            player.setjailed(0);
-            int oldpos = player.getPosition();
-            gui.buttonRequest(("Slå med terningerne"), "Kast");
-            int[] dieValues = player.rollDie();
-            gui.setDice(dieValues);
-            player.setPosition(oldpos + dieValues[2]);
-
+            payForJail(player);
         }
     }
 
+    private void payForJail(Player player){
+        createTransaction(player.getId(),null,1000,true,"Du betaler for at komme ud af fængsel");
+        player.setjailed(0);
+        int oldpos = player.getPosition();
+        gui.buttonRequest(("Slå med terningerne"), "Kast");
+        int[] dieValues = player.rollDie();
+        gui.setDice(dieValues);
+        player.setPosition(oldpos + dieValues[2]);
+
+    }
     /**
      *
      * @param playerID - the current player
