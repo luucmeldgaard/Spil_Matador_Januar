@@ -402,7 +402,7 @@ public class FieldController {
                     int ownedHouses = 0;
                     ArrayList<FieldSpaces> ownedFields = lookUpFields(fields,"owner", playerID);
                     ArrayList<FieldSpaces> ownedStreets = lookUpFields(ownedFields,"fieldType", "street");
-                    for (FieldSpaces field : ownedFields) {
+                    for (FieldSpaces field : ownedStreets) {
                         int housingOnField = ((Street) field).getHousing();
                         if (housingOnField < 5) {
                             ownedHouses += housingOnField;
@@ -417,7 +417,7 @@ public class FieldController {
                     int ownedHotels = 0;
                     ArrayList<FieldSpaces> ownedFields = lookUpFields(fields,"owner", playerID);
                     ArrayList<FieldSpaces> ownedStreets = lookUpFields(ownedFields,"fieldType", "street" );
-                    for (FieldSpaces field : ownedFields) {
+                    for (FieldSpaces field : ownedStreets) {
                         int housingOnField = ((Street) field).getHousing();
                         if (housingOnField == 5) {
                             ownedHotels += 1;
@@ -586,6 +586,5 @@ public class FieldController {
                 gui.updateProperty(property.getPosition(), playerColor);
             }
     }
-
 
 }
