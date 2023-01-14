@@ -13,6 +13,7 @@ public class PlayerTest {
     @Test
     public void playerMovesForwardFromStart() {
         Player player = new Player("Jakob", "myBlue",0,5000);
+        player.setBoardSize(40);
         int currentPosition = player.getPosition();
         int[] dieValues = player.rollDie();
         for (int dieRoll : dieValues) {
@@ -25,6 +26,7 @@ public class PlayerTest {
 @Test
     public void RollEqualsPositionalChange(){
         Player player = new Player("Jakob","myBlue",5,5000);
+        player.setBoardSize(40);
         int startPosition = player.getPosition();
         int[] dieValues = player.rollDie();
 
