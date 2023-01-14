@@ -63,10 +63,12 @@ public class GameController {
         if (player.getjailed() != 0){
             movePlayer(player, player.getLastPlayedDieRoll());
         }
-        String playerName = player.getName();
-        gui.buttonRequest(("Det er " + playerName + "'s tur. Kast med terningerne"), "Kast");
-        int[] dieValues = player.rollDie();
-        movePlayer(player, dieValues);
+        else {
+            String playerName = player.getName();
+            gui.buttonRequest(("Det er " + playerName + "'s tur. Kast med terningerne"), "Kast");
+            int[] dieValues = player.rollDie();
+            movePlayer(player, dieValues);
+        }
     }
     private static void movePlayer(Player player, int[] dieValues){
         int total = dieValues[2];
@@ -74,7 +76,13 @@ public class GameController {
         int oldplayerpos = player.getPosition();
         // player moves
         //int newplayerpost = player.getPosition();
-        player.setPosition(oldplayerpos + total);
+        if (player.getjailed() != 0){
+            movePlayer(player, player.getLastPlayedDieRoll());
+            player.setPosition(oldplayerpos);
+        }
+        else {
+            player.setPosition(oldplayerpos + total);
+        }
         gui.movePlayerTo(player.getId(), oldplayerpos, player.getPosition());
         board.landOnField(player.getId(), oldplayerpos, player.getPosition());
     }
