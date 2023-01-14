@@ -79,6 +79,7 @@ public class GameController {
         board.landOnField(player.getId(), oldplayerpos, player.getPosition());
     }
 
+
     public void landOn() {
         // retrieves fieldtype from Field Controller
 
