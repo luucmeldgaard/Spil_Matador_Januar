@@ -179,6 +179,7 @@ public class FieldController {
                 gui.displayGeneralMessage(gui.buttonRequest("Du er på besøg i fængslet", "ok"));
             }
             else {
+                gui.buttonRequest("Du har ikke flere forsøg. Du er nødsaget til at betale");
                 payForJail(player);
             }
         }
