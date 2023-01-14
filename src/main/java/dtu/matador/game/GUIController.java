@@ -107,10 +107,6 @@ class GUIController {
         guiPlayers.add(player);
     }
 
-    public boolean payOrRoll(){
-        return gui.getUserLeftButtonPressed("Vil du slå med terningerne for at forsøge at komme ud, eller betale 1000kr?",
-                "Slå med terningerne", "Betal 1000 kroner");
-    }
     public void displayGeneralMessage(String message){
         gui.showMessage(message);
     }

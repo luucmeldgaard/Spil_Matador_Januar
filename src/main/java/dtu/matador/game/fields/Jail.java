@@ -6,6 +6,7 @@ import dtu.matador.game.NonPurchasableFields;
 public class Jail extends NonPurchasableFields {
 
     static int InstanceOfJail = 0;
+    static int firstJailInstancePosition;
     int jailInstance;
     String name;
     String subtext;
@@ -26,12 +27,19 @@ public class Jail extends NonPurchasableFields {
     }
 
     public void setInstanceOfJail() {
+        if (InstanceOfJail == 0) {
+            firstJailInstancePosition = this.getPosition();
+        }
         this.jailInstance = InstanceOfJail;
         InstanceOfJail += 1;
+        System.out.println("INSTANCE OF JAIL: " + this.jailInstance);
     }
 
     public int getInstanceOfJail() {
         return this.jailInstance;
     }
 
+    public int getFirstJailInstancePosition() {
+        return firstJailInstancePosition;
+    }
 }
