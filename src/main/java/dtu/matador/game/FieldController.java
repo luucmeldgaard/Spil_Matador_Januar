@@ -1,10 +1,8 @@
 package dtu.matador.game;
 
 import dtu.matador.game.fields.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+
+import java.util.*;
 
 public class FieldController {
 
@@ -14,6 +12,7 @@ public class FieldController {
     public FieldSpaces currentField;
     private final PlayerController playerController;
     public final GUIController gui;
+    int boardSize;
 
 
     public FieldController(PlayerController injectPlayerController, GUIController injectGui, String selectedBoard) {
@@ -27,6 +26,7 @@ public class FieldController {
             fields.add(null);
         }
         setupFields();
+        this.boardSize = fieldList.size();
         gui.setGUI(fieldList);
         chanceMap = fieldLoader.getChanceList();
 
@@ -109,8 +109,8 @@ public class FieldController {
             fieldList.get(fieldPosition).replace("housing", housing);
         }
     }
-    protected void landOnField(String playerID, int startPosition, int currentPosition) {
-        if (startPosition > currentPosition) {
+    protected void landOnField(String playerID, int startPosition, int currentPosition, boolean passStart) {
+        if (startPosition > currentPosition && passStart) {
             System.out.println("Player passed start");
                 landOnStart(playerID, ((StartField) fields.get(0)));
             }
@@ -337,14 +337,29 @@ public class FieldController {
 
     private void landOnChance (String playerID, Chance chance) {
         Random rand = new Random();
-        int cardNumber = rand.nextInt(0, chanceMap.size() - 1);
+        int cardNumber = 0;
+        if (chanceMap.size() != 1) {
+            cardNumber = rand.nextInt(0, chanceMap.size() - 1);
+        }
         Map <String, String> rawCard = chanceMap.get(cardNumber);
         Map <String, String> card = new HashMap<>();
+        boolean payIfCrossStart = false;
+        boolean condition = false;
+
         for (String key : rawCard.keySet()) {
             if (!rawCard.get(key).equals("")) {
                 card.put(key, rawCard.get(key));
             }
+            if (key.equals("PayIfCrossStart") && rawCard.get(key).equals("true")) {
+                System.out.println("PayIfCrossStart = true");
+                payIfCrossStart = true;
+            }
+            if (key.equals("condition") && rawCard.get(key).equals("Condition")) {
+                System.out.println("Condition");
+                condition = true;
+            }
         }
+
         for (String key : card.keySet()) {
             System.out.println(key + ": " + card.get(key));
             String message = card.get("Text");
@@ -382,22 +397,58 @@ public class FieldController {
                     playerController.getPlayerFromID(playerID).movePosition(moveBy);
                     int endPosition = playerController.getPlayerFromID(playerID).getPosition();
                     gui.movePlayerTo(playerID, currentPosition, endPosition);
+                    landOnField(playerID, currentPosition, endPosition, payIfCrossStart);
                 }
                 case "MoveToType" -> {
                     System.out.println("MoveToType");
+                    gui.buttonRequest(message, "Ok");
                     // TODO make player move to the next instance of a specific field type
+                    Player player = playerController.getPlayerFromID(playerID);
+                    int currentPlayerPosition = player.getPosition();
+                    List<Integer> allFieldTypePositions = new ArrayList<>();
+                    for (Map<String, String> field : fieldList) {
+                        if (field.get("fieldType").equals(card.get(key))) {
+                            int fieldPosition = Integer.parseInt(field.get("position"));
+                            allFieldTypePositions.add(fieldPosition);
+                        }
+                    }
+
+                    int closest = boardSize;
+                    for (int fieldPosition : allFieldTypePositions) {
+                        if (Math.abs(fieldPosition - currentPlayerPosition) < Math.abs(closest - currentPlayerPosition)) {
+                            closest = fieldPosition;
+                        }
+                    }
+                    FieldSpaces fieldShortestDistance = fields.get(closest);
+
+
+                    if (fieldShortestDistance instanceof Property) {
+                        System.out.println("IT IS A PROPERTY");
+                        String owner = ((Property) fieldShortestDistance).getOwner();
+                        if (owner != null && owner != playerID) {
+                            System.out.println("THERE IS AN OWNER");
+                            int rentToPay = ((Property) fieldShortestDistance).getRent() * 2;
+                            player.setPosition(closest);
+                            gui.movePlayerTo(playerID, currentPlayerPosition, closest);
+                            createTransaction(playerID, owner, rentToPay, true, message);
+                        }
+                        else {
+                            System.out.println("NO OWNER");
+                            player.setPosition(closest);
+                            gui.movePlayerTo(playerID, currentPlayerPosition, closest);
+                            landOnField(playerID, currentPlayerPosition, player.getPosition(), payIfCrossStart);
+                        }
+                    }
+                    else {
+                        player.setPosition(closest);
+                        gui.movePlayerTo(playerID, currentPlayerPosition, closest);
+                        landOnField(playerID, currentPlayerPosition, player.getPosition(), payIfCrossStart);
+                    }
+
                 }
                 case "MoveTo" -> {
                     System.out.println("MoveTo");
                     // TODO make player move to specific field
-                }
-                case "PayIfCrossStart" -> {
-                    System.out.println("PayIfCrossStart");
-                    // TODO boolean statement that runs landOnStart
-                }
-                case "Condition" -> {
-                    System.out.println("Condition");
-                    // TODO card will only be run of condition is true
                 }
                 case "RentMultiplier" -> {
                     System.out.println("RentMultiplier");

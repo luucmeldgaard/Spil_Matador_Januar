@@ -19,7 +19,7 @@ public class FieldLoaderTest {
         JSONParser jsonParser = new JSONParser();
 
         // tries to read from a test JSON file and converts it to a string
-        try (FileReader fieldFileReader = new FileReader("test_fieldSpaces" + ".json")) {
+        try (FileReader fieldFileReader = new FileReader("test_FieldData" + ".json")) {
             Object obj = jsonParser.parse(fieldFileReader);
             String objString = obj.toString();
             assertNotNull(objString);
@@ -29,8 +29,8 @@ public class FieldLoaderTest {
     }
 
     @Test
-    public void getFieldMapReturnsHashmap() {
-        FieldLoader fieldLoader = new FieldLoader("test_fieldSpaces");
+    public void getFieldMapReturnsArrayList() {
+        FieldLoader fieldLoader = new FieldLoader("test_FieldData");
 
         ArrayList<Map<String, String>> fieldList;
         fieldList = fieldLoader.getFieldList();
@@ -78,7 +78,7 @@ public class FieldLoaderTest {
 
     @Test
     public void testColorsSetSystemProperty() {
-        FieldLoader fieldLoader = new FieldLoader("test_fieldSpaces");
+        FieldLoader fieldLoader = new FieldLoader("test_FieldData");
         Map<String, String> colors = fieldLoader.getColorMap();
 
         for (String color : colors.keySet()) {
@@ -88,13 +88,13 @@ public class FieldLoaderTest {
 
     @Test
     public void testChanceMapIsCreated() {
-        FieldLoader fieldLoader = new FieldLoader("test_fieldSpaces");
+        FieldLoader fieldLoader = new FieldLoader("test_FieldData");
         assertNotNull(fieldLoader.getChanceList());
     }
 
     @Test
     public void testColorMapIsCreated() {
-        FieldLoader fieldLoader = new FieldLoader("test_fieldSpaces");
+        FieldLoader fieldLoader = new FieldLoader("test_FieldData");
         assertNotNull(fieldLoader.getColorMap());
     }
 
