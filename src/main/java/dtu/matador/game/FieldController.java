@@ -13,7 +13,7 @@ public class FieldController {
     private Map<String, Map<String, String>> chanceMap;
     public FieldSpaces currentField;
     private final PlayerController playerController;
-    public static final GUIController gui;
+    public final GUIController gui;
 
 
     public FieldController(PlayerController injectPlayerController, GUIController injectGui, String selectedBoard) {

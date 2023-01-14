@@ -61,7 +61,7 @@ public class GameController {
     private static void playRound(Player player) {
         player = playerController.getCurrentPlayer();
         if (player.getjailed() != 0){
-            movePlayer(player, player.getLastPlayedDieRoll());
+            board.landOnField(player.getId(), player.getPosition(), player.getPosition());
         }
         else {
             String playerName = player.getName();
@@ -73,18 +73,12 @@ public class GameController {
     private static void movePlayer(Player player, int[] dieValues){
         int total = dieValues[2];
         gui.setDice(dieValues);
-        int oldplayerpos = player.getPosition();
+        int currentPlayerPosition = player.getPosition();
+
         // player moves
-        //int newplayerpost = player.getPosition();
-        if (player.getjailed() != 0){
-            movePlayer(player, player.getLastPlayedDieRoll());
-            player.setPosition(oldplayerpos);
-        }
-        else {
-            player.setPosition(oldplayerpos + total);
-        }
-        gui.movePlayerTo(player.getId(), oldplayerpos, player.getPosition());
-        board.landOnField(player.getId(), oldplayerpos, player.getPosition());
+        player.setPosition(currentPlayerPosition + total);
+        gui.movePlayerTo(player.getId(), currentPlayerPosition, player.getPosition());
+        board.landOnField(player.getId(), currentPlayerPosition, player.getPosition());
     }
 
 
