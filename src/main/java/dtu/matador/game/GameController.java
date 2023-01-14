@@ -61,7 +61,7 @@ public class GameController {
     private static void playRound(Player player) {
         player = playerController.getCurrentPlayer();
         if (player.getjailed() != 0){
-            board.landOnField(player.getId(), player.getPosition(), player.getPosition(), true);
+            board.landOnField(player.getId(), player.getPosition(), player.getPosition(), false);
         }
         else {
             String playerName = player.getName();

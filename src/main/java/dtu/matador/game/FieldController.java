@@ -161,9 +161,10 @@ public class FieldController {
                     if (dieValues[0] == dieValues[1]) {
                         player.setjailed(0);
                         gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
-                        int currentPosition = player.getPosition();
+                        int startPosition = player.getPosition();
                         player.movePosition(dieValues[2]);
-                        gui.movePlayerTo(player.getId(), currentPosition,player.getPosition());
+                        gui.movePlayerTo(player.getId(), startPosition,player.getPosition());
+                        landOnField(playerID, startPosition, player.getPosition(), true);
                     }
                     else {
                         gui.displayGeneralMessage("Det var desværre ikke to ens");
@@ -174,8 +175,11 @@ public class FieldController {
                     payForJail(player);
                 }
             }
-            else {
+            else if (player.getjailed() == 0) {
                 gui.displayGeneralMessage(gui.buttonRequest("Du er på besøg i fængslet", "ok"));
+            }
+            else {
+                payForJail(player);
             }
         }
         else{
@@ -185,7 +189,7 @@ public class FieldController {
             int currentPosition = player.getPosition();
             int jailPosition = currentField.getFirstJailInstancePosition();
             player.setPosition(jailPosition);
-            gui.movePlayerTo(playerID, currentPosition,player.getPosition());
+            gui.movePlayerTo(playerID, currentPosition, player.getPosition());
         }
     }
 
