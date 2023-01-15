@@ -354,7 +354,7 @@ public class FieldController {
 
                 int nextBuildPrice = street.getBuildPrice();
                 if (street.housing < 5) {
-                    String response = gui.buttonRequest("Do you want to buy a house for " + nextBuildPrice + "?", "Buy", "No");
+                    String response = gui.buttonRequest("Do you want to purchase a house on each of your properties of the same color for " + nextBuildPrice * street.getGroupSize() + "?", "Buy", "Not Now");
                     if (response.equals("Buy")) {
                         boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false, "Buying house for " + street.getBuildPrice());
                         if (transactionSuccess) {
