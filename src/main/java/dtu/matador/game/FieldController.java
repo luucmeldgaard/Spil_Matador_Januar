@@ -269,17 +269,6 @@ public class FieldController {
                     if (property.getOwner().equals(playerID)) {
                         updateFieldMap(property);
                         updateGUI(property, playerID);
-
-
-                        /*ArrayList<Property> propertyList = player.getPlayerHousing().getPropertiesFromColor(property.getNeighborhood());
-
-                        if (propertyList == null) {
-                            propertyList = new ArrayList<>();
-                            propertyList.add(property);
-                        } else {
-                            propertyList.add(property);
-                        }
-                        player.getPlayerHousing().addProperty(property.getNeighborhood(), propertyList);*/
                     }
                 }
             } else if (choice.equals("Auction")) {
@@ -378,9 +367,7 @@ public class FieldController {
             System.out.println("This field is owned by you. ");
             Property property = (Property) street;
             //checks if the owner has sufficient funds to buy a house
-            if (balance >= street.getBuildPrice()) {
-
-                /*if(!player.getPlayerHousing().canBuyHouse(property.getNeighborhood())) return;
+            if (balance >= street.getBuildPrice() && propertyBank.canBuyHouse(playerID, property.getNeighborhood())) {
 
                 int nextBuildPrice = street.getBuildPrice();
                 if (street.housing < 5) {
@@ -389,16 +376,14 @@ public class FieldController {
                         boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false, "Buying house for " + street.getBuildPrice());
                         if (transactionSuccess) {
 
-
-                            for(Property propertyList : player.getPlayerHousing().getPropertiesFromColor(property.getNeighborhood())){
-                                Street streetList = (Street) propertyList;
-                                streetList.buildHouse();
-                                updateGUI(propertyList, playerID);
-                                updateFieldMap(propertyList);
+                            for(Property propertyInGroup : propertyBank.getPropertiesFromGroup(property.getNeighborhood())){
+                                propertyInGroup.buildHouse();
+                                updateGUI(propertyInGroup, playerID);
+                                updateFieldMap(propertyInGroup);
                             }
                         }
                     }
-                }*/
+                }
             }
             // player does not care about housing because he doesn't have the money for it.
 
