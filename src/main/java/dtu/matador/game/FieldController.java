@@ -305,8 +305,9 @@ public class FieldController {
         }
         if (!owner.equals(playerID)) {
             int balance = player.getBalance();
-            int rent = 10*currentField.getRent()*
-            createTransaction(playerID, owner)
+            int total = player.getLastPlayedDieRoll()[2];
+            int rent = 10*currentField.getRent()*total;
+            createTransaction(playerID, owner, rent, true, "Du skal betale:" + rent + "!");
         }
     }
 
