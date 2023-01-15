@@ -627,6 +627,36 @@ public class FieldController {
         gui.buttonRequest("You have insufficient funds. ", "Ok");
     }
 
+    public void purchaseAllProperties(String playerID, boolean overwriteOwners) {
+        ArrayList<FieldSpaces> allProperties = lookUpFields(fields, "fieldType", "property");
+        allProperties.addAll(lookUpFields(fields, "fieldType", "ferry"));
+        allProperties.addAll(lookUpFields(fields, "fieldType", "brewery"));
+
+        for (FieldSpaces property : allProperties) {
+            if (!overwriteOwners) {
+                if (((Property) property).getOwner() != null && !((Property) property).getOwner().equals(playerID)) {
+                    continue;
+                }
+            }
+            if (overwriteOwners) {
+                // TODO remove housing from the original player
+            }
+            ((Property) property).setOwner(playerID);
+            Player player = playerController.getPlayerFromID(playerID);
+            ArrayList<Property> propertyList = player.getPlayerHousing().getPropertiesFromColor(((Property)property).getNeighborhood());
+
+            if (propertyList == null) {
+                propertyList = new ArrayList<>();
+                propertyList.add(((Property)property));
+            } else {
+                propertyList.add(((Property)property));
+            }
+            player.getPlayerHousing().addProperty(((Property)property).getNeighborhood(), propertyList);
+            updateFieldMap(((Property)property));
+            updateGUI(((Property)property), playerID);
+        }
+    }
+
     protected void updateGUI(Property property, String playerID) {
             String playerColor = playerController.getPlayerFromID(playerID).getColor();
             if (property instanceof Street) {

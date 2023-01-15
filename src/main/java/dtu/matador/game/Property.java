@@ -82,6 +82,8 @@ public abstract class Property implements PropertyFields {
         return this.owner;
     }
 
+    public void setOwner(String playerID) { this.owner = playerID; }
+
     public int getPrice() {
         return price;
     }

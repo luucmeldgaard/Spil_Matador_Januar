@@ -200,7 +200,15 @@ public class GameController {
                 gui.updateGUIPlayerBalance(targetPlayer.getId(), amount);
                 playRound(player);
             }
-            case "Køb alle grunde" -> {}
+            case "Køb alle grunde" -> {
+                response = gui.buttonRequest("Alle grunde eller kun dem som endnu ikke er ejet af nogen?", "Alle", "Alle Uden ejer");
+                boolean overwriteOwners = false;
+                if (response.equals("Alle")) {
+                    overwriteOwners = true;
+                }
+                board.purchaseAllProperties(player.getId(), overwriteOwners);
+                playRound(player);
+            }
             case "Gå i fængsel" -> {
                 int jailPosition = board.getJailPosition();
                 player.setPosition(jailPosition);
