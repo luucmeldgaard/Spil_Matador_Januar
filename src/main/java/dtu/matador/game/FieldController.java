@@ -327,7 +327,8 @@ public class FieldController {
 
 
                             for(Property propertyList : player.getPlayerHousing().getPropertiesFromColor(property.getNeighborhood())){
-                                street.buildHouse();
+                                Street streetList = (Street) propertyList;
+                                streetList.buildHouse();
                                 updateGUI(propertyList, playerID);
                                 updateFieldMap(propertyList);
                             }
