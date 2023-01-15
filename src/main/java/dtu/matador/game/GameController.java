@@ -210,7 +210,7 @@ public class GameController {
             case "Vind spillet" -> {
                 ArrayList<String> allPlayerIDs = playerController.getAllPlayerIDs();
                 for (String targetID : allPlayerIDs) {
-                    if (targetID != player.getId()) {
+                    if (!targetID.equals(player.getId())) {
                         playerController.removePlayer(targetID);
                         gui.removePlayer(targetID);
                     }
