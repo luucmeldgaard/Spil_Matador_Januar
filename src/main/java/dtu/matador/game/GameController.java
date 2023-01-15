@@ -10,6 +10,7 @@ public class GameController {
     private static PlayerController playerController;
     private static GUIController gui;
     private static FieldController board;
+    private static final int[] IGNORE_DIE_VALUES = null;
 
     //Main method. Runs the program
     public static void main(String[] args) {
@@ -60,6 +61,7 @@ public class GameController {
     //This method makes it possible for a player to move forward equal to the value of their dice roll
     private static void playRound(Player player) {
         player = playerController.getCurrentPlayer();
+        int currentPosition = player.getPosition();
         if (player.getjailed() != 0){
             board.landOnField(player.getId(), player.getPosition(), player.getPosition(), false);
         }
@@ -72,14 +74,14 @@ public class GameController {
             else {
                 if (playerController.getPlayerFromID(player.getId()) != null) {
                     int[] dieValues = player.rollDie();
-                    movePlayer(player, dieValues);
+                    movePlayer(player, currentPosition, dieValues, true);
                 }
             }
         }
     }
 
     private static void bonusMenuHandler(Player player) {
-        String response = gui.dropDownList("Vælg en action fra menuen", "Tilbage", "Lav byttehandel", "Gem Spil", "Sælg boliger", "Giv Op");
+        String response = gui.dropDownList("Vælg en action fra menuen", "Tilbage", "Snydekoder", "Lav byttehandel", "Gem Spil", "Sælg boliger", "Giv Op");
         switch (response) {
             case "Tilbage" -> { playRound(player); }
             case "Snydekoder" -> { cheatMenu(player); }
@@ -94,15 +96,22 @@ public class GameController {
         }
     }
 
-    private static void movePlayer(Player player, int[] dieValues){
-        int total = dieValues[2];
-        gui.setDice(dieValues);
-        int currentPlayerPosition = player.getPosition();
+    private static void movePlayer(Player player, int currentPosition, int[] dieValues, boolean passStartBonus){
+        int total;
+        // player position already been set
+        if (dieValues == IGNORE_DIE_VALUES) {
+            System.out.println("int array was 0");
+        }
+        // normal gameplay
+        else {
+            total = dieValues[2];
+            gui.setDice(dieValues);
+            player.setPosition(currentPosition + total);
+        }
 
         // player moves
-        player.setPosition(currentPlayerPosition + total);
-        gui.movePlayerTo(player.getId(), currentPlayerPosition, player.getPosition());
-        board.landOnField(player.getId(), currentPlayerPosition, player.getPosition(), true);
+        gui.movePlayerTo(player.getId(), currentPosition, player.getPosition());
+        board.landOnField(player.getId(), currentPosition, player.getPosition(), passStartBonus);
     }
 
     private static void cheatMenu(Player player) {
@@ -110,12 +119,24 @@ public class GameController {
                                                   "Sæt balance", "Sæt en anden spillers balance", "Køb alle grunde", "Vind spillet");
         switch (response) {
             case "Tilbage" -> { bonusMenuHandler(player); }
-            case "Flyt til felt" -> {}
+            case "Flyt til felt" -> {
+                int currentPosition = player.getPosition();
+                ArrayList<String> allFieldNames = board.lookUpFieldStringValues("title");
+                String[] allFieldNamesStringArray = allFieldNames.toArray(new String[0]);
+                response = gui.dropDownList("Væg et felt", allFieldNamesStringArray);
+                System.out.println("felt valgt: " + response);
+                ArrayList<String> fieldPositionAsArray = board.lookUpFieldStringValues(null, "title", response, "position");
+                int fieldPosition = Integer.parseInt(fieldPositionAsArray.get(0));
+                System.out.println("Felt position: " + fieldPosition);
+                player.setPosition(fieldPosition);
+                movePlayer(player, currentPosition, IGNORE_DIE_VALUES, true);
+            }
             case "Sæt næste terningslag" -> {}
             case "Modtag løsladelseskort" -> {}
             case "Sæt balance" -> {}
             case "Sæt en anden spillers balance" -> {}
             case "Køb alle grunde" -> {}
+            case "Gå i fængsel" -> {}
             case "Vind spillet" -> {}
         }
     }

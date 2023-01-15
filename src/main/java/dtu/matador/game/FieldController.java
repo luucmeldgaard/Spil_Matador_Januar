@@ -116,6 +116,9 @@ public class FieldController {
 
     public ArrayList<FieldSpaces> lookUpFields(ArrayList<FieldSpaces> lookUp, String searchKey, String searchValue) {
         ArrayList<FieldSpaces> fieldsFound = new ArrayList<>();
+        if (lookUp == null) {
+            lookUp = fields;
+        }
         Map <String, String> fieldAsMap;
         for (FieldSpaces field : lookUp) {
             fieldAsMap = getFieldAsMap(field.getPosition());
@@ -124,6 +127,34 @@ public class FieldController {
             }
         }
         return fieldsFound;
+    }
+
+    public ArrayList<String> lookUpFieldStringValues(ArrayList<FieldSpaces> lookUp, String searchKeyCriteria, String searchValueCriteria, String searchKey) {
+        ArrayList<String> valuesFound = new ArrayList<>();
+        if (lookUp == null) {
+            lookUp = fields;
+        }
+        ArrayList<FieldSpaces> fieldsFound = lookUpFields(lookUp, searchKeyCriteria, searchValueCriteria);
+
+        Map <String, String> fieldAsMap;
+        for (FieldSpaces field : fieldsFound) {
+            fieldAsMap = getFieldAsMap(field.getPosition());
+            String result = fieldAsMap.get(searchKey);
+            if (result != null) {
+                valuesFound.add(result);
+            }
+        }
+        return valuesFound;
+    }
+
+    public ArrayList<String> lookUpFieldStringValues(String searchKey) {
+        ArrayList<String> valuesFound = new ArrayList<>();
+        for (Map<String, String> fieldAsMap : fieldList) {
+            if (fieldAsMap.containsKey(searchKey)) {
+                valuesFound.add(fieldAsMap.get(searchKey));
+            }
+        }
+        return valuesFound;
     }
 
     protected void landOnField(String playerID, int startPosition, int currentPosition, boolean passStart) {
