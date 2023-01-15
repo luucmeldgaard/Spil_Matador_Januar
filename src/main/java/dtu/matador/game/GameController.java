@@ -67,20 +67,22 @@ public class GameController {
             String playerName = player.getName();
             String response = gui.buttonRequest("Det er " + playerName + "'s tur. Kast med terningerne", "Kast", "Andet");
             if (response.equals("Andet")) {
-                response = gui.dropDownList("Vælg en action fra menuen", "Kast Terninger", "Lav byttehandel", "Gem Spil", "Sælg boliger", "Giv Op");
-                if (!response.equals("Kast Terninger")) {
-                    bonusMenuHandler(player, response);
-                }
+                bonusMenuHandler(player);
             }
-            if (playerController.getPlayerFromID(player.getId()) != null) {
-                int[] dieValues = player.rollDie();
-                movePlayer(player, dieValues);
+            else {
+                if (playerController.getPlayerFromID(player.getId()) != null) {
+                    int[] dieValues = player.rollDie();
+                    movePlayer(player, dieValues);
+                }
             }
         }
     }
 
-    private static void bonusMenuHandler(Player player, String response) {
+    private static void bonusMenuHandler(Player player) {
+        String response = gui.dropDownList("Vælg en action fra menuen", "Tilbage", "Lav byttehandel", "Gem Spil", "Sælg boliger", "Giv Op");
         switch (response) {
+            case "Tilbage" -> { playRound(player); }
+            case "Snydekoder" -> { cheatMenu(player); }
             case "Lav byttehandel" -> {}
             case "Gem Spil" -> {}
             case "Sælg bolig(er)" -> {}
@@ -89,10 +91,7 @@ public class GameController {
                 playerController.removePlayer(id);
                 gui.removePlayer(id);
             }
-
-
         }
-
     }
 
     private static void movePlayer(Player player, int[] dieValues){
@@ -106,21 +105,19 @@ public class GameController {
         board.landOnField(player.getId(), currentPlayerPosition, player.getPosition(), true);
     }
 
-
-    public void landOn() {
-        // retrieves fieldtype from Field Controller
-
-    }
-
-    public void Property() {
-
-    }
-
-    public void updateGUI(Player player) {
-    }
-
-    public void updateGUI(FieldController board) {
-
+    private static void cheatMenu(Player player) {
+       String response = gui.dropDownList("Vælg en snydekode", "Tilbage", "Flyt til felt", "Sæt næste terningslag", "Modtag løsladelseskort",
+                                                  "Sæt balance", "Sæt en anden spillers balance", "Køb alle grunde", "Vind spillet");
+        switch (response) {
+            case "Tilbage" -> { bonusMenuHandler(player); }
+            case "Flyt til felt" -> {}
+            case "Sæt næste terningslag" -> {}
+            case "Modtag løsladelseskort" -> {}
+            case "Sæt balance" -> {}
+            case "Sæt en anden spillers balance" -> {}
+            case "Køb alle grunde" -> {}
+            case "Vind spillet" -> {}
+        }
     }
 
 
