@@ -29,7 +29,7 @@ public class GameController {
         setupPlayers();
     }
     private static void play() {
-        while (true) {
+        while (playerController.getAllPlayerIDs().size() != 1) {
             Player player = playerController.getCurrentPlayer();
             playRound(player); // set later
             int[] lastDieRoll = player.getLastPlayedDieRoll();
@@ -45,6 +45,7 @@ public class GameController {
                 playerController.nextPlayer(); // set later
             }
         }
+        System.out.println("game ended");
     }
 
     //Sets the board in the GUI
@@ -213,7 +214,6 @@ public class GameController {
                         playerController.removePlayer(targetID);
                         gui.removePlayer(targetID);
                     }
-                    playRound(player);
                 }
             }
         }
