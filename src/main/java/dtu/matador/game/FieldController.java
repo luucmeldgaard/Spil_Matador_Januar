@@ -30,6 +30,7 @@ public class FieldController {
         gui.setGUI(fieldList);
         chanceMap = fieldLoader.getChanceList();
 
+
     }
 
     public FieldController(PlayerController injectPlayerController, GUIController injectGui) {
@@ -155,6 +156,17 @@ public class FieldController {
             }
         }
         return valuesFound;
+    }
+
+    public int getJailPosition() {
+        ArrayList<FieldSpaces> allJailPositions = lookUpFields(fields, "fieldType", "jail");
+        int firstInstance;
+        for (FieldSpaces jailField : allJailPositions) {
+            if (((Jail) jailField).getInstanceOfJail() == 0) {
+                return jailField.getPosition();
+            }
+        }
+        return 0;
     }
 
     protected void landOnField(String playerID, int startPosition, int currentPosition, boolean passStart) {

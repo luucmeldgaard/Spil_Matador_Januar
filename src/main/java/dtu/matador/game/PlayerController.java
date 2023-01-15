@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class PlayerController {
 
     protected ArrayList<Player> players;
+    protected ArrayList<String> removedPlayers;
     private int currentPlayerNum;
 
     public PlayerController() {
         this.players = new ArrayList<>();
+        this.removedPlayers = new ArrayList<>();
         this.currentPlayerNum = 0;
     }
 
@@ -56,8 +58,11 @@ public class PlayerController {
 
     public void removePlayer(String playerID) {
         Player player = getPlayerFromID(playerID);
+        removedPlayers.add(player.getId());
         players.remove(player);
     }
+
+    public ArrayList<String> getRemovedPlayerIDs() { return this.removedPlayers; }
 
     public boolean handleTransaction(String targetPlayerID, String beneficiaryID, int amount, boolean critical) {
         Player targetPlayer = getPlayerFromID(targetPlayerID);

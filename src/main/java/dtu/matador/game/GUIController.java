@@ -35,6 +35,10 @@ class GUIController {
         return gui.getUserButtonPressed(message, buttons);
     }
 
+    public int intRequest(String message, int minValue, int maxValue) {
+        return gui.getUserInteger(message, minValue, maxValue);
+    }
+
     public String dropDownList(String message, String... buttons) {
         return gui.getUserSelection(message, buttons);
     }
@@ -155,8 +159,10 @@ class GUIController {
     }
 
     public void removePlayer(String playerID) {
-        GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
-        player.getCar().setPosition(null);
+        if (Integer.parseInt(playerID) < guiPlayers.size()) {
+            GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
+            player.getCar().setPosition(null);
+        }
     }
 
     public int getBoardSize() {return boardSize; }

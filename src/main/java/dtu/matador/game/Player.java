@@ -78,6 +78,7 @@ public class Player {
     public void addBalance(int amount) {
         this.balance += amount;
     }
+    public void setBalance(int amount) { this.balance = amount;}
     public void setjailed (int jailedstatus){
         jailed = jailedstatus;
     }
@@ -109,7 +110,11 @@ public class Player {
         else {return false; }
     }
 
+    public int getJailCards() { return this.jailCards; }
+    public void setJailCards(int amount) { this.jailCards = amount; }
+
     public int[] getLastPlayedDieRoll() {
         return this.lastPlayedDieRoll;
     }
+    public void setLastPlayedDieRoll(int[] dieRoll) { this.lastPlayedDieRoll = dieRoll; }
 }
