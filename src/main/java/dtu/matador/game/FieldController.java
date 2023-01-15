@@ -238,11 +238,11 @@ public class FieldController {
         else if (currentField instanceof Street) {
             landOnStreet(playerID, ((Street) currentField));
         } else if (currentField instanceof Brewery) {
-            landOnUtility(playerID, ((Brewery) currentField));
+            landOnBrewery(playerID, ((Brewery) currentField));
         } else if (currentField instanceof Ferry) {
             landOnFerry(playerID, ((Ferry) currentField));
         }
-        // Street, Utility, Ferry, etc.
+        // Street, Brewery, Ferry, etc.
     }
 
     private void landOnFerry(String playerID, Ferry ferry) {
@@ -297,7 +297,7 @@ public class FieldController {
         }
     }
 
-    private void landOnUtility(String playerID, Brewery currentField) {
+    private void landOnBrewery(String playerID, Brewery currentField) {
     }
 
     private void landOnStreet(String playerID, Street street) {

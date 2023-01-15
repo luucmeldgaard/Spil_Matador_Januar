@@ -201,7 +201,7 @@ class railroad {
 - pledged : Boolean
 }
 
-class utility {
+class Brewery {
 - streetHouses : int
 - streetHotels : int
 - visitPrice : int[]
@@ -370,7 +370,7 @@ class railroad {
 - pledged : Boolean
 }
 
-class utility {
+class Brewery {
 - streetHouses : int
 - streetHotels : int
 - visitPrice : int[]
@@ -538,7 +538,7 @@ class street {
 class railroad {
 }
 
-class utility {
+class Brewery {
 }
 }
 
@@ -717,7 +717,7 @@ class street {
 class railroad {
 }
 
-class utility {
+class Brewery {
 }
 }
 
@@ -854,7 +854,7 @@ class FieldController {
 - landOnStart() : void
 - landOnProperty() : void
 - landOnFerry() : void
-- landOnUtility() : void
+- landOnBrewery() : void
 - landOnStreet() : void
 - landOnChance() : void
 # createTransaction() : boolean
