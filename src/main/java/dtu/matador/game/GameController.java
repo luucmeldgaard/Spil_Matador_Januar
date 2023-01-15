@@ -20,6 +20,7 @@ public class GameController {
         gui = new GUIController();
         menu();
         play();
+        end();
     }
 
     private static void menu() {
@@ -46,6 +47,19 @@ public class GameController {
             }
         }
         System.out.println("game ended");
+    }
+
+    public static void end() {
+        gui.buttonRequest("Du er den sidste spiller tilbage. Du har vundet spillet!", "Kør sejrsrunde");
+        ArrayList<String> playerIDArrayList = playerController.getAllPlayerIDs();
+        Player winner = playerController.getPlayerFromID(playerIDArrayList.get(0));
+        for (int i = 0; i < 3; i++) {
+            gui.movePlayerTo(winner.getId(), winner.getPosition(), winner.getPosition() - 1);
+        }
+        gui.buttonRequest("Du kan nu lukke spillet", "Exit");
+        gui.close();
+        System.exit(0);
+
     }
 
     //Sets the board in the GUI
