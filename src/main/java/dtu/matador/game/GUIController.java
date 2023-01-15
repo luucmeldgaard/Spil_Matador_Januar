@@ -35,6 +35,10 @@ class GUIController {
         return gui.getUserButtonPressed(message, buttons);
     }
 
+    public String dropDownList(String message, String... buttons) {
+        return gui.getUserSelection(message, buttons);
+    }
+
     public ArrayList<String> colorNamesArrayList = new ArrayList<String>();
     public void fillColorSelector(){
         colorNamesArrayList.add("Rød");
