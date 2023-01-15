@@ -109,18 +109,20 @@ public class GameController {
             player.setPosition(currentPosition + total);
         }
 
+
+
         // player moves
         gui.movePlayerTo(player.getId(), currentPosition, player.getPosition());
         board.landOnField(player.getId(), currentPosition, player.getPosition(), passStartBonus);
     }
 
     private static void cheatMenu(Player player) {
-       String response = gui.dropDownList("Vælg en snydekode", "Tilbage", "Flyt til felt", "Sæt næste terningslag", "Modtag løsladelseskort",
+        int currentPosition = player.getPosition();
+        String response = gui.dropDownList("Vælg en snydekode", "Tilbage", "Flyt til felt", "Sæt næste terningslag", "Modtag løsladelseskort",
                                                   "Sæt balance", "Sæt en anden spillers balance", "Køb alle grunde", "Vind spillet");
         switch (response) {
             case "Tilbage" -> { bonusMenuHandler(player); }
             case "Flyt til felt" -> {
-                int currentPosition = player.getPosition();
                 ArrayList<String> allFieldNames = board.lookUpFieldStringValues("title");
                 String[] allFieldNamesStringArray = allFieldNames.toArray(new String[0]);
                 response = gui.dropDownList("Væg et felt", allFieldNamesStringArray);
@@ -131,7 +133,13 @@ public class GameController {
                 player.setPosition(fieldPosition);
                 movePlayer(player, currentPosition, IGNORE_DIE_VALUES, true);
             }
-            case "Sæt næste terningslag" -> {}
+            case "Sæt næste terningslag" -> {
+                String[] dieFaces = new String[]{"1", "2", "3", "4", "5", "6"};
+                int die1 = Integer.parseInt(gui.dropDownList("Choose first die", dieFaces));
+                int die2 = Integer.parseInt(gui.dropDownList("Choose first die", dieFaces));
+                int[] setDieValues = new int[]{die1, die2, die1+die2};
+                movePlayer(player, currentPosition, setDieValues, true);
+            }
             case "Modtag løsladelseskort" -> {}
             case "Sæt balance" -> {}
             case "Sæt en anden spillers balance" -> {}
