@@ -298,6 +298,16 @@ public class FieldController {
     }
 
     private void landOnBrewery(String playerID, Brewery currentField) {
+        Player player = playerController.getPlayerFromID(playerID);
+        String owner = currentField.getOwner();
+        if (owner == null) {
+            return;
+        }
+        if (!owner.equals(playerID)) {
+            int balance = player.getBalance();
+            int rent = 10*currentField.getRent()*
+            createTransaction(playerID, owner)
+        }
     }
 
     private void landOnStreet(String playerID, Street street) {
