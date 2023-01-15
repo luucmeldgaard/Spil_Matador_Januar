@@ -25,6 +25,7 @@ public class Player {
 
     private PlayerHousing playerHousing;
 
+
     public Player(String name, String color, int position, int balance) {
         this.name = name;
         this.color = color;

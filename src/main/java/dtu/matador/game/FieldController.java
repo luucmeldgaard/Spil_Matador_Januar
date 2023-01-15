@@ -284,11 +284,11 @@ public class FieldController {
         else if (currentField instanceof Street) {
             landOnStreet(playerID, ((Street) currentField));
         } else if (currentField instanceof Brewery) {
-            landOnUtility(playerID, ((Brewery) currentField));
+            landOnBrewery(playerID, ((Brewery) currentField));
         } else if (currentField instanceof Ferry) {
             landOnFerry(playerID, ((Ferry) currentField));
         }
-        // Street, Utility, Ferry, etc.
+        // Street, Brewery, Ferry, etc.
     }
 
     private void landOnFerry(String playerID, Ferry ferry) {
@@ -343,7 +343,18 @@ public class FieldController {
         }
     }
 
-    private void landOnUtility(String playerID, Brewery currentField) {
+    private void landOnBrewery(String playerID, Brewery currentField) {
+        Player player = playerController.getPlayerFromID(playerID);
+        String owner = currentField.getOwner();
+        if (owner == null) {
+            return;
+        }
+        if (!owner.equals(playerID)) {
+            int balance = player.getBalance();
+            int total = player.getLastPlayedDieRoll()[2];
+            int breweryRent = 4*currentField.getRent()*total;
+            createTransaction(playerID, owner, breweryRent, true,"");
+        }
     }
 
     private void landOnStreet(String playerID, Street street) {
