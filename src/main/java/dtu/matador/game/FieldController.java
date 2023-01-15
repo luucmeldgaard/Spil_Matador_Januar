@@ -306,7 +306,7 @@ public class FieldController {
         if (!owner.equals(playerID)) {
             int balance = player.getBalance();
             int total = player.getLastPlayedDieRoll()[2];
-            int breweryRent = 10*currentField.getRent()*total;
+            int breweryRent = 4*currentField.getRent()*total;
             createTransaction(playerID, owner, breweryRent, true,"");
         }
     }
