@@ -8,6 +8,7 @@ public class FieldController {
 
     private ArrayList<FieldSpaces> fields;
     private ArrayList<Map<String,String>> fieldList;
+    private PropertyBank propertyBank;
     private ArrayList<Map<String,String>> chanceMap;
     public FieldSpaces currentField;
     private final PlayerController playerController;
@@ -20,6 +21,7 @@ public class FieldController {
         this.gui = injectGui;
         FieldLoader fieldLoader = new FieldLoader(selectedBoard);
         fieldList = fieldLoader.getFieldList();
+        this.propertyBank = new PropertyBank(fieldList, playerController.getAllPlayerIDs());
 
         fields = new ArrayList<>();
         for (int i = 0; i < fieldList.size(); i++) {
@@ -46,19 +48,20 @@ public class FieldController {
             int fieldPosition = Integer.parseInt(field.get("position"));
             switch (field.get("fieldType")) {
                 case "property" -> {
-                    fields.set(fieldPosition, new Street(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"), field.get("rent2"),
+                    fields.set(fieldPosition, propertyBank.addProperty(field.get("neighborhood"), new Street(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"), field.get("rent2"),
                             field.get("rent3"), field.get("rent4"), field.get("rent5"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
-                            field.get("position"), field.get("owner"), field.get("housing"), field.get("neighborhood"), field.get("groupsize")));
+                            field.get("position"), field.get("owner"), field.get("housing"), field.get("neighborhood"), field.get("groupsize"))));
+
                 }
                 case "ferry" -> {
-                    fields.set(fieldPosition, new Ferry(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"), field.get("rent"),
+                    fields.set(fieldPosition, propertyBank.addProperty(field.get("neighborhood"), new Ferry(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"), field.get("rent"),
                             field.get("rent"), field.get("rent"), field.get("rent"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
-                            field.get("position"), field.get("owner"), field.get("neighborhood"), field.get("groupsize")));
+                            field.get("position"), field.get("owner"), field.get("neighborhood"), field.get("groupsize"))));
                 }
                 case "brewery" -> {
-                    fields.set(fieldPosition, new Brewery(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"), field.get("rent"),
+                    fields.set(fieldPosition, propertyBank.addProperty(field.get("neighborhood"), new Brewery(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"), field.get("rent"),
                             field.get("rent"), field.get("rent"), field.get("rent"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
-                            field.get("position"), field.get("owner"), field.get("neighborhood"), field.get("groupsize")));
+                            field.get("position"), field.get("owner"), field.get("neighborhood"), field.get("groupsize"))));
                 }
                 case "refuge" -> {
                     fields.set(fieldPosition, new Refuge(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
@@ -170,6 +173,10 @@ public class FieldController {
     }
 
     protected void landOnField(String playerID, int startPosition, int currentPosition, boolean passStart) {
+        for (Property property : propertyBank.getPropertiesFromGroup("Pink")) {
+            System.out.println(property.getPosition() + "_________________________");
+        }
+        System.out.println("TEST");
         if (startPosition > currentPosition && passStart) {
             System.out.println("Player passed start");
                 landOnStart(playerID, ((StartField) fields.get(0)));
@@ -264,7 +271,7 @@ public class FieldController {
                         updateGUI(property, playerID);
 
 
-                        ArrayList<Property> propertyList = player.getPlayerHousing().getPropertiesFromColor(property.getNeighborhood());
+                        /*ArrayList<Property> propertyList = player.getPlayerHousing().getPropertiesFromColor(property.getNeighborhood());
 
                         if (propertyList == null) {
                             propertyList = new ArrayList<>();
@@ -272,7 +279,7 @@ public class FieldController {
                         } else {
                             propertyList.add(property);
                         }
-                        player.getPlayerHousing().addProperty(property.getNeighborhood(), propertyList);
+                        player.getPlayerHousing().addProperty(property.getNeighborhood(), propertyList);*/
                     }
                 }
             } else if (choice.equals("Auction")) {
@@ -373,7 +380,7 @@ public class FieldController {
             //checks if the owner has sufficient funds to buy a house
             if (balance >= street.getBuildPrice()) {
 
-                if(!player.getPlayerHousing().canBuyHouse(property.getNeighborhood())) return;
+                /*if(!player.getPlayerHousing().canBuyHouse(property.getNeighborhood())) return;
 
                 int nextBuildPrice = street.getBuildPrice();
                 if (street.housing < 5) {
@@ -391,7 +398,7 @@ public class FieldController {
                             }
                         }
                     }
-                }
+                }*/
             }
             // player does not care about housing because he doesn't have the money for it.
 
@@ -649,7 +656,7 @@ public class FieldController {
                     continue;
                 }
             }
-            if (overwriteOwners) {
+            /*if (overwriteOwners) {
                 // TODO remove housing from the original player
             }
             ((Property) property).setOwner(playerID);
@@ -664,7 +671,7 @@ public class FieldController {
             }
             player.getPlayerHousing().addProperty(((Property)property).getNeighborhood(), propertyList);
             updateFieldMap(((Property)property));
-            updateGUI(((Property)property), playerID);
+            updateGUI(((Property)property), playerID);*/
         }
     }
 

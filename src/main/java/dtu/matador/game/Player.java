@@ -1,8 +1,5 @@
 package dtu.matador.game;
 
-import java.awt.*;
-import java.util.ArrayList;
-
 public class Player {
 
     //A player's attributes are implemented
@@ -23,15 +20,12 @@ public class Player {
 
     private int[] lastPlayedDieRoll;
 
-    private PlayerHousing playerHousing;
-
 
     public Player(String name, String color, int position, int balance) {
         this.name = name;
         this.color = color;
         this.position = position;
         this.balance = balance;
-        this.playerHousing = new PlayerHousing();
         this.jailCards = 0;
         setId();
     }
@@ -93,10 +87,6 @@ public class Player {
     public boolean balanceCheck(int amount) {
         int nextBalance = this.balance + amount;
         return nextBalance >= 0;
-    }
-
-    public PlayerHousing getPlayerHousing() {
-        return playerHousing;
     }
 
     public void addJailCard() {
