@@ -65,11 +65,36 @@ public class GameController {
         }
         else {
             String playerName = player.getName();
-            gui.buttonRequest(("Det er " + playerName + "'s tur. Kast med terningerne"), "Kast");
-            int[] dieValues = player.rollDie();
-            movePlayer(player, dieValues);
+            String response = gui.buttonRequest("Det er " + playerName + "'s tur. Kast med terningerne", "Kast", "Andet");
+            if (response.equals("Andet")) {
+                response = gui.dropDownList("Vælg en action fra menuen", "Kast Terninger", "Lav byttehandel", "Gem Spil", "Sælg boliger", "Giv Op");
+                if (!response.equals("Kast Terninger")) {
+                    bonusMenuHandler(player, response);
+                }
+            }
+            if (playerController.getPlayerFromID(player.getId()) != null) {
+                int[] dieValues = player.rollDie();
+                movePlayer(player, dieValues);
+            }
         }
     }
+
+    private static void bonusMenuHandler(Player player, String response) {
+        switch (response) {
+            case "Lav byttehandel" -> {}
+            case "Gem Spil" -> {}
+            case "Sælg bolig(er)" -> {}
+            case "Giv Op" -> {
+                String id = player.getId();
+                playerController.removePlayer(id);
+                gui.removePlayer(id);
+            }
+
+
+        }
+
+    }
+
     private static void movePlayer(Player player, int[] dieValues){
         int total = dieValues[2];
         gui.setDice(dieValues);
