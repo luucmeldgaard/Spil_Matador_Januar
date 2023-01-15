@@ -9,7 +9,7 @@ public class TaxField extends NonPurchasableFields {
     String description;
     String color1;
     String color2;
-    String bill;
+    int bill;
 
     public TaxField(FieldController controller, String name, String subtext, String description, String color1, String color2, String bill, String position) {
         super(controller, name, subtext, description, color1, color2, position);
@@ -18,7 +18,11 @@ public class TaxField extends NonPurchasableFields {
         this.description = description;
         this.color1 = color1;
         this.color2 = color2;
-        this.bill = bill;
+        this.bill = Integer.parseInt(bill);
 
+    }
+
+    public int getBill() {
+        return -this.bill;
     }
 }

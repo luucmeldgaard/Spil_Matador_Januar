@@ -146,6 +146,9 @@ public class FieldController {
         else if (currentField instanceof Chance) {
             landOnChance(playerID, ((Chance) currentField));
         }
+        else if (currentField instanceof TaxField) {
+            landOnTax(playerID, ((TaxField) currentField));
+        }
 
         // property, chance, jail, etc.
     }
@@ -505,8 +508,10 @@ public class FieldController {
         }
 
     }
-    public void playRoundJailed(Player player) {
-
+    public void landOnTax(String playerID, TaxField currentField) {
+        int bill = currentField.getBill();
+        String message = "Skattefar giver dig et skattesmæk på " + Math.abs(bill);
+        createTransaction(playerID, null, bill, true, message);
     }
 
     private void payForJail(Player player){
