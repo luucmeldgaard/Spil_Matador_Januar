@@ -54,12 +54,12 @@ public class FieldController {
 
                 }
                 case "ferry" -> {
-                    fields.set(fieldPosition, propertyBank.addProperty(field.get("neighborhood"), new Ferry(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"), field.get("rent"),
-                            field.get("rent"), field.get("rent"), field.get("rent"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
+                    fields.set(fieldPosition, propertyBank.addProperty(field.get("neighborhood"), new Ferry(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"), field.get("rent2"),
+                            field.get("rent3"), field.get("rent"), field.get("rent"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
                             field.get("position"), field.get("owner"), field.get("neighborhood"), field.get("groupsize"))));
                 }
                 case "brewery" -> {
-                    fields.set(fieldPosition, propertyBank.addProperty(field.get("neighborhood"), new Brewery(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"), field.get("rent"),
+                    fields.set(fieldPosition, propertyBank.addProperty(field.get("neighborhood"), new Brewery(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"), field.get("rent"),
                             field.get("rent"), field.get("rent"), field.get("rent"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
                             field.get("position"), field.get("owner"), field.get("neighborhood"), field.get("groupsize"))));
                 }
@@ -305,38 +305,22 @@ public class FieldController {
             System.out.println("This ferry is owned by you. ");
         }
         else {
-            String message = "This ferry is owned by someone else!";
             //TODO den nedenstående variable skal ændres således at den ser på ejerens ferries og ikke den nuværende spillers...
-            switch (player.getFerries()) {
-                case 1 -> {
-                    int rent = ferry.getRent();
-                    System.out.println(rent);
-                    String receiverID = ferry.getOwner();
-
-                    createTransaction(playerID, receiverID, rent, true, message);
-                }
-                case 2 -> {
-                    int rent1 = ferry.getRent1();
-                    System.out.println(rent1);
-                    String receiverID = ferry.getOwner();
-
-                    createTransaction(playerID, receiverID, rent1, true, message);
-                }
-                case 3 -> {
-                    int rent2 = ferry.getRent2();
-                    System.out.println(rent2);
-                    String receiverID = ferry.getOwner();
-
-                    createTransaction(playerID, receiverID, rent2, true, message);
-                }
-                case 4 -> {
-                    int rent3 = ferry.getRent3();
-                    System.out.println(rent3);
-                    String receiverID = ferry.getOwner();
-
-                    createTransaction(playerID, receiverID, rent3, true, message);
+            int ferriesOwned = 1;
+            for (Property property : propertyBank.getPropertiesFromGroup(ferry.getNeighborhood())) {
+                if (property.getOwner() != null) {
+                    if (property.getOwner().equals(owner)) {
+                        ferriesOwned += 1;
+                    }
                 }
             }
+
+            int rent = ferry.getRent(ferriesOwned);
+            System.out.println(rent);
+            String receiverID = ferry.getOwner();
+            String message = "Denne færge er ejet af en anden! Betal " + Math.abs(rent) + ", da der ejes " + ferriesOwned + " færge(r). ";
+
+            createTransaction(playerID, receiverID, rent, true, message);
         }
     }
 

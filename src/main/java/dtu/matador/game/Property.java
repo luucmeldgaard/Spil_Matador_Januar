@@ -3,23 +3,23 @@ package dtu.matador.game;
 public abstract class Property implements PropertyFields {
 
     //Creating variables that will be used
-    private final String name;
-    private final String subtext;
-    private final String description;
-    private int rent;
-    private final int rent0;
-    private final int rent1;
-    private final int rent2;
-    private final int rent3;
-    private final int rent4;
-    private final int rent5;
-    private final String color1;
-    private String color2;
-    private final String neighborhood;
+    protected final String name;
+    protected final String subtext;
+    protected final String description;
+    protected int rent;
+    protected int rent0;
+    protected int rent1;
+    protected int rent2;
+    protected int rent3;
+    protected int rent4;
+    protected int rent5;
+    protected String color1;
+    protected String color2;
+    protected final String neighborhood;
     //boolean purchasable = false;
-    private final int price;
-    private final int pawnForAmount;
-    private final int position;
+    protected final int price;
+    protected final int pawnForAmount;
+    protected final int position;
     private String owner;
     private int buildPrice;
     protected int housing;
@@ -73,6 +73,15 @@ public abstract class Property implements PropertyFields {
         return this.color1;
     }
 
+    private int currentRent() {
+        int[] rent = new int[] {this.rent0, this.rent1, this.rent2, this.rent3, this.rent4, this.rent5};
+        return rent[this.housing];
+    }
+    public int getRent() {
+        System.out.println("normal rent: " + this.rent0 + " actual rent with " + this.housing + " housing: " + currentRent());
+        return currentRent();
+    }
+
     public String getColor2() {return this.color2; }
 
     public void setColor2(String color) {this.color2 = color;}
@@ -89,15 +98,6 @@ public abstract class Property implements PropertyFields {
 
     public int getPosition() {
         return this.position;
-    }
-
-    private int currentRent() {
-        int[] rent = new int[] {this.rent0, this.rent1, this.rent2, this.rent3, this.rent4, this.rent5};
-        return rent[this.housing];
-    }
-    public int getRent() {
-        System.out.println("normal rent: " + this.rent0 + " actual rent with " + this.housing + " housing: " + currentRent());
-        return currentRent();
     }
     public int getRent1(){return rent1;}
     public int getRent2(){return rent2;}
@@ -127,6 +127,7 @@ public abstract class Property implements PropertyFields {
         return groupSize;
     }
 
+    public abstract int getRent(int ferriesOwned);
 }
 
 

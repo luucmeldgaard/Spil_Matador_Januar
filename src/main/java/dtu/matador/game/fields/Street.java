@@ -12,6 +12,17 @@ public class Street extends Property {
 
     }
 
+    private int currentRent() {
+        int[] rent = new int[] {this.rent0, this.rent1, this.rent2, this.rent3, this.rent4, this.rent5};
+        return rent[this.housing];
+    }
+
+    @Override
+    public int getRent(int ferriesOwned) {
+        System.out.println("normal rent: " + this.rent0 + " actual rent with " + this.housing + " housing: " + currentRent());
+        return currentRent();
+    }
+
     public int getHousing() {
         return this.housing;
     }
