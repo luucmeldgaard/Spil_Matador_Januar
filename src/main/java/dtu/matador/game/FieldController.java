@@ -21,7 +21,7 @@ public class FieldController {
         this.gui = injectGui;
         FieldLoader fieldLoader = new FieldLoader(selectedBoard);
         fieldList = fieldLoader.getFieldList();
-        this.propertyBank = new PropertyBank(fieldList, playerController.getAllPlayerIDs());
+        this.propertyBank = new PropertyBank();
 
         fields = new ArrayList<>();
         for (int i = 0; i < fieldList.size(); i++) {

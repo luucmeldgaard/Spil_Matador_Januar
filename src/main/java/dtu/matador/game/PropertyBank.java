@@ -10,7 +10,7 @@ import java.util.Properties;
 public class PropertyBank {
 
     private final HashMap<String, ArrayList<Property>> propertyMap;
-    public PropertyBank(ArrayList<Map<String, String>> fieldList, ArrayList<String> allPlayerIDs) {
+    public PropertyBank() {
         this.propertyMap = new HashMap<>();
     }
 
