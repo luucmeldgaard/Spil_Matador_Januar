@@ -2,8 +2,8 @@ package dtu.matador.game;
 
 import gui_main.GUI;
 
-import java.awt.*;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class GameController {
 
@@ -26,18 +26,30 @@ public class GameController {
     }
 
     private static void menu() {
-        String[] boards = loader.getFoundBoardFileNames();
-        String chosenBoard = "";
+
+        String chosenBoardFileName = "";
+        ArrayList<Map<String, String>> selectedBoard;
+
+        ArrayList<String> boardNamesRaw = loader.getFoundBoardFileNames();
+        ArrayList<String> boardNames = new ArrayList<>();
+        for (int i = 0; i < boardNamesRaw.size(); i++) {
+            boardNames.add(boardNamesRaw.get(i).replace("_board.json", ""));
+        }
+        String[] boardNamesList = boardNames.toArray(new String[0]);
+
         String osName = System.getProperty("os.name").toLowerCase();
-        if (boards.length == 0 || !osName.contains("windows")) {
+        if (boardNamesList.length == 0 || !osName.contains("windows")) {
             gui.buttonRequest("Start", "Start");
         }
         else {
-            chosenBoard = gui.dropDownList("Start", boards);
-
+            chosenBoardFileName = gui.dropDownList("Start", boardNamesList);
         }
+        loader.setBoard(chosenBoardFileName);
+        selectedBoard = loader.getBoardList();
+
         gui.close();
-        setBoard(chosenBoard);
+        setBoard(selectedBoard);
+
         setupPlayers();
     }
     private static void play() {
@@ -74,8 +86,8 @@ public class GameController {
     }
 
     //Sets the board in the GUI
-    private static void setBoard(String selectedBoard) {
-        board = new FieldController(playerController, gui, selectedBoard);
+    private static void setBoard(ArrayList<Map<String, String>> selectedBoard) {
+        board = new FieldController(playerController, gui, selectedBoard, loader.getChanceList());
     }
 
     //Adds a player, a player color and a playerID to the GUI

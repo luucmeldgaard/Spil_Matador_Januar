@@ -20,7 +20,7 @@ public class GUICreatorTest {
         GUICreator guiCreator = new GUICreator();
         Loader loader = new Loader("test_FieldData");
         ArrayList<Map<String, String>> fieldMap;
-        fieldMap = loader.getFieldList();
+        fieldMap = loader.getBoardList();
         guiCreator.setup(fieldMap);
     }
 

@@ -9,18 +9,17 @@ public class FieldController {
     private ArrayList<FieldSpaces> fields;
     private ArrayList<Map<String,String>> fieldList;
     private PropertyBank propertyBank;
-    private ArrayList<Map<String,String>> chanceMap;
+    private ArrayList<Map<String,String>> chanceList;
     public FieldSpaces currentField;
     private final PlayerController playerController;
     public final GUIController gui;
     int boardSize;
 
 
-    public FieldController(PlayerController injectPlayerController, GUIController injectGui, String selectedBoard) {
+    public FieldController(PlayerController injectPlayerController, GUIController injectGui, ArrayList<Map<String, String>> selectedBoard, ArrayList<Map<String, String>> selectedChance) {
         this.playerController = injectPlayerController;
         this.gui = injectGui;
-        //Loader loader = new Loader(selectedBoard);
-        //fieldList = loader.getFieldList();
+        fieldList = selectedBoard;
         this.propertyBank = new PropertyBank();
 
         fields = new ArrayList<>();
@@ -30,7 +29,7 @@ public class FieldController {
         setupFields();
         this.boardSize = fieldList.size();
         gui.setGUI(fieldList);
-        //chanceMap = loader.getChanceList();
+        chanceList = selectedChance;
 
 
     }
@@ -417,10 +416,10 @@ public class FieldController {
         Player player = playerController.getPlayerFromID(playerID);
         Random rand = new Random();
         int cardNumber = 0;
-        if (chanceMap.size() != 1) {
-            cardNumber = rand.nextInt(0, chanceMap.size() - 1);
+        if (chanceList.size() != 1) {
+            cardNumber = rand.nextInt(0, chanceList.size() - 1);
         }
-        Map <String, String> rawCard = chanceMap.get(cardNumber);
+        Map <String, String> rawCard = chanceList.get(cardNumber);
         Map <String, String> card = new HashMap<>();
         boolean payIfCrossStart = false;
         boolean condition = false;

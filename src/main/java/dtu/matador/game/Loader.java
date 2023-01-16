@@ -46,11 +46,11 @@ public class Loader {
         return allFiles;
     }
 
-    public void loadAll(String selectedBoard) {
+    /*public void loadAll(String selectedBoard) {
         this.boardList = JSONtoList(selectedBoard + ".json", "position", "board");
         this.colorMap = JSONtoMap(selectedColors + ".json", "colors");
         this.chanceList = JSONtoList(selectedChance + ".json", "Number", "chance");
-    }
+    }*/
 
 
     // A JSON reader which reads a JSON and parses it to a string,
@@ -161,24 +161,25 @@ public class Loader {
         }
     }
 
-    public String[] getFoundBoardFileNames() {
-        return this.boardFiles.toArray(new String[0]);
+    public ArrayList<String> getFoundBoardFileNames() {
+        return this.boardFiles;
     }
 
-    public String[] getFoundColorFileNames() {
-        return this.colorFiles.toArray(new String[0]);
+    public ArrayList<String> getFoundColorFileNames() {
+        return this.colorFiles;
     }
 
-    public String[] getFoundChanceFileNames() {
-        return this.chanceFiles.toArray(new String[0]);
+    public ArrayList<String> getFoundChanceFileNames() {
+        return this.chanceFiles;
     }
 
     public void setBoard(String filename) {
-        //this.boardList = JSONtoList(filename, "")
+        String outerMapKey = "position";
+        this.boardList = JSONtoList(filename, outerMapKey, "board");
     }
 
     // returns the Mapped fields
-    public ArrayList<Map<String,String>> getFieldList() {
+    public ArrayList<Map<String,String>> getBoardList() {
         return boardList;
     }
 

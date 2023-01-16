@@ -33,7 +33,7 @@ public class LoaderTest {
         Loader loader = new Loader("test_FieldData");
 
         ArrayList<Map<String, String>> fieldList;
-        fieldList = loader.getFieldList();
+        fieldList = loader.getBoardList();
 
         assertEquals(java.util.ArrayList.class, fieldList.getClass());
     }
@@ -44,7 +44,7 @@ public class LoaderTest {
 
         Loader loader = new Loader("test_FieldData");
         ArrayList<Map<String, String>> testList;
-        testList = loader.getFieldList();
+        testList = loader.getBoardList();
 
         for (Map<String, String> field : testList) {
             System.out.println("_____field_____");
@@ -61,9 +61,9 @@ public class LoaderTest {
 
         Loader loader = new Loader("test_FieldData");
         ArrayList<Map<String, String>> testList;
-        testList = loader.getFieldList();
+        testList = loader.getBoardList();
 
-        String testMapString = loader.getFieldList().toString();
+        String testMapString = loader.getBoardList().toString();
 
         char lastLetter = ' ';
         for (int i = 0; i < testMapString.length(); i++) {
