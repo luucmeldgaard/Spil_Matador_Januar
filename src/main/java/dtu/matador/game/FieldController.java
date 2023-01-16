@@ -350,6 +350,7 @@ public class FieldController {
         //If the field is owned by the current player, they have the choice to buy a house if they have sufficient funds
         if (owner.equals(playerID)) {
             System.out.println("This field is owned by you. ");
+            sellHousing(playerID,street);
             Property property = (Property) street;
             //checks if the owner has sufficient funds to buy a house
             if (balance >= street.getBuildPrice() && propertyBank.canBuyHouse(playerID, property.getNeighborhood()) && street.getHousing() < 5) {
@@ -635,24 +636,22 @@ public class FieldController {
             }
     }
 
-    public double sellHousing(String playerID, Street street){
-        if (street.getOwner().equals(playerID) && street.getHousing() > 0) {
+    public void sellHousing(String playerID, Street street){
+        if (street.getHousing() > 0) {
             String sale = gui.buttonRequest("Vil du sælge dette hus?", "Ja" , "Nej");
             Player player = playerController.getPlayerFromID(playerID);
             if (sale.equals("Ja")){
+                int sellPrice = 0;
                 for (Property propertyInGroup : propertyBank.getPropertiesFromGroup(street.getNeighborhood())) {
-                    double sellPrice = street.getPrice() * 0.5;
-                    propertyInGroup.setHousing(street.getHousing() - 1);
+                    sellPrice += street.getPrice() * 0.5;
+                    Street streetGroup = (Street) propertyInGroup;
+                    streetGroup.setHousing(street.getHousing() - 1);
+                    updateGUI(propertyInGroup, playerID);
+                    updateFieldMap(propertyInGroup);
                 }
-
+                createTransaction(playerID, null, sellPrice, false, "Du har solgt ét hus på hver ejendom i området. Modtag" + sellPrice + "kroner.");
             }
 
         }
-        else {
-
-            // buy? pass?
-
-        }
     }
-
 }
