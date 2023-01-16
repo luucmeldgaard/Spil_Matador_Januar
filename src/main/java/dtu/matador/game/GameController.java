@@ -34,6 +34,7 @@ public class GameController {
         }
         else {
             chosenBoard = gui.dropDownList("Start", boards);
+
         }
         gui.close();
         setBoard(chosenBoard);

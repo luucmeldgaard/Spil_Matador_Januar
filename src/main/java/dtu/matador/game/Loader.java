@@ -10,20 +10,23 @@ import java.util.*;
 
 public class Loader {
 
+
     ArrayList<String> boardFiles;
     ArrayList<String> colorFiles;
     ArrayList<String> chanceFiles;
     ArrayList<Map<String, String>> boardList;
+    Map<String, String> settings;
     Map<String, String> colorMap;
     ArrayList<Map<String, String>> chanceList;
 
     public Loader() {
+        this.settings = JSONtoMap("settings.json", "settings");
         this.boardFiles = getAllFilesOfType("board");
         this.colorFiles = getAllFilesOfType("colors");
         this.chanceFiles = getAllFilesOfType("chance");
         this.boardList = new ArrayList<>();
-        this.colorMap = new HashMap<>();
-        this.chanceList = new ArrayList<>();
+        this.colorMap = JSONtoMap(this.settings.get("colors"), "colors");
+        this.chanceList = JSONtoList(this.settings.get("chance"), "Number", "chance");
     }
 
     public ArrayList<String> getAllFilesOfType(String SnakeCaseSuffix) {
@@ -43,9 +46,9 @@ public class Loader {
         return allFiles;
     }
 
-    public void loadAll(String selectedBoard, String selectedColors, String selectedChance) {
+    public void loadAll(String selectedBoard) {
         this.boardList = JSONtoList(selectedBoard + ".json", "position", "board");
-        this.colorMap = JSONtoMapColors(selectedColors + ".json", "colors");
+        this.colorMap = JSONtoMap(selectedColors + ".json", "colors");
         this.chanceList = JSONtoList(selectedChance + ".json", "Number", "chance");
     }
 
@@ -85,7 +88,8 @@ public class Loader {
         catch (IOException | ParseException ex) {
             try {
                 switch (jsonType) {
-                    case "board" -> filename = "default_fieldData.json";
+                    case "settings" -> filename = "default_settings.json";
+                    case "board" -> filename = "default_board.json";
                     case "chance" -> filename = "default_chance.json";
                     case "colors" -> filename = "default_colors.json";
                 }
@@ -140,7 +144,7 @@ public class Loader {
     }
 
     //Converts JSON to colors on map
-    private Map<String, String> JSONtoMapColors(String filename, String jsonType) {
+    private Map<String, String> JSONtoMap(String filename, String jsonType) {
         ObjectMapper mapper = new ObjectMapper();
         String objString = read(filename, jsonType);
         objString = objString.replace("[", "");
@@ -167,6 +171,10 @@ public class Loader {
 
     public String[] getFoundChanceFileNames() {
         return this.chanceFiles.toArray(new String[0]);
+    }
+
+    public void setBoard(String filename) {
+        //this.boardList = JSONtoList(filename, "")
     }
 
     // returns the Mapped fields
