@@ -173,10 +173,6 @@ public class FieldController {
     }
 
     protected void landOnField(String playerID, int startPosition, int currentPosition, boolean passStart) {
-        for (Property property : propertyBank.getPropertiesFromGroup("Pink")) {
-            System.out.println(property.getPosition() + "_________________________");
-        }
-        System.out.println("TEST");
         if (startPosition > currentPosition && passStart) {
             System.out.println("Player passed start");
                 landOnStart(playerID, ((StartField) fields.get(0)));
@@ -260,7 +256,17 @@ public class FieldController {
             System.out.println("This field is not owned by anyone!");
             String choice = gui.buttonRequest("Buy or auction?", "Buy", "Auction");
             if (choice.equals("Buy")) {
-                property.buy(playerID);
+
+                String message = property.buyMessage();
+                boolean purchase = createTransaction(playerID,null, property.getPrice(), false, message);
+                if (purchase) {
+                    property.setOwner(playerID);
+                }
+                else {
+                    gui.buttonRequest("You have insufficient funds. ", "Ok");
+                    auction(playerID, property);
+                }
+
                 if (property.getOwner() != null) {
                     if (property.getPosition() == 5 || property.getPosition() == 15 || property.getPosition() == 25 || property.getPosition() == 35){
                         player.addFerries();
@@ -272,7 +278,8 @@ public class FieldController {
                     }
                 }
             } else if (choice.equals("Auction")) {
-                property.auction(playerID);
+                gui.buttonRequest("You have insufficient funds. ", "Ok");
+                auction(playerID, property);
             }
 
         }
@@ -330,12 +337,6 @@ public class FieldController {
                     createTransaction(playerID, receiverID, rent3, true, message);
                 }
             }
-
-            /*int rent = ferry.getRent();
-            System.out.println(rent);
-            String receiverID = ferry.getOwner();
-
-            createTransaction(playerID, receiverID, rent, true, message);*/
         }
     }
 
@@ -367,25 +368,22 @@ public class FieldController {
             System.out.println("This field is owned by you. ");
             Property property = (Property) street;
             //checks if the owner has sufficient funds to buy a house
-            if (balance >= street.getBuildPrice() && propertyBank.canBuyHouse(playerID, property.getNeighborhood())) {
+            if (balance >= street.getBuildPrice() && propertyBank.canBuyHouse(playerID, property.getNeighborhood()) && street.getHousing() < 5) {
 
-                int nextBuildPrice = street.getBuildPrice();
-                if (street.housing < 5) {
-                    String response = gui.buttonRequest("Do you want to purchase a house on each of your properties of the same color for " + nextBuildPrice * street.getGroupSize() + "?", "Buy", "Not Now");
-                    if (response.equals("Buy")) {
-                        boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false, "Buying house for " + street.getBuildPrice());
-                        if (transactionSuccess) {
+            int nextBuildPrice = street.getBuildPrice();
+                String response = gui.buttonRequest("Do you want to purchase a house on each of your properties of the same color for " + nextBuildPrice * street.getGroupSize() + "?", "Buy", "Not Now");
+                if (response.equals("Buy")) {
+                    boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false, "Buying house for " + street.getBuildPrice());
+                    if (transactionSuccess) {
 
-                            for(Property propertyInGroup : propertyBank.getPropertiesFromGroup(property.getNeighborhood())){
-                                propertyInGroup.buildHouse();
-                                updateGUI(propertyInGroup, playerID);
-                                updateFieldMap(propertyInGroup);
-                            }
+                        for(Property propertyInGroup : propertyBank.getPropertiesFromGroup(property.getNeighborhood())){
+                            propertyInGroup.buildHouse();
+                            updateGUI(propertyInGroup, playerID);
+                            updateFieldMap(propertyInGroup);
                         }
                     }
                 }
             }
-            // player does not care about housing because he doesn't have the money for it.
 
         }
         else {
@@ -395,14 +393,6 @@ public class FieldController {
             String receiverID = street.getOwner();
 
             createTransaction(playerID, receiverID, rent, true, message);
-            // if owned(own playerID)
-            // Options: Build, Pledge, Sell housing
-
-            // if owned(other playerID)
-            // pay rent
-
-            // if null
-            // Buy, Auction
         }
 
     }
@@ -499,7 +489,6 @@ public class FieldController {
                 case "MoveToType" -> {
                     System.out.println("MoveToType");
                     gui.buttonRequest(message, "Ok");
-                    // TODO make player move to the next instance of a specific field type
                     int currentPlayerPosition = player.getPosition();
 
                     List<Integer> allFieldTypePositions = new ArrayList<>();
@@ -566,6 +555,11 @@ public class FieldController {
             player.setjailed(0);
         }
     }
+
+    private void auction(String playerID, Property property) {
+        // TODO Auction property off to highest bidder!
+    }
+
     /**
      *
      * @param playerID - the current player
@@ -625,12 +619,7 @@ public class FieldController {
 
     }
 
-
-    protected void insufficientFunds () {
-        gui.buttonRequest("You have insufficient funds. ", "Ok");
-    }
-
-    public void purchaseAllProperties(String playerID, boolean overwriteOwners) {
+    public void purchaseAllProperties(String playerID, boolean overwriteOwners, boolean resetHousing) {
         ArrayList<FieldSpaces> allProperties = lookUpFields(fields, "fieldType", "property");
         allProperties.addAll(lookUpFields(fields, "fieldType", "ferry"));
         allProperties.addAll(lookUpFields(fields, "fieldType", "brewery"));
@@ -641,22 +630,15 @@ public class FieldController {
                     continue;
                 }
             }
-            /*if (overwriteOwners) {
-                // TODO remove housing from the original player
-            }
-            ((Property) property).setOwner(playerID);
-            Player player = playerController.getPlayerFromID(playerID);
-            ArrayList<Property> propertyList = player.getPlayerHousing().getPropertiesFromColor(((Property)property).getNeighborhood());
 
-            if (propertyList == null) {
-                propertyList = new ArrayList<>();
-                propertyList.add(((Property)property));
-            } else {
-                propertyList.add(((Property)property));
+            // TODO remove housing from the original player
+
+            ((Property) property).setOwner(playerID);
+            if (property instanceof Street && resetHousing) {
+                ((Street) property).setHousing(0);
             }
-            player.getPlayerHousing().addProperty(((Property)property).getNeighborhood(), propertyList);
             updateFieldMap(((Property)property));
-            updateGUI(((Property)property), playerID);*/
+            updateGUI(((Property)property), playerID);
         }
     }
 

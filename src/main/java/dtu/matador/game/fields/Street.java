@@ -16,4 +16,8 @@ public class Street extends Property {
         return this.housing;
     }
 
+    public void setHousing(int amount) {
+        this.housing = amount;
+    }
+
 }

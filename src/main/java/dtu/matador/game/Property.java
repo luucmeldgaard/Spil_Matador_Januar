@@ -85,7 +85,7 @@ public abstract class Property implements PropertyFields {
     public void setOwner(String playerID) { this.owner = playerID; }
 
     public int getPrice() {
-        return price;
+        return -this.price;
     }
 
     public int getPosition() {
@@ -105,20 +105,12 @@ public abstract class Property implements PropertyFields {
     public int getRent3(){return rent3;}
 
     //A player can buy with the help of a transaction
-    public void buy(String playerID) {
-        String message = "Do you want to purchase " + this.name + "?";
-        boolean purchase = controller.createTransaction(playerID,null, -this.price, false, message);
-        if (purchase) {
-            this.owner = playerID;
-        }
-        else {
-            System.out.println("You have insufficient funds");
-            controller.insufficientFunds();
-            auction(playerID);
-        }
+    public String buyMessage() {
+        return "Do you want to purchase " + this.name + "?";
     }
 
-    public void auction(String playerID) {
+    public String auctionMessage() {
+        return this.name + " er nu på auktion og sælges til den højeste byder!";
 
     }
 
@@ -135,6 +127,7 @@ public abstract class Property implements PropertyFields {
     public int getGroupSize(){
         return groupSize;
     }
+
 }
 
 

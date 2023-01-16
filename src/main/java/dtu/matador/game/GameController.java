@@ -217,10 +217,15 @@ public class GameController {
             case "Køb alle grunde" -> {
                 response = gui.buttonRequest("Alle grunde eller kun dem som endnu ikke er ejet af nogen?", "Alle", "Alle Uden ejer");
                 boolean overwriteOwners = false;
+                boolean resetHousing = false;
                 if (response.equals("Alle")) {
                     overwriteOwners = true;
                 }
-                board.purchaseAllProperties(player.getId(), overwriteOwners);
+                response = gui.buttonRequest("Vil du fjerne allerede byggede huse?", "Ja", "Nej");
+                if (response.equals("Ja")) {
+                    resetHousing = true;
+                }
+                board.purchaseAllProperties(player.getId(), overwriteOwners, resetHousing);
                 playRound(player);
             }
             case "Gå i fængsel" -> {
