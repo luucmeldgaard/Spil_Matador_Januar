@@ -379,8 +379,15 @@ public class FieldController {
             int rent = street.getRent();
             System.out.println(rent);
             String receiverID = street.getOwner();
+            Player receiver = playerController.getPlayerFromID(receiverID);
 
-            createTransaction(playerID, receiverID, rent, true, message);
+            if (propertyBank.canBuyHouse(receiverID, street.getNeighborhood())) {
+                createTransaction(playerID, receiverID, rent * 2, true, message);
+            }
+            else {
+                createTransaction(playerID, receiverID, rent, true, message);
+            }
+
         }
 
     }
