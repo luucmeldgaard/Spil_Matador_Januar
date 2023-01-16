@@ -202,50 +202,66 @@ public class FieldController {
     private void landOnJail(String playerID, Jail currentField) {
         Player player = playerController.getPlayerFromID(playerID);
         if (currentField.getInstanceOfJail() == 0) {
-            if (player.getjailed() > 0 && player.getJailCards() > 0){
-                String choice = gui.buttonRequest("Vil du slå med terningerne eller betale dig ud?", "Slå", "Betal");
-                if (choice.equals) {
-
-                }
-            }
-            if (player.getjailed() > 0 && player.getjailed() <= 3) {
-                String choice = gui.buttonRequest("Vil du slå med terningerne eller betale dig ud?", "Slå", "Betal");
-                if (choice.equals("Roll")) {
-                    int[] dieValues = player.rollDie();
-                    gui.setDice(dieValues);
-                    if (dieValues[0] == dieValues[1]) {
-                        player.setjailed(0);
-                        gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
+            if (player.getjailed() > 0){
+                if (player.getJailCards() > 0){
+                    String choice = gui.buttonRequest("Vil du bruge dit fængselskort for at slippe ud?", "Ja", "Nej");
+                    if (choice.equals("Ja")) {
+                        System.out.println("Player chose to use get out of jail card");
+                        player.useJailCard();
+                        gui.buttonRequest("Du kom ud af fængsel, din tur!", "Slå");
+                        int[] dieValues = player.rollDie();
+                        gui.setDice(dieValues);
                         int startPosition = player.getPosition();
                         player.movePosition(dieValues[2]);
                         gui.movePlayerTo(player.getId(), startPosition,player.getPosition());
                         landOnField(playerID, startPosition, player.getPosition(), true);
                     }
-                    else {
-                        gui.displayGeneralMessage("Det var desværre ikke to ens");
-                        player.setjailed(player.getjailed() + 1);
-                    }
+                    else {jailWithoutCard(player,playerID);}
                 }
-                else {
-                    payForJail(player);
-                }
+                else {jailWithoutCard(player, playerID);System.out.println("Player had no cards to escape");}
             }
-            else if (player.getjailed() == 0) {
-                gui.displayGeneralMessage(gui.buttonRequest("Du er på besøg i fængslet", "ok"));
-            }
-            else {
-                gui.buttonRequest("Du har ikke flere forsøg. Du er nødsaget til at betale");
-                payForJail(player);
-            }
+            else {System.out.println("Player is visiting");}
         }
         else{
-            System.out.println("SØREN RYGE (der burde nok ske noget fængselsrelateret her)");
             gui.displayGeneralMessage("Du er desværre kommet i fængsel");
             playerController.getPlayerFromID(playerID).setjailed(1);
             int currentPosition = player.getPosition();
             int jailPosition = currentField.getFirstJailInstancePosition();
             player.setPosition(jailPosition);
             gui.movePlayerTo(playerID, currentPosition, player.getPosition());
+        }
+    }
+
+    private void jailWithoutCard(Player player, String playerID){
+
+        if (player.getjailed() > 0 && player.getjailed() <= 3) {
+            String choice2 = gui.buttonRequest("Vil du slå med terningerne eller betale dig ud?", "Slå", "Betal");
+            if (choice2.equals("Roll")) {
+                int[] dieValues = player.rollDie();
+                gui.setDice(dieValues);
+                if (dieValues[0] == dieValues[1]) {
+                    player.setjailed(0);
+                    gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
+                    int startPosition = player.getPosition();
+                    player.movePosition(dieValues[2]);
+                    gui.movePlayerTo(player.getId(), startPosition,player.getPosition());
+                    landOnField(playerID, startPosition, player.getPosition(), true);
+                }
+                else {
+                    gui.displayGeneralMessage("Det var desværre ikke to ens");
+                    player.setjailed(player.getjailed() + 1);
+                }
+            }
+            else {
+                payForJail(player);
+            }
+        }
+        else if (player.getjailed() == 0) {
+            gui.displayGeneralMessage(gui.buttonRequest("Du er på besøg i fængslet", "ok"));
+        }
+        else {
+            gui.buttonRequest("Du har ikke flere forsøg. Du er nødsaget til at betale");
+            payForJail(player);
         }
     }
 
