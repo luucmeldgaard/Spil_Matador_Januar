@@ -387,9 +387,16 @@ public class FieldController {
             if (balance >= street.getBuildPrice() && propertyBank.canBuyHouse(playerID, property.getNeighborhood()) && street.getHousing() < 5) {
 
             int nextBuildPrice = street.getBuildPrice();
+            String response = "";
+            if (street.getHousing() > 0) {
+                String message = "Do you want to purchase or sell a house in this neighbourhood?";
+                response = gui.buttonRequest(message,"Buy", "Sell");
+                }
+            else {
+                String message = "Do you want to purchase a house on each of your properties of the same color for " + Math.abs(nextBuildPrice) * street.getGroupSize() + "?";
+                response = gui.buttonRequest( message, "Buy", "Not now");
+                }
 
-                //Implementing a ternary operator
-                String response = street.getHousing() > 0 ? gui.buttonRequest("Do you want to purchase or sell a house?","Buy", "Sell") : gui.buttonRequest("Do you want to purchase a house on each of your properties of the same color for " + nextBuildPrice * street.getGroupSize() + "?", "Buy", "Not now");
                 if (response.equals("Buy")) {
                     boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice * property.getGroupSize(), false, "Buying house for " + Math.abs(nextBuildPrice * street.getGroupSize()));
                     if (transactionSuccess) {
