@@ -4,8 +4,8 @@ package dtu.matador.game;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import java.io.FileReader;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.*;
 
 public class FieldLoader {
@@ -30,12 +30,22 @@ public class FieldLoader {
         JSONParser jsonParser = new JSONParser();
         ObjectMapper mapper = new ObjectMapper();
 
+        // Defines the file and retrieves its canonical path
+        String path = "";
+        File file = new File("../json/" + filename);
+        try {
+            path = file.getCanonicalPath();
+            System.out.println(path);
+        } catch (IOException e) {
+            System.out.println("No files found");
+        }
+
         // Tries to parse the JSON to a Map<String, Map<String>, <String>
-        try (FileReader fieldFileReader = new FileReader(filename)) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
 
             // Creates an array of strings from an object created by the JsonParser
             // to be able to parse each field to the mapper.
-            Object obj = jsonParser.parse(fieldFileReader);
+            Object obj = jsonParser.parse(reader);
             String objString = obj.toString();
             objString = objString.substring(1, objString.length() - 1);
             String[] objArray = objString.split("},");
@@ -50,11 +60,38 @@ public class FieldLoader {
                 int position = Integer.parseInt(map.get(outerMapKey));
                 board.set(position, map);
             }
+            reader.close();
 
         }
         //throws an exception
         catch (IOException | ParseException ex) {
-            throw new RuntimeException(ex);
+            try {
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("FieldData.json");
+                assert inputStream != null;
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+                // Creates an array of strings from an object created by the JsonParser
+                // to be able to parse each field to the mapper.
+                Object obj = jsonParser.parse(reader);
+                String objString = obj.toString();
+                objString = objString.substring(1, objString.length() - 1);
+                String[] objArray = objString.split("},");
+                for (int i = 0; i < objArray.length; i++) {
+                    board.add(null);
+                }
+
+                // Adds each field to the board map
+                for (String item : objArray) {
+                    item = item + "}";
+                    Map<String, String> map = mapper.readValue(item, Map.class);
+                    int position = Integer.parseInt(map.get(outerMapKey));
+                    board.set(position, map);
+                }
+                reader.close();
+            }
+            catch (IOException | ParseException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         return board;
