@@ -331,9 +331,17 @@ public class FieldController {
             return;
         }
         if (!owner.equals(playerID)) {
-            int balance = player.getBalance();
+            int breweriesOwnedByOwner = 0;
+            ArrayList<Property> allBreweries = propertyBank.getPropertiesFromGroup("brewery");
+            for (Property brewery : allBreweries) {
+                if (brewery.getOwner().equals(owner)) {
+                    breweriesOwnedByOwner += 1;
+                }
+            }
             int total = player.getLastPlayedDieRoll()[2];
-            int breweryRent = 4*currentField.getRent()*total;
+            int rent = currentField.getRent();
+            int multiplier = currentField.getMultiplier(breweriesOwnedByOwner);
+            int breweryRent = total*rent*multiplier;
             createTransaction(playerID, owner, breweryRent, true,"");
         }
     }
