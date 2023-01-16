@@ -93,7 +93,9 @@ public class Player {
         this.jailCards += 1;
     }
 
-    public boolean useJailCard() {
+    public boolean useJailCard() { //This method currently seems useless, because we aren't going to present the user the option to use
+        //the jail card if they dont have one, and so we need to check whether they have one before, and therefore the return statement
+        //is unnessecary
         if (this.jailCards >= 1) {
             this.jailCards -= 1;
             return true;
