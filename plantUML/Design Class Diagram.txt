@@ -972,3 +972,257 @@ DiceCup -> Die
 
 
 @enduml
+
+
+
+
+___________________v7________________________
+
+
+
+@startuml
+
+class GameController {
+- {static} playerController : PlayerController
+- {static} gui : GUIController
+- {static} board : FieldController
+
++ main(args: String[]) : void
+- {static} menu() : void
+- {static} play() : void
+- {static} setBoard() : void
+- {static} setupPlayers() : void
+- {static} playRound() : void
+}
+
+class GUIController {
+- {static} gui : GUI
+- guiFields : GUI_Field[]
+~ boardSize : int
+~ guiPlayers : ArrayList<GUI_Player>
+~ int numberOfPlayers;
+
++ setGUI() : void
++ buttonRequest() : void
++ fillColorSelector() : void
++ colorDropDownList() : void
+- addCar() : void
++ addPlayer() : void
++ setDie() : void
+- movePlayerOnce() : void
++ movePlayerTo() : void
++ removePlayer() : void
++ updateGUIBalance() : void
++ updatePropoerty() : void
++ close() : void
+}
+
+class GUICreator {
++ setup() : GUI_Field
+}
+
+
+class FieldController {
+- fields : ArrayList<FieldSpaces>
+- fieldMap : Map<String, Map<String, String>>
+- chanceMap : Map<String, Map<String, String>>
+- currentField : FieldSpaces
+- playerController : PlayerController
+- gui : GUIController
+
+# setupFields() : void
+# getField(position: int) : FieldSpaces
+# getFieldsArray() : ArrayList<FieldSpaces>
+# getFieldMap(position: int) : Map<String, String>
+# updateFieldMap(property: Property) : void
+# landOnField() : void
+- landOnJail() : void
+- landOnStart() : void
+- landOnProperty() : void
+- landOnFerry() : void
+- landOnUtility() : void
+- landOnStreet() : void
+- landOnChance() : void
+# createTransaction() : boolean
+# insufficientFunds() : void
+# updateGUI() : void
+}
+
+class PlayerController {
+# players : ArrayList<Player>
+- currentPlayerNum : int
+
++ addPlayer() : void
++ nextPlayer() : void
++ getCurrentPlayer() : Player
++ getPlayerFromName(name: String) : Player
++ getPlayerFromID(playerID: String) : Player
++ getAllPlayerIDs() : ArrayList<String>
++ removePlayer(playerID: String) : void
++ handleTransaction() : Boolean
++ reset() : void
+}
+
+class Player {
+~ {static} nextId : int
+- id : String
+- <<final>> name : String
+- <<final>> color : String
+- position : int
+- balance : int
+- ferries : int
+- {static} <<final>> diceCup : DiceCup
+- {static} boardSize : int
+- playerHousing : PlayerHousing
+
+# rollDie() : int[]
++ movePosition() : void
++ balanceCheck(amount: int) : boolean
++ rollDie() : int
++ getID() : String
++ setID() : void
++ getName() : String
++ getColor() : Color
++ getPosition() : int
++ getBalance() : int
++ movePosition() : void
+}
+
+class DiceCup {
+- <<final>> die1 : Die
+- <<final>> die2 : Die
+# roll() : int[]
+}
+
+class Die {
+- <<final>> sides : int
+
+# roll() : int
+}
+
+class PropertyBank {
+- {final} propertyMap : HashMap<String, ArrayList<Property>>
+
++ getPropertyMap() : HashMap<String, ArrayList<Property>>
++ addProperty() : FieldSpaces
++ getPropertiesFromGroup(String group) : ArrayList<Property>
++ canBuyHouse() : boolean
+}
+
+Interface FieldSpaces {
++ getName : String
++ getSubText : String
++ getDescription : String
++ getColor2 : String
++ getColor2 : String
+}
+
+abstract class Property {
+- {static}controller : FieldController
+- <<final>> name : String
+- <<final>> subtext: String
+- <<final>> description: String
+- rent : int
+- <<final>> rent0 : int
+- <<final>> rent1 : int
+- <<final>> rent2 : int
+- <<final>> rent3 : int
+- <<final>> rent4 : int
+- <<final>> rent5 : int
+- <<final>> color1 : String
+- color2 : String
+- <<final>> neighborhood : String
+- <<final>> price : int
+- <<final>> pawnForAmount : int
+- <<final>> position : int
+- owner : String
+- buildPrice : int
+# housing : int
+- <<final>> groupSize : int
+
+- currentRent() : int
++ buy(playerID: String) : void
++ auction(playerID: String) : void
+
+}
+
+abstract class NonPropertyField{
+- {static} controller : FieldController
+- <<final>> name : String
+- <<final>> subtext: String
+- <<final>> description: String
+- <<final>> color1 : String
+- <<final>> color2 : String
+- <<final>> position : int
+}
+
+
+
+package "Ownable Field Types" as Ownable<<Rectangle>> {
+class street {
+- currentRent() : int
++ getRent() : int
++ getHousing() : int
++ setHousing(amount: int) : void
+}
+
+class railroad {
++ getRent() : int
+}
+
+class Brewery {
++ getRent() : int
+}
+}
+
+
+
+package "Non-Ownable Field Types" as Non<<Rectangle>> {
+class StartField {
+~ income : int
++ getIncome() : int
+}
+
+class Jail {
+~ {static} InstanceOfJail : int
+~ {static} firstInstanceOfJail : int
+~ jailInstance : int
++ setInstanceOfJail() : void
++ getFirstJailInstancePosition() : int
+}
+
+class ChanceField {
+}
+
+class ParkingField {
+- promptFreeParking() : void
+}
+
+class TaxField {
+~ bill : int
++ getBill() : int
+}
+}
+
+
+
+GameController --> PlayerController
+GameController --> FieldController
+GameController --> GUIController
+GUICreator <- GUIController
+FieldController --> GUIController
+FieldController --> PlayerController
+Loader <-- GameController
+FieldController --> PropertyBank
+Property <|- FieldSpaces
+PropertyBank --> Property
+FieldSpaces -|> NonPropertyField
+NonPropertyField <.. Non
+Property <.. Ownable
+PlayerController -> Player
+Player -> DiceCup
+DiceCup -> Die
+PropertyBank -> FieldSpaces
+
+
+@enduml
