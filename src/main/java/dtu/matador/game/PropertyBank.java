@@ -9,12 +9,8 @@ import java.util.Properties;
 
 public class PropertyBank {
 
-    ArrayList<Map<String, String>> fieldList;
-    ArrayList<String> allPlayerIDs;
-    private HashMap<String, ArrayList<Property>> propertyMap;
+    private final HashMap<String, ArrayList<Property>> propertyMap;
     public PropertyBank(ArrayList<Map<String, String>> fieldList, ArrayList<String> allPlayerIDs) {
-        this.fieldList = fieldList;
-        this.allPlayerIDs = allPlayerIDs;
         this.propertyMap = new HashMap<>();
     }
 
