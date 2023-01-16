@@ -635,9 +635,18 @@ public class FieldController {
             }
     }
 
-    public void sellHousing(String playerID, Street street){
+    public double sellHousing(String playerID, Street street){
         if (street.getOwner().equals(playerID) && street.getHousing() > 0) {
-            street.setHousing(street.getHousing() - 1);
+            String sale = gui.buttonRequest("Vil du sælge dette hus?", "Ja" , "Nej");
+            Player player = playerController.getPlayerFromID(playerID);
+            if (sale.equals("Ja")){
+                for (Property propertyInGroup : propertyBank.getPropertiesFromGroup(street.getNeighborhood())) {
+                    double sellPrice = street.getPrice() * 0.5;
+                    propertyInGroup.setHousing(street.getHousing() - 1);
+                }
+
+            }
+
         }
         else {
 
