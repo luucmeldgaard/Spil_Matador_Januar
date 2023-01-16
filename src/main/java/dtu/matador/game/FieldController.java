@@ -202,8 +202,14 @@ public class FieldController {
     private void landOnJail(String playerID, Jail currentField) {
         Player player = playerController.getPlayerFromID(playerID);
         if (currentField.getInstanceOfJail() == 0) {
+            if (player.getjailed() > 0 && player.getJailCards() > 0){
+                String choice = gui.buttonRequest("Vil du slå med terningerne eller betale dig ud?", "Slå", "Betal");
+                if (choice.equals) {
+
+                }
+            }
             if (player.getjailed() > 0 && player.getjailed() <= 3) {
-                String choice = gui.buttonRequest("Vil du slå med terningerne eller betale dig ud?", "Roll", "Pay");
+                String choice = gui.buttonRequest("Vil du slå med terningerne eller betale dig ud?", "Slå", "Betal");
                 if (choice.equals("Roll")) {
                     int[] dieValues = player.rollDie();
                     gui.setDice(dieValues);
