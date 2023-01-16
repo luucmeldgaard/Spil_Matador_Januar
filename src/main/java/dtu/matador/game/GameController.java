@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class GameController {
 
+    private static Loader loader;
     private static PlayerController playerController;
     private static GUIController gui;
     private static FieldController board;
@@ -15,6 +16,7 @@ public class GameController {
 
     //Main method. Runs the program
     public static void main(String[] args) {
+        loader = new Loader();
         playerController = new PlayerController();
         GUI.setNull_fields_allowed(true);
         gui = new GUIController();
@@ -24,7 +26,15 @@ public class GameController {
     }
 
     private static void menu() {
-        String chosenBoard = gui.buttonRequest("Choose board", "FieldData");
+        String[] boards = loader.getFoundBoardFileNames();
+        String chosenBoard = "";
+        String osName = System.getProperty("os.name").toLowerCase();
+        if (boards.length == 0 || !osName.contains("windows")) {
+            gui.buttonRequest("Start", "Start");
+        }
+        else {
+            chosenBoard = gui.dropDownList("Start", boards);
+        }
         gui.close();
         setBoard(chosenBoard);
         setupPlayers();

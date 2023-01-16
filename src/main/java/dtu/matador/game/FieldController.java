@@ -19,8 +19,8 @@ public class FieldController {
     public FieldController(PlayerController injectPlayerController, GUIController injectGui, String selectedBoard) {
         this.playerController = injectPlayerController;
         this.gui = injectGui;
-        FieldLoader fieldLoader = new FieldLoader(selectedBoard);
-        fieldList = fieldLoader.getFieldList();
+        //Loader loader = new Loader(selectedBoard);
+        //fieldList = loader.getFieldList();
         this.propertyBank = new PropertyBank();
 
         fields = new ArrayList<>();
@@ -30,7 +30,7 @@ public class FieldController {
         setupFields();
         this.boardSize = fieldList.size();
         gui.setGUI(fieldList);
-        chanceMap = fieldLoader.getChanceList();
+        //chanceMap = loader.getChanceList();
 
 
     }

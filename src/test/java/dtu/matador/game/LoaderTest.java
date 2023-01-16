@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class FieldLoaderTest {
+public class LoaderTest {
 
     @Test
     public void jsonCanBeReadFrom() {
@@ -30,10 +30,10 @@ public class FieldLoaderTest {
 
     @Test
     public void getFieldMapReturnsArrayList() {
-        FieldLoader fieldLoader = new FieldLoader("test_FieldData");
+        Loader loader = new Loader("test_FieldData");
 
         ArrayList<Map<String, String>> fieldList;
-        fieldList = fieldLoader.getFieldList();
+        fieldList = loader.getFieldList();
 
         assertEquals(java.util.ArrayList.class, fieldList.getClass());
     }
@@ -42,9 +42,9 @@ public class FieldLoaderTest {
     @Test
     public void prettyPrintGetFieldMap() {
 
-        FieldLoader fieldLoader = new FieldLoader("test_FieldData");
+        Loader loader = new Loader("test_FieldData");
         ArrayList<Map<String, String>> testList;
-        testList = fieldLoader.getFieldList();
+        testList = loader.getFieldList();
 
         for (Map<String, String> field : testList) {
             System.out.println("_____field_____");
@@ -59,11 +59,11 @@ public class FieldLoaderTest {
     @Test
     public void PrintGetFieldMap() {
 
-        FieldLoader fieldLoader = new FieldLoader("test_FieldData");
+        Loader loader = new Loader("test_FieldData");
         ArrayList<Map<String, String>> testList;
-        testList = fieldLoader.getFieldList();
+        testList = loader.getFieldList();
 
-        String testMapString = fieldLoader.getFieldList().toString();
+        String testMapString = loader.getFieldList().toString();
 
         char lastLetter = ' ';
         for (int i = 0; i < testMapString.length(); i++) {
@@ -78,8 +78,8 @@ public class FieldLoaderTest {
 
     @Test
     public void testColorsSetSystemProperty() {
-        FieldLoader fieldLoader = new FieldLoader("test_FieldData");
-        Map<String, String> colors = fieldLoader.getColorMap();
+        Loader loader = new Loader("test_FieldData");
+        Map<String, String> colors = loader.getColorMap();
 
         for (String color : colors.keySet()) {
             assertNotNull(Color.getColor(color));
@@ -88,14 +88,14 @@ public class FieldLoaderTest {
 
     @Test
     public void testChanceMapIsCreated() {
-        FieldLoader fieldLoader = new FieldLoader("test_FieldData");
-        assertNotNull(fieldLoader.getChanceList());
+        Loader loader = new Loader("test_FieldData");
+        assertNotNull(loader.getChanceList());
     }
 
     @Test
     public void testColorMapIsCreated() {
-        FieldLoader fieldLoader = new FieldLoader("test_FieldData");
-        assertNotNull(fieldLoader.getColorMap());
+        Loader loader = new Loader("test_FieldData");
+        assertNotNull(loader.getColorMap());
     }
 
 }
