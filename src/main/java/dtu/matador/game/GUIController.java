@@ -1,9 +1,7 @@
 package dtu.matador.game;
 
-import gui_fields.GUI_Car;
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Player;
-import gui_fields.GUI_Street;
+import gui_codebehind.GUI_Center;
+import gui_fields.*;
 import gui_main.GUI;
 import java.awt.*;
 import java.util.ArrayList;
@@ -17,22 +15,32 @@ class GUIController {
     ArrayList<GUI_Player> guiPlayers;
     int numberOfPlayers;
 
-    public GUIController(String selectedBoard) {
-        gui = new GUI(new GUI_Field[0]);
-        //gui = new GUI(guiFields);
+    public GUIController() {
+        gui = new GUI(new GUI_Field[0], Color.DARK_GRAY);
+        GUI_Center.getInstance().clearLabels();
+        GUI_Center.getInstance().setBGColor(Color.DARK_GRAY);
         this.guiPlayers = new ArrayList<>();
     }
 
-    public void setGUI(Map<String, Map<String, String>> fieldMap) {
+    public void setGUI(ArrayList<Map<String,String>> fieldMap) {
         GUICreator fields = new GUICreator();
         guiFields = fields.setup(fieldMap);
         boardSize = guiFields.length;
         GUI.setNull_fields_allowed(false);
+        GUI_Center.getInstance().displayDefault();
         gui = new GUI(guiFields);
     }
 
     public String buttonRequest(String message, String... buttons){
         return gui.getUserButtonPressed(message, buttons);
+    }
+
+    public int intRequest(String message, int minValue, int maxValue) {
+        return gui.getUserInteger(message, minValue, maxValue);
+    }
+
+    public String dropDownList(String message, String... buttons) {
+        return gui.getUserSelection(message, buttons);
     }
 
     public ArrayList<String> colorNamesArrayList = new ArrayList<String>();
@@ -107,6 +115,11 @@ class GUIController {
         guiPlayers.add(player);
     }
 
+    public void displayGeneralMessage(String message){
+        gui.showMessage(message);
+    }
+
+
     public void setDice(int[] dice) {
         int die1 = dice[0];
         int die2 = dice[1];
@@ -146,8 +159,10 @@ class GUIController {
     }
 
     public void removePlayer(String playerID) {
-        GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
-        player.getCar().setPosition(null);
+        if (Integer.parseInt(playerID) < guiPlayers.size()) {
+            GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
+            player.getCar().setPosition(null);
+        }
     }
 
     public int getBoardSize() {return boardSize; }
@@ -187,6 +202,7 @@ class GUIController {
     }
 
     public void updateProperty(int fieldPosition, String color, int housing) {
+
         Color newColor = Color.getColor(color);
         GUI_Street field = ((GUI_Street) gui.getFields()[fieldPosition]);
         field.setBorder(newColor);

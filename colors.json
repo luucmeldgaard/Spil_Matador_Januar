@@ -13,6 +13,21 @@
     "mySand": "#ffe796",
     "myWhite": "#ffffff",
     "myLightGrey": "#D3D3D3",
-    "myBlack": "#000000"
+    "myBlack": "#000000",
+
+    "my_red": "#ff0000",
+    "my_lightred": "#ffb3b3",
+    "my_blue": "#0000ff",
+    "my_lightblue": "#b3b3ff",
+    "my_green": "#00ff00",
+    "my_lightgreen": "#b3ffb3",
+    "my_purple": "#660066",
+    "my_lightpurple": "#d9b3d9",
+    "my_yellow": "#ffff00",
+    "my_lightyellow": "#ffffb3",
+    "my_orange": "#ff6600",
+    "my_lightorange": "#ffd9b3",
+    "my_pink": "#ff00ff",
+    "my_lightpink": "#ffb3ff"
   }
 ]

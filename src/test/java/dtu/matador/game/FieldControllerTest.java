@@ -1,7 +1,5 @@
 package dtu.matador.game;
 
-import org.junit.Assert;
-import org.junit.Assert.*;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 
@@ -13,21 +11,27 @@ public class FieldControllerTest {
 
     @Test
     public void testMapAndFieldsAreOfEqualSize() {
+        // creates a mock object of GUIController
+        GUIController gui = mock(GUIController.class);
+
         // Creates a new instance of the FieldController
-        FieldController fieldController = new FieldController(null, new GUIController("test_FieldData"), "test_FieldData");
+        FieldController fieldController = new FieldController(null, gui, "test_FieldData");
+
 
         // asserts that the size of the fieldMap and
         // the fields ArrayList, are the same
-        int fieldMapSize = fieldController.getFieldMap().size();
-        int fieldsSize = fieldController.getFieldsArray().size();
+        int fieldMapSize = fieldController.getFieldList().size();
+        int fieldsSize = fieldController.getAllFieldSpaces().size();
         assertEquals(fieldMapSize, fieldsSize);
     }
 
     @Test
     public void testPropertyFieldUpdatesFieldMap() {
 
+        GUIController gui = mock(GUIController.class);
+
         // Creates a new instance of the FieldController
-        FieldController fieldController = new FieldController(null, new GUIController("test_FieldData"), "test_FieldData");
+        FieldController fieldController = new FieldController(null, gui, "test_FieldData");
 
         // Casts a known property field from the ArrayList
         // of Fieldspaces objects to Property

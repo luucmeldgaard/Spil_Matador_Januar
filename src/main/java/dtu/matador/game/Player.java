@@ -14,14 +14,19 @@ public class Player {
     private static final DiceCup diceCup = new DiceCup();
     private static int boardSize;
 
-    private PlayerHousing playerHousing;
+    private int jailed = 0;
+
+    private int jailCards;
+
+    private int[] lastPlayedDieRoll;
+
 
     public Player(String name, String color, int position, int balance) {
         this.name = name;
         this.color = color;
         this.position = position;
         this.balance = balance;
-        this.playerHousing = new PlayerHousing();
+        this.jailCards = 0;
         setId();
     }
 
@@ -29,7 +34,8 @@ public class Player {
     /position, and returns an int[] of dieFaces
      */
     protected int[] rollDie() {
-        return diceCup.roll();
+        this.lastPlayedDieRoll = diceCup.roll();
+        return this.lastPlayedDieRoll;
     }
 
     public String getId() {return this.id;}
@@ -67,6 +73,14 @@ public class Player {
     public void addBalance(int amount) {
         this.balance += amount;
     }
+    public void setBalance(int amount) { this.balance = amount;}
+    public void setjailed (int jailedstatus){
+        jailed = jailedstatus;
+    }
+
+    public int getjailed(){
+        return jailed;
+    }
 
     public void addFerries() {this.ferries += 1;}
 
@@ -75,7 +89,23 @@ public class Player {
         return nextBalance >= 0;
     }
 
-    public PlayerHousing getPlayerHousing() {
-        return playerHousing;
+    public void addJailCard() {
+        this.jailCards += 1;
     }
+
+    public boolean useJailCard() {
+        if (this.jailCards >= 1) {
+            this.jailCards -= 1;
+            return true;
+        }
+        else {return false; }
+    }
+
+    public int getJailCards() { return this.jailCards; }
+    public void setJailCards(int amount) { this.jailCards = amount; }
+
+    public int[] getLastPlayedDieRoll() {
+        return this.lastPlayedDieRoll;
+    }
+    public void setLastPlayedDieRoll(int[] dieRoll) { this.lastPlayedDieRoll = dieRoll; }
 }

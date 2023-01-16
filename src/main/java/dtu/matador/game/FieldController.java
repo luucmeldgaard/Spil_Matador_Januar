@@ -1,34 +1,37 @@
 package dtu.matador.game;
 
 import dtu.matador.game.fields.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+
+import java.util.*;
 
 public class FieldController {
 
     private ArrayList<FieldSpaces> fields;
-    private Map<String, Map<String, String>> fieldMap;
-    private Map<String, Map<String, String>> chanceMap;
-    private FieldSpaces currentField;
+    private ArrayList<Map<String,String>> fieldList;
+    private PropertyBank propertyBank;
+    private ArrayList<Map<String,String>> chanceMap;
+    public FieldSpaces currentField;
     private final PlayerController playerController;
-    private final GUIController gui;
+    public final GUIController gui;
+    int boardSize;
 
 
     public FieldController(PlayerController injectPlayerController, GUIController injectGui, String selectedBoard) {
         this.playerController = injectPlayerController;
         this.gui = injectGui;
         FieldLoader fieldLoader = new FieldLoader(selectedBoard);
-        fieldMap = fieldLoader.getFieldMap();
+        fieldList = fieldLoader.getFieldList();
+        this.propertyBank = new PropertyBank();
 
         fields = new ArrayList<>();
-        for (int i = 0; i < fieldMap.size(); i++) {
+        for (int i = 0; i < fieldList.size(); i++) {
             fields.add(null);
         }
         setupFields();
+        this.boardSize = fieldList.size();
+        gui.setGUI(fieldList);
+        chanceMap = fieldLoader.getChanceList();
 
-        chanceMap = fieldLoader.getChanceMap();
 
     }
 
@@ -41,37 +44,46 @@ public class FieldController {
 
     protected void setupFields() {
         FieldController controller = new FieldController(this.playerController, gui);
-        for (Map<String, String> field : fieldMap.values()) {
+        for (Map<String, String> field : fieldList) {
             int fieldPosition = Integer.parseInt(field.get("position"));
             switch (field.get("fieldType")) {
                 case "property" -> {
-                    fields.set(fieldPosition, new Street(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"),field.get("rent2"),
-                            field.get("rent3"), field.get("rent4"), field.get("rent5"),field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
-                            field.get("position"), field.get("owner"), field.get("housing"), field.get("neighborhood"), field.get("groupsize")));
+                    fields.set(fieldPosition, propertyBank.addProperty(field.get("neighborhood"), new Street(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"), field.get("rent2"),
+                            field.get("rent3"), field.get("rent4"), field.get("rent5"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
+                            field.get("position"), field.get("owner"), field.get("housing"), field.get("neighborhood"), field.get("groupsize"))));
+
                 }
                 case "ferry" -> {
-                    fields.set(fieldPosition, new Ferry(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"),field.get("rent"),
-                            field.get("rent"), field.get("rent"), field.get("rent"),field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
-                            field.get("position"), field.get("owner"),field.get("neighborhood"),field.get("groupsize")));
+                    fields.set(fieldPosition, propertyBank.addProperty(field.get("neighborhood"), new Ferry(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"), field.get("rent2"),
+                            field.get("rent3"), field.get("rent"), field.get("rent"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
+                            field.get("position"), field.get("owner"), field.get("neighborhood"), field.get("groupsize"))));
                 }
                 case "brewery" -> {
-                    fields.set(fieldPosition, new Brewery(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent"),field.get("rent"),
+                    fields.set(fieldPosition, propertyBank.addProperty(field.get("neighborhood"), new Brewery(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"), field.get("rent"),
                             field.get("rent"), field.get("rent"), field.get("rent"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
-                            field.get("position"), field.get("owner"), field.get("neighborhood"),field.get("groupsize")));
+                            field.get("position"), field.get("owner"), field.get("neighborhood"), field.get("groupsize"))));
                 }
                 case "refuge" -> {
-                    fields.set(fieldPosition, new Refuge(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
+                    fields.set(fieldPosition, new Refuge(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
                             field.get("position")));
                 }
                 case "start" -> {
-                    fields.set(fieldPosition, new StartField(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
+                    fields.set(fieldPosition, new StartField(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
                             field.get("position"), field.get("income")));
                 }
                 case "chance" -> {
-                    fields.set(fieldPosition, new Chance(controller, field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
+                    fields.set(fieldPosition, new Chance(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
                             field.get("position")));
                 }
+                case "jail" -> {
+                    fields.set(fieldPosition, new Jail(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
+                            field.get("position")));
 
+                }
+                case "tax" -> {
+                    fields.set(fieldPosition, new TaxField(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
+                            field.get("price"), field.get("position")));
+                }
             }
         }
     }
@@ -80,34 +92,88 @@ public class FieldController {
         return fields.get(position);
     }
 
-    protected ArrayList<FieldSpaces> getFieldsArray() {
+    protected ArrayList<FieldSpaces> getAllFieldSpaces() {
         return fields;
     }
 
-    protected Map<String, Map<String, String>> getFieldMap() {
-        return fieldMap;
+    protected ArrayList<Map<String, String>> getFieldList() {
+        return fieldList;
     }
 
     protected Map<String, String> getFieldAsMap(int position) {
-        String pos = String.valueOf(position);
-        return fieldMap.get(pos);
+        return fieldList.get(position);
     }
 
     // overwrites chosen values of a specific field in the fieldMap
     protected void updateFieldMap(Property property) {
         Map<String, String> updatedFieldInfo = new HashMap<>();
 
-        String fieldPosition = String.valueOf(property.getPosition());
+        int fieldPosition = property.getPosition();
         String color2 = property.getColor2();
         String housing = null;
-        fieldMap.get(fieldPosition).replace("color2", color2);
+        fieldList.get(fieldPosition).replace("color2", color2);
         if (property instanceof Street) {
             housing = String.valueOf(((Street) property).getHousing());
-            fieldMap.get(fieldPosition).replace("housing", housing);
+            fieldList.get(fieldPosition).replace("housing", housing);
         }
     }
-    protected void landOnField(String playerID, int startPosition, int currentPosition) {
-        if (startPosition > currentPosition) {
+
+    public ArrayList<FieldSpaces> lookUpFields(ArrayList<FieldSpaces> lookUp, String searchKey, String searchValue) {
+        ArrayList<FieldSpaces> fieldsFound = new ArrayList<>();
+        if (lookUp == null) {
+            lookUp = fields;
+        }
+        Map <String, String> fieldAsMap;
+        for (FieldSpaces field : lookUp) {
+            fieldAsMap = getFieldAsMap(field.getPosition());
+            if (fieldAsMap.get(searchKey).equals(searchValue)) {
+                fieldsFound.add(field);
+            }
+        }
+        return fieldsFound;
+    }
+
+    public ArrayList<String> lookUpFieldStringValues(ArrayList<FieldSpaces> lookUp, String searchKeyCriteria, String searchValueCriteria, String searchKey) {
+        ArrayList<String> valuesFound = new ArrayList<>();
+        if (lookUp == null) {
+            lookUp = fields;
+        }
+        ArrayList<FieldSpaces> fieldsFound = lookUpFields(lookUp, searchKeyCriteria, searchValueCriteria);
+
+        Map <String, String> fieldAsMap;
+        for (FieldSpaces field : fieldsFound) {
+            fieldAsMap = getFieldAsMap(field.getPosition());
+            String result = fieldAsMap.get(searchKey);
+            if (result != null) {
+                valuesFound.add(result);
+            }
+        }
+        return valuesFound;
+    }
+
+    public ArrayList<String> lookUpFieldStringValues(String searchKey) {
+        ArrayList<String> valuesFound = new ArrayList<>();
+        for (Map<String, String> fieldAsMap : fieldList) {
+            if (fieldAsMap.containsKey(searchKey)) {
+                valuesFound.add(fieldAsMap.get(searchKey));
+            }
+        }
+        return valuesFound;
+    }
+
+    public int getJailPosition() {
+        ArrayList<FieldSpaces> allJailPositions = lookUpFields(fields, "fieldType", "jail");
+        int firstInstance;
+        for (FieldSpaces jailField : allJailPositions) {
+            if (((Jail) jailField).getInstanceOfJail() == 0) {
+                return jailField.getPosition();
+            }
+        }
+        return 0;
+    }
+
+    protected void landOnField(String playerID, int startPosition, int currentPosition, boolean passStart) {
+        if (startPosition > currentPosition && passStart) {
             System.out.println("Player passed start");
                 landOnStart(playerID, ((StartField) fields.get(0)));
             }
@@ -126,11 +192,55 @@ public class FieldController {
         else if (currentField instanceof Chance) {
             landOnChance(playerID, ((Chance) currentField));
         }
+        else if (currentField instanceof TaxField) {
+            landOnTax(playerID, ((TaxField) currentField));
+        }
+
         // property, chance, jail, etc.
     }
 
     private void landOnJail(String playerID, Jail currentField) {
-
+        Player player = playerController.getPlayerFromID(playerID);
+        if (currentField.getInstanceOfJail() == 0) {
+            if (player.getjailed() > 0 && player.getjailed() <= 3) {
+                String choice = gui.buttonRequest("Vil du slå med terningerne eller betale dig ud?", "Roll", "Pay");
+                if (choice.equals("Roll")) {
+                    int[] dieValues = player.rollDie();
+                    gui.setDice(dieValues);
+                    if (dieValues[0] == dieValues[1]) {
+                        player.setjailed(0);
+                        gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
+                        int startPosition = player.getPosition();
+                        player.movePosition(dieValues[2]);
+                        gui.movePlayerTo(player.getId(), startPosition,player.getPosition());
+                        landOnField(playerID, startPosition, player.getPosition(), true);
+                    }
+                    else {
+                        gui.displayGeneralMessage("Det var desværre ikke to ens");
+                        player.setjailed(player.getjailed() + 1);
+                    }
+                }
+                else {
+                    payForJail(player);
+                }
+            }
+            else if (player.getjailed() == 0) {
+                gui.displayGeneralMessage(gui.buttonRequest("Du er på besøg i fængslet", "ok"));
+            }
+            else {
+                gui.buttonRequest("Du har ikke flere forsøg. Du er nødsaget til at betale");
+                payForJail(player);
+            }
+        }
+        else{
+            System.out.println("SØREN RYGE (der burde nok ske noget fængselsrelateret her)");
+            gui.displayGeneralMessage("Du er desværre kommet i fængsel");
+            playerController.getPlayerFromID(playerID).setjailed(1);
+            int currentPosition = player.getPosition();
+            int jailPosition = currentField.getFirstJailInstancePosition();
+            player.setPosition(jailPosition);
+            gui.movePlayerTo(playerID, currentPosition, player.getPosition());
+        }
     }
 
     private void landOnStart(String playerID, StartField start) {
@@ -146,7 +256,17 @@ public class FieldController {
             System.out.println("This field is not owned by anyone!");
             String choice = gui.buttonRequest("Buy or auction?", "Buy", "Auction");
             if (choice.equals("Buy")) {
-                property.buy(playerID);
+
+                String message = property.buyMessage();
+                boolean purchase = createTransaction(playerID,null, property.getPrice(), false, message);
+                if (purchase) {
+                    property.setOwner(playerID);
+                }
+                else {
+                    gui.buttonRequest("You have insufficient funds. ", "Ok");
+                    auction(playerID, property);
+                }
+
                 if (property.getOwner() != null) {
                     if (property.getPosition() == 5 || property.getPosition() == 15 || property.getPosition() == 25 || property.getPosition() == 35){
                         player.addFerries();
@@ -155,21 +275,11 @@ public class FieldController {
                     if (property.getOwner().equals(playerID)) {
                         updateFieldMap(property);
                         updateGUI(property, playerID);
-
-
-                        ArrayList<Property> propertyList = player.getPlayerHousing().getPropertiesFromColor(property.getNeighborhood());
-
-                        if (propertyList == null) {
-                            propertyList = new ArrayList<>();
-                            propertyList.add(property);
-                        } else {
-                            propertyList.add(property);
-                        }
-                        player.getPlayerHousing().addProperty(property.getNeighborhood(), propertyList);
                     }
                 }
             } else if (choice.equals("Auction")) {
-                property.auction(playerID);
+                gui.buttonRequest("You have insufficient funds. ", "Ok");
+                auction(playerID, property);
             }
 
         }
@@ -177,11 +287,11 @@ public class FieldController {
         else if (currentField instanceof Street) {
             landOnStreet(playerID, ((Street) currentField));
         } else if (currentField instanceof Brewery) {
-            landOnUtility(playerID, ((Brewery) currentField));
+            landOnBrewery(playerID, ((Brewery) currentField));
         } else if (currentField instanceof Ferry) {
             landOnFerry(playerID, ((Ferry) currentField));
         }
-        // Street, Utility, Ferry, etc.
+        // Street, Brewery, Ferry, etc.
     }
 
     private void landOnFerry(String playerID, Ferry ferry) {
@@ -195,48 +305,37 @@ public class FieldController {
             System.out.println("This ferry is owned by you. ");
         }
         else {
-            String message = "This ferry is owned by someone else!";
             //TODO den nedenstående variable skal ændres således at den ser på ejerens ferries og ikke den nuværende spillers...
-            switch (player.getFerries()) {
-                case 1 -> {
-                    int rent = ferry.getRent();
-                    System.out.println(rent);
-                    String receiverID = ferry.getOwner();
-
-                    createTransaction(playerID, receiverID, rent, true, message);
-                }
-                case 2 -> {
-                    int rent1 = ferry.getRent1();
-                    System.out.println(rent1);
-                    String receiverID = ferry.getOwner();
-
-                    createTransaction(playerID, receiverID, rent1, true, message);
-                }
-                case 3 -> {
-                    int rent2 = ferry.getRent2();
-                    System.out.println(rent2);
-                    String receiverID = ferry.getOwner();
-
-                    createTransaction(playerID, receiverID, rent2, true, message);
-                }
-                case 4 -> {
-                    int rent3 = ferry.getRent3();
-                    System.out.println(rent3);
-                    String receiverID = ferry.getOwner();
-
-                    createTransaction(playerID, receiverID, rent3, true, message);
+            int ferriesOwned = 1;
+            for (Property property : propertyBank.getPropertiesFromGroup(ferry.getNeighborhood())) {
+                if (property.getOwner() != null) {
+                    if (property.getOwner().equals(owner)) {
+                        ferriesOwned += 1;
+                    }
                 }
             }
 
-            /*int rent = ferry.getRent();
+            int rent = ferry.getRent(ferriesOwned);
             System.out.println(rent);
             String receiverID = ferry.getOwner();
+            String message = "Denne færge er ejet af en anden! Betal " + Math.abs(rent) + ", da der ejes " + ferriesOwned + " færge(r). ";
 
-            createTransaction(playerID, receiverID, rent, true, message);*/
+            createTransaction(playerID, receiverID, rent, true, message);
         }
     }
 
-    private void landOnUtility(String playerID, Brewery currentField) {
+    private void landOnBrewery(String playerID, Brewery currentField) {
+        Player player = playerController.getPlayerFromID(playerID);
+        String owner = currentField.getOwner();
+        if (owner == null) {
+            return;
+        }
+        if (!owner.equals(playerID)) {
+            int balance = player.getBalance();
+            int total = player.getLastPlayedDieRoll()[2];
+            int breweryRent = 4*currentField.getRent()*total;
+            createTransaction(playerID, owner, breweryRent, true,"");
+        }
     }
 
     private void landOnStreet(String playerID, Street street) {
@@ -253,28 +352,22 @@ public class FieldController {
             System.out.println("This field is owned by you. ");
             Property property = (Property) street;
             //checks if the owner has sufficient funds to buy a house
-            if (balance >= street.getBuildPrice()) {
+            if (balance >= street.getBuildPrice() && propertyBank.canBuyHouse(playerID, property.getNeighborhood()) && street.getHousing() < 5) {
 
-                if(!player.getPlayerHousing().canBuyHouse(property.getNeighborhood())) return;
+            int nextBuildPrice = street.getBuildPrice();
+                String response = gui.buttonRequest("Do you want to purchase a house on each of your properties of the same color for " + nextBuildPrice * street.getGroupSize() + "?", "Buy", "Not Now");
+                if (response.equals("Buy")) {
+                    boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false, "Buying house for " + street.getBuildPrice());
+                    if (transactionSuccess) {
 
-                int nextBuildPrice = street.getBuildPrice();
-                if (street.housing < 5) {
-                    String response = gui.buttonRequest("Do you want to buy a house for " + nextBuildPrice + "?", "Buy", "No");
-                    if (response.equals("Buy")) {
-                        boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false, "Buying house for " + street.getBuildPrice());
-                        if (transactionSuccess) {
-
-
-                            for(Property propertyList : player.getPlayerHousing().getPropertiesFromColor(property.getNeighborhood())){
-                                street.buildHouse();
-                                updateGUI(propertyList, playerID);
-                                updateFieldMap(propertyList);
-                            }
+                        for(Property propertyInGroup : propertyBank.getPropertiesFromGroup(property.getNeighborhood())){
+                            propertyInGroup.buildHouse();
+                            updateGUI(propertyInGroup, playerID);
+                            updateFieldMap(propertyInGroup);
                         }
                     }
                 }
             }
-            // player does not care about housing because he doesn't have the money for it.
 
         }
         else {
@@ -284,28 +377,41 @@ public class FieldController {
             String receiverID = street.getOwner();
 
             createTransaction(playerID, receiverID, rent, true, message);
-            // if owned(own playerID)
-            // Options: Build, Pledge, Sell housing
-
-            // if owned(other playerID)
-            // pay rent
-
-            // if null
-            // Buy, Auction
         }
 
     }
 
     private void landOnChance (String playerID, Chance chance) {
+        Player player = playerController.getPlayerFromID(playerID);
         Random rand = new Random();
-        String cardNumber = String.valueOf(rand.nextInt(0, chanceMap.size() - 1));
+        int cardNumber = 0;
+        if (chanceMap.size() != 1) {
+            cardNumber = rand.nextInt(0, chanceMap.size() - 1);
+        }
         Map <String, String> rawCard = chanceMap.get(cardNumber);
         Map <String, String> card = new HashMap<>();
+        boolean payIfCrossStart = false;
+        boolean condition = false;
+        int rentMultiplier = 1;
+
         for (String key : rawCard.keySet()) {
             if (!rawCard.get(key).equals("")) {
                 card.put(key, rawCard.get(key));
             }
+            if (key.equals("PayIfCrossStart") && rawCard.get(key).equals("1")) {
+                System.out.println("PayIfCrossStart = true");
+                payIfCrossStart = true;
+            }
+            if (key.equals("condition") && rawCard.get(key).equals("1")) {
+                System.out.println("Condition");
+                condition = true;
+            }
+            if (key.equals("RentMultiplier") && !rawCard.get(key).equals("")) {
+                System.out.println("RentMultiplier");
+                rentMultiplier = Integer.parseInt(rawCard.get(key));
+            }
         }
+
         for (String key : card.keySet()) {
             System.out.println(key + ": " + card.get(key));
             String message = card.get("Text");
@@ -317,13 +423,33 @@ public class FieldController {
                 }
                 case "CashAddedPerHouse" -> {
                     System.out.println("CashAddedPerHouse");
-                    // TODO the player has an amount of houses. For the number of houses,
-                    // TODO the player needs to pay/receive an amount of money
+                    int ownedHouses = 0;
+                    ArrayList<FieldSpaces> ownedFields = lookUpFields(fields,"owner", playerID);
+                    ArrayList<FieldSpaces> ownedStreets = lookUpFields(ownedFields,"fieldType", "street");
+                    for (FieldSpaces field : ownedStreets) {
+                        int housingOnField = ((Street) field).getHousing();
+                        if (housingOnField < 5) {
+                            ownedHouses += housingOnField;
+                        }
+                    }
+                    int amount = Integer.parseInt(card.get(key)) * ownedHouses;
+                    createTransaction(playerID, null, amount, true, message);
+
                 }
                 case "CashAddedPerHotel" -> {
                     System.out.println("CashAddedPerHotel");
-                    // TODO the player has an amount of hotels. For the number of hotels,
-                    // TODO the player needs to pay/receive an amount of money
+                    int ownedHotels = 0;
+                    ArrayList<FieldSpaces> ownedFields = lookUpFields(fields,"owner", playerID);
+                    ArrayList<FieldSpaces> ownedStreets = lookUpFields(ownedFields,"fieldType", "street" );
+                    for (FieldSpaces field : ownedStreets) {
+                        int housingOnField = ((Street) field).getHousing();
+                        if (housingOnField == 5) {
+                            ownedHotels += 1;
+                        }
+                    }
+                    int amount = Integer.parseInt(card.get(key)) * ownedHotels;
+                    createTransaction(playerID, null, amount, true, message);
+
                 }
                 case "CashTakenFromPlayers" -> {
                     System.out.println("CashTakenFromPlayers");
@@ -337,40 +463,85 @@ public class FieldController {
                 }
                 case "MoveBy" -> {
                     System.out.println("MoveBy");
-                    // TODO make player move
                     int moveBy = Integer.parseInt(card.get(key));
                     int currentPosition = playerController.getPlayerFromID(playerID).getPosition();
                     playerController.getPlayerFromID(playerID).movePosition(moveBy);
                     int endPosition = playerController.getPlayerFromID(playerID).getPosition();
                     gui.movePlayerTo(playerID, currentPosition, endPosition);
+                    landOnField(playerID, currentPosition, endPosition, payIfCrossStart);
                 }
                 case "MoveToType" -> {
                     System.out.println("MoveToType");
-                    // TODO make player move to the next instance of a specific field type
+                    gui.buttonRequest(message, "Ok");
+                    int currentPlayerPosition = player.getPosition();
+
+                    List<Integer> allFieldTypePositions = new ArrayList<>();
+                    List<FieldSpaces> allFieldsOfType = lookUpFields(fields, "fieldType", "ferry");
+                    for (FieldSpaces field : allFieldsOfType) {
+                        int fieldPosition = field.getPosition();
+                        allFieldTypePositions.add(fieldPosition);
+                    }
+
+                    int closest = boardSize;
+                    for (int fieldPosition : allFieldTypePositions) {
+                        if (Math.abs(fieldPosition - currentPlayerPosition) < Math.abs(closest - currentPlayerPosition)) {
+                            closest = fieldPosition;
+                        }
+                    }
+                    FieldSpaces fieldShortestDistance = fields.get(closest);
+
+                    if (fieldShortestDistance instanceof Property) {
+                        String owner = ((Property) fieldShortestDistance).getOwner();
+                        if (owner != null && owner != playerID) {
+                            int rentToPay = ((Property) fieldShortestDistance).getRent() * rentMultiplier;
+                            player.setPosition(closest);
+                            gui.movePlayerTo(playerID, currentPlayerPosition, closest);
+                            createTransaction(playerID, owner, rentToPay, true, message);
+                        }
+                        else {
+                            player.setPosition(closest);
+                            gui.movePlayerTo(playerID, currentPlayerPosition, closest);
+                            landOnField(playerID, currentPlayerPosition, player.getPosition(), payIfCrossStart);
+                        }
+                    }
+                    else {
+                        player.setPosition(closest);
+                        gui.movePlayerTo(playerID, currentPlayerPosition, closest);
+                        landOnField(playerID, currentPlayerPosition, player.getPosition(), payIfCrossStart);
+                    }
+
                 }
                 case "MoveTo" -> {
                     System.out.println("MoveTo");
-                    // TODO make player move to specific field
-                }
-                case "PayIfCrossStart" -> {
-                    System.out.println("PayIfCrossStart");
-                    // TODO boolean statement that runs landOnStart
-                }
-                case "Condition" -> {
-                    System.out.println("Condition");
-                    // TODO card will only be run of condition is true
-                }
-                case "RentMultiplier" -> {
-                    System.out.println("RentMultiplier");
-                    // TODO double the rent that the player needs to play if a field is owned by someone else
+                    int cardPosition  = Integer.parseInt(card.get(key));
+                    int startPlayerPosition = player.getPosition();
+                    player.setPosition(cardPosition);
+                    gui.movePlayerTo(playerID, startPlayerPosition, player.getPosition());
+                    landOnField(playerID, startPlayerPosition, player.getPosition(), payIfCrossStart);
                 }
                 case "JailFreeCard" -> {
                     System.out.println("JailFreeCard");
-                    // TODO the player receives a "get-out-of-jail"-card
+                    player.addJailCard();
                 }
             }
         }
 
+    }
+    public void landOnTax(String playerID, TaxField currentField) {
+        int bill = currentField.getBill();
+        String message = "Skattefar giver dig et skattesmæk på " + Math.abs(bill);
+        createTransaction(playerID, null, bill, true, message);
+    }
+
+    private void payForJail(Player player){
+        boolean transactionSuccess = createTransaction(player.getId(),null,-1000,true,"Du betaler for at komme ud af fængsel");
+        if (transactionSuccess) {
+            player.setjailed(0);
+        }
+    }
+
+    private void auction(String playerID, Property property) {
+        // TODO Auction property off to highest bidder!
     }
 
     /**
@@ -432,9 +603,27 @@ public class FieldController {
 
     }
 
+    public void purchaseAllProperties(String playerID, boolean overwriteOwners, boolean resetHousing) {
+        ArrayList<FieldSpaces> allProperties = lookUpFields(fields, "fieldType", "property");
+        allProperties.addAll(lookUpFields(fields, "fieldType", "ferry"));
+        allProperties.addAll(lookUpFields(fields, "fieldType", "brewery"));
 
-    protected void insufficientFunds () {
-        gui.buttonRequest("You have insufficient funds. ", "Ok");
+        for (FieldSpaces property : allProperties) {
+            if (!overwriteOwners) {
+                if (((Property) property).getOwner() != null && !((Property) property).getOwner().equals(playerID)) {
+                    continue;
+                }
+            }
+
+            // TODO remove housing from the original player
+
+            ((Property) property).setOwner(playerID);
+            if (property instanceof Street && resetHousing) {
+                ((Street) property).setHousing(0);
+            }
+            updateFieldMap(((Property)property));
+            updateGUI(((Property)property), playerID);
+        }
     }
 
     protected void updateGUI(Property property, String playerID) {
@@ -445,6 +634,5 @@ public class FieldController {
                 gui.updateProperty(property.getPosition(), playerColor);
             }
     }
-
 
 }
