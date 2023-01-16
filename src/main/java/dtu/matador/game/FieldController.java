@@ -412,7 +412,16 @@ public class FieldController {
             System.out.println(rent);
             String receiverID = street.getOwner();
             Player receiver = playerController.getPlayerFromID(receiverID);
-            if (propertyBank.canBuyHouse(receiverID, street.getNeighborhood())){
+
+
+            int groupSize = street.getGroupSize();
+            int ownedByOwner = 0;
+            for (Property property : propertyBank.getPropertiesFromGroup(street.getNeighborhood())) {
+                if (((Street) property).getOwner().equals(receiverID)) {
+                    ownedByOwner += 1;
+                }
+            }
+            if (groupSize == ownedByOwner && street.getHousing() == 0) {
                 createTransaction(playerID, receiverID, rent * 2, true, message);
             }
             else {
@@ -701,7 +710,7 @@ public class FieldController {
             if (sale.equals("Ja")){
                 int sellPrice = 0;
                 for (Property propertyInGroup : propertyBank.getPropertiesFromGroup(street.getNeighborhood())) {
-                    sellPrice += street.getPrice() * 0.5;
+                    sellPrice += street.getBuildPrice() * 0.5;
                     Street streetInGroup = (Street) propertyInGroup;
                     streetInGroup.setHousing(streetInGroup.getHousing() - 1);
                     updateFieldMap(propertyInGroup);
