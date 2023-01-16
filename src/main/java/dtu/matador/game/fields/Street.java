@@ -31,4 +31,10 @@ public class Street extends Property {
         this.housing = amount;
     }
 
+    public void sellHousing(String playerID, Street street){
+        if (street.getOwner().equals(playerID) && street.getHousing() > 0) {
+            street.setHousing(street.getHousing() - 1);
+        }
+    }
+
 }
