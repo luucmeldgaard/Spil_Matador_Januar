@@ -236,7 +236,7 @@ public class FieldController {
 
         if (player.getjailed() > 0 && player.getjailed() <= 3) {
             String choice2 = gui.buttonRequest("Vil du slå med terningerne eller betale dig ud?", "Slå", "Betal");
-            if (choice2.equals("Roll")) {
+            if (choice2.equals("Slå")) {
                 int[] dieValues = player.rollDie();
                 gui.setDice(dieValues);
                 if (dieValues[0] == dieValues[1]) {
