@@ -635,4 +635,15 @@ public class FieldController {
             }
     }
 
+    public void sellHousing(String playerID, Street street){
+        if (street.getOwner().equals(playerID) && street.getHousing() > 0) {
+            street.setHousing(street.getHousing() - 1);
+        }
+        else {
+
+            // buy? pass?
+
+        }
+    }
+
 }
