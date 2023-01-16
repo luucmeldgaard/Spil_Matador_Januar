@@ -19,7 +19,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "4000",
-    "groupsize": "0"
+    "groupsize": "0",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -41,7 +42,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "2"
+    "groupsize": "2",
+    "buildprice": "1000"
   },
   {
     "owner": "",
@@ -63,7 +65,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "0"
+    "groupsize": "0",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -85,7 +88,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "2"
+    "groupsize": "2",
+    "buildprice": "1000"
   },
   {
     "owner": "",
@@ -107,7 +111,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "0"
+    "groupsize": "0",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -129,7 +134,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "4"
+    "groupsize": "4",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -151,7 +157,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "1000"
   },
   {
     "owner": "",
@@ -173,7 +180,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "0"
+    "groupsize": "0",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -195,7 +203,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "1000"
   },
   {
     "owner": "",
@@ -217,7 +226,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "1000"
   },
   {
     "owner": "",
@@ -239,7 +249,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "0"
+    "groupsize": "0",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -261,7 +272,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "2000"
   },
   {
     "owner": "",
@@ -283,7 +295,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "2"
+    "groupsize": "2",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -305,7 +318,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "2000"
   },
   {
     "owner": "",
@@ -327,7 +341,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "2000"
   },
   {
     "owner": "",
@@ -349,7 +364,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "4"
+    "groupsize": "4",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -371,7 +387,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "2000"
   },
   {
     "owner": "",
@@ -393,7 +410,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "0"
+    "groupsize": "0",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -415,7 +433,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "2000"
   },
   {
     "owner": "",
@@ -437,7 +456,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "2000"
   },
   {
     "owner": "",
@@ -459,7 +479,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "0"
+    "groupsize": "0",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -481,7 +502,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "3000"
   },
   {
     "owner": "",
@@ -503,7 +525,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "0"
+    "groupsize": "0",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -525,7 +548,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "3000"
   },
   {
     "owner": "",
@@ -547,7 +571,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "3000"
   },
   {
     "owner": "",
@@ -569,7 +594,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "4"
+    "groupsize": "4",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -591,7 +617,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "3000"
   },
   {
     "owner": "",
@@ -613,7 +640,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "3000"
   },
   {
     "owner": "",
@@ -635,7 +663,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "2"
+    "groupsize": "2",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -657,7 +686,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "3000"
   },
   {
     "owner": "",
@@ -679,7 +709,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "0"
+    "groupsize": "0",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -701,7 +732,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "4000"
   },
   {
     "owner": "",
@@ -723,7 +755,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "4000"
   },
   {
     "owner": "",
@@ -745,7 +778,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "0"
+    "groupsize": "0",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -767,7 +801,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "3"
+    "groupsize": "3",
+    "buildprice": "4000"
   },
   {
     "owner": "",
@@ -789,7 +824,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "4"
+    "groupsize": "4",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -811,7 +847,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "0"
+    "groupsize": "0",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -833,7 +870,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "2"
+    "groupsize": "2",
+    "buildprice": "4000"
   },
   {
     "owner": "",
@@ -855,7 +893,8 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "0"
+    "groupsize": "0",
+    "buildprice": ""
   },
   {
     "owner": "",
@@ -877,6 +916,7 @@
     "color2": "myBlack",
     "housing": "0",
     "income": "0",
-    "groupsize": "2"
+    "groupsize": "2",
+    "buildprice": "4000"
   }
 ]
