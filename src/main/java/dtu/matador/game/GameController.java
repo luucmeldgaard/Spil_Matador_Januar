@@ -33,7 +33,7 @@ public class GameController {
         ArrayList<String> boardNamesRaw = loader.getFoundBoardFileNames();
         ArrayList<String> boardNames = new ArrayList<>();
         for (int i = 0; i < boardNamesRaw.size(); i++) {
-            boardNames.add(boardNamesRaw.get(i).replace(".json", ""));
+            boardNames.add(boardNamesRaw.get(i).replace("_board.json", ""));
         }
         String[] boardNamesList = boardNames.toArray(new String[0]);
 
