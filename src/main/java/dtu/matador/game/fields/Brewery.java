@@ -13,10 +13,10 @@ public class Brewery extends Property {
         return owned[breweriesOwned-1];
     }
 
-    public int getMultiplier(int amount) {
+    /*public int getMultiplier(int amount) {
         int[] multiplier = new int[]{4, 10};
         if (amount == 1) { return multiplier[0]; }
         else { return multiplier[1]; }
-    }
+    }*/
 
 }
