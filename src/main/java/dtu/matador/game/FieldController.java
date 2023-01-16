@@ -350,13 +350,13 @@ public class FieldController {
         //If the field is owned by the current player, they have the choice to buy a house if they have sufficient funds
         if (owner.equals(playerID)) {
             System.out.println("This field is owned by you. ");
-            sellHousing(playerID,street);
             Property property = (Property) street;
             //checks if the owner has sufficient funds to buy a house
             if (balance >= street.getBuildPrice() && propertyBank.canBuyHouse(playerID, property.getNeighborhood()) && street.getHousing() < 5) {
 
             int nextBuildPrice = street.getBuildPrice();
-                String response = gui.buttonRequest("Do you want to purchase a house on each of your properties of the same color for " + nextBuildPrice * street.getGroupSize() + "?", "Buy", "Not Now");
+            //Implementing a ternary operator
+                String response = street.getHousing() > 0 ? gui.buttonRequest("Do you want to purchase or sell a house?","Buy", "Sell") : gui.buttonRequest("Do you want to purchase a house on each of your properties of the same color for " + nextBuildPrice * street.getGroupSize() + "?", "Buy", "Cancel");
                 if (response.equals("Buy")) {
                     boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false, "Buying house for " + street.getBuildPrice());
                     if (transactionSuccess) {
@@ -367,6 +367,9 @@ public class FieldController {
                             updateFieldMap(propertyInGroup);
                         }
                     }
+                }
+                if (response.equals("Sell")){
+                    sellHousing(playerID, street);
                 }
             }
 
