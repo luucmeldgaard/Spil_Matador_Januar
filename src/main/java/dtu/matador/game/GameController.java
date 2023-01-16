@@ -24,7 +24,7 @@ public class GameController {
     }
 
     private static void menu() {
-        String chosenBoard = gui.buttonRequest("Choose board", "fieldData");
+        String chosenBoard = gui.buttonRequest("Choose board", "FieldData");
         gui.close();
         setBoard(chosenBoard);
         setupPlayers();

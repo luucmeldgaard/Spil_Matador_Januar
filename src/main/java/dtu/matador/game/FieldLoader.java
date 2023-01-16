@@ -15,7 +15,7 @@ public class FieldLoader {
     ArrayList<Map<String, String>> chanceList;
 
     public FieldLoader(String selectedBoard) {
-        boardList = JSONtoList(selectedBoard + ".json", "position");
+        boardList = JSONtoList(("../../resources/" + selectedBoard + ".json"), "position");
         this.colorMap = new HashMap<>();
         this.colorMap = JSONtoMapColors("colors.json");
         this.chanceList = JSONtoList("chance" + ".json", "Number");
