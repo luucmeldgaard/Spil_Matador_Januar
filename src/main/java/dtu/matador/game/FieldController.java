@@ -702,10 +702,10 @@ public class FieldController {
                 int sellPrice = 0;
                 for (Property propertyInGroup : propertyBank.getPropertiesFromGroup(street.getNeighborhood())) {
                     sellPrice += street.getPrice() * 0.5;
-                    Street streetGroup = (Street) propertyInGroup;
-                    streetGroup.setHousing(street.getHousing() - 1);
-                    updateGUI(propertyInGroup, playerID);
+                    Street streetInGroup = (Street) propertyInGroup;
+                    streetInGroup.setHousing(streetInGroup.getHousing() - 1);
                     updateFieldMap(propertyInGroup);
+                    updateGUI(propertyInGroup, playerID);
                 }
                 createTransaction(playerID, null, sellPrice, false, "Du har solgt ét hus på hver ejendom i området. Modtag" + sellPrice + "kroner.");
             }
