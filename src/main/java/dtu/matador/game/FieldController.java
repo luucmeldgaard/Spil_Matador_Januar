@@ -387,6 +387,7 @@ public class FieldController {
             if (balance >= street.getBuildPrice() && propertyBank.canBuyHouse(playerID, property.getNeighborhood()) && street.getHousing() < 5) {
 
             int nextBuildPrice = street.getBuildPrice();
+
                 //Implementing a ternary operator
                 String response = street.getHousing() > 0 ? gui.buttonRequest("Do you want to purchase or sell a house?","Buy", "Sell") : gui.buttonRequest("Do you want to purchase a house on each of your properties of the same color for " + nextBuildPrice * street.getGroupSize() + "?", "Buy", "Not now");
                 if (response.equals("Buy")) {
@@ -701,13 +702,13 @@ public class FieldController {
             if (sale.equals("Ja")){
                 int sellPrice = 0;
                 for (Property propertyInGroup : propertyBank.getPropertiesFromGroup(street.getNeighborhood())) {
-                    sellPrice += street.getPrice() * 0.5;
+                    sellPrice += Math.abs(street.getBuildPrice()) * 0.5;
                     Street streetInGroup = (Street) propertyInGroup;
                     streetInGroup.setHousing(streetInGroup.getHousing() - 1);
                     updateFieldMap(propertyInGroup);
                     updateGUI(propertyInGroup, playerID);
                 }
-                createTransaction(playerID, null, sellPrice, false, "Du har solgt ét hus på hver ejendom i området. Modtag" + sellPrice + "kroner.");
+                createTransaction(playerID, null, sellPrice, false, "Du har solgt ét hus på hver ejendom i området. Modtag " + sellPrice + " kroner.");
             }
 
         }
