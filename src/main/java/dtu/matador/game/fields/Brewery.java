@@ -8,7 +8,6 @@ public class Brewery extends Property {
         super(name, subtext, description, rent, rent1, rent2, rent3, rent4, rent5, color1, color2, price, pawnForAmount, position, owner, neighborhood, groupSize);
     }
 
-    @Override
     public int getRent(int breweriesOwned) {
         int[] owned = new int[] {rent0, rent1};
         return owned[breweriesOwned-1];

@@ -9,7 +9,6 @@ public class Ferry extends Property {
 
     }
 
-    @Override
     public int getRent(int ferriesOwned) {
         int[] owned = new int[] {rent0, rent1, rent2, rent3};
         return -owned[ferriesOwned-1];

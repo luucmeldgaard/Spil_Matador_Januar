@@ -50,7 +50,7 @@ public class FieldController {
                 case "property" -> {
                     fields.set(fieldPosition, propertyBank.addProperty(field.get("neighborhood"), new Street(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"), field.get("rent2"),
                             field.get("rent3"), field.get("rent4"), field.get("rent5"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
-                            field.get("position"), field.get("owner"), field.get("housing"), field.get("neighborhood"), field.get("groupsize"))));
+                            field.get("position"), field.get("owner"), field.get("housing"), field.get("neighborhood"), field.get("groupsize"), field.get("buildPrice"))));
 
                 }
                 case "ferry" -> {
@@ -334,12 +334,14 @@ public class FieldController {
             int breweriesOwnedByOwner = 0;
             ArrayList<Property> allBreweries = propertyBank.getPropertiesFromGroup("brewery");
             for (Property brewery : allBreweries) {
-                if (brewery.getOwner().equals(owner)) {
-                    breweriesOwnedByOwner += 1;
+                if (brewery.getOwner() != null) {
+                    if (brewery.getOwner().equals(owner)) {
+                        breweriesOwnedByOwner += 1;
+                    }
                 }
             }
             int total = player.getLastPlayedDieRoll()[2];
-            int rent = currentField.getRent();
+            int rent = currentField.getRent(breweriesOwnedByOwner);
             int multiplier = currentField.getMultiplier(breweriesOwnedByOwner);
             int breweryRent = total*rent*multiplier;
             createTransaction(playerID, owner, breweryRent, true,"");
@@ -363,9 +365,9 @@ public class FieldController {
             if (balance >= street.getBuildPrice() && propertyBank.canBuyHouse(playerID, property.getNeighborhood()) && street.getHousing() < 5) {
 
             int nextBuildPrice = street.getBuildPrice();
-                String response = gui.buttonRequest("Do you want to purchase a house on each of your properties of the same color for " + nextBuildPrice * street.getGroupSize() + "?", "Buy", "Not Now");
+                String response = gui.buttonRequest("Do you want to purchase a house on each of your properties of the same color for " + Math.abs(nextBuildPrice * street.getGroupSize()) + "?", "Buy", "Not Now");
                 if (response.equals("Buy")) {
-                    boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice, false, "Buying house for " + street.getBuildPrice());
+                    boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice * property.getGroupSize(), false, "Buying house for " + Math.abs(nextBuildPrice * street.getGroupSize()));
                     if (transactionSuccess) {
 
                         for(Property propertyInGroup : propertyBank.getPropertiesFromGroup(property.getNeighborhood())){
@@ -500,8 +502,26 @@ public class FieldController {
 
                     if (fieldShortestDistance instanceof Property) {
                         String owner = ((Property) fieldShortestDistance).getOwner();
-                        if (owner != null && owner != playerID) {
-                            int rentToPay = ((Property) fieldShortestDistance).getRent() * rentMultiplier;
+                        if (owner != null && !owner.equals(playerID)) {
+                            int totalOwnedByOwner = 0;
+                            ArrayList<Property> ownedByOwner = propertyBank.getPropertiesFromGroup(((Property) fieldShortestDistance).getNeighborhood());
+                            for (Property property : ownedByOwner) {
+                                if (property.getOwner() != null) {
+                                    if (property.getOwner().equals(owner)) {
+                                        totalOwnedByOwner += 1;
+                                    }
+                                }
+                            }
+                            int rentToPay = 0;
+                            if (fieldShortestDistance instanceof Ferry) {
+                                rentToPay = ((Ferry) fieldShortestDistance).getRent(totalOwnedByOwner) * rentMultiplier;
+                            }
+                            else if (fieldShortestDistance instanceof Street) {
+                                rentToPay = ((Street) fieldShortestDistance).getRent() * rentMultiplier;
+                            }
+                            else if (fieldShortestDistance instanceof Brewery) {
+                                rentToPay = ((Brewery) fieldShortestDistance).getRent(totalOwnedByOwner) * rentMultiplier;
+                            }
                             player.setPosition(closest);
                             gui.movePlayerTo(playerID, currentPlayerPosition, closest);
                             createTransaction(playerID, owner, rentToPay, true, message);

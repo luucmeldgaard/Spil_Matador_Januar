@@ -21,7 +21,6 @@ public abstract class Property implements PropertyFields {
     protected final int pawnForAmount;
     protected final int position;
     private String owner;
-    private int buildPrice;
     protected int housing;
 
     private final int groupSize;
@@ -73,15 +72,6 @@ public abstract class Property implements PropertyFields {
         return this.color1;
     }
 
-    private int currentRent() {
-        int[] rent = new int[] {this.rent0, this.rent1, this.rent2, this.rent3, this.rent4, this.rent5};
-        return rent[this.housing];
-    }
-    public int getRent() {
-        System.out.println("normal rent: " + this.rent0 + " actual rent with " + this.housing + " housing: " + currentRent());
-        return currentRent();
-    }
-
     public String getColor2() {return this.color2; }
 
     public void setColor2(String color) {this.color2 = color;}
@@ -113,9 +103,6 @@ public abstract class Property implements PropertyFields {
 
     }
 
-    public int getBuildPrice(){
-        return buildPrice;
-    }
     public String getNeighborhood(){
         return neighborhood;
     }
@@ -127,7 +114,6 @@ public abstract class Property implements PropertyFields {
         return groupSize;
     }
 
-    public abstract int getRent(int ferriesOwned);
 }
 
 
