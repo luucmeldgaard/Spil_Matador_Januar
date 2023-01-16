@@ -22,6 +22,7 @@ public abstract class Property implements PropertyFields {
     protected final int position;
     private String owner;
     protected int housing;
+    protected boolean pawned;
 
     private final int groupSize;
 
@@ -49,6 +50,7 @@ public abstract class Property implements PropertyFields {
         this.owner = owner;
         this.neighborhood = neighborhood;
         this.groupSize = Integer.parseInt(groupSize);
+        this.pawned = pawned;
 
         if (this.owner.equals("")) {
             this.owner = null;
