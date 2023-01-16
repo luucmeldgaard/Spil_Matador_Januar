@@ -378,29 +378,33 @@ public class FieldController {
         Player player = playerController.getPlayerFromID(playerID);
         int balance = playerController.getPlayerFromID(playerID).getBalance();
 
-        //If the field is owned by the current player, they have the choice to buy a house if they have sufficient funds
+        /*If the field is owned by the current player, they have the choice to either buy or sell house.
+        If they do not have any houses on the property, they can only buy.
+         */
         if (owner.equals(playerID)) {
-            
             System.out.println("This field is owned by you. ");
             Property property = (Property) street;
-            //checks if the owner has sufficient funds to buy a house
+            //Checks if the owner has sufficient funds to buy a house
             if (balance >= street.getBuildPrice() && propertyBank.canBuyHouse(playerID, property.getNeighborhood()) && street.getHousing() < 5) {
+                int nextBuildPrice = street.getBuildPrice();
+                String response = "";
 
-            int nextBuildPrice = street.getBuildPrice();
-            String response = "";
+            //Checks if the owner has houses or not. If they do, they can either buy or sell a house
             if (street.getHousing() > 0) {
                 String message = "Do you want to purchase or sell a house in this neighbourhood?";
                 response = gui.buttonRequest(message,"Buy", "Sell");
                 }
+            //If the owner does not own any houses on the property, they can only buy a house.
             else {
                 String message = "Do you want to purchase a house on each of your properties of the same color for " + Math.abs(nextBuildPrice) * street.getGroupSize() + "?";
                 response = gui.buttonRequest( message, "Buy", "Not now");
                 }
-
+            //The player chooses to buy a house for each property in the neighbourhood
                 if (response.equals("Buy")) {
                     boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice * property.getGroupSize(), false, "Buying house for " + Math.abs(nextBuildPrice * street.getGroupSize()));
                     if (transactionSuccess) {
 
+                        //Loops through all the properties in the neighbourhood and updates them with a house each
                         for(Property propertyInGroup : propertyBank.getPropertiesFromGroup(property.getNeighborhood())){
                             propertyInGroup.buildHouse();
                             updateGUI(propertyInGroup, playerID);
