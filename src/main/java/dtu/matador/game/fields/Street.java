@@ -35,6 +35,9 @@ public class Street extends Property {
         if (street.getOwner().equals(playerID) && street.getHousing() > 0) {
             street.setHousing(street.getHousing() - 1);
         }
+        else {
+
+        }
     }
 
 }
