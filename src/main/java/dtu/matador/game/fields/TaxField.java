@@ -11,8 +11,8 @@ public class TaxField extends NonPurchasableFields {
     String color2;
     int bill;
 
-    public TaxField(FieldController controller, String name, String subtext, String description, String color1, String color2, String bill, String position) {
-        super(controller, name, subtext, description, color1, color2, position);
+    public TaxField(String name, String subtext, String description, String color1, String color2, String bill, String position) {
+        super(name, subtext, description, color1, color2, position);
         this.name = name;
         this.subtext = subtext;
         this.description = description;

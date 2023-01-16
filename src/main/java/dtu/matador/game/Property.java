@@ -1,8 +1,8 @@
 package dtu.matador.game;
 
 public abstract class Property implements PropertyFields {
+
     //Creating variables that will be used
-    private static FieldController controller;
     private final String name;
     private final String subtext;
     private final String description;
@@ -28,12 +28,11 @@ public abstract class Property implements PropertyFields {
 
 
     //Takes input to create the class
-    public Property(FieldController controller, String name, String subtext, String description, String rent,
+    public Property(String name, String subtext, String description, String rent,
                     String rent1, String rent2, String rent3, String rent4, String rent5,
                     String color1, String color2, String price,
                     String pawnForAmount, String position, String owner, String neighborhood, String groupSize){
 
-        this.controller = controller;
         this.name = name;
         this.subtext = subtext;
         this.description = description;
