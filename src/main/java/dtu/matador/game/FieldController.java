@@ -340,10 +340,10 @@ public class FieldController {
                     }
                 }
             }
-            int total = player.getLastPlayedDieRoll()[2];
+            int totalDieRoll = player.getLastPlayedDieRoll()[2];
             int rent = currentField.getRent(breweriesOwnedByOwner);
-            int multiplier = currentField.getMultiplier(breweriesOwnedByOwner);
-            int breweryRent = total*rent*multiplier;
+            //int multiplier = currentField.getMultiplier(breweriesOwnedByOwner);
+            int breweryRent = totalDieRoll*rent;
             createTransaction(playerID, owner, breweryRent, true,"");
         }
     }
