@@ -4,9 +4,13 @@ package dtu.matador.game;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class FieldLoader {
 
@@ -15,10 +19,12 @@ public class FieldLoader {
     ArrayList<Map<String, String>> chanceList;
 
     public FieldLoader(String selectedBoard) {
-        boardList = JSONtoList(("../../resources/" + selectedBoard + ".json"), "position");
+        String filename = ("./src/main/resources/" + selectedBoard + ".json");
+        System.out.println("opening " + filename);
+        boardList = JSONtoList(filename,"position");
         this.colorMap = new HashMap<>();
-        this.colorMap = JSONtoMapColors("colors.json");
-        this.chanceList = JSONtoList("chance" + ".json", "Number");
+        this.colorMap = JSONtoMapColors("./src/main/resources/colors.json");
+        this.chanceList = JSONtoList("./src/main/resources/chance" + ".json", "Number");
     }
 
     private ArrayList<Map<String, String>> JSONtoList(String filename, String outerMapKey) {
@@ -31,6 +37,7 @@ public class FieldLoader {
         ObjectMapper mapper = new ObjectMapper();
 
         // Tries to parse the JSON to a Map<String, Map<String>, <String>
+
         try (FileReader fieldFileReader = new FileReader(filename)) {
 
             // Creates an array of strings from an object created by the JsonParser
