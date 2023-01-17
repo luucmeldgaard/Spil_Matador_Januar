@@ -25,8 +25,8 @@ public class Loader {
         if (loadGame == 0) {
             this.settings = JSONtoMap("settings.json", "settings");
             this.boardFiles = getAllFilesOfType("board");
-            this.colorFiles = getAllFilesOfType("colors");
-            this.chanceFiles = getAllFilesOfType("chance");
+            this.colorFiles = getAllFilesOfType("colors.json");
+            this.chanceFiles = getAllFilesOfType("chance.json");
             this.boardList = new ArrayList<>();
             this.colorMap = JSONtoMap(this.settings.get("colors"), "colors");
             this.chanceList = JSONtoList(this.settings.get("chance"), "Number", "chance");
@@ -51,26 +51,17 @@ public class Loader {
         return allFiles;
     }
 
-    /*public void loadAll(String selectedBoard) {
-        this.boardList = JSONtoList(selectedBoard + ".json", "position", "board");
-        this.colorMap = JSONtoMap(selectedColors + ".json", "colors");
-        this.chanceList = JSONtoList(selectedChance + ".json", "Number", "chance");
-    }*/
-
 
     // A JSON reader which reads a JSON and parses it to a string,
     // which it then returns.
     public String read(String filename, String jsonType) {
 
         // String to return
-        String objString = "";
-
+        String objString;
         String path = "";
         if (filename.contains("/")) {
             System.out.println("File has already been found. Full path has been provided. ");
             path = filename;
-        }
-        else {
             // Defines the file and retrieves its canonical path
             File file = new File(path + filename);
             try {
@@ -78,6 +69,15 @@ public class Loader {
                 System.out.println(path);
             } catch (IOException e) {
                 System.out.println("No directory found");
+            }
+        }
+        else {
+            File file = new File("./json/" + filename);
+            try {
+                path = file.getCanonicalPath();
+                System.out.println(path);
+            } catch (IOException e) {
+                System.out.println("No files found");
             }
         }
 

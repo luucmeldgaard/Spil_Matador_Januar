@@ -1,6 +1,6 @@
 [
   {
-    "colors": "default_colors",
-    "chance": "da_chance"
+    "colors": "colors.json",
+    "chance": "da_chance.json"
   }
 ]
