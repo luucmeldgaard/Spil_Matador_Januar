@@ -183,6 +183,21 @@ class GUIController {
 
     public int getBoardSize() {return boardSize; }
 
+    public void displayInMiddle(String textToShow){
+        gui.displayChanceCard(textToShow);
+    }
+
+    public void displayInMiddle(String... strings){
+        String res = "";
+        for (int i = 0; i < strings.length;i++) {
+            res = res + strings[i];
+            res = res + "\r\n";
+        }
+        System.out.println(res);
+        displayInMiddle(res);
+    }
+
+
     public int getNumberOfPlayers(){
          numberOfPlayers = Integer.parseInt((gui.getUserSelection(
                 "Vælg antal spillere",
