@@ -14,7 +14,6 @@ public class GameController {
     private static final int[] IGNORE_DIE_VALUES = null;
     private static int rolledDoublesInARow = 0;
 
-    //Main method. Runs the program
     public static void main(String[] args) {
         playerController = new PlayerController();
         GUI.setNull_fields_allowed(true);
