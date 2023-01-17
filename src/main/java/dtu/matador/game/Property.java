@@ -97,7 +97,7 @@ public abstract class Property implements PropertyFields {
 
     //A player can buy with the help of a transaction
     public String buyMessage() {
-        return "Do you want to purchase " + this.name + "?";
+        return "Ønsker du at købe " + this.name + "?";
     }
 
     public String auctionMessage() {

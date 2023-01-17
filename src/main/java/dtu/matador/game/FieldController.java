@@ -300,7 +300,7 @@ public class FieldController {
     }
     private void landOnStart(String playerID, StartField start) {
         int income = start.getIncome();
-        String message = "You passed start, gain " + income + "!";
+        String message = "Du passerede start, modtag " + income + "!";
         createTransaction(playerID, null, income, false, message);
     }
 
@@ -309,8 +309,8 @@ public class FieldController {
         Player player = playerController.getPlayerFromID(playerID);
         if (owner == null) {
             System.out.println("This field is not owned by anyone!");
-            String choice = gui.buttonRequest("Buy or auction?", "Buy", "Auction");
-            if (choice.equals("Buy")) {
+            String choice = gui.buttonRequest("Køb eller auktionér?", "Køb", "Auktionér");
+            if (choice.equals("Køb")) {
 
                 String message = property.buyMessage();
                 boolean purchase = createTransaction(playerID,null, property.getPrice(), false, message);
@@ -318,7 +318,7 @@ public class FieldController {
                     property.setOwner(playerID);
                 }
                 else {
-                    gui.buttonRequest("You have insufficient funds. ", "Ok");
+                    gui.buttonRequest("Du har ikke råd. ", "Ok");
                     auction(playerID, property);
                 }
 
@@ -332,8 +332,8 @@ public class FieldController {
                         updateGUI(property, playerID);
                     }
                 }
-            } else if (choice.equals("Auction")) {
-                gui.buttonRequest("You have insufficient funds. ", "Ok");
+            } else if (choice.equals("Auktion")) {
+                gui.buttonRequest("Du har ikke råd. ", "Ok");
                 auction(playerID, property);
             }
 
@@ -357,7 +357,7 @@ public class FieldController {
         int balance = playerController.getPlayerFromID(playerID).getBalance();
 
         if (owner.equals(playerID)) {
-            System.out.println("This ferry is owned by you. ");
+            System.out.println("Du ejer dette rederi. ");
         }
         else {
             //TODO den nedenstående variable skal ændres således at den ser på ejerens ferries og ikke den nuværende spillers...
@@ -416,7 +416,7 @@ public class FieldController {
         If they do not have any houses on the property, they can only buy.
          */
         if (owner.equals(playerID)) {
-            System.out.println("This field is owned by you. ");
+            System.out.println("Du ejer denne grund. ");
             Property property = (Property) street;
             //Checks if the owner has sufficient funds to buy a house
             if (balance >= street.getBuildPrice() && propertyBank.canBuyHouse(playerID, property.getNeighborhood()) && street.getHousing() < 5) {
@@ -425,8 +425,8 @@ public class FieldController {
 
             //Checks if the owner has houses or not. If they do, they can either buy or sell a house
             if (street.getHousing() > 0) {
-                String message = "Do you want to purchase or sell a house in this neighbourhood?";
-                response = gui.buttonRequest(message,"Buy", "Sell");
+                String message = "Ønsker du at købe eller sælge et hus i dette nabolag?";
+                response = gui.buttonRequest(message,"Køb", "Sælg");
                 }
             //If the owner does not own any houses on the property, they can only buy a house.
             else {
@@ -434,7 +434,7 @@ public class FieldController {
                 response = gui.buttonRequest( message, "Buy", "Not now");
                 }
             //The player chooses to buy a house for each property in the neighbourhood
-                if (response.equals("Buy")) {
+                if (response.equals("Køb")) {
                     boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice * property.getGroupSize(), false, "Buying house for " + Math.abs(nextBuildPrice * street.getGroupSize()));
                     if (transactionSuccess) {
 
@@ -446,14 +446,14 @@ public class FieldController {
                         }
                     }
                 }
-                if (response.equals("Sell")) {
+                if (response.equals("Sælg")) {
                     sellHousing(playerID, street);
                 }
             }
 
         }
         else {
-            String message = "This field is owned by someone else!";
+            String message = "Dette felt er ejet af en anden!";
             int rent = street.getRent();
             System.out.println(rent);
             String receiverID = street.getOwner();
@@ -664,11 +664,11 @@ public class FieldController {
             // Payments to the bank
             if (amount <= 0) {
                 if (critical) {
-                    userRequest = gui.buttonRequest(message, "Pay");
+                    userRequest = gui.buttonRequest(message, "Betal");
                 }
                 else {
-                    userRequest = gui.buttonRequest(message, "Pay", "Cancel");
-                    if (userRequest.equals("Cancel")) {
+                    userRequest = gui.buttonRequest(message, "Betal", "Annuller");
+                    if (userRequest.equals("Annuller")) {
                         return false;
                     }
                 }
@@ -695,7 +695,7 @@ public class FieldController {
         }
 
         if (playerController.getPlayerFromID(playerID) == null) {
-            gui.buttonRequest("You are broke and have lost the game... ", "Ok");
+            gui.buttonRequest("Du er gået fallit og har tabt spillet... ", "Ok");
             gui.removePlayer(playerID);
         }
 
