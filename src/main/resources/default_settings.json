@@ -1,6 +1,6 @@
 [
   {
-    "chance": "da_chance",
+    "chance": "default_chance",
     "colors": "default_colors"
   }
 ]
