@@ -180,7 +180,7 @@ public class GameController {
         // normal gameplay
         else {
             if (rolledDoublesInARow == 2 && dieValues[0] == dieValues[1]) {
-                gui.buttonRequest("You rolled doubles 3 times in a row! We suspect cheating...", "Go to Jail");
+                gui.buttonRequest("Du har slået to ens tre gange i træk. Mistænkeligt.", "Gå i fængsel");
                 int jailPosition = board.getJailPosition();
                 player.setPosition(jailPosition);
                 gui.movePlayerTo(player.getId(), currentPosition, player.getPosition());

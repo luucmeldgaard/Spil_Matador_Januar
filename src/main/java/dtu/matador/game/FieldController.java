@@ -434,8 +434,8 @@ public class FieldController {
                 }
             //If the owner does not own any houses on the property, they can only buy a house.
             else {
-                String message = "Do you want to purchase a house on each of your properties of the same color for " + Math.abs(nextBuildPrice) * street.getGroupSize() + "?";
-                response = gui.buttonRequest( message, "Buy", "Not now");
+                String message = "Ønsker du at købe et hus på hver grund i dette nabolag for " + Math.abs(nextBuildPrice) * street.getGroupSize() + "?";
+                response = gui.buttonRequest( message, "Køb", "Nej");
                 }
             //The player chooses to buy a house for each property in the neighbourhood
                 if (response.equals("Køb")) {
@@ -775,7 +775,7 @@ public class FieldController {
                     updateFieldMap(propertyInGroup);
                     updateGUI(propertyInGroup, playerID);
                 }
-                createTransaction(playerID, null, sellPrice, false, "Du har solgt ét hus på hver ejendom i området. Modtag " + sellPrice + " kroner.");
+                createTransaction(playerID, null, -sellPrice, false, "Du har solgt ét hus på hver ejendom i området. Modtag " + Math.abs(sellPrice) + " kroner.");
             }
 
         }
