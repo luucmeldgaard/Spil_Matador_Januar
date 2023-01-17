@@ -201,8 +201,6 @@ public class FieldController {
             String boatrent4 = "Husleje med 4 både: " + Integer.toString(((Property) currentField).getRent3());
             String breweryrent1 = "Husleje med 1 bryggeri: " + Integer.toString(((Property) currentField).getRent0());
             String breweryrent2 = "Husleje med 2 bryggerier: " + Integer.toString(((Property) currentField).getRent1());
-            String breweryrent3 = "Husleje med 3 bryggerier: " + Integer.toString(((Property) currentField).getRent2());
-            String breweryrent4 = "Husleje med 4 bryggerier: " + Integer.toString(((Property) currentField).getRent3());
 
             if (description == null) {
                 description = "";
@@ -211,7 +209,7 @@ public class FieldController {
                 gui.displayInMiddle(propertyname,description,boatrent1,boatrent2,boatrent3,boatrent4);
             }
             if (currentField instanceof Brewery){
-                gui.displayInMiddle(propertyname,description,breweryrent1,breweryrent2,breweryrent3,breweryrent4);
+                gui.displayInMiddle(propertyname,description,breweryrent1,breweryrent2);
             }
             if (currentField instanceof Street){
                 gui.displayInMiddle(propertyname,description,rent0,rent1,rent2,rent3,rent4,rent5,currentrent);
