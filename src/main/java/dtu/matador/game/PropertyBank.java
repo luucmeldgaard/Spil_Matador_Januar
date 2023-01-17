@@ -42,9 +42,6 @@ public class PropertyBank {
                 System.out.println("Property is not an instance of Street");
                 return false;
             }
-            if (property.getOwner() != playerID) {
-                return false;
-            }
         }
         return true;
 
