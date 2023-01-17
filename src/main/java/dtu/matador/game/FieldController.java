@@ -650,7 +650,6 @@ public class FieldController {
                         gui.movePlayerTo(playerID, currentPlayerPosition, closest);
                         landOnField(playerID, currentPlayerPosition, player.getPosition(), payIfCrossStart);
                     }
-
                 }
                 case "MoveTo" -> {
                     System.out.println("MoveTo");
@@ -676,8 +675,6 @@ public class FieldController {
         String message = "Skattefar giver dig et skattesmæk på " + Math.abs(bill) + " kroner.";
         createTransaction(playerID, null, bill, true, message);
     }
-
-
 
     private void auction(String playerID, Property property) {
 
@@ -733,8 +730,6 @@ public class FieldController {
             updateFieldMap(property);
             updateGUI(property, winner.getId());
         }
-
-
     }
 
     /**
@@ -794,7 +789,6 @@ public class FieldController {
         }
 
         return transactionSuccess;
-
     }
 
     public void purchaseAllProperties(String playerID, boolean overwriteOwners, boolean resetHousing) {
@@ -1011,12 +1005,7 @@ public class FieldController {
                 updateGUI(fieldToTradeInReturn, owner.getId());
                 gui.buttonRequest("Handlen blev gennemført. ", "Ok");
             }
-
         }
-
-
-
     }
-
 
 }
