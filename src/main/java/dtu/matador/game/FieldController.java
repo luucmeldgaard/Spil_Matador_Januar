@@ -775,7 +775,7 @@ public class FieldController {
                     updateFieldMap(propertyInGroup);
                     updateGUI(propertyInGroup, playerID);
                 }
-                createTransaction(playerID, null, sellPrice, false, "Du har solgt ét hus på hver ejendom i området. Modtag " + sellPrice + " kroner.");
+                createTransaction(playerID, null, sellPrice, false, "Du har solgt ét hus på hver ejendom i området. Modtag " + Math.abs(sellPrice) + " kroner.");
             }
 
         }
