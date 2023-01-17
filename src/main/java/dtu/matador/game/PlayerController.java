@@ -57,6 +57,7 @@ public class PlayerController {
         return playerIDs;
     }
 
+    //Removes a player from the game
     public void removePlayer(String playerID) {
         Player player = getPlayerFromID(playerID);
         removedPlayers.add(player.getId());

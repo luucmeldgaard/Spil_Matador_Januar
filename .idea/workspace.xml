@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="Changed subtext to show field price">
+    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="minor bugfix: sellPrice now returns the integer value instead of a minus">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/FieldController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/FieldController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/1. Normal_board.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/1. Normal_board.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +51,7 @@
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -115,8 +116,8 @@
         <item itemvalue="Application.GameController" />
         <item itemvalue="JUnit.PlayerTest" />
         <item itemvalue="JUnit.DiceCupTest.dieInRangeOneToSix" />
-        <item itemvalue="Application.GameController" />
         <item itemvalue="JUnit.PlayerTest" />
+        <item itemvalue="JUnit.DiceCupTest.dieInRangeOneToSix" />
       </list>
     </recent_temporary>
   </component>
@@ -134,6 +135,17 @@
       <workItem from="1673023635483" duration="1868000" />
       <workItem from="1673037372622" duration="842000" />
       <workItem from="1673629515948" duration="1351000" />
+      <workItem from="1673653380340" duration="1839000" />
+      <workItem from="1673741394460" duration="1480000" />
+      <workItem from="1673798510721" duration="4103000" />
+      <workItem from="1673807975891" duration="124000" />
+      <workItem from="1673882464031" duration="1369000" />
+      <workItem from="1673884853287" duration="1395000" />
+      <workItem from="1673888632662" duration="4246000" />
+      <workItem from="1673897693365" duration="866000" />
+      <workItem from="1673900451755" duration="11598000" />
+      <workItem from="1673956324915" duration="3710000" />
+      <workItem from="1673965834219" duration="5134000" />
     </task>
     <task id="LOCAL-00001" summary="Terning implementeret">
       <created>1672853831020</created>
@@ -247,7 +259,168 @@
       <option name="project" value="LOCAL" />
       <updated>1673460696265</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="GUI now prints a house on each property in the group">
+      <created>1673742467104</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1673742467104</updated>
+    </task>
+    <task id="LOCAL-00018" summary="GUI now prints a house on each property in the group">
+      <created>1673742508923</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1673742508923</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Utility renamed to Brewery">
+      <created>1673800634056</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1673800634056</updated>
+    </task>
+    <task id="LOCAL-00020" summary="lastDieTotal and setLastDieTotal removed, since there is an existing lastPlayedDieRoll">
+      <created>1673801299641</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1673801299641</updated>
+    </task>
+    <task id="LOCAL-00021" summary="When a player lands on a Brewery, they will pay the dieTotal * rent * 10">
+      <created>1673801502372</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1673801502372</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Message already in createTransaction, and is not written again in landOnBrewery.">
+      <created>1673802119375</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1673802119375</updated>
+    </task>
+    <task id="LOCAL-00023" summary="if only one brewery is owned, the equation remains to 4*total*rent. If both are owned, 4 changes to 10 instead (not implemented yet).">
+      <created>1673802623509</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1673802623509</updated>
+    </task>
+    <task id="LOCAL-00024" summary="sellHousing method implemented. If a player is the owner and has more than 0 houses, they can sell a house on the current property.">
+      <created>1673885087497</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1673885087497</updated>
+    </task>
+    <task id="LOCAL-00025" summary="sellHousing: considerations of an else-statement written">
+      <created>1673885319642</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1673885319642</updated>
+    </task>
+    <task id="LOCAL-00026" summary="sellHousing moved to FieldController">
+      <created>1673889067249</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1673889067249</updated>
+    </task>
+    <task id="LOCAL-00027" summary="sellHousing optimized with buttons etc.">
+      <created>1673890241124</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1673890241124</updated>
+    </task>
+    <task id="LOCAL-00028" summary="a player now sells one house on each property in the neighbourhood, and receives the sellPrice per house multiplied by the amount of houses.">
+      <created>1673891166517</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1673891166517</updated>
+    </task>
+    <task id="LOCAL-00029" summary="a player can only sell if they own more than 0 houses">
+      <created>1673895721124</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1673895721124</updated>
+    </task>
+    <task id="LOCAL-00030" summary="When a player owns every property in the neighbourhood, the rent doubles.">
+      <created>1673898275477</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1673898275477</updated>
+    </task>
+    <task id="LOCAL-00031" summary="a player can sell houses">
+      <created>1673900996186</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1673900996186</updated>
+    </task>
+    <task id="LOCAL-00032" summary="a player can sell houses">
+      <created>1673902267853</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1673902267853</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Fixed a bug where sell houses would cost the player money instead of giving them money">
+      <created>1673904503815</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1673904503815</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Fixed a bug with buying and selling houses">
+      <created>1673905050889</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1673905050889</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Fixed a bug with buying and selling houses">
+      <created>1673911447063</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1673911447063</updated>
+    </task>
+    <task id="LOCAL-00036" summary="a boolean: pawned has been added, aswell as explanatory comments in landOnStreet in FieldController (previous commit)">
+      <created>1673911541123</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1673911541123</updated>
+    </task>
+    <task id="LOCAL-00037" summary="button language changed to danish">
+      <created>1673956466494</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1673956466494</updated>
+    </task>
+    <task id="LOCAL-00038" summary="minor bugfix: sellPrice now returns the integer value instead of a minus">
+      <created>1673956624957</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1673956624957</updated>
+    </task>
+    <task id="LOCAL-00039" summary="minor bugfix: sellPrice now returns the integer value instead of a minus">
+      <created>1673957279162</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1673957279162</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,21 +475,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Terning Implementeret igen" />
-    <MESSAGE value="Purchasabe Properties for den abstrakte klasse Property implementer Herunder Railroad, Street og Utility -klasserne." />
-    <MESSAGE value="Begun working on landOn()" />
-    <MESSAGE value="Simple gameplay features optimized" />
-    <MESSAGE value="Player moves forward" />
-    <MESSAGE value="Player rolls die" />
-    <MESSAGE value="total of dieRoll also gets shown" />
-    <MESSAGE value="Made changes to playRound()" />
-    <MESSAGE value="player can roll Die" />
     <MESSAGE value="Player changes made. Created test: player moves the dieRoll forward" />
     <MESSAGE value="Player can now move the total value of the dieRoll" />
     <MESSAGE value="added &quot;income&quot;" />
     <MESSAGE value="Reverted back to previous thingymajingy" />
     <MESSAGE value="Changed subtext to show field price" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed subtext to show field price" />
+    <MESSAGE value="GUI now prints a house on each property in the group" />
+    <MESSAGE value="Utility renamed to Brewery" />
+    <MESSAGE value="lastDieTotal and setLastDieTotal implemented, so the lastDieTotal can be saved." />
+    <MESSAGE value="lastDieTotal and setLastDieTotal removed, since there is an existing lastPlayedDieRoll" />
+    <MESSAGE value="When a player lands on a Brewery, they will pay the dieTotal * rent * 10" />
+    <MESSAGE value="Message already in createTransaction, and is not written again in landOnBrewery." />
+    <MESSAGE value="if only one brewery is owned, the equation remains to 4*total*rent. If both are owned, 4 changes to 10 instead (not implemented yet)." />
+    <MESSAGE value="sellHousing method implemented. If a player is the owner and has more than 0 houses, they can sell a house on the current property." />
+    <MESSAGE value="sellHousing: considerations of an else-statement written" />
+    <MESSAGE value="sellHousing moved to FieldController" />
+    <MESSAGE value="sellHousing optimized with buttons etc." />
+    <MESSAGE value="a player now sells one house on each property in the neighbourhood, and receives the sellPrice per house multiplied by the amount of houses." />
+    <MESSAGE value="a player can only sell if they own more than 0 houses" />
+    <MESSAGE value="When a player owns every property in the neighbourhood, the rent doubles." />
+    <MESSAGE value="a player can sell houses" />
+    <MESSAGE value="Fixed a bug where sell houses would cost the player money instead of giving them money" />
+    <MESSAGE value="Fixed a bug with buying and selling houses" />
+    <MESSAGE value="a boolean: pawned has been added, aswell as explanatory comments in landOnStreet in FieldController (previous commit)" />
+    <MESSAGE value="button language changed to danish" />
+    <MESSAGE value="minor bugfix: sellPrice now returns the integer value instead of a minus" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor bugfix: sellPrice now returns the integer value instead of a minus" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Spil_Matador_Januar$GameController.ic" NAME="GameController Coverage Results" MODIFIED="1673410974328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
