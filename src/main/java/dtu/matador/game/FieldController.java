@@ -342,10 +342,6 @@ public class FieldController {
                 }
 
                 if (property.getOwner() != null) {
-                    if (property.getPosition() == 5 || property.getPosition() == 15 || property.getPosition() == 25 || property.getPosition() == 35) {
-                        player.addFerries();
-                        System.out.println(player.getFerries());
-                    }
                     if (property.getOwner().equals(playerID)) {
                         updateFieldMap(property);
                         updateGUI(property, playerID);

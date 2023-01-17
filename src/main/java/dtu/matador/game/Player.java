@@ -13,7 +13,6 @@ public class Player {
     private final String color;
     private int position;
     private int balance;
-    private int ferries;
     private static final DiceCup diceCup = new DiceCup();
     private int boardSize;
 
@@ -76,8 +75,6 @@ public class Player {
 
     public int getBalance() {return this.balance;}
 
-    public int getFerries() {return this.ferries;}
-
     public void setPosition(int position) {this.position = position % boardSize; }
 
     //Prints a move from the player and updates their position
@@ -98,8 +95,6 @@ public class Player {
     public int getjailed(){
         return jailed;
     }
-
-    public void addFerries() {this.ferries += 1;}
 
     public boolean balanceCheck(int amount) {
         int nextBalance = this.balance + amount;
