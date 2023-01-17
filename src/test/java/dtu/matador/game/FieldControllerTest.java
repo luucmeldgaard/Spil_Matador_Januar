@@ -14,14 +14,16 @@ public class FieldControllerTest {
     public void testMapAndFieldsAreOfEqualSize() {
         // creates a mock object of GUIController
         GUIController gui = mock(GUIController.class);
-        ArrayList<Map<String, String>> mockSelectedBoardArray = new ArrayList<>();
-        ArrayList<Map<String, String>> mockSelectedChanceArray = new ArrayList<>();
 
         // Creates a new instance of PlayerController
         PlayerController playerController = new PlayerController();
 
+        //Creates a new instance of a mock loader
+        Loader loader = new Loader(0);
+
+
         // Creates a new instance of the FieldController
-        FieldController fieldController = new FieldController(playerController, gui, mockSelectedBoardArray, mockSelectedChanceArray);
+        FieldController fieldController = new FieldController(playerController, gui, loader.getBoardList(), loader.getChanceList());
 
         // asserts that the size of the fieldMap and
         // the fields ArrayList, are the same
@@ -34,20 +36,19 @@ public class FieldControllerTest {
     public void testPropertyFieldUpdatesFieldMap() {
 
         GUIController gui = mock(GUIController.class);
-        ArrayList<Map<String, String>> mockSelectedBoardArray = new ArrayList<>();
-        ArrayList<Map<String, String>> mockSelectedChanceArray = new ArrayList<>();
+
 
         // Creates a new instance of PlayerController
         PlayerController playerController = new PlayerController();
 
+        //Creates a new instance of a mock loader
+        Loader loader = new Loader(0);
+
         // Creates a new instance of the FieldController
-        FieldController fieldController = new FieldController(playerController, gui, mockSelectedBoardArray, mockSelectedChanceArray);
+        FieldController fieldController = new FieldController(playerController, gui, loader.getBoardList(), loader.getChanceList());
         // Casts a known property field from the ArrayList
+
         // of Fieldspaces objects to Property
-
-
-
-
         Property field = ((Property) fieldController.getField(1));
 
         // Retrieves the property field's position
@@ -115,9 +116,7 @@ public class FieldControllerTest {
         // creates a mock object of GUIController
         GUIController gui = mock(GUIController.class);
 
-        //creates a mock for selectedBoardArray and selectedChanceArray
-        ArrayList<Map<String, String>> mockSelectedBoardArray = new ArrayList<>();
-        ArrayList<Map<String, String>> mockSelectedChanceArray = new ArrayList<>();
+
         // Configures the mock object to return something else
         // when buttonRequest is called
         when(gui.buttonRequest("", "")).thenReturn("Pay");
@@ -135,9 +134,12 @@ public class FieldControllerTest {
         Player player = playerController.getPlayerFromName(name);
         String playerID = player.getId();
 
-        // Creates a new instance of the FieldController where the mock object
-        // is one of the dependency injections (GUIController)
-        FieldController fieldController = new FieldController(playerController, gui, mockSelectedBoardArray, mockSelectedChanceArray);
+        //Creates a new instance of a mock loader
+        Loader loader = new Loader(0);
+
+
+        // Creates a new instance of the FieldController
+        FieldController fieldController = new FieldController(playerController, gui, loader.getBoardList(), loader.getChanceList());
 
         // Creates a transaction and asserts that the transaction failed
         int amountToReceive = -50000;
