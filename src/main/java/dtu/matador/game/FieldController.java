@@ -522,7 +522,6 @@ public class FieldController {
                 rentMultiplier = Integer.parseInt(rawCard.get(key));
             }
         }
-
         for (String key : card.keySet()) {
             System.out.println(key + ": " + card.get(key));
             String message = card.get("Text");
