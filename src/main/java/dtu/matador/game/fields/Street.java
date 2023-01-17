@@ -16,15 +16,18 @@ public class Street extends Property {
 
     }
 
+    //Returns the rent of a street, based on how many houses are owned
     private int currentRent(int owned) {
         int[] rent = new int[] {this.rent0, this.rent1, this.rent2, this.rent3, this.rent4, this.rent5};
         return rent[this.housing];
     }
 
+    //Gets the current rent and subtracts it from the player that lands on a street someone else owns.
     public int getRent() {
         return -currentRent(this.housing);
     }
 
+    //Gets the buildPrice of a house on the specific street and substracts it from the player choosing to buy a house
     public int getBuildPrice(){
         return -this.buildPrice;
     }

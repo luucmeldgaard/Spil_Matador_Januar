@@ -5,6 +5,7 @@ import dtu.matador.game.NonPurchasableFields;
 
 public class Jail extends NonPurchasableFields {
 
+    //The variables InstanceOfJail and firstJailInstancePosition are static, since they belong to this class
     static int InstanceOfJail = 0;
     static int firstJailInstancePosition;
     int jailInstance;
@@ -26,7 +27,7 @@ public class Jail extends NonPurchasableFields {
 
     }
 
-    //
+    //Checks the instance of jail
     public void setInstanceOfJail() {
         if (InstanceOfJail == 0) {
             firstJailInstancePosition = this.getPosition();
