@@ -313,7 +313,7 @@ public class FieldController {
         Player player = playerController.getPlayerFromID(playerID);
         if (owner == null) {
             System.out.println("This field is not owned by anyone!");
-            String choice = gui.buttonRequest("Køb eller auktionér?", "Køb", "Auktionér");
+            String choice = gui.buttonRequest("Køb eller auktionér?", "Køb", "Auktion");
             if (choice.equals("Køb")) {
 
                 String message = property.buyMessage() + " for " + Math.abs(property.getPrice()) + " kroner?";
