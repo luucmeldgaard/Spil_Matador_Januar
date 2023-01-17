@@ -561,6 +561,9 @@ public class FieldController {
                     System.out.println("MoveBy");
                     int moveBy = Integer.parseInt(card.get(key));
                     int currentPosition = playerController.getPlayerFromID(playerID).getPosition();
+                    if (moveBy < 0) {
+                        moveBy += 40;
+                    }
                     playerController.getPlayerFromID(playerID).movePosition(moveBy);
                     int endPosition = playerController.getPlayerFromID(playerID).getPosition();
                     gui.movePlayerTo(playerID, currentPosition, endPosition);
