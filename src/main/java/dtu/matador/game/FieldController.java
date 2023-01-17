@@ -176,6 +176,7 @@ public class FieldController {
     }
 
     protected void landOnField(String playerID, int startPosition, int currentPosition, boolean passStart) {
+        Player player = playerController.getPlayerFromID(playerID);
         if (startPosition > currentPosition && passStart) {
             System.out.println("Spilleren har passeret start");
                 landOnStart(playerID, ((StartField) fields.get(0)));
@@ -184,17 +185,22 @@ public class FieldController {
         currentField = fields.get(currentPosition);
         // Redirects to landOn "fieldType"
         if (currentField instanceof Property) {
-            /*
-            String ownername;
-            if (playerController.getPlayerFromID(((Property) currentField).getOwner()).getName().equals("Null")){
-                ownername = "Ingen ejer";
+            String propertyname = ((Property) currentField).name;
+            String description = ((Property) currentField).description;
+            if (description == null) {
+                description = "";
             }
-            else {
-                ownername = "Ejet af" + playerController.getPlayerFromID(((Property) currentField).getOwner()).getName();
+            if (currentField instanceof Ferry){
+                gui.displayInMiddle(propertyname,description);
             }
-            gui.displayInMiddle(((Property) currentField).name,ownername, Integer.toString(((Property) currentField).rent));
-             */
-            landOnProperty(playerID, ((Property) currentField));
+            if (currentField instanceof Brewery){
+                gui.displayInMiddle(propertyname,description);
+            }
+            if (currentField instanceof Street){
+                String rent = "Husleje: " + Integer.toString(((Property) currentField).getCurrentRent());
+                gui.displayInMiddle(propertyname,description,rent);
+            }
+        landOnProperty(playerID, ((Property) currentField));
         }
         else if (currentField instanceof Jail) {
             gui.displayInMiddle("Fængslet!");
