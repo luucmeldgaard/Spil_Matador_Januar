@@ -886,6 +886,20 @@ public class FieldController {
         return playerOwnedHousing;
     }
 
+    protected ArrayList<String> getPlayerOwnedProperties(String playerID) {
+        ArrayList<String> playerOwnedProperties = new ArrayList<>();
+        for (ArrayList<Property> propertyList : propertyBank.getPropertyMap().values()) {
+            for (Property property : propertyList) {
+                if (property.getOwner() != null) {
+                    if (property.getOwner().equals(playerID)) {
+                        playerOwnedProperties.add(property.getName());
+                    }
+                }
+            }
+        }
+        return playerOwnedProperties;
+    }
+
     protected void updateGUI(Property property, String playerID) {
         String playerColor = playerController.getPlayerFromID(playerID).getColor();
         if (property instanceof Street) {
@@ -903,5 +917,106 @@ public class FieldController {
         }
 
     }
+
+    public void tradeMenu(String playerID) {
+
+        Player currentPlayer = playerController.getPlayerFromID(playerID);
+        ArrayList<String> playerOwnedProperties = getPlayerOwnedProperties(playerID);
+        String[] playerOwnedPropertiesList = playerOwnedProperties.toArray(new String[0]);
+        Property fieldToTradeInReturn;
+
+        ArrayList<String> otherPlayersProperties = new ArrayList<>();
+        for (String id : playerController.getAllPlayerIDs()) {
+            if (!id.equals(playerID)) {
+                otherPlayersProperties.addAll(getPlayerOwnedProperties(id));
+            }
+        }
+
+        if (otherPlayersProperties.size() == 0) {
+            gui.buttonRequest("Ingen at bytte med. ", "Ok");
+            return;
+        }
+
+        String[] otherPlayersPropertiesList = otherPlayersProperties.toArray(new String[0]);
+        String response = gui.buttonRequest("Vælg et felt du gerne vil købe af en anden spiller", otherPlayersPropertiesList);
+
+        ArrayList<FieldSpaces> fieldMatch = lookUpFields(null, "title", response);
+        Property fieldToTrade = (Property) fieldMatch.get(0);
+
+        if (fieldToTrade instanceof Street) {
+            if (((Street) fieldToTrade).getHousing() > 0) {
+                gui.buttonRequest("Dette felt har en eller flere boliger. Disse skal alle sælges før dette felt kan byttes. ");
+                return;
+            }
+        }
+
+        Player owner = playerController.getPlayerFromID(fieldToTrade.getOwner());
+        gui.buttonRequest("Dette felt ejes af " + owner.getName() + ". ", "");
+        String ownerResponse = gui.buttonRequest(owner.getName() + ", er du interesseret I at bytte: " + fieldToTrade.getName() + "?", "Ja", "Nej");
+        if (ownerResponse.equals("Nej")) {
+            gui.buttonRequest("Handlen er blevet annuleret... ", "Fortsæt");
+            return;
+        }
+
+        ownerResponse = gui.buttonRequest(owner.getName() + ", Du kan nu vælge hvad du vil have i bytte fra " + currentPlayer.getName() + ". ", "Kontanter", "Ejendom");
+        if (ownerResponse.equals("Kontanter")) {
+            int amountForTrade = gui.intRequest("Hvor meget? ", 0, currentPlayer.getBalance());
+            response = gui.buttonRequest(currentPlayer.getName() + ", vil du have " + fieldToTrade.getName() + " i bytte for " + amountForTrade +"kr. ?", "Ja", "Annuller");
+            if (response.equals("Annuller")) {
+                gui.buttonRequest("Handlen er blevet annuleret... ", "Fortsæt");
+            }
+            else {
+                boolean transactionSuccess = createTransaction(playerID, owner.getId(), -Math.abs(amountForTrade), true, "Du betaler " + owner.getName());
+                if (!transactionSuccess) {
+                    gui.buttonRequest("Byttehandlen lykkedes ikke. ", "Ok");
+                }
+                fieldToTrade.setOwner(playerID);
+                updateFieldMap(fieldToTrade);
+                updateGUI(fieldToTrade, playerID);
+            }
+        }
+        else {
+            ownerResponse = gui.buttonRequest("Hvilken ejendom? ", playerOwnedPropertiesList);
+
+            fieldMatch = lookUpFields(null, "title", ownerResponse);
+            if (fieldMatch.size() == 0) {
+                gui.buttonRequest("Intet at bytte med. ", "Ok");
+                return;
+            }
+            fieldToTradeInReturn = (Property) fieldMatch.get(0);
+
+            if (playerOwnedProperties.size() == 0) {
+                gui.buttonRequest("Intet at bytte med. ", "Ok");
+                return;
+            }
+
+            if (fieldToTradeInReturn instanceof Street) {
+                if (((Street) fieldToTradeInReturn).getHousing() > 0) {
+                    gui.buttonRequest("Dette felt har en eller flere boliger. Disse skal alle sælges før dette felt kan byttes. ");
+                    return;
+                }
+            }
+
+            String acceptance = gui.buttonRequest(currentPlayer.getName() + ", " + owner.getName() + " vil gerne have " + ownerResponse + " i bytte for " + fieldToTrade.getName() + ". Accepterer du?", "Ja", "Annuller");
+            if (acceptance.equals("Annuller")) {
+                gui.buttonRequest("Handlen er blevet annulleret... ", "Fortsæt");
+            }
+            else {
+
+                fieldToTrade.setOwner(playerID);
+                updateFieldMap(fieldToTrade);
+                updateGUI(fieldToTrade, playerID);
+                fieldToTradeInReturn.setOwner(owner.getId());
+                updateFieldMap(fieldToTradeInReturn);
+                updateGUI(fieldToTradeInReturn, owner.getId());
+                gui.buttonRequest("Handlen blev gennemført. ", "Ok");
+            }
+
+        }
+
+
+
+    }
+
 
 }

@@ -151,13 +151,19 @@ public class GameController {
         switch (response) {
             case "Tilbage" -> { playRound(player); }
             case "Snydekoder" -> { cheatMenu(player); }
-            case "Lav byttehandel" -> {}
+            case "Lav byttehandel" -> {
+                board.tradeMenu(player.getId());
+                playRound(player);
+            }
             case "Gem Spil" -> { saveGame(player); }
-            case "Sælg bolig(er)" -> { sellAnyHousingSelector(player); }
+            case "Sælg bolig(er)" -> {
+                sellAnyHousingSelector(player);
+                playRound(player);
+            }
             case "Giv Op" -> {
                 ArrayList<String> allPlayerIDs = playerController.getAllPlayerIDs();
                 if (allPlayerIDs.size() == 1) {
-                    gui.buttonRequest("Error. You are the only player left", "Continue");
+                    gui.buttonRequest("You are the only player left", "Continue");
                     playRound(player);
                 }
                 else {
