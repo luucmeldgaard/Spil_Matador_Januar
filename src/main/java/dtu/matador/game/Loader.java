@@ -24,9 +24,9 @@ public class Loader {
     public Loader(int loadGame) {
         if (loadGame == 0) {
             this.settings = JSONtoMap("settings.json", "settings");
-            this.boardFiles = getAllFilesOfType("board", "./json/");
-            this.colorFiles = getAllFilesOfType("colors", "./json/");
-            this.chanceFiles = getAllFilesOfType("chance", "./json/");
+            this.boardFiles = getAllFilesOfType("board");
+            this.colorFiles = getAllFilesOfType("colors");
+            this.chanceFiles = getAllFilesOfType("chance");
             this.boardList = new ArrayList<>();
             this.colorMap = JSONtoMap(this.settings.get("colors"), "colors");
             this.chanceList = JSONtoList(this.settings.get("chance"), "Number", "chance");
@@ -34,7 +34,7 @@ public class Loader {
         else { loadFromExistingGame(loadGame); }
     }
 
-    public ArrayList<String> getAllFilesOfType(String SnakeCaseSuffix, String CanonicalPath) {
+    public ArrayList<String> getAllFilesOfType(String SnakeCaseSuffix) {
 
         ArrayList<String> allFiles = new ArrayList<>();
 
@@ -100,6 +100,7 @@ public class Loader {
         // then it will try to retrieve the default JSON game files which can be found in the ressources.
         catch (IOException | ParseException ex) {
             try {
+                System.out.println("Didn't successfully read. ");
                 switch (jsonType) {
                     case "settings" -> filename = "default_settings.json";
                     case "board" -> filename = "default_board.json";
@@ -216,11 +217,11 @@ public class Loader {
 
         boolean saveSettingsSuccess = saveMap(path, this.settings, "settings");
         System.out.println("Success");
-        boolean saveBoardSuccess = saveList(path, this.boardList, "position", "board");
+        boolean saveBoardSuccess = saveList(path, this.boardList, "board");
         System.out.println("Success");
         boolean saveColorsSuccess = saveMap(path, this.colorMap, "colors");
         System.out.println("Success");
-        boolean saveChanceListSuccess = saveList(path, this.chanceList, "Number", "chance");
+        boolean saveChanceListSuccess = saveList(path, this.chanceList, "chance");
         System.out.println("Success");
         if (saveSettingsSuccess && saveBoardSuccess && saveColorsSuccess && saveChanceListSuccess) {
             return true;
@@ -247,14 +248,20 @@ public class Loader {
         return true;
     }
 
-    private boolean saveList(String path, ArrayList<Map<String, String>> listToJSON, String outerMapKey, String jsonType) {
-        JSONObject jsonBoard = new JSONObject();
-        for (Map<String, String> field : listToJSON) {
-            jsonBoard.put(field.get(outerMapKey), field);
+    private boolean saveList(String path, ArrayList<Map<String, String>> listToJSON, String jsonType) {
+
+        JSONArray jsonArray = new JSONArray();
+        for (int i = 0; i < listToJSON.size(); i++) {
+            Map<String, String> innerMap = listToJSON.get(i);
+            JSONObject jsonObject = new JSONObject();
+            for (String key : innerMap.keySet()) {
+                jsonObject.put(key, innerMap.get(key));
+            }
+            jsonArray.add(jsonObject);
         }
 
         try (FileWriter fieldFile = new FileWriter(path + "/_" + jsonType + ".json")) {
-            fieldFile.write(jsonBoard.toJSONString());
+            fieldFile.write(jsonArray.toJSONString());
             fieldFile.flush();
         } catch (IOException ex) {
             System.out.println("Couldn't write to save file. ");
@@ -266,7 +273,7 @@ public class Loader {
     private void loadFromExistingGame(int loadGame) {
 
         String path = "";
-        File file = new File("./json/Saved Games/" + loadGame + "/");
+        File file = new File("./json/Saved Games/" + loadGame);
         try {
             path = file.getCanonicalPath();
             System.out.println(path);
@@ -274,15 +281,16 @@ public class Loader {
             System.out.println("No directory found. ");
         }
 
-        String settingsPath = getAllFilesOfType("_settings", path).get(0);
-        String boardPath = getAllFilesOfType("_board", path).get(0);
-        String colorsPath = (getAllFilesOfType("_colors", path).get(0));
-        String chancePath = (getAllFilesOfType("_chance", path).get(0));
-
-        this.settings = JSONtoMap(settingsPath, "settings");
-        this.boardList = JSONtoList(boardPath, "position", "board");
-        this.colorMap = JSONtoMap(colorsPath, "colors");
-        this.chanceList = JSONtoList(chancePath, "Number", "chance");
+        //String settingsPath = getAllFilesOfType("_settings", path).get(0);
+        //String boardPath = getAllFilesOfType("_board", path).get(0);
+        //String colorsPath = (getAllFilesOfType("_colors", path).get(0));
+        //String chancePath = (getAllFilesOfType("_chance", path).get(0));
+        System.out.println("./json/Saved Games/" + loadGame + "/_settings.json");
+        System.out.println("./json/Saved Games/" + loadGame + "/_settings.json");
+        this.settings = JSONtoMap("./json/Saved Games/" + loadGame + "/_settings.json", "settings");
+        this.boardList = JSONtoList("./json/Saved Games/" + loadGame + "/_board.json", "position", "board");
+        this.colorMap = JSONtoMap("./json/Saved Games/" + loadGame + "/_colors.json", "colors");
+        this.chanceList = JSONtoList("./json/Saved Games/" + loadGame + "/_chance.json", "Number", "chance");
 
     }
 }

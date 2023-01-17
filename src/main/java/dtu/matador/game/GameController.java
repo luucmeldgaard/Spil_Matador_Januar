@@ -27,29 +27,34 @@ public class GameController {
 
     private static void menu() {
 
-        String chosenBoardFileName = "";
         ArrayList<Map<String, String>> selectedBoard;
-
-        ArrayList<String> boardNamesRaw = loader.getFoundBoardFileNames();
-        ArrayList<String> boardNames = new ArrayList<>();
-        for (int i = 0; i < boardNamesRaw.size(); i++) {
-            boardNames.add(boardNamesRaw.get(i).replace("_board.json", ""));
-        }
-        String[] boardNamesList = boardNames.toArray(new String[0]);
-
-        String osName = System.getProperty("os.name").toLowerCase();
-        if (boardNamesList.length == 0 || !osName.contains("windows")) {
-            gui.buttonRequest("Start", "Start");
-            if (!osName.contains("windows")) {
-                gui.buttonRequest("Det lader til, at du ikke bruger Windows. " +
-                        "Det er kun muligt at vælge andre spilleplader, på en Windows maskine");
-            }
-        }
+        String loadOrNewGame = gui.buttonRequest("Matador 2023", "Nyt Spil", "Hent Spil");
+        if (loadOrNewGame.equals("Hent Spil")) { loadGame(); }
         else {
-            chosenBoardFileName = gui.dropDownList("Start", boardNamesList);
-            chosenBoardFileName = boardNamesRaw.get(boardNames.indexOf(chosenBoardFileName));
+            String chosenBoardFileName = "";
+
+            ArrayList<String> boardNamesRaw = loader.getFoundBoardFileNames();
+            ArrayList<String> boardNames = new ArrayList<>();
+            for (int i = 0; i < boardNamesRaw.size(); i++) {
+                boardNames.add(boardNamesRaw.get(i).replace("_board.json", ""));
+            }
+            String[] boardNamesList = boardNames.toArray(new String[0]);
+
+            String osName = System.getProperty("os.name").toLowerCase();
+            if (boardNamesList.length == 0 || !osName.contains("windows")) {
+                gui.buttonRequest("Start", "Start");
+                if (!osName.contains("windows")) {
+                    gui.buttonRequest("Det lader til, at du ikke bruger Windows. " +
+                            "Det er kun muligt at vælge andre spilleplader, på en Windows maskine");
+                }
+            }
+            else {
+                chosenBoardFileName = gui.dropDownList("Start", boardNamesList);
+                chosenBoardFileName = boardNamesRaw.get(boardNames.indexOf(chosenBoardFileName));
+            }
+            loader.setBoard(chosenBoardFileName);
         }
-        loader.setBoard(chosenBoardFileName);
+
         selectedBoard = loader.getBoardList();
 
         gui.close();
