@@ -177,7 +177,7 @@ public class FieldController {
 
     protected void landOnField(String playerID, int startPosition, int currentPosition, boolean passStart) {
         if (startPosition > currentPosition && passStart) {
-            System.out.println("Player passed start");
+            System.out.println("Spilleren har passeret start");
                 landOnStart(playerID, ((StartField) fields.get(0)));
             }
         // Check for type of field
@@ -245,7 +245,7 @@ public class FieldController {
     private void jailWithoutCard(Player player, String playerID){
 
         if (player.getjailed() < 4) {
-            String choice = gui.buttonRequest(player.getName() + " vil du slå med terningerne eller betale dig ud?", "Slå", "Betal");
+            String choice = gui.buttonRequest(player.getName() + " vil du slå med terningerne eller betale 1000 kr for at komme ud?", "Slå", "Betal");
             if (choice.equals("Slå")) {
                 int[] rolls = player.rollDie();
                 gui.setDice(rolls);
@@ -297,14 +297,14 @@ public class FieldController {
         }
     }
     private void payForJail(Player player){
-        boolean transactionSuccess = createTransaction(player.getId(),null,-1000,true,"Du bliver nødt til at betale for at komme ud af fængsel");
+        boolean transactionSuccess = createTransaction(player.getId(),null,-1000,true,"Du bliver nødt til at betale for at komme ud af fængsel, betal 1000 kr.");
         if (transactionSuccess) {
             player.setjailed(0);
         }
     }
     private void landOnStart(String playerID, StartField start) {
         int income = start.getIncome();
-        String message = "Du passerede start, modtag " + income + "!";
+        String message = "Du passerede start, modtag " + income + " kroner!";
         createTransaction(playerID, null, income, false, message);
     }
 
@@ -316,7 +316,7 @@ public class FieldController {
             String choice = gui.buttonRequest("Køb eller auktionér?", "Køb", "Auktionér");
             if (choice.equals("Køb")) {
 
-                String message = property.buyMessage();
+                String message = property.buyMessage() + " for " + property.getPrice() + " kroner?";
                 boolean purchase = createTransaction(playerID,null, property.getPrice(), false, message);
                 if (purchase) {
                     property.setOwner(playerID);
@@ -377,7 +377,7 @@ public class FieldController {
             int rent = ferry.getRent(ferriesOwned);
             System.out.println(rent);
             String receiverID = ferry.getOwner();
-            String message = "Denne færge er ejet af en anden! Betal " + Math.abs(rent) + ", da der ejes " + ferriesOwned + " færge(r). ";
+            String message = "Denne færge er ejet af en anden! Betal " + Math.abs(rent) + " kroner, da der ejes " + ferriesOwned + " færge(r). ";
 
             createTransaction(playerID, receiverID, rent, true, message);
         }
@@ -434,12 +434,12 @@ public class FieldController {
                 }
             //If the owner does not own any houses on the property, they can only buy a house.
             else {
-                String message = "Ønsker du at købe et hus på hver grund i dette nabolag for " + Math.abs(nextBuildPrice) * street.getGroupSize() + "?";
+                String message = "Ønsker du at købe et hus på hver grund i dette nabolag for " + Math.abs(nextBuildPrice) * street.getGroupSize() + " kroner?";
                 response = gui.buttonRequest( message, "Køb", "Nej");
                 }
             //The player chooses to buy a house for each property in the neighbourhood
                 if (response.equals("Køb")) {
-                    boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice * property.getGroupSize(), false, "Buying house for " + Math.abs(nextBuildPrice * street.getGroupSize()));
+                    boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice * property.getGroupSize(), false, "Køb huse for " + Math.abs(nextBuildPrice * street.getGroupSize()) + " kroner.");
                     if (transactionSuccess) {
 
                         //Loops through all the properties in the neighbourhood and updates them with a house each
@@ -652,7 +652,7 @@ public class FieldController {
     }
     public void landOnTax(String playerID, TaxField currentField) {
         int bill = currentField.getBill();
-        String message = "Skattefar giver dig et skattesmæk på " + Math.abs(bill);
+        String message = "Skattefar giver dig et skattesmæk på " + Math.abs(bill) + " kroner.";
         createTransaction(playerID, null, bill, true, message);
     }
 
@@ -676,7 +676,7 @@ public class FieldController {
 
         // If a player needs to make a payment to another player
         if (receiverID != null) {
-            gui.buttonRequest(message + " Betal " + playerController.getPlayerFromID(receiverID).getName() + " " + Math.abs(amount), "Betal");
+            gui.buttonRequest(message + " Betal " + playerController.getPlayerFromID(receiverID).getName() + " " + Math.abs(amount) + " kroner.", "Betal");
         }
         else {
             // Payments to the bank
