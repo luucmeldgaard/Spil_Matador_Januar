@@ -938,7 +938,7 @@ public class FieldController {
         }
 
         String[] otherPlayersPropertiesList = otherPlayersProperties.toArray(new String[0]);
-        String response = gui.buttonRequest("Vælg et felt du gerne vil købe af en anden spiller", otherPlayersPropertiesList);
+        String response = gui.dropDownList("Vælg et felt du gerne vil købe af en anden spiller", otherPlayersPropertiesList);
 
         ArrayList<FieldSpaces> fieldMatch = lookUpFields(null, "title", response);
         Property fieldToTrade = (Property) fieldMatch.get(0);
@@ -976,7 +976,7 @@ public class FieldController {
             }
         }
         else {
-            ownerResponse = gui.buttonRequest("Hvilken ejendom? ", playerOwnedPropertiesList);
+            ownerResponse = gui.dropDownList("Hvilken ejendom? ", playerOwnedPropertiesList);
 
             fieldMatch = lookUpFields(null, "title", ownerResponse);
             if (fieldMatch.size() == 0) {
