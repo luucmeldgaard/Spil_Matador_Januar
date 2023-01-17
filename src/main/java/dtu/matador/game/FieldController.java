@@ -364,7 +364,7 @@ public class FieldController {
         }
         else {
             //TODO den nedenstående variable skal ændres således at den ser på ejerens ferries og ikke den nuværende spillers...
-            int ferriesOwned = 1;
+            int ferriesOwned = 0;
             for (Property property : propertyBank.getPropertiesFromGroup(ferry.getNeighborhood())) {
                 if (property.getOwner() != null) {
                     if (property.getOwner().equals(owner)) {
