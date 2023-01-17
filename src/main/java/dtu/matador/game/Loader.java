@@ -20,6 +20,7 @@ public class Loader {
     Map<String, String> settings;
     Map<String, String> colorMap;
     ArrayList<Map<String, String>> chanceList;
+    ArrayList<Map<String, String>> playersList;
 
     public Loader(int loadGame) {
         if (loadGame == 0) {
@@ -30,6 +31,7 @@ public class Loader {
             this.boardList = new ArrayList<>();
             this.colorMap = JSONtoMap(this.settings.get("colors"), "colors");
             this.chanceList = JSONtoList(this.settings.get("chance"), "Number", "chance");
+            this.playersList = new ArrayList<>();
         }
         else { loadFromExistingGame(loadGame); }
     }
@@ -106,6 +108,7 @@ public class Loader {
                     case "board" -> filename = "default_board.json";
                     case "chance" -> filename = "default_chance.json";
                     case "colors" -> filename = "default_colors.json";
+                    // TODO add default players
                 }
                 InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filename);
                 assert inputStream != null;
@@ -203,7 +206,9 @@ public class Loader {
 
     public ArrayList<Map<String,String>> getChanceList() {return chanceList; }
 
-    public boolean saveGame(ArrayList<Map<String, String>> boardList, String saveLocation) {
+    public ArrayList<Map<String,String>> getPlayersList() {return playersList; }
+
+    public boolean saveGame(ArrayList<Map<String, String>> boardList, ArrayList<Map<String, String>> playersList, String saveLocation) {
 
         String path = "";
         File file = new File("./json/Saved Games/" + saveLocation);
@@ -217,12 +222,13 @@ public class Loader {
 
         boolean saveSettingsSuccess = saveMap(path, this.settings, "settings");
         System.out.println("Success");
-        boolean saveBoardSuccess = saveList(path, this.boardList, "board");
+        boolean saveBoardSuccess = saveList(path, boardList, "board");
         System.out.println("Success");
         boolean saveColorsSuccess = saveMap(path, this.colorMap, "colors");
         System.out.println("Success");
         boolean saveChanceListSuccess = saveList(path, this.chanceList, "chance");
         System.out.println("Success");
+        boolean savePlayersMapSuccess = saveList(path, playersList, "players");
         if (saveSettingsSuccess && saveBoardSuccess && saveColorsSuccess && saveChanceListSuccess) {
             return true;
         }
@@ -230,7 +236,6 @@ public class Loader {
     }
 
     private boolean saveMap(String path, Map<String, String> mapToJSON, String jsonType) {
-
         JSONArray jsonMap = new JSONArray();
         JSONObject jsonObject = new JSONObject();
         for (String key : mapToJSON.keySet()) {
@@ -271,6 +276,7 @@ public class Loader {
     }
 
     private void loadFromExistingGame(int loadGame) {
+        this.playersList = new ArrayList<>();
 
         String path = "";
         File file = new File("./json/Saved Games/" + loadGame);
@@ -281,16 +287,13 @@ public class Loader {
             System.out.println("No directory found. ");
         }
 
-        //String settingsPath = getAllFilesOfType("_settings", path).get(0);
-        //String boardPath = getAllFilesOfType("_board", path).get(0);
-        //String colorsPath = (getAllFilesOfType("_colors", path).get(0));
-        //String chancePath = (getAllFilesOfType("_chance", path).get(0));
         System.out.println("./json/Saved Games/" + loadGame + "/_settings.json");
         System.out.println("./json/Saved Games/" + loadGame + "/_settings.json");
         this.settings = JSONtoMap("./json/Saved Games/" + loadGame + "/_settings.json", "settings");
         this.boardList = JSONtoList("./json/Saved Games/" + loadGame + "/_board.json", "position", "board");
         this.colorMap = JSONtoMap("./json/Saved Games/" + loadGame + "/_colors.json", "colors");
         this.chanceList = JSONtoList("./json/Saved Games/" + loadGame + "/_chance.json", "Number", "chance");
+        this.playersList = JSONtoList("./json/Saved Games/" + loadGame + "/_players.json", "id", "players");
 
     }
 }

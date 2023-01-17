@@ -28,7 +28,11 @@ public class GameController {
 
         ArrayList<Map<String, String>> selectedBoard;
         String loadOrNewGame = gui.buttonRequest("Matador 2023", "Nyt Spil", "Hent Spil");
-        if (loadOrNewGame.equals("Hent Spil")) { loadGame(); }
+        if (loadOrNewGame.equals("Hent Spil")) {
+            loadGame();
+            play();
+            return;
+        }
         else {
             loader = new Loader(0);
 
@@ -289,7 +293,8 @@ public class GameController {
 
         else {
             ArrayList<Map<String, String>> boardSnapshot = board.getFieldList();
-            boolean saveSuccess = loader.saveGame(boardSnapshot, response);
+            ArrayList<Map<String, String>> snapshotOfPlayers = playerController.snapshotOfPlayers();
+            boolean saveSuccess = loader.saveGame(boardSnapshot, snapshotOfPlayers, response);
             if (saveSuccess) {
                 gui.buttonRequest("Successfully saved game. ", "Fortsæt");
             }
@@ -309,7 +314,10 @@ public class GameController {
         else {
             int saveLocation = Integer.parseInt(response);
             loader = new Loader(saveLocation);
-
+            ArrayList<Map<String, String>> selectedBoard = loader.getBoardList();
+            playerController.loadPlayers(loader.getPlayersList());
+            //loadInPlayers(loader.getPlayersList());
+            setBoard(selectedBoard);
         }
     }
 

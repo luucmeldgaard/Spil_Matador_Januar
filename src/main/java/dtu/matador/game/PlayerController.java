@@ -1,6 +1,7 @@
 package dtu.matador.game;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class PlayerController {
 
@@ -93,10 +94,23 @@ public class PlayerController {
         }
     }
 
-    public void snapshotOfPlayers() {
-
+    public ArrayList<Map<String, String>> snapshotOfPlayers() {
+        ArrayList<Map<String, String>> snapshotOfPlayers = new ArrayList<>();
+        for (Player player : players) {
+            Map<String, String> playerSnapshot = player.snapshot();
+            snapshotOfPlayers.add(playerSnapshot);
+        }
+        return snapshotOfPlayers;
     }
 
+    public void loadPlayers(ArrayList<Map<String,String>> playersList) {
+        for (Map<String, String> info : playersList) {
+            Player player = new Player(info.get("name"), info.get("color"), info.get("position"), info.get("balance"), info.get("id"), info.get("boardSize"),
+                    info.get("jailed"), info.get("jailCards"), info.get("lastPlayedDieRoll0"), info.get("lastPlayedDieRoll1"));
+            this.players.add(player);
+            System.out.println(this.players.get(0).getId() + "_____________________________");
+        }
+    }
 
 
     public void reset() {

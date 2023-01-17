@@ -1,5 +1,8 @@
 package dtu.matador.game;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Player {
 
     //A player's attributes are implemented
@@ -12,7 +15,7 @@ public class Player {
     private int balance;
     private int ferries;
     private static final DiceCup diceCup = new DiceCup();
-    private static int boardSize;
+    private int boardSize;
 
     private int jailed = 0;
 
@@ -20,6 +23,20 @@ public class Player {
 
     private int[] lastPlayedDieRoll;
 
+    public Player(String name, String color, String position, String balance, String id,
+                  String boardSize, String jailed, String jailCards, String lastPlayedDieRoll0,
+                  String lastPlayedDieRoll1) {
+        this.name = name;
+        this.color = color;
+        this.position = Integer.parseInt(position);
+        this.balance = Integer.parseInt(balance);
+        this.jailCards = Integer.parseInt(jailCards);
+        this.id = id;
+        this.boardSize = Integer.parseInt(boardSize);
+        this.jailed = Integer.parseInt(jailed);
+        this.lastPlayedDieRoll = new int[] {Integer.parseInt(lastPlayedDieRoll0), Integer.parseInt(lastPlayedDieRoll1)};
+
+    }
 
     public Player(String name, String color, int position, int balance) {
         this.name = name;
@@ -110,4 +127,19 @@ public class Player {
         return this.lastPlayedDieRoll;
     }
     public void setLastPlayedDieRoll(int[] dieRoll) { this.lastPlayedDieRoll = dieRoll; }
+
+    public Map<String, String> snapshot() {
+        Map<String, String> playerInfoToMap = new HashMap<>();
+        playerInfoToMap.put("id", this.id);
+        playerInfoToMap.put("name", this.name);
+        playerInfoToMap.put("color", this.color);
+        playerInfoToMap.put("position", String.valueOf(this.position));
+        playerInfoToMap.put("balance", String.valueOf(this.balance));
+        playerInfoToMap.put("boardSize", String.valueOf(boardSize));
+        playerInfoToMap.put("jailed", String.valueOf(this.jailed));
+        playerInfoToMap.put("jailCards", String.valueOf(this.jailCards));
+        playerInfoToMap.put("lastPlayedDieRoll0", String.valueOf(this.lastPlayedDieRoll[0]));
+        playerInfoToMap.put("lastPlayedDieRoll1", String.valueOf(this.lastPlayedDieRoll[1]));
+        return playerInfoToMap;
+    }
 }

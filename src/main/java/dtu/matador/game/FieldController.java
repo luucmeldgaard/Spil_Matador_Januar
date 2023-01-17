@@ -31,6 +31,8 @@ public class FieldController {
         this.boardSize = fieldList.size();
         gui.setGUI(fieldList);
 
+        loadInPlayers();
+
         for (ArrayList<Property> propertyList : propertyBank.getPropertyMap().values()) {
             for (Property property : propertyList) {
                 if (property.getOwner() != null) {
@@ -713,6 +715,15 @@ public class FieldController {
             } else {
                 gui.updateProperty(property.getPosition(), playerColor);
             }
+    }
+
+    private void loadInPlayers() {
+        ArrayList<String> allPlayerIDs = playerController.getAllPlayerIDs();
+        for (String id : allPlayerIDs) {
+            Player player = playerController.getPlayerFromID(id);
+            gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
+        }
+
     }
 
     public void sellHousing(String playerID, Street street){
