@@ -796,7 +796,6 @@ public class FieldController {
                 createTransaction(playerID, null, -sellPrice, false, "Du har solgt ét hus på hver ejendom i området. Modtag " + Math.abs(sellPrice) + " kroner.");
             }
             else { return false; }
-
         }
         return true;
     }

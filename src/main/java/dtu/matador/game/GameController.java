@@ -307,7 +307,6 @@ public class GameController {
         if (response.equals("Annuller")) {
             bonusMenuHandler(player);
         }
-
         else {
             ArrayList<Map<String, String>> boardSnapshot = board.getFieldList();
             ArrayList<Map<String, String>> snapshotOfPlayers = playerController.snapshotOfPlayers();
