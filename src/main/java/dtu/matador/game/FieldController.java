@@ -530,6 +530,7 @@ public class FieldController {
             switch (key) {
                 case "Cash added" -> {
                     if (cardNumber == 24 && !condition) {
+                        gui.buttonRequest("Du ejer for meget til at få legatet.", "Ok");
                         break;
                     }
                     System.out.println("Cash added");
