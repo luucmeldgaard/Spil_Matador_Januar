@@ -15,9 +15,13 @@ public class FieldControllerTest {
         // creates a mock object of GUIController
         GUIController gui = mock(GUIController.class);
         ArrayList<Map<String, String>> mockSelectedBoardArray = new ArrayList<>();
-        // Creates a new instance of the FieldController
-        FieldController fieldController = new FieldController(null, gui, mockSelectedBoardArray);
+        ArrayList<Map<String, String>> mockSelectedChanceArray = new ArrayList<>();
 
+        // Creates a new instance of PlayerController
+        PlayerController playerController = new PlayerController();
+
+        // Creates a new instance of the FieldController
+        FieldController fieldController = new FieldController(playerController, gui, mockSelectedBoardArray, mockSelectedChanceArray);
 
         // asserts that the size of the fieldMap and
         // the fields ArrayList, are the same
@@ -30,12 +34,20 @@ public class FieldControllerTest {
     public void testPropertyFieldUpdatesFieldMap() {
 
         GUIController gui = mock(GUIController.class);
+        ArrayList<Map<String, String>> mockSelectedBoardArray = new ArrayList<>();
+        ArrayList<Map<String, String>> mockSelectedChanceArray = new ArrayList<>();
+
+        // Creates a new instance of PlayerController
+        PlayerController playerController = new PlayerController();
 
         // Creates a new instance of the FieldController
-        FieldController fieldController = new FieldController(null, gui, "test_FieldData");
-
+        FieldController fieldController = new FieldController(playerController, gui, mockSelectedBoardArray, mockSelectedChanceArray);
         // Casts a known property field from the ArrayList
         // of Fieldspaces objects to Property
+
+
+
+
         Property field = ((Property) fieldController.getField(1));
 
         // Retrieves the property field's position
@@ -59,6 +71,9 @@ public class FieldControllerTest {
         // creates a mock object of GUIController
         GUIController gui = mock(GUIController.class);
 
+        //creates a mock for selectedBoardArray and selectedChanceArray
+        ArrayList<Map<String, String>> mockSelectedBoardArray = new ArrayList<>();
+        ArrayList<Map<String, String>> mockSelectedChanceArray = new ArrayList<>();
         // Configures the mock object to return something else
         // when buttonRequest is called
         when(gui.buttonRequest("", "")).thenReturn("Pay");
@@ -78,7 +93,7 @@ public class FieldControllerTest {
 
         // Creates a new instance of the FieldController where the mock object
         // is one of the dependency injections (GUIController)
-        FieldController fieldController = new FieldController(playerController, gui, "test_FieldData");
+        FieldController fieldController = new FieldController(playerController, gui, mockSelectedBoardArray, mockSelectedChanceArray);
 
         // Creates a transaction and asserts
         // that the transaction was successful
@@ -100,6 +115,9 @@ public class FieldControllerTest {
         // creates a mock object of GUIController
         GUIController gui = mock(GUIController.class);
 
+        //creates a mock for selectedBoardArray and selectedChanceArray
+        ArrayList<Map<String, String>> mockSelectedBoardArray = new ArrayList<>();
+        ArrayList<Map<String, String>> mockSelectedChanceArray = new ArrayList<>();
         // Configures the mock object to return something else
         // when buttonRequest is called
         when(gui.buttonRequest("", "")).thenReturn("Pay");
@@ -119,7 +137,7 @@ public class FieldControllerTest {
 
         // Creates a new instance of the FieldController where the mock object
         // is one of the dependency injections (GUIController)
-        FieldController fieldController = new FieldController(playerController, gui, "test_FieldData");
+        FieldController fieldController = new FieldController(playerController, gui, mockSelectedBoardArray, mockSelectedChanceArray);
 
         // Creates a transaction and asserts that the transaction failed
         int amountToReceive = -50000;
