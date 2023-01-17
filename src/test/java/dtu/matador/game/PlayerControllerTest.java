@@ -10,8 +10,7 @@ import java.util.ArrayList;
 
 public class PlayerControllerTest {
 
-    private ArrayList<Player> players = new ArrayList<>();
-    private ArrayList<String> removedPlayers = new ArrayList<>();
+
 
     @Test
     public void testHandleTransactionPositiveForTarget() {
@@ -74,28 +73,46 @@ public class PlayerControllerTest {
         assertNull(playerController.getPlayerFromName(targetPlayerName));
         assertEquals(5000 + targetPlayerActualBalance, beneficiary.getBalance());
     }
-    
+
+    //Tests if a player gets removed from the game
     @Test
-    public void removesPlayerFromTheGame(String playerID) {
+    public void testRemovesPlayerFromTheGame() {
+        ArrayList<Player> players = new ArrayList<>();
+        ArrayList<String> removedPlayers = new ArrayList<>();
         PlayerController playerController = new PlayerController();
-        Player player = getPlayerFromID(playerID);
+        Player player = new Player("","",1,1);
+
+        players.add(player);
+
+        assertTrue("is empty", removedPlayers.isEmpty());
         removedPlayers.add(player.getId());
+        assertTrue("removed a player", removedPlayers.size() > 0);
+
+
+        assertTrue("checking if the player is still in the array", players.size() > 0);
         players.remove(player);
+        assertTrue("Checking if the player got removed from the array", players.isEmpty());
+
+
+
     }
 
+    // Checks if the playerID equals the Player
     @Test
-    private Player getPlayerFromID(String playerID) {
+    public void testGetsThePlayerBasedOnPlayerID() {
+        ArrayList<Player> players = new ArrayList<>();
         for (Player player : players) {
             String id = player.getId();
-            if (id.equals(playerID)) {
-                return player;
-            }
+            assertTrue(id.equals("playerID"));
         }
-        return null;
+
     }
 
     @Test
-    public void addsAPlayerToTheGame() {
+    public void testAddsAPlayerToTheGame() {
+        ArrayList<Player> players = new ArrayList<>();
+        ArrayList<String> removedPlayers = new ArrayList<>();
+
         String name = "haidar";
         String chosenColor = "rød";
         int position = 1;
@@ -103,12 +120,14 @@ public class PlayerControllerTest {
 
 
         Player player = new Player(name, chosenColor, position, startBalance);
-        this.players.add(player);
+        players.add(player);
 
-        //Checks if the player is null
-        assertNull(player);
-        assertNull(this.players);
+        //Creates a mock object for the Arraylist 'players'. One player is added to each arraylist, and get compared.
+        ArrayList<Player> mockPlayersArray = new ArrayList<>();
+        mockPlayersArray.add(player);
+
         //Checks if the player is now added
-        assertTrue(this.players.size() == 1);
+        assertArrayEquals(players.toArray(),mockPlayersArray.toArray());
+
     }
 }
