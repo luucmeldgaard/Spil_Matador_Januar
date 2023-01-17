@@ -73,7 +73,7 @@ public class GameController {
             playRound(player); // set later
             int[] lastDieRoll = player.getLastPlayedDieRoll();
             if (lastDieRoll[0] == lastDieRoll[1] && lastDieRoll[0] != 0) {
-                gui.buttonRequest("Since you rolled a double, it's your turn again!", "Ok");
+                gui.buttonRequest("Du rullede to ens, og må slå igen!", "Ok");
                 rolledDoublesInARow += 1;
             }
             else {

@@ -22,6 +22,7 @@ public abstract class Property implements PropertyFields {
     protected final int position;
     private String owner;
     protected int housing;
+    protected boolean pawned;
 
     private final int groupSize;
 
@@ -49,6 +50,7 @@ public abstract class Property implements PropertyFields {
         this.owner = owner;
         this.neighborhood = neighborhood;
         this.groupSize = Integer.parseInt(groupSize);
+        this.pawned = pawned;
 
         if (this.owner.equals("")) {
             this.owner = null;
@@ -95,7 +97,7 @@ public abstract class Property implements PropertyFields {
 
     //A player can buy with the help of a transaction
     public String buyMessage() {
-        return "Do you want to purchase " + this.name + "?";
+        return "Ønsker du at købe " + this.name + "?";
     }
 
     public String auctionMessage() {
