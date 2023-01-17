@@ -30,7 +30,7 @@ public class LoaderTest {
 
     @Test
     public void getFieldMapReturnsArrayList() {
-        Loader loader = new Loader("test_FieldData");
+        Loader loader = new Loader(0);
 
         ArrayList<Map<String, String>> fieldList;
         fieldList = loader.getBoardList();
@@ -42,7 +42,7 @@ public class LoaderTest {
     @Test
     public void prettyPrintGetFieldMap() {
 
-        Loader loader = new Loader("test_FieldData");
+        Loader loader = new Loader(0);
         ArrayList<Map<String, String>> testList;
         testList = loader.getBoardList();
 
@@ -59,7 +59,7 @@ public class LoaderTest {
     @Test
     public void PrintGetFieldMap() {
 
-        Loader loader = new Loader("test_FieldData");
+        Loader loader = new Loader(0);
         ArrayList<Map<String, String>> testList;
         testList = loader.getBoardList();
 
@@ -78,7 +78,7 @@ public class LoaderTest {
 
     @Test
     public void testColorsSetSystemProperty() {
-        Loader loader = new Loader("test_FieldData");
+        Loader loader = new Loader(0);
         Map<String, String> colors = loader.getColorMap();
 
         for (String color : colors.keySet()) {
@@ -88,13 +88,13 @@ public class LoaderTest {
 
     @Test
     public void testChanceMapIsCreated() {
-        Loader loader = new Loader("test_FieldData");
+        Loader loader = new Loader(0);
         assertNotNull(loader.getChanceList());
     }
 
     @Test
     public void testColorMapIsCreated() {
-        Loader loader = new Loader("test_FieldData");
+        Loader loader = new Loader(0);
         assertNotNull(loader.getColorMap());
     }
 
