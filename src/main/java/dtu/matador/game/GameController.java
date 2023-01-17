@@ -16,7 +16,7 @@ public class GameController {
 
     //Main method. Runs the program
     public static void main(String[] args) {
-        loader = new Loader();
+        loader = new Loader(0);
         playerController = new PlayerController();
         GUI.setNull_fields_allowed(true);
         gui = new GUIController();
@@ -143,7 +143,7 @@ public class GameController {
             case "Tilbage" -> { playRound(player); }
             case "Snydekoder" -> { cheatMenu(player); }
             case "Lav byttehandel" -> {}
-            case "Gem Spil" -> {}
+            case "Gem Spil" -> { saveGame(player); }
             case "Sælg bolig(er)" -> {}
             case "Giv Op" -> {
                 ArrayList<String> allPlayerIDs = playerController.getAllPlayerIDs();
@@ -271,6 +271,39 @@ public class GameController {
                     }
                 }
             }
+        }
+    }
+
+    private static void saveGame(Player player) {
+        String[] saveLocations = new String[] {"Annuller", "1", "2", "3", "4", "5"};
+        String response = gui.buttonRequest("Choose a save", saveLocations);
+        if (response.equals("Annuller")) {
+            bonusMenuHandler(player);
+        }
+
+        else {
+            ArrayList<Map<String, String>> boardSnapshot = board.getFieldList();
+            boolean saveSuccess = loader.saveGame(boardSnapshot, response);
+            if (saveSuccess) {
+                gui.buttonRequest("Successfully saved game. ", "Fortsæt");
+            }
+            else {
+                gui.buttonRequest("Something went wrong! Couldn't save game. ", "Fortsæt...");
+            }
+        }
+    }
+
+    private static void loadGame() {
+        String[] saveLocations = new String[] {"Annuller", "1", "2", "3", "4", "5"};
+        String response = gui.buttonRequest("Choose a save", saveLocations);
+
+        if (response.equals("Annuller")) {
+            menu();
+        }
+        else {
+            int saveLocation = Integer.parseInt(response);
+            loader = new Loader(saveLocation);
+
         }
     }
 

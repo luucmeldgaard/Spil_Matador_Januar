@@ -108,9 +108,13 @@ public class FieldController {
         Map<String, String> updatedFieldInfo = new HashMap<>();
 
         int fieldPosition = property.getPosition();
+        String owner = property.getOwner();
         String color2 = property.getColor2();
-        String housing = null;
+        String housing;
         fieldList.get(fieldPosition).replace("color2", color2);
+        if (owner != null) {
+            fieldList.get(fieldPosition).replace("owner", owner);
+        }
         if (property instanceof Street) {
             housing = String.valueOf(((Street) property).getHousing());
             fieldList.get(fieldPosition).replace("housing", housing);
@@ -403,8 +407,8 @@ public class FieldController {
 
                         for(Property propertyInGroup : propertyBank.getPropertiesFromGroup(property.getNeighborhood())){
                             propertyInGroup.buildHouse();
-                            updateGUI(propertyInGroup, playerID);
                             updateFieldMap(propertyInGroup);
+                            updateGUI(propertyInGroup, playerID);
                         }
                     }
                 }
@@ -425,8 +429,10 @@ public class FieldController {
             int groupSize = street.getGroupSize();
             int ownedByOwner = 0;
             for (Property property : propertyBank.getPropertiesFromGroup(street.getNeighborhood())) {
-                if (((Street) property).getOwner().equals(receiverID)) {
-                    ownedByOwner += 1;
+                if (((Street) property).getOwner() != null) {
+                    if (((Street) property).getOwner().equals(receiverID)) {
+                        ownedByOwner += 1;
+                    }
                 }
             }
             if (groupSize == ownedByOwner && street.getHousing() == 0) {
