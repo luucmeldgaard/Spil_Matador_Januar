@@ -134,8 +134,6 @@ class GUIController {
         }
         GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
         player.getCar().setPosition(guiFields[nextPosition]);
-        System.out.println(guiFields[nextPosition].getTitle());
-
     }
 
     public void movePlayerTo(String playerID, int startPosition, int endPosition) {
