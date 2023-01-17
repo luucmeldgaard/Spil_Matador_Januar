@@ -511,9 +511,10 @@ public class FieldController {
                 System.out.println("PayIfCrossStart = true");
                 payIfCrossStart = true;
             }
-            if (key.equals("condition") && rawCard.get(key).equals("1")) {
+            if (key.equals("Condition") && rawCard.get(key).equals("15000")) {
                 System.out.println("Condition");
-                condition = true;
+                if(player.getBalance() < 15000)
+                    condition = true;
 
             }
             if (key.equals("RentMultiplier") && !rawCard.get(key).equals("")) {
@@ -525,9 +526,13 @@ public class FieldController {
         for (String key : card.keySet()) {
             System.out.println(key + ": " + card.get(key));
             String message = card.get("Text");
+            System.out.println(condition);
             gui.displayInMiddle(message);
             switch (key) {
                 case "Cash added" -> {
+                    if (cardNumber == 24 && !condition) {
+                        break;
+                    }
                     System.out.println("Cash added");
                     int amount = Integer.parseInt(card.get(key));
                     createTransaction(playerID, null, amount, true, message);
