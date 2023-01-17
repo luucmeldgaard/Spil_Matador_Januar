@@ -780,24 +780,6 @@ public class FieldController {
         }
     }
 
-    protected void updateGUI(Property property, String playerID) {
-            String playerColor = playerController.getPlayerFromID(playerID).getColor();
-            if (property instanceof Street) {
-                gui.updateProperty(property.getPosition(), playerColor, ((Street) property).getHousing());
-            } else {
-                gui.updateProperty(property.getPosition(), playerColor);
-            }
-    }
-
-    private void loadInPlayers() {
-        ArrayList<String> allPlayerIDs = playerController.getAllPlayerIDs();
-        for (String id : allPlayerIDs) {
-            Player player = playerController.getPlayerFromID(id);
-            gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
-        }
-
-    }
-
     public void sellHousing(String playerID, Street street){
         if (street.getHousing() > 0) {
             String sale = gui.buttonRequest("Vil du sælge dette hus?", "Ja" , "Nej");
@@ -815,6 +797,24 @@ public class FieldController {
             }
 
         }
+    }
+
+    protected void updateGUI(Property property, String playerID) {
+        String playerColor = playerController.getPlayerFromID(playerID).getColor();
+        if (property instanceof Street) {
+            gui.updateProperty(property.getPosition(), playerColor, ((Street) property).getHousing());
+        } else {
+            gui.updateProperty(property.getPosition(), playerColor);
+        }
+    }
+
+    private void loadInPlayers() {
+        ArrayList<String> allPlayerIDs = playerController.getAllPlayerIDs();
+        for (String id : allPlayerIDs) {
+            Player player = playerController.getPlayerFromID(id);
+            gui.addPlayer(player.getId(), player.getName(), player.getBalance(), player.getPosition(), player.getColor());
+        }
+
     }
 
 }
