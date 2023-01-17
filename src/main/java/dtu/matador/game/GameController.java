@@ -16,7 +16,6 @@ public class GameController {
 
     //Main method. Runs the program
     public static void main(String[] args) {
-        loader = new Loader(0);
         playerController = new PlayerController();
         GUI.setNull_fields_allowed(true);
         gui = new GUIController();
@@ -31,6 +30,8 @@ public class GameController {
         String loadOrNewGame = gui.buttonRequest("Matador 2023", "Nyt Spil", "Hent Spil");
         if (loadOrNewGame.equals("Hent Spil")) { loadGame(); }
         else {
+            loader = new Loader(0);
+
             String chosenBoardFileName = "";
 
             ArrayList<String> boardNamesRaw = loader.getFoundBoardFileNames();

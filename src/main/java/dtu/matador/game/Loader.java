@@ -74,7 +74,7 @@ public class Loader {
             // Defines the file and retrieves its canonical path
             File file = new File(path + filename);
             try {
-                path = file.getCanonicalPath();
+                path = file.getCanonicalPath() + ".json/";
                 System.out.println(path);
             } catch (IOException e) {
                 System.out.println("No directory found");
