@@ -690,6 +690,7 @@ public class FieldController {
                         return false;
                     }
                 }
+
                 }
             // A type of player income
             else {
