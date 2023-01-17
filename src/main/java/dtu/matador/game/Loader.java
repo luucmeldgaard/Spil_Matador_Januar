@@ -60,12 +60,12 @@ public class Loader {
         String objString;
         String path = "";
         if (filename.contains("/")) {
-            System.out.println("File has already been found. Full path has been provided. ");
+            System.out.println("File should already have been found. Full path has been provided. ");
             path = filename;
             // Defines the file and retrieves its canonical path
-            File file = new File(path + filename);
+            File file = new File(path);
             try {
-                path = file.getCanonicalPath() + ".json/";
+                path = file.getCanonicalPath();
                 System.out.println(path);
             } catch (IOException e) {
                 System.out.println("No directory found");

@@ -20,6 +20,7 @@ public class FieldController {
         this.playerController = injectPlayerController;
         this.gui = injectGui;
         fieldList = selectedBoard;
+        chanceList = selectedChance;
         this.propertyBank = new PropertyBank();
 
         fields = new ArrayList<>();
@@ -29,20 +30,17 @@ public class FieldController {
         setupFields();
         this.boardSize = fieldList.size();
         gui.setGUI(fieldList);
-        chanceList = selectedChance;
 
-
+        for (ArrayList<Property> propertyList : propertyBank.getPropertyMap().values()) {
+            for (Property property : propertyList) {
+                if (property.getOwner() != null) {
+                    updateGUI(property, property.getOwner());
+                }
+            }
+        }
     }
-
-    public FieldController(PlayerController injectPlayerController, GUIController injectGui) {
-        this.playerController = injectPlayerController;
-        this.gui = injectGui;
-    }
-
-
 
     protected void setupFields() {
-        FieldController controller = new FieldController(this.playerController, gui);
         for (Map<String, String> field : fieldList) {
             int fieldPosition = Integer.parseInt(field.get("position"));
             switch (field.get("fieldType")) {
