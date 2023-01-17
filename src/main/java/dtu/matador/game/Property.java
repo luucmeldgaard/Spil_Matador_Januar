@@ -91,9 +91,13 @@ public abstract class Property implements PropertyFields {
     public int getPosition() {
         return this.position;
     }
+    public int getRent0(){return rent0;}
     public int getRent1(){return rent1;}
     public int getRent2(){return rent2;}
     public int getRent3(){return rent3;}
+    public int getRent4(){return rent4;}
+    public int getRent5(){return rent5;}
+
 
     //A player can buy with the help of a transaction
     public String buyMessage() {
@@ -112,7 +116,7 @@ public abstract class Property implements PropertyFields {
         this.housing += 1;
     }
 
-    public int getCurrentRent(){
+    public int getCurrentRentToShow(){
         if (this.housing == 0) {return this.rent0;}
         if (this.housing == 1) {return getRent1();}
         if (this.housing == 2) {return getRent2();}
