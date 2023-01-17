@@ -46,43 +46,34 @@ public class FieldController {
         for (Map<String, String> field : fieldList) {
             int fieldPosition = Integer.parseInt(field.get("position"));
             switch (field.get("fieldType")) {
-                case "property" -> {
+                case "property" ->
                     fields.set(fieldPosition, propertyBank.addProperty(field.get("neighborhood"), new Street(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"), field.get("rent2"),
                             field.get("rent3"), field.get("rent4"), field.get("rent5"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
                             field.get("position"), field.get("owner"), field.get("housing"), field.get("neighborhood"), field.get("groupsize"), field.get("buildPrice"))));
-
-                }
-                case "ferry" -> {
+                case "ferry" ->
                     fields.set(fieldPosition, propertyBank.addProperty(field.get("neighborhood"), new Ferry(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"), field.get("rent2"),
                             field.get("rent3"), field.get("rent"), field.get("rent"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
                             field.get("position"), field.get("owner"), field.get("neighborhood"), field.get("groupsize"))));
-                }
-                case "brewery" -> {
+                case "brewery" ->
                     fields.set(fieldPosition, propertyBank.addProperty(field.get("neighborhood"), new Brewery(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("rent"), field.get("rent1"), field.get("rent"),
                             field.get("rent"), field.get("rent"), field.get("rent"), field.get("color1"), field.get("color2"), field.get("price"), field.get("pawnForAmount"),
                             field.get("position"), field.get("owner"), field.get("neighborhood"), field.get("groupsize"))));
-                }
-                case "refuge" -> {
+                case "refuge" ->
                     fields.set(fieldPosition, new Refuge(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
                             field.get("position")));
-                }
-                case "start" -> {
+                case "start" ->
                     fields.set(fieldPosition, new StartField(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
                             field.get("position"), field.get("income")));
-                }
-                case "chance" -> {
+                case "chance" ->
                     fields.set(fieldPosition, new Chance(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
                             field.get("position")));
-                }
-                case "jail" -> {
+                case "jail" ->
                     fields.set(fieldPosition, new Jail(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
                             field.get("position")));
-
-                }
-                case "tax" -> {
+                case "tax" ->
                     fields.set(fieldPosition, new TaxField(field.get("title"), field.get("subtext"), field.get("subtext"), field.get("color1"), field.get("color2"),
                             field.get("price"), field.get("position")));
-                }
+
             }
         }
     }
@@ -187,20 +178,21 @@ public class FieldController {
         if (currentField instanceof Property) {
             String propertyname = ((Property) currentField).name;
             String description = ((Property) currentField).description;
-            //HUUUUGE string construction for showing in gui. Could be done with loop but theres no real reason to
-            String currentrent = "Nuværende: " + Integer.toString(((Property) currentField).getCurrentRentToShow());
-            String rent0 = "Husleje med 0 bygninger: " + Integer.toString(((Property) currentField).getRent0());
-            String rent1 = "Husleje med 1 hus: " + Integer.toString(((Property) currentField).getRent1());
-            String rent2 = "Husleje med 2 huse: " + Integer.toString(((Property) currentField).getRent2());
-            String rent3 = "Husleje med 3 huse: " + Integer.toString(((Property) currentField).getRent3());
-            String rent4 = "Husleje med 4 huse: " + Integer.toString(((Property) currentField).getRent4());
-            String rent5 = "Husleje med 1 hotel: " + Integer.toString(((Property) currentField).getRent5());
-            String boatrent1 = "Husleje med 1 båd: " + Integer.toString(((Property) currentField).getRent0());
-            String boatrent2 = "Husleje med 2 både: " + Integer.toString(((Property) currentField).getRent1());
-            String boatrent3 = "Husleje med 3 både: " + Integer.toString(((Property) currentField).getRent2());
-            String boatrent4 = "Husleje med 4 både: " + Integer.toString(((Property) currentField).getRent3());
-            String breweryrent1 = "Husleje med 1 bryggeri: " + Integer.toString(((Property) currentField).getRent0());
-            String breweryrent2 = "Husleje med 2 bryggerier: " + Integer.toString(((Property) currentField).getRent1());
+            // String construction for showing in gui. Could be done with loop but since the amount of different
+            // possibilities are low, it makes sense to do it this way.
+            String currentrent = "Nuværende: " + ((Property) currentField).getCurrentRentToShow();
+            String rent0 = "Husleje med 0 bygninger: " + ((Property) currentField).getRent0();
+            String rent1 = "Husleje med 1 hus: " + ((Property) currentField).getRent1();
+            String rent2 = "Husleje med 2 huse: " + ((Property) currentField).getRent2();
+            String rent3 = "Husleje med 3 huse: " + ((Property) currentField).getRent3();
+            String rent4 = "Husleje med 4 huse: " + ((Property) currentField).getRent4();
+            String rent5 = "Husleje med 1 hotel: " + ((Property) currentField).getRent5();
+            String boatrent1 = "Husleje med 1 båd: " + ((Property) currentField).getRent0();
+            String boatrent2 = "Husleje med 2 både: " + ((Property) currentField).getRent1();
+            String boatrent3 = "Husleje med 3 både: " + ((Property) currentField).getRent2();
+            String boatrent4 = "Husleje med 4 både: " + ((Property) currentField).getRent3();
+            String breweryrent1 = "Husleje med 1 bryggeri: " + ((Property) currentField).getRent0();
+            String breweryrent2 = "Husleje med 2 bryggerier: " + ((Property) currentField).getRent1();
 
             if (description == null) {
                 description = "";
