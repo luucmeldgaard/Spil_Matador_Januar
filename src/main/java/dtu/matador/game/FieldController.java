@@ -502,11 +502,9 @@ public class FieldController {
                 System.out.println("PayIfCrossStart = true");
                 payIfCrossStart = true;
             }
-            if (key.equals("condition") && rawCard.get(key).equals("15000")) {
+            if (key.equals("condition") && rawCard.get(key).equals("1")) {
                 System.out.println("Condition");
-                if (player.getBalance() < 15000){
-                    condition = true;
-                }
+                condition = true;
 
             }
             if (key.equals("RentMultiplier") && !rawCard.get(key).equals("")) {
