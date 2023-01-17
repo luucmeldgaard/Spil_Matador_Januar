@@ -184,9 +184,20 @@ public class FieldController {
         currentField = fields.get(currentPosition);
         // Redirects to landOn "fieldType"
         if (currentField instanceof Property) {
+            /*
+            String ownername;
+            if (playerController.getPlayerFromID(((Property) currentField).getOwner()).getName().equals("Null")){
+                ownername = "Ingen ejer";
+            }
+            else {
+                ownername = "Ejet af" + playerController.getPlayerFromID(((Property) currentField).getOwner()).getName();
+            }
+            gui.displayInMiddle(((Property) currentField).name,ownername, Integer.toString(((Property) currentField).rent));
+             */
             landOnProperty(playerID, ((Property) currentField));
         }
         else if (currentField instanceof Jail) {
+            gui.displayInMiddle("Fængslet!");
             landOnJail(playerID, ((Jail) currentField));
         }
         else if (currentField instanceof StartField) {
@@ -198,6 +209,7 @@ public class FieldController {
         else if (currentField instanceof TaxField) {
             landOnTax(playerID, ((TaxField) currentField));
         }
+        gui.displayInMiddle("");
 
         // property, chance, jail, etc.
     }
@@ -516,6 +528,7 @@ public class FieldController {
         for (String key : card.keySet()) {
             System.out.println(key + ": " + card.get(key));
             String message = card.get("Text");
+            gui.displayInMiddle(message);
             switch (key) {
                 case "Cash added" -> {
                     System.out.println("Cash added");
@@ -647,7 +660,7 @@ public class FieldController {
                 }
             }
         }
-
+        gui.displayInMiddle("");
     }
     public void landOnTax(String playerID, TaxField currentField) {
         int bill = currentField.getBill();
