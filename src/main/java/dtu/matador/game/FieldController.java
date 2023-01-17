@@ -7,9 +7,9 @@ import java.util.*;
 public class FieldController {
 
     private ArrayList<FieldSpaces> fields;
-    private ArrayList<Map<String,String>> fieldList;
+    private ArrayList<Map<String, String>> fieldList;
     private PropertyBank propertyBank;
-    private ArrayList<Map<String,String>> chanceList;
+    private ArrayList<Map<String, String>> chanceList;
     public FieldSpaces currentField;
     private final PlayerController playerController;
     public final GUIController gui;
@@ -126,7 +126,7 @@ public class FieldController {
         if (lookUp == null) {
             lookUp = fields;
         }
-        Map <String, String> fieldAsMap;
+        Map<String, String> fieldAsMap;
         for (FieldSpaces field : lookUp) {
             fieldAsMap = getFieldAsMap(field.getPosition());
             if (fieldAsMap.get(searchKey).equals(searchValue)) {
@@ -143,7 +143,7 @@ public class FieldController {
         }
         ArrayList<FieldSpaces> fieldsFound = lookUpFields(lookUp, searchKeyCriteria, searchValueCriteria);
 
-        Map <String, String> fieldAsMap;
+        Map<String, String> fieldAsMap;
         for (FieldSpaces field : fieldsFound) {
             fieldAsMap = getFieldAsMap(field.getPosition());
             String result = fieldAsMap.get(searchKey);
@@ -178,24 +178,20 @@ public class FieldController {
     protected void landOnField(String playerID, int startPosition, int currentPosition, boolean passStart) {
         if (startPosition > currentPosition && passStart) {
             System.out.println("Spilleren har passeret start");
-                landOnStart(playerID, ((StartField) fields.get(0)));
-            }
+            landOnStart(playerID, ((StartField) fields.get(0)));
+        }
         // Check for type of field
         currentField = fields.get(currentPosition);
         // Redirects to landOn "fieldType"
         if (currentField instanceof Property) {
             landOnProperty(playerID, ((Property) currentField));
-        }
-        else if (currentField instanceof Jail) {
+        } else if (currentField instanceof Jail) {
             landOnJail(playerID, ((Jail) currentField));
-        }
-        else if (currentField instanceof StartField) {
+        } else if (currentField instanceof StartField) {
             //landOnStart(playerID, ((StartField) currentField));
-        }
-        else if (currentField instanceof Chance) {
+        } else if (currentField instanceof Chance) {
             landOnChance(playerID, ((Chance) currentField));
-        }
-        else if (currentField instanceof TaxField) {
+        } else if (currentField instanceof TaxField) {
             landOnTax(playerID, ((TaxField) currentField));
         }
 
@@ -205,34 +201,30 @@ public class FieldController {
     private void landOnJail(String playerID, Jail currentField) {
         Player player = playerController.getPlayerFromID(playerID);
         if (currentField.getInstanceOfJail() == 0) { //First field of jail
-            if (player.getjailed() > 0){ //Is player even jailed?
-                if (player.getJailCards() > 0){
-                    if (player.getjailed() < 4 || player.getBalance() > 999){
+            if (player.getjailed() > 0) { //Is player even jailed?
+                if (player.getJailCards() > 0) {
+                    if (player.getjailed() < 4 || player.getBalance() > 999) {
                         String ans = gui.buttonRequest(player.getName() + " vil du bruge et jail-free card?", "ja", "nej");
-                        if (ans.equals("ja")){
+                        if (ans.equals("ja")) {
                             player.useJailCard();
                             gui.buttonRequest("Godt valg! slå med terningerne", "Slå");
                             int rolls[] = player.rollDie();
                             gui.setDice(rolls);
                             int oldpos = player.getPosition();
                             player.movePosition(rolls[2]);
-                            gui.movePlayerTo(playerID,oldpos,player.getPosition());
-                            landOnField(playerID,oldpos,player.getPosition(),false); //Passstart shouldn't be permanently false but eh
-                        }
-                        else {
+                            gui.movePlayerTo(playerID, oldpos, player.getPosition());
+                            landOnField(playerID, oldpos, player.getPosition(), false); //Passstart shouldn't be permanently false but eh
+                        } else {
                             jailWithoutCard(player, playerID);
                         }
-                    }
-                    else {
-                        gui.buttonRequest("Du er desværre nødsaget til at bruge dit jail-free card","okay");
+                    } else {
+                        gui.buttonRequest("Du er desværre nødsaget til at bruge dit jail-free card", "okay");
                         player.useJailCard();
                         //playerController.nextPlayer();
                     }
-                }
-                else jailWithoutCard(player,playerID);
+                } else jailWithoutCard(player, playerID);
             }
-        }
-        else{ //This is what happens if you land on the second jail field (sending you to jail)
+        } else { //This is what happens if you land on the second jail field (sending you to jail)
             gui.displayGeneralMessage("Du er desværre kommet i fængsel");
             playerController.getPlayerFromID(playerID).setjailed(1);
             int currentPosition = player.getPosition();
@@ -242,66 +234,64 @@ public class FieldController {
         }
     }
 
-    private void jailWithoutCard(Player player, String playerID){
+    private void jailWithoutCard(Player player, String playerID) {
 
         if (player.getjailed() < 4) {
             String choice = gui.buttonRequest(player.getName() + " vil du slå med terningerne eller betale 1000 kr for at komme ud?", "Slå", "Betal");
             if (choice.equals("Slå")) {
                 int[] rolls = player.rollDie();
                 gui.setDice(rolls);
-                player.setjailed(player.getjailed()+1);
+                player.setjailed(player.getjailed() + 1);
                 if (rolls[0] == rolls[1]) {
                     player.setjailed(0);
                     gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
                     int oldpos = player.getPosition();
                     player.movePosition(rolls[2]);
-                    gui.movePlayerTo(playerID,oldpos,player.getPosition());
-                    landOnField(playerID,oldpos,player.getPosition(),false); //Passstart shouldnt be permanently false but eh
-                }
-                else if (player.getjailed() < 4){
+                    gui.movePlayerTo(playerID, oldpos, player.getPosition());
+                    landOnField(playerID, oldpos, player.getPosition(), false); //Passstart shouldnt be permanently false but eh
+                } else if (player.getjailed() < 4) {
                     System.out.println("Player" + player.getName() + "jailed status is: " + player.getjailed());
-                    gui.buttonRequest("Det var desværre ikke to ens","Okay");
+                    gui.buttonRequest("Det var desværre ikke to ens", "Okay");
                     //playerController.nextPlayer();
 
-                }
-                else{
+                } else {
                     payForJail(player);
                     int oldpos = player.getPosition();
                     player.movePosition(rolls[2]);
-                    gui.movePlayerTo(playerID,oldpos,player.getPosition());
-                    landOnField(playerID,oldpos,player.getPosition(),false);
+                    gui.movePlayerTo(playerID, oldpos, player.getPosition());
+                    landOnField(playerID, oldpos, player.getPosition(), false);
                     //playerController.nextPlayer();
                 }
-            }
-            else {
+            } else {
                 payForJail(player);
                 gui.buttonRequest("Godt valg! slå med terningerne", "Slå");
                 int[] rolls = player.rollDie();
                 int oldpos = player.getPosition();
                 player.movePosition(rolls[2]);
-                gui.movePlayerTo(playerID,oldpos,player.getPosition());
-                landOnField(playerID,oldpos,player.getPosition(),false);
+                gui.movePlayerTo(playerID, oldpos, player.getPosition());
+                landOnField(playerID, oldpos, player.getPosition(), false);
                 //playerController.nextPlayer();
             }
-        }
-        else if (player.getjailed() == 4){
+        } else if (player.getjailed() == 4) {
             payForJail(player);
             gui.buttonRequest("Efter at have betalt 1000kr kommer du endelig ud. Slå med terningerne", "Slå");
             int[] rolls = player.rollDie();
             int oldpos = player.getjailed();
             player.movePosition(rolls[2]);
-            gui.movePlayerTo(playerID,oldpos,player.getPosition());
-            landOnField(playerID,oldpos,player.getPosition(),false);
+            gui.movePlayerTo(playerID, oldpos, player.getPosition());
+            landOnField(playerID, oldpos, player.getPosition(), false);
             //playerController.nextPlayer();
             player = playerController.getCurrentPlayer();
         }
     }
-    private void payForJail(Player player){
-        boolean transactionSuccess = createTransaction(player.getId(),null,-1000,true,"Du bliver nødt til at betale for at komme ud af fængsel, betal 1000 kr.");
+
+    private void payForJail(Player player) {
+        boolean transactionSuccess = createTransaction(player.getId(), null, -1000, true, "Du bliver nødt til at betale for at komme ud af fængsel, betal 1000 kr.");
         if (transactionSuccess) {
             player.setjailed(0);
         }
     }
+
     private void landOnStart(String playerID, StartField start) {
         int income = start.getIncome();
         String message = "Du passerede start, modtag " + income + " kroner!";
@@ -317,17 +307,16 @@ public class FieldController {
             if (choice.equals("Køb")) {
 
                 String message = property.buyMessage() + " for " + Math.abs(property.getPrice()) + " kroner?";
-                boolean purchase = createTransaction(playerID,null, property.getPrice(), false, message);
+                boolean purchase = createTransaction(playerID, null, property.getPrice(), false, message);
                 if (purchase) {
                     property.setOwner(playerID);
-                }
-                else {
+                } else {
                     gui.buttonRequest("Du har ikke råd. ", "Ok");
                     auction(playerID, property);
                 }
 
                 if (property.getOwner() != null) {
-                    if (property.getPosition() == 5 || property.getPosition() == 15 || property.getPosition() == 25 || property.getPosition() == 35){
+                    if (property.getPosition() == 5 || property.getPosition() == 15 || property.getPosition() == 25 || property.getPosition() == 35) {
                         player.addFerries();
                         System.out.println(player.getFerries());
                     }
@@ -361,8 +350,7 @@ public class FieldController {
 
         if (owner.equals(playerID)) {
             System.out.println("Du ejer dette rederi. ");
-        }
-        else {
+        } else {
             //TODO den nedenstående variable skal ændres således at den ser på ejerens ferries og ikke den nuværende spillers...
             int ferriesOwned = 1;
             for (Property property : propertyBank.getPropertiesFromGroup(ferry.getNeighborhood())) {
@@ -401,8 +389,8 @@ public class FieldController {
             int totalDieRoll = player.getLastPlayedDieRoll()[2];
             int rent = currentField.getRent(breweriesOwnedByOwner);
             //int multiplier = currentField.getMultiplier(breweriesOwnedByOwner);
-            int breweryRent = totalDieRoll*rent;
-            createTransaction(playerID, owner, breweryRent, true,"");
+            int breweryRent = totalDieRoll * rent;
+            createTransaction(playerID, owner, breweryRent, true, "");
         }
     }
 
@@ -426,23 +414,23 @@ public class FieldController {
                 int nextBuildPrice = street.getBuildPrice();
                 String response = "";
 
-            //Checks if the owner has houses or not. If they do, they can either buy or sell a house
-            if (street.getHousing() > 0) {
-                String message = "Ønsker du at købe eller sælge et hus i dette nabolag?";
-                response = gui.buttonRequest(message,"Køb", "Sælg");
+                //Checks if the owner has houses or not. If they do, they can either buy or sell a house
+                if (street.getHousing() > 0) {
+                    String message = "Ønsker du at købe eller sælge et hus i dette nabolag?";
+                    response = gui.buttonRequest(message, "Køb", "Sælg");
                 }
-            //If the owner does not own any houses on the property, they can only buy a house.
-            else {
-                String message = "Ønsker du at købe et hus på hver grund i dette nabolag for " + Math.abs(nextBuildPrice) * street.getGroupSize() + " kroner?";
-                response = gui.buttonRequest( message, "Køb", "Nej");
+                //If the owner does not own any houses on the property, they can only buy a house.
+                else {
+                    String message = "Ønsker du at købe et hus på hver grund i dette nabolag for " + Math.abs(nextBuildPrice) * street.getGroupSize() + " kroner?";
+                    response = gui.buttonRequest(message, "Køb", "Nej");
                 }
-            //The player chooses to buy a house for each property in the neighbourhood
+                //The player chooses to buy a house for each property in the neighbourhood
                 if (response.equals("Køb")) {
                     boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice * property.getGroupSize(), false, "Køb huse for " + Math.abs(nextBuildPrice * street.getGroupSize()) + " kroner.");
                     if (transactionSuccess) {
 
                         //Loops through all the properties in the neighbourhood and updates them with a house each
-                        for(Property propertyInGroup : propertyBank.getPropertiesFromGroup(property.getNeighborhood())){
+                        for (Property propertyInGroup : propertyBank.getPropertiesFromGroup(property.getNeighborhood())) {
                             propertyInGroup.buildHouse();
                             updateFieldMap(propertyInGroup);
                             updateGUI(propertyInGroup, playerID);
@@ -454,8 +442,7 @@ public class FieldController {
                 }
             }
 
-        }
-        else {
+        } else {
             String message = "Dette felt er ejet af en anden!";
             int rent = street.getRent();
             System.out.println(rent);
@@ -474,23 +461,22 @@ public class FieldController {
             }
             if (groupSize == ownedByOwner && street.getHousing() == 0) {
                 createTransaction(playerID, receiverID, rent * 2, true, message);
-            }
-            else {
+            } else {
                 createTransaction(playerID, receiverID, rent, true, message);
             }
         }
 
     }
 
-    private void landOnChance (String playerID, Chance chance) {
+    private void landOnChance(String playerID, Chance chance) {
         Player player = playerController.getPlayerFromID(playerID);
         Random rand = new Random();
         int cardNumber = 0;
         if (chanceList.size() != 1) {
             cardNumber = rand.nextInt(0, chanceList.size() - 1);
         }
-        Map <String, String> rawCard = chanceList.get(cardNumber);
-        Map <String, String> card = new HashMap<>();
+        Map<String, String> rawCard = chanceList.get(cardNumber);
+        Map<String, String> card = new HashMap<>();
         boolean payIfCrossStart = false;
         boolean condition = false;
         int rentMultiplier = 1;
@@ -525,8 +511,8 @@ public class FieldController {
                 case "CashAddedPerHouse" -> {
                     System.out.println("CashAddedPerHouse");
                     int ownedHouses = 0;
-                    ArrayList<FieldSpaces> ownedFields = lookUpFields(fields,"owner", playerID);
-                    ArrayList<FieldSpaces> ownedStreets = lookUpFields(ownedFields,"fieldType", "street");
+                    ArrayList<FieldSpaces> ownedFields = lookUpFields(fields, "owner", playerID);
+                    ArrayList<FieldSpaces> ownedStreets = lookUpFields(ownedFields, "fieldType", "street");
                     for (FieldSpaces field : ownedStreets) {
                         int housingOnField = ((Street) field).getHousing();
                         if (housingOnField < 5) {
@@ -540,8 +526,8 @@ public class FieldController {
                 case "CashAddedPerHotel" -> {
                     System.out.println("CashAddedPerHotel");
                     int ownedHotels = 0;
-                    ArrayList<FieldSpaces> ownedFields = lookUpFields(fields,"owner", playerID);
-                    ArrayList<FieldSpaces> ownedStreets = lookUpFields(ownedFields,"fieldType", "street" );
+                    ArrayList<FieldSpaces> ownedFields = lookUpFields(fields, "owner", playerID);
+                    ArrayList<FieldSpaces> ownedStreets = lookUpFields(ownedFields, "fieldType", "street");
                     for (FieldSpaces field : ownedStreets) {
                         int housingOnField = ((Street) field).getHousing();
                         if (housingOnField == 5) {
@@ -609,24 +595,20 @@ public class FieldController {
                             int rentToPay = 0;
                             if (fieldShortestDistance instanceof Ferry) {
                                 rentToPay = ((Ferry) fieldShortestDistance).getRent(totalOwnedByOwner) * rentMultiplier;
-                            }
-                            else if (fieldShortestDistance instanceof Street) {
+                            } else if (fieldShortestDistance instanceof Street) {
                                 rentToPay = ((Street) fieldShortestDistance).getRent() * rentMultiplier;
-                            }
-                            else if (fieldShortestDistance instanceof Brewery) {
+                            } else if (fieldShortestDistance instanceof Brewery) {
                                 rentToPay = ((Brewery) fieldShortestDistance).getRent(totalOwnedByOwner) * rentMultiplier;
                             }
                             player.setPosition(closest);
                             gui.movePlayerTo(playerID, currentPlayerPosition, closest);
                             createTransaction(playerID, owner, rentToPay, true, message);
-                        }
-                        else {
+                        } else {
                             player.setPosition(closest);
                             gui.movePlayerTo(playerID, currentPlayerPosition, closest);
                             landOnField(playerID, currentPlayerPosition, player.getPosition(), payIfCrossStart);
                         }
-                    }
-                    else {
+                    } else {
                         player.setPosition(closest);
                         gui.movePlayerTo(playerID, currentPlayerPosition, closest);
                         landOnField(playerID, currentPlayerPosition, player.getPosition(), payIfCrossStart);
@@ -635,7 +617,7 @@ public class FieldController {
                 }
                 case "MoveTo" -> {
                     System.out.println("MoveTo");
-                    int cardPosition  = Integer.parseInt(card.get(key));
+                    int cardPosition = Integer.parseInt(card.get(key));
                     int startPlayerPosition = player.getPosition();
                     player.setPosition(cardPosition);
                     gui.movePlayerTo(playerID, startPlayerPosition, player.getPosition());
@@ -649,6 +631,7 @@ public class FieldController {
         }
 
     }
+
     public void landOnTax(String playerID, TaxField currentField) {
         int bill = currentField.getBill();
         String message = "Skattefar giver dig et skattesmæk på " + Math.abs(bill) + " kroner.";
@@ -656,9 +639,62 @@ public class FieldController {
     }
 
 
-
     private void auction(String playerID, Property property) {
-        // TODO Auction property off to highest bidder!
+
+        ArrayList<Player> otherPlayers = new ArrayList<>();
+        Map<Integer, Player> bidMap = new HashMap<>();
+        ArrayList<String> allPlayerIDs = playerController.getAllPlayerIDs();
+        allPlayerIDs.remove(playerID);
+
+        for (String id : allPlayerIDs) {
+            if (playerController.getPlayerFromID(id).getBalance() >= property.getPrice() && !id.equals(playerID) ) {
+                otherPlayers.add(playerController.getPlayerFromID(id));
+            }
+        }
+
+        int amount = property.getPrice();
+        Player winner;
+        int highestBid = 0;
+
+        if (playerController.getAllPlayerIDs().size() > 2) {
+            gui.buttonRequest("Blind auktion! Alle spillere, som har råd til at købe feltet, " +
+                    "får muligheden for at byde. Den spiller som byder højest vinder auktionen. " +
+                    "Når en spiller placerer sit bud, bedes alle andre spillere kigge den anden vej. ", "Start Auktion");
+
+
+            for (Player otherPlayer : otherPlayers) {
+
+                String bidRequest = gui.buttonRequest("Vil du gerne byde, " + otherPlayer.getName() + "?", "Ja", "Nej");
+                if (bidRequest.equals("Ja")) {
+                    int bid = gui.intRequest(otherPlayer.getName() + ": Du skal byde højere end " + Math.abs(amount), Math.abs(amount) + 1, otherPlayer.getBalance());
+                    bidMap.put(bid, otherPlayer);
+                }
+            }
+
+            for (int bid : bidMap.keySet()) {
+                if (bid > highestBid) {
+                    highestBid = bid;
+                }
+            }
+            winner = bidMap.get(highestBid);
+
+            gui.buttonRequest(winner.getName() + " bød " + highestBid + " og vandt auktionen!", "Fortsæt");
+        }
+        else {
+            winner = otherPlayers.get(0);
+            highestBid = property.getPrice();
+            String bidRequest = gui.buttonRequest(winner.getName() + " Vil du gerne købe grunden for, " + Math.abs(amount) + "?", "Ja", "Nej");
+            if (bidRequest.equals("Nej")) {return; }
+        }
+
+        boolean transactionSuccess = createTransaction(winner.getId(), null, -Math.abs(highestBid), true, "Gennemfør betaling");
+        if (transactionSuccess) {
+            property.setOwner(winner.getId());
+            updateFieldMap(property);
+            updateGUI(property, winner.getId());
+        }
+
+
     }
 
     /**
