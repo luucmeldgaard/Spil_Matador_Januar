@@ -112,6 +112,16 @@ public abstract class Property implements PropertyFields {
         this.housing += 1;
     }
 
+    public int getCurrentRent(){
+        if (this.housing == 0) {return this.rent0;}
+        if (this.housing == 1) {return getRent1();}
+        if (this.housing == 2) {return getRent2();}
+        if (this.housing == 3) {return getRent3();}
+        if (this.housing == 4) {return this.rent4;} //This might not be the cleanest thing in the world
+        if (this.housing == 5) {return this.rent5;}
+        return 0;
+    }
+
     public int getGroupSize(){
         return groupSize;
     }
