@@ -128,12 +128,30 @@ class GUIController {
 
     }
 
-    private void movePlayerOnce(String playerID, int nextPosition) {
+    private void movePlayerOnce(String playerID, int nextPosition, int endPosition) {
         if (nextPosition >= boardSize) {
             nextPosition = nextPosition % boardSize;
         }
+
         GUI_Player player = guiPlayers.get(Integer.parseInt(playerID));
         player.getCar().setPosition(guiFields[nextPosition]);
+
+        if (nextPosition == endPosition) {
+            for (int i = 0; i < 4; i++) {
+                guiFields[nextPosition].setForeGroundColor(Color.WHITE);
+                try {
+                    Thread.sleep(90);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                guiFields[nextPosition].setForeGroundColor(Color.BLACK);
+                try {
+                    Thread.sleep(90);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     public void movePlayerTo(String playerID, int startPosition, int endPosition) {
@@ -147,7 +165,7 @@ class GUIController {
             if (currentPosition >= boardSize) {
                 currentPosition = 0;
             }
-            movePlayerOnce(playerID, currentPosition);
+            movePlayerOnce(playerID, currentPosition, endPosition);
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) {
