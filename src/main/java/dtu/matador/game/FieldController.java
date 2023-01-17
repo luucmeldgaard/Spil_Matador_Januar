@@ -169,6 +169,7 @@ public class FieldController {
         return 0;
     }
 
+    //A player lands on a field
     protected void landOnField(String playerID, int startPosition, int currentPosition, boolean passStart) {
         Player player = playerController.getPlayerFromID(playerID);
         if (startPosition > currentPosition && passStart) {
