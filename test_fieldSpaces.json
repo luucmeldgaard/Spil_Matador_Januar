@@ -1,0 +1,72 @@
+[
+  {
+    "owner": "",
+    "price": "300",
+    "pawnForAmount": "29",
+    "buildPrice": "340",
+    "neighborhood": "red",
+    "position": "0",
+    "rent": "300",
+    "title": "Bakkesnakkevej",
+    "fieldType": "property",
+    "subText": "text",
+    "color1": "",
+    "color2": ""
+  },
+  {
+    "owner": "",
+    "price": "83",
+    "pawnForAmount": "200",
+    "buildPrice": "300",
+    "neighborhood": "yellow",
+    "position": "1",
+    "rent": "580",
+    "title": "Hejsavej",
+    "fieldType": "property",
+    "subText": "tet",
+    "color1": "",
+    "color2": ""
+  },
+  {
+    "owner": "",
+    "price": "83",
+    "pawnForAmount": "200",
+    "buildPrice": "300",
+    "neighborhood": "yellow",
+    "position": "1",
+    "rent": "580",
+    "title": "Hejsavej",
+    "fieldType": "property",
+    "subText": "tet",
+    "color1": "",
+    "color2": ""
+  },
+  {
+    "owner": "",
+    "price": "83",
+    "pawnForAmount": "200",
+    "buildPrice": "300",
+    "neighborhood": "yellow",
+    "position": "1",
+    "rent": "580",
+    "title": "Hejsavej",
+    "fieldType": "property",
+    "subText": "tet",
+    "color1": "",
+    "color2": ""
+  },
+  {
+    "owner": "",
+    "price": "83",
+    "pawnForAmount": "200",
+    "buildPrice": "300",
+    "neighborhood": "yellow",
+    "position": "1",
+    "rent": "580",
+    "title": "Hejsavej",
+    "fieldType": "property",
+    "subText": "tet",
+    "color1": "",
+    "color2": ""
+  }
+]
