@@ -42,11 +42,18 @@ public class FieldControllerTest {
         PlayerController playerController = new PlayerController();
 
         //Creates a new instance of a mock loader
+        //Issue is that the size getfield returns
+        //fields.get(position)
+        //the size fields is defined by iteratively adding null spaces until there are fieldlist.size null values
+        //fieldlist is only given a size > 0 in fieldController (the constructor for FieldController)
+        //I have all the knowledge of the issue and none of the knowledge on how to fix the issue
         Loader loader = new Loader(0);
 
         // Creates a new instance of the FieldController
         FieldController fieldController = new FieldController(playerController, gui, loader.getBoardList(), loader.getChanceList());
         // Casts a known property field from the ArrayList
+
+
 
         // of Fieldspaces objects to Property
         Property field = ((Property) fieldController.getField(1));
