@@ -386,8 +386,6 @@ public class FieldController {
             System.out.println("Du ejer dette rederi. ");
         }
         else {
-        } else {
-            //TODO den nedenstående variable skal ændres således at den ser på ejerens ferries og ikke den nuværende spillers...
             int ferriesOwned = 0;
             for (Property property : propertyBank.getPropertiesFromGroup(ferry.getNeighborhood())) {
                 if (property.getOwner() != null) {
@@ -656,9 +654,8 @@ public class FieldController {
                 }
                 case "MoveTo" -> {
                     System.out.println("MoveTo");
-                    int cardPosition  = Integer.parseInt(card.get(key));
-                    gui.buttonRequest(message, "Ok");
                     int cardPosition = Integer.parseInt(card.get(key));
+                    gui.buttonRequest(message, "Ok");
                     int startPlayerPosition = player.getPosition();
                     player.setPosition(cardPosition);
                     gui.movePlayerTo(playerID, startPlayerPosition, player.getPosition());
