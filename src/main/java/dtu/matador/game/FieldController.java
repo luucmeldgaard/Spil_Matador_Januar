@@ -676,7 +676,7 @@ public class FieldController {
 
         // If a player needs to make a payment to another player
         if (receiverID != null) {
-            gui.buttonRequest(message + " Pay " + playerController.getPlayerFromID(receiverID).getName() + " " + Math.abs(amount), "Pay");
+            gui.buttonRequest(message + " Betal " + playerController.getPlayerFromID(receiverID).getName() + " " + Math.abs(amount), "Betal");
         }
         else {
             // Payments to the bank
