@@ -94,10 +94,21 @@ public class PlayerControllerTest {
         return null;
     }
 
+    @Test
     public void addsAPlayerToTheGame() {
         String name = "haidar";
+        String chosenColor = "rød";
+        int position = 1;
+        int startBalance = 50000;
 
-        Player player = new Player(name, chosenColor, position, balance);
+
+        Player player = new Player(name, chosenColor, position, startBalance);
         this.players.add(player);
+
+        //Checks if the player is null
+        assertNull(player);
+        assertNull(this.players);
+        //Checks if the player is now added
+        assertTrue(this.players.size() == 1);
     }
 }

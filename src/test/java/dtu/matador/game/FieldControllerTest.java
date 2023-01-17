@@ -3,6 +3,7 @@ package dtu.matador.game;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,9 +14,9 @@ public class FieldControllerTest {
     public void testMapAndFieldsAreOfEqualSize() {
         // creates a mock object of GUIController
         GUIController gui = mock(GUIController.class);
-
+        ArrayList<Map<String, String>> mockSelectedBoardArray = new ArrayList<>();
         // Creates a new instance of the FieldController
-        FieldController fieldController = new FieldController(null, gui, "test_FieldData");
+        FieldController fieldController = new FieldController(null, gui, mockSelectedBoardArray);
 
 
         // asserts that the size of the fieldMap and
