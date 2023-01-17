@@ -334,12 +334,16 @@ public class GameController {
             menu();
         }
         else {
-            int saveLocation = Integer.parseInt(response);
-            loader = new Loader(saveLocation);
-            ArrayList<Map<String, String>> selectedBoard = loader.getBoardList();
-            playerController.loadPlayers(loader.getPlayersList());
-            //loadInPlayers(loader.getPlayersList());
-            setBoard(selectedBoard);
+            try {
+                int saveLocation = Integer.parseInt(response);
+                loader = new Loader(saveLocation);
+                ArrayList<Map<String, String>> selectedBoard = loader.getBoardList();
+                playerController.loadPlayers(loader.getPlayersList());
+                setBoard(selectedBoard);
+            } catch (NullPointerException e) {
+                gui.buttonRequest("There appears to be no save game here. ", "Ok");
+                loadGame();
+            }
         }
     }
 
