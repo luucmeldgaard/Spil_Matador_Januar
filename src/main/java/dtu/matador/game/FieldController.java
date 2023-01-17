@@ -15,7 +15,7 @@ public class FieldController {
     public final GUIController gui;
     int boardSize;
 
-
+    //Constructor that uses its parameters to initialize the state of a FieldController-object.
     public FieldController(PlayerController injectPlayerController, GUIController injectGui, ArrayList<Map<String, String>> selectedBoard, ArrayList<Map<String, String>> selectedChance) {
         this.playerController = injectPlayerController;
         this.gui = injectGui;
@@ -42,6 +42,7 @@ public class FieldController {
         }
     }
 
+    //Sets up the fields as a Map
     protected void setupFields() {
         for (Map<String, String> field : fieldList) {
             int fieldPosition = Integer.parseInt(field.get("position"));
@@ -78,6 +79,7 @@ public class FieldController {
         }
     }
 
+    //Returns the current field
     protected FieldSpaces getField(int position) {
         return fields.get(position);
     }
@@ -112,6 +114,7 @@ public class FieldController {
         }
     }
 
+    //Looks up the fields in an ArrayList
     public ArrayList<FieldSpaces> lookUpFields(ArrayList<FieldSpaces> lookUp, String searchKey, String searchValue) {
         ArrayList<FieldSpaces> fieldsFound = new ArrayList<>();
         if (lookUp == null) {
@@ -166,6 +169,7 @@ public class FieldController {
         return 0;
     }
 
+    //A player lands on a field
     protected void landOnField(String playerID, int startPosition, int currentPosition, boolean passStart) {
         Player player = playerController.getPlayerFromID(playerID);
         if (startPosition > currentPosition && passStart) {

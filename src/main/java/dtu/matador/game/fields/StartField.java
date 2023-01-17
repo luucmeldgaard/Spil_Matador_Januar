@@ -21,6 +21,7 @@ public class StartField extends NonPurchasableFields {
         this.income = Integer.parseInt(income);
     }
 
+
     public int getIncome() {
         return this.income;
     }

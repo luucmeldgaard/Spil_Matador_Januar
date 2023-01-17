@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="minor bugfix: sellPrice now returns the integer value instead of a minus">
+    <list default="true" id="0cbd8afb-90f4-4e1c-a44c-bb28b8352eb9" name="Changes" comment="&quot;INSTANCE OF JAIL&quot; --&gt; &quot;Instans af fængsel&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/1. Normal_board.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/1. Normal_board.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/fields/Jail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/fields/Jail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/fields/StartField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/fields/StartField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dtu/matador/game/fields/Street.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dtu/matador/game/fields/Street.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -420,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673957279162</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="&quot;INSTANCE OF JAIL&quot; --&gt; &quot;Instans af fængsel&quot;">
+      <created>1673991532229</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1673991532229</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,7 +484,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Player changes made. Created test: player moves the dieRoll forward" />
     <MESSAGE value="Player can now move the total value of the dieRoll" />
     <MESSAGE value="added &quot;income&quot;" />
     <MESSAGE value="Reverted back to previous thingymajingy" />
@@ -500,7 +508,19 @@
     <MESSAGE value="a boolean: pawned has been added, aswell as explanatory comments in landOnStreet in FieldController (previous commit)" />
     <MESSAGE value="button language changed to danish" />
     <MESSAGE value="minor bugfix: sellPrice now returns the integer value instead of a minus" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor bugfix: sellPrice now returns the integer value instead of a minus" />
+    <MESSAGE value="&quot;INSTANCE OF JAIL&quot; --&gt; &quot;Instans af fængsel&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;INSTANCE OF JAIL&quot; --&gt; &quot;Instans af fængsel&quot;" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/dtu/matador/game/GUIControllerTest.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Spil_Matador_Januar$GameController.ic" NAME="GameController Coverage Results" MODIFIED="1673410974328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -22,6 +22,7 @@ public class TaxField extends NonPurchasableFields {
 
     }
 
+    //Returns a bill to the player, so they can pay it.
     public int getBill() {
         return -this.bill;
     }
