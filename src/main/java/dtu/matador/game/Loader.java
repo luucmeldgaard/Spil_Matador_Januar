@@ -14,6 +14,7 @@ public class Loader {
     ArrayList<String> boardFiles;
     ArrayList<String> colorFiles;
     ArrayList<String> chanceFiles;
+    ArrayList<String> defaultBoardsFilenames;
     ArrayList<Map<String, String>> boardList;
     Map<String, String> settings;
     Map<String, String> colorMap;
@@ -21,8 +22,11 @@ public class Loader {
     ArrayList<Map<String, String>> playersList;
 
     public Loader(int loadGame) {
+
         generateFolderStructure();
         if (loadGame == 0) {
+            defaultBoardsFilenames = new ArrayList<>();
+            defaultBoardsFilenames.addAll(Arrays.asList("1. Normal_board.json", "2. Den Lille Bane_board.json", "3. Kriminel Løbebane_board.json"));
             this.settings = JSONtoMap("settings.json", "settings");
             this.boardFiles = getAllFilesOfType("board");
             this.colorFiles = getAllFilesOfType("colors.json");
@@ -56,6 +60,7 @@ public class Loader {
 
         ArrayList<String> allFiles = new ArrayList<>();
 
+
         File folder = new File("./json");
         File[] listOfFiles = folder.listFiles();
 
@@ -64,6 +69,10 @@ public class Loader {
             if (file.isFile() && file.getName().endsWith(SnakeCaseSuffix + ".json")) {
                 allFiles.add(file.getName());
             }
+        }
+
+        if (SnakeCaseSuffix.equals("board")) {
+            allFiles.addAll(defaultBoardsFilenames);
         }
 
         return allFiles;
@@ -118,13 +127,18 @@ public class Loader {
         // then it will try to retrieve the default JSON game files which can be found in the ressources.
         catch (IOException | ParseException ex) {
             try {
-                System.out.println("Didn't successfully read. ");
-                switch (jsonType) {
-                    case "settings" -> filename = "default_settings.json";
-                    case "board" -> filename = "default_board.json";
-                    case "chance" -> filename = "default_chance.json";
-                    case "colors" -> filename = "default_colors.json";
-                    // TODO add default players
+                if (jsonType.equals("board") && defaultBoardsFilenames.contains(filename)) {
+                    System.out.println("Getting board from ressources...");
+                }
+                else {
+                    System.out.println("Didn't successfully read. ");
+                    switch (jsonType) {
+                        case "settings" -> filename = "default_settings.json";
+                        case "board" -> filename = "default_board.json";
+                        case "chance" -> filename = "default_chance.json";
+                        case "colors" -> filename = "default_colors.json";
+                        // TODO add default players
+                    }
                 }
                 InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filename);
                 assert inputStream != null;
