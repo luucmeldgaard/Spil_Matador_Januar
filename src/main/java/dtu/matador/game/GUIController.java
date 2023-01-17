@@ -169,7 +169,7 @@ class GUIController {
 
     public int getNumberOfPlayers(){
          numberOfPlayers = Integer.parseInt((gui.getUserSelection(
-                "Select a number of players",
+                "Vælg antal spillere",
                 "2", "3", "4", "5", "6"
         )));
          return numberOfPlayers;
@@ -187,12 +187,12 @@ class GUIController {
                 return playername;
             }
             else{
-                gui.showMessage("Another player already has this name. Please pick a new one");
+                gui.showMessage("En anden spiller har allerede taget dette navn. Vælg venligst et andet");
             }
         }
     }
     public String retrieveNameFromInput(){
-        String name = gui.getUserString("Enter your name here", 1, 30, true);
+        String name = gui.getUserString("Indtast dit navn her", 1, 30, true);
         return name;
     }
 

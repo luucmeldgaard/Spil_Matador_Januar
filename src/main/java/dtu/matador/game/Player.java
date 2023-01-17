@@ -98,9 +98,10 @@ public class Player {
         //is unnessecary
         if (this.jailCards >= 1) {
             this.jailCards -= 1;
+            jailed = 0;
             return true;
         }
-        else {return false; }
+        else {return false;}
     }
 
     public int getJailCards() { return this.jailCards; }

@@ -200,28 +200,35 @@ public class FieldController {
 
     private void landOnJail(String playerID, Jail currentField) {
         Player player = playerController.getPlayerFromID(playerID);
-        if (currentField.getInstanceOfJail() == 0) {
-            if (player.getjailed() > 0){
+        if (currentField.getInstanceOfJail() == 0) { //First field of jail
+            if (player.getjailed() > 0){ //Is player even jailed?
                 if (player.getJailCards() > 0){
-                    String choice = gui.buttonRequest("Vil du bruge dit fængselskort for at slippe ud?", "Ja", "Nej");
-                    if (choice.equals("Ja")) {
-                        System.out.println("Player chose to use get out of jail card");
-                        player.useJailCard();
-                        gui.buttonRequest("Du kom ud af fængsel, din tur!", "Slå");
-                        int[] dieValues = player.rollDie();
-                        gui.setDice(dieValues);
-                        int startPosition = player.getPosition();
-                        player.movePosition(dieValues[2]);
-                        gui.movePlayerTo(player.getId(), startPosition,player.getPosition());
-                        landOnField(playerID, startPosition, player.getPosition(), true);
+                    if (player.getjailed() < 4 || player.getBalance() > 999){
+                        String ans = gui.buttonRequest(player.getName() + " vil du bruge et jail-free card?", "ja", "nej");
+                        if (ans.equals("ja")){
+                            player.useJailCard();
+                            gui.buttonRequest("Godt valg! slå med terningerne", "Slå");
+                            int rolls[] = player.rollDie();
+                            gui.setDice(rolls);
+                            int oldpos = player.getPosition();
+                            player.movePosition(rolls[2]);
+                            gui.movePlayerTo(playerID,oldpos,player.getPosition());
+                            landOnField(playerID,oldpos,player.getPosition(),false); //Passstart shouldn't be permanently false but eh
+                        }
+                        else {
+                            jailWithoutCard(player, playerID);
+                        }
                     }
-                    else {jailWithoutCard(player,playerID);}
+                    else {
+                        gui.buttonRequest("Du er desværre nødsaget til at bruge dit jail-free card","okay");
+                        player.useJailCard();
+                        //playerController.nextPlayer();
+                    }
                 }
-                else {jailWithoutCard(player, playerID);System.out.println("Player had no cards to escape");}
+                else jailWithoutCard(player,playerID);
             }
-            else {System.out.println("Player is visiting");}
         }
-        else{
+        else{ //This is what happens if you land on the second jail field (sending you to jail)
             gui.displayGeneralMessage("Du er desværre kommet i fængsel");
             playerController.getPlayerFromID(playerID).setjailed(1);
             int currentPosition = player.getPosition();
@@ -233,40 +240,67 @@ public class FieldController {
 
     private void jailWithoutCard(Player player, String playerID){
 
-        if (player.getjailed() > 0 && player.getjailed() <= 3) {
-            String choice2 = gui.buttonRequest("Vil du slå med terningerne eller betale dig ud?", "Slå", "Betal");
-            if (choice2.equals("Slå")) {
-                int[] dieValues = player.rollDie();
-                gui.setDice(dieValues);
-                if (dieValues[0] == dieValues[1]) {
+        if (player.getjailed() < 4) {
+            String choice = gui.buttonRequest(player.getName() + " vil du slå med terningerne eller betale dig ud?", "Slå", "Betal");
+            if (choice.equals("Slå")) {
+                int[] rolls = player.rollDie();
+                gui.setDice(rolls);
+                player.setjailed(player.getjailed()+1);
+                if (rolls[0] == rolls[1]) {
                     player.setjailed(0);
                     gui.displayGeneralMessage("Tillykke! Du er kommet ud af fængslet");
-                    int startPosition = player.getPosition();
-                    player.movePosition(dieValues[2]);
-                    gui.movePlayerTo(player.getId(), startPosition,player.getPosition());
-                    landOnField(playerID, startPosition, player.getPosition(), true);
+                    int oldpos = player.getPosition();
+                    player.movePosition(rolls[2]);
+                    gui.movePlayerTo(playerID,oldpos,player.getPosition());
+                    landOnField(playerID,oldpos,player.getPosition(),false); //Passstart shouldnt be permanently false but eh
                 }
-                else {
-                    gui.displayGeneralMessage("Det var desværre ikke to ens");
-                    player.setjailed(player.getjailed() + 1);
+                else if (player.getjailed() < 4){
+                    System.out.println("Player" + player.getName() + "jailed status is: " + player.getjailed());
+                    gui.buttonRequest("Det var desværre ikke to ens","Okay");
+                    //playerController.nextPlayer();
+
+                }
+                else{
+                    payForJail(player);
+                    int oldpos = player.getPosition();
+                    player.movePosition(rolls[2]);
+                    gui.movePlayerTo(playerID,oldpos,player.getPosition());
+                    landOnField(playerID,oldpos,player.getPosition(),false);
+                    //playerController.nextPlayer();
                 }
             }
             else {
                 payForJail(player);
+                gui.buttonRequest("Godt valg! slå med terningerne", "Slå");
+                int[] rolls = player.rollDie();
+                int oldpos = player.getPosition();
+                player.movePosition(rolls[2]);
+                gui.movePlayerTo(playerID,oldpos,player.getPosition());
+                landOnField(playerID,oldpos,player.getPosition(),false);
+                //playerController.nextPlayer();
             }
         }
-        else if (player.getjailed() == 0) {
-            gui.displayGeneralMessage(gui.buttonRequest("Du er på besøg i fængslet", "ok"));
-        }
-        else {
-            gui.buttonRequest("Du har ikke flere forsøg. Du er nødsaget til at betale");
+        else if (player.getjailed() == 4){
             payForJail(player);
+            gui.buttonRequest("Efter at have betalt 1000kr kommer du endelig ud. Slå med terningerne", "Slå");
+            int[] rolls = player.rollDie();
+            int oldpos = player.getjailed();
+            player.movePosition(rolls[2]);
+            gui.movePlayerTo(playerID,oldpos,player.getPosition());
+            landOnField(playerID,oldpos,player.getPosition(),false);
+            //playerController.nextPlayer();
+            player = playerController.getCurrentPlayer();
         }
     }
-
+    private void payForJail(Player player){
+        boolean transactionSuccess = createTransaction(player.getId(),null,-1000,true,"Du bliver nødt til at betale for at komme ud af fængsel");
+        if (transactionSuccess) {
+            player.setjailed(0);
+        }
+    }
     private void landOnStart(String playerID, StartField start) {
         int income = start.getIncome();
-        String message = "You passed start, gain " + income + "!";
+        String message = "Du passerede start, modtag " + income + "!";
         createTransaction(playerID, null, income, false, message);
     }
 
@@ -275,8 +309,8 @@ public class FieldController {
         Player player = playerController.getPlayerFromID(playerID);
         if (owner == null) {
             System.out.println("This field is not owned by anyone!");
-            String choice = gui.buttonRequest("Buy or auction?", "Buy", "Auction");
-            if (choice.equals("Buy")) {
+            String choice = gui.buttonRequest("Køb eller auktionér?", "Køb", "Auktionér");
+            if (choice.equals("Køb")) {
 
                 String message = property.buyMessage();
                 boolean purchase = createTransaction(playerID,null, property.getPrice(), false, message);
@@ -284,7 +318,7 @@ public class FieldController {
                     property.setOwner(playerID);
                 }
                 else {
-                    gui.buttonRequest("You have insufficient funds. ", "Ok");
+                    gui.buttonRequest("Du har ikke råd. ", "Ok");
                     auction(playerID, property);
                 }
 
@@ -298,8 +332,8 @@ public class FieldController {
                         updateGUI(property, playerID);
                     }
                 }
-            } else if (choice.equals("Auction")) {
-                gui.buttonRequest("You have insufficient funds. ", "Ok");
+            } else if (choice.equals("Auktion")) {
+                gui.buttonRequest("Du har ikke råd. ", "Ok");
                 auction(playerID, property);
             }
 
@@ -323,7 +357,7 @@ public class FieldController {
         int balance = playerController.getPlayerFromID(playerID).getBalance();
 
         if (owner.equals(playerID)) {
-            System.out.println("This ferry is owned by you. ");
+            System.out.println("Du ejer dette rederi. ");
         }
         else {
             //TODO den nedenstående variable skal ændres således at den ser på ejerens ferries og ikke den nuværende spillers...
@@ -378,29 +412,33 @@ public class FieldController {
         Player player = playerController.getPlayerFromID(playerID);
         int balance = playerController.getPlayerFromID(playerID).getBalance();
 
-        //If the field is owned by the current player, they have the choice to buy a house if they have sufficient funds
+        /*If the field is owned by the current player, they have the choice to either buy or sell house.
+        If they do not have any houses on the property, they can only buy.
+         */
         if (owner.equals(playerID)) {
-            
-            System.out.println("This field is owned by you. ");
+            System.out.println("Du ejer denne grund. ");
             Property property = (Property) street;
-            //checks if the owner has sufficient funds to buy a house
+            //Checks if the owner has sufficient funds to buy a house
             if (balance >= street.getBuildPrice() && propertyBank.canBuyHouse(playerID, property.getNeighborhood()) && street.getHousing() < 5) {
+                int nextBuildPrice = street.getBuildPrice();
+                String response = "";
 
-            int nextBuildPrice = street.getBuildPrice();
-            String response = "";
+            //Checks if the owner has houses or not. If they do, they can either buy or sell a house
             if (street.getHousing() > 0) {
-                String message = "Do you want to purchase or sell a house in this neighbourhood?";
-                response = gui.buttonRequest(message,"Buy", "Sell");
+                String message = "Ønsker du at købe eller sælge et hus i dette nabolag?";
+                response = gui.buttonRequest(message,"Køb", "Sælg");
                 }
+            //If the owner does not own any houses on the property, they can only buy a house.
             else {
                 String message = "Do you want to purchase a house on each of your properties of the same color for " + Math.abs(nextBuildPrice) * street.getGroupSize() + "?";
                 response = gui.buttonRequest( message, "Buy", "Not now");
                 }
-
-                if (response.equals("Buy")) {
+            //The player chooses to buy a house for each property in the neighbourhood
+                if (response.equals("Køb")) {
                     boolean transactionSuccess = createTransaction(playerID, null, nextBuildPrice * property.getGroupSize(), false, "Buying house for " + Math.abs(nextBuildPrice * street.getGroupSize()));
                     if (transactionSuccess) {
 
+                        //Loops through all the properties in the neighbourhood and updates them with a house each
                         for(Property propertyInGroup : propertyBank.getPropertiesFromGroup(property.getNeighborhood())){
                             propertyInGroup.buildHouse();
                             updateGUI(propertyInGroup, playerID);
@@ -408,14 +446,14 @@ public class FieldController {
                         }
                     }
                 }
-                if (response.equals("Sell")) {
+                if (response.equals("Sælg")) {
                     sellHousing(playerID, street);
                 }
             }
 
         }
         else {
-            String message = "This field is owned by someone else!";
+            String message = "Dette felt er ejet af en anden!";
             int rent = street.getRent();
             System.out.println(rent);
             String receiverID = street.getOwner();
@@ -609,12 +647,7 @@ public class FieldController {
         createTransaction(playerID, null, bill, true, message);
     }
 
-    private void payForJail(Player player){
-        boolean transactionSuccess = createTransaction(player.getId(),null,-1000,true,"Du betaler for at komme ud af fængsel");
-        if (transactionSuccess) {
-            player.setjailed(0);
-        }
-    }
+
 
     private void auction(String playerID, Property property) {
         // TODO Auction property off to highest bidder!
@@ -640,11 +673,11 @@ public class FieldController {
             // Payments to the bank
             if (amount <= 0) {
                 if (critical) {
-                    userRequest = gui.buttonRequest(message, "Pay");
+                    userRequest = gui.buttonRequest(message, "Betal");
                 }
                 else {
-                    userRequest = gui.buttonRequest(message, "Pay", "Cancel");
-                    if (userRequest.equals("Cancel")) {
+                    userRequest = gui.buttonRequest(message, "Betal", "Annuller");
+                    if (userRequest.equals("Annuller")) {
                         return false;
                     }
                 }
@@ -671,7 +704,7 @@ public class FieldController {
         }
 
         if (playerController.getPlayerFromID(playerID) == null) {
-            gui.buttonRequest("You are broke and have lost the game... ", "Ok");
+            gui.buttonRequest("Du er gået fallit og har tabt spillet... ", "Ok");
             gui.removePlayer(playerID);
         }
 
