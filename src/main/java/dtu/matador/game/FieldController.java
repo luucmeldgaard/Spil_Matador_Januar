@@ -187,18 +187,34 @@ public class FieldController {
         if (currentField instanceof Property) {
             String propertyname = ((Property) currentField).name;
             String description = ((Property) currentField).description;
+            //HUUUUGE string construction for showing in gui. Could be done with loop but theres no real reason to
+            String currentrent = "Nuværende: " + Integer.toString(((Property) currentField).getCurrentRentToShow());
+            String rent0 = "Husleje med 0 bygninger: " + Integer.toString(((Property) currentField).getRent0());
+            String rent1 = "Husleje med 1 hus: " + Integer.toString(((Property) currentField).getRent1());
+            String rent2 = "Husleje med 2 huse: " + Integer.toString(((Property) currentField).getRent2());
+            String rent3 = "Husleje med 3 huse: " + Integer.toString(((Property) currentField).getRent3());
+            String rent4 = "Husleje med 4 huse: " + Integer.toString(((Property) currentField).getRent4());
+            String rent5 = "Husleje med 1 hotel: " + Integer.toString(((Property) currentField).getRent5());
+            String boatrent1 = "Husleje med 1 båd: " + Integer.toString(((Property) currentField).getRent0());
+            String boatrent2 = "Husleje med 2 både: " + Integer.toString(((Property) currentField).getRent1());
+            String boatrent3 = "Husleje med 3 både: " + Integer.toString(((Property) currentField).getRent2());
+            String boatrent4 = "Husleje med 4 både: " + Integer.toString(((Property) currentField).getRent3());
+            String breweryrent1 = "Husleje med 1 bryggeri: " + Integer.toString(((Property) currentField).getRent0());
+            String breweryrent2 = "Husleje med 2 bryggerier: " + Integer.toString(((Property) currentField).getRent1());
+            String breweryrent3 = "Husleje med 3 bryggerier: " + Integer.toString(((Property) currentField).getRent2());
+            String breweryrent4 = "Husleje med 4 bryggerier: " + Integer.toString(((Property) currentField).getRent3());
+
             if (description == null) {
                 description = "";
             }
             if (currentField instanceof Ferry){
-                gui.displayInMiddle(propertyname,description);
+                gui.displayInMiddle(propertyname,description,boatrent1,boatrent2,boatrent3,boatrent4);
             }
             if (currentField instanceof Brewery){
-                gui.displayInMiddle(propertyname,description);
+                gui.displayInMiddle(propertyname,description,breweryrent1,breweryrent2,breweryrent3,breweryrent4);
             }
             if (currentField instanceof Street){
-                String rent = "Husleje: " + Integer.toString(((Property) currentField).getCurrentRent());
-                gui.displayInMiddle(propertyname,description,rent);
+                gui.displayInMiddle(propertyname,description,rent0,rent1,rent2,rent3,rent4,rent5,currentrent);
             }
         landOnProperty(playerID, ((Property) currentField));
         }
@@ -213,6 +229,7 @@ public class FieldController {
             landOnChance(playerID, ((Chance) currentField));
         }
         else if (currentField instanceof TaxField) {
+            gui.displayInMiddle("Skat :(");
             landOnTax(playerID, ((TaxField) currentField));
         }
         gui.displayInMiddle("");
