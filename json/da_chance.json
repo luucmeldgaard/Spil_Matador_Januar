@@ -1,7 +1,7 @@
 [
   {
     "Number": "0",
-    "Text": "Oliepriserne er steget, og De skal betale kr 500 pr hus og kr 2000 pr hotel",
+    "Text": "Oliepriserne er steget, og De skal betale 500 kr. pr. hus og 2000 kr. pr. hotel",
     "Cash added": "",
     "CashAddedPerHouse": "-500",
     "CashAddedPerHotel": "-2000",
@@ -11,12 +11,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "1",
-    "Text": "Ejendomsskatten er steget. Ekstraudgifterne er: 800 kr pr hus, 2300 kr pr hotel.",
+    "Text": "Ejendomsskatten er steget. Ekstraudgifterne er: 800 kr. pr. hus, 2300 kr. pr. hotel.",
     "Cash added": "",
     "CashAddedPerHouse": "-800",
     "CashAddedPerHotel": "-2300",
@@ -26,8 +25,8 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
+
   },
   {
     "Number": "2",
@@ -41,12 +40,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "3",
-    "Text": "Betal for vognvask og smøring kr 300",
+    "Text": "Betal 300 kr. for vognvask og smøring.",
     "Cash added": "-300",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -56,12 +54,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "4",
-    "Text": "Betal kr 200 for levering af 2 kasser øl",
+    "Text": "Betal 200 kr. for levering af 2 kasser øl",
     "Cash added": "-200",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -71,12 +68,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "5",
-    "Text": "Betal 3000 for reparation af deres vogn",
+    "Text": "Betal 3000 kroner for reparation af deres vogn,",
     "Cash added": "-3000",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -86,12 +82,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "6",
-    "Text": "Betal 3000 for reparation af deres vogn",
+    "Text": "Betal 3000 kroner for reparation af deres vogn,",
     "Cash added": "-3000",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -101,12 +96,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "7",
-    "Text": "De har købt 4 nye dæk til Deres vogn, betal kr 1000",
+    "Text": "De har købt 4 nye dæk til Deres vogn, betal 1000 kr.",
     "Cash added": "-1000",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -116,12 +110,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "8",
-    "Text": "De har fået en parkeringsbøde, betal kr 200 i bøde",
+    "Text": "De har fået en parkeringsbøde, betal 200 kr. i bøde",
     "Cash added": "-200",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -131,12 +124,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "9",
-    "Text": "Betal deres bilforsikring, kr 1000",
+    "Text": "Betal 1000 kr. for deres bilforsikring.",
     "Cash added": "-1000",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -146,12 +138,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "10",
-    "Text": "De har været udenlands og købt for mange smøger, betal kr 200 i told.",
+    "Text": "De har været udenlands og købt for mange smøger, betal 200 kr. i told.",
     "Cash added": "-200",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -161,12 +152,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "11",
-    "Text": "Tandlægeregning, betal kr 2000.",
+    "Text": "Tandlægeregning, betal 2000 kr.",
     "Cash added": "-2000",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -176,8 +166,7 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "12",
@@ -191,8 +180,7 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "13",
@@ -206,12 +194,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "14",
-    "Text": "De modtager Deres aktieudbytte. Modtag kr 1000 af banken",
+    "Text": "De modtager deres aktieudbytte. Modtag 1000 kr. af banken.",
     "Cash added": "1000",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -221,12 +208,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "15",
-    "Text": "De modtager Deres aktieudbytte. Modtag kr 1000 af banken",
+    "Text": "De modtager deres aktieudbytte. Modtag 1000 kr. af banken.",
     "Cash added": "1000",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -236,12 +222,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "16",
-    "Text": "De modtager Deres aktieudbytte. Modtag kr 1000 af banken",
+    "Text": "De modtager Deres aktieudbytte. Modtag 1000 kr. af banken.",
     "Cash added": "1000",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -251,8 +236,7 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "17",
@@ -266,12 +250,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "18",
-    "Text": "De have en række med elleve rigtige i tipning, modtag kl 1000",
+    "Text": "De have en række med elleve rigtige i tipning, modtag 1000 kroner.",
     "Cash added": "1000",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -281,12 +264,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "19",
-    "Text": "Grundet dyrtiden har De fået gageforhøjelse, modtag kr 1000.",
+    "Text": "Grundet dyrtiden har De fået gageforhøjelse, modtag 1000 kr.",
     "Cash added": "1000",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -296,12 +278,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "20",
-    "Text": "Deres præmieobligation er udtrykket. De modtager 1000 kr af banken.",
+    "Text": "Deres præmieobligation er udtrykket. De modtager 1000 kr. af banken.",
     "Cash added": "1000",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -311,12 +292,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "21",
-    "Text": "Deres præmieobligation er udtrykket. De modtager 1000 kr af banken.",
+    "Text": "Deres præmieobligation er udtrykket. De modtager 1000 kr. af banken.",
     "Cash added": "1000",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -326,12 +306,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "22",
-    "Text": "De har solg nogle gamle møbler på auktion. Modtag 1000 kr af banken.",
+    "Text": "De har solgt nogle gamle møbler på auktion. Modtag 1000 kr. af banken.",
     "Cash added": "1000",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -341,12 +320,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "23",
-    "Text": "Værdien af egen avl fra nyttehaven udgør 200 som de modtager af banken",
+    "Text": "Værdien af egen avl fra nyttehaven udgør 200 kr. som de modtager af banken",
     "Cash added": "200",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -356,12 +334,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "24",
-    "Text": "De modtager “Matador-legatet” på kr 40.000, men kun hvis værdier ikke overstiger 15.000 kr",
+    "Text": "De modtager “Matador-legatet” på kr 40.000, men kun hvis dine værdier ikke overstiger 15.000 kr.",
     "Cash added": "40000",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -371,8 +348,7 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "15000",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "25",
@@ -386,8 +362,7 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "26",
@@ -401,8 +376,7 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "27",
@@ -416,12 +390,11 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "28",
-    "Text": "Ryk frem til START",
+    "Text": "Ryk frem til START.",
     "Cash added": "",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -429,14 +402,13 @@
     "MoveBy": "",
     "MoveToType": "",
     "MoveTo": "0",
-    "PayIfCrossStart": "0",
+    "PayIfCrossStart": "1",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
   },
   {
     "Number": "29",
-    "Text": "Ryk frem til START",
+    "Text": "Ryk frem til START.",
     "Cash added": "",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -444,14 +416,14 @@
     "MoveBy": "",
     "MoveToType": "",
     "MoveTo": "0",
-    "PayIfCrossStart": "0",
+    "PayIfCrossStart": "1",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
+
   },
   {
     "Number": "30",
-    "Text": "Ryk tre felter frem",
+    "Text": "Ryk tre felter frem.",
     "Cash added": "",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -461,12 +433,12 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
+
   },
   {
     "Number": "31",
-    "Text": "Ryk tre felter tilbage",
+    "Text": "Ryk tre felter tilbage.",
     "Cash added": "",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -476,12 +448,12 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
+
   },
   {
     "Number": "32",
-    "Text": "Ryk tre felter tilbage",
+    "Text": "Ryk tre felter tilbage.",
     "Cash added": "",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -491,12 +463,12 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
+
   },
   {
     "Number": "33",
-    "Text": "Ryk frem til Frederiksberg Allé. Hvis De passere START, indkasser da 4000 kr.",
+    "Text": "Ryk frem til Frederiksberg Allé. Hvis De passerer START, indkasser da 4000 kr.",
     "Cash added": "",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -504,10 +476,10 @@
     "MoveBy": "",
     "MoveToType": "",
     "MoveTo": "11",
-    "PayIfCrossStart": "0",
+    "PayIfCrossStart": "1",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
+
   },
   {
     "Number": "34",
@@ -521,8 +493,8 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "2",
-    "JailFreeCard": "0"
+    "RentMultiplier": "2"
+
   },
   {
     "Number": "35",
@@ -536,12 +508,12 @@
     "MoveTo": "",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "2",
-    "JailFreeCard": "0"
+    "RentMultiplier": "2"
+
   },
   {
     "Number": "36",
-    "Text": "Tag med Mols-Linien, flyt brikken frem og hvis De passerer START indkassér da kr 4000.",
+    "Text": "Tag med Mols-Linien, flyt brikken frem og hvis De passerer START indkassér da 4000 kr.",
     "Cash added": "",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -549,14 +521,14 @@
     "MoveBy": "",
     "MoveToType": "",
     "MoveTo": "15",
-    "PayIfCrossStart": "0",
+    "PayIfCrossStart": "1",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
+
   },
   {
     "Number": "37",
-    "Text": "Ryk frem til Grønningen, hvis De passerer start indkasser da kr 4000",
+    "Text": "Ryk frem til Grønningen, hvis De passerer start indkassér da 4000 kr.",
     "Cash added": "",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -564,14 +536,14 @@
     "MoveBy": "",
     "MoveToType": "",
     "MoveTo": "24",
-    "PayIfCrossStart": "0",
+    "PayIfCrossStart": "1",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
+
   },
   {
     "Number": "38",
-    "Text": "Ryk frem til Vimmelskaftet, hvis de passerer start indkasser da kr 4000",
+    "Text": "Ryk frem til Vimmelskaftet, hvis de passerer start indkassér da 4000 kr.",
     "Cash added": "",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -579,14 +551,14 @@
     "MoveBy": "",
     "MoveToType": "",
     "MoveTo": "32",
-    "PayIfCrossStart": "0",
+    "PayIfCrossStart": "1",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
+
   },
   {
     "Number": "39",
-    "Text": "Tag med den nærmeste færge, hvis de passerer start indkasser da kr 4000",
+    "Text": "Tag med den nærmeste færge, hvis de passerer start indkassér da 4000 kr.",
     "Cash added": "",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -594,14 +566,14 @@
     "MoveBy": "",
     "MoveToType": "ferry",
     "MoveTo": "",
-    "PayIfCrossStart": "0",
+    "PayIfCrossStart": "1",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
+
   },
   {
     "Number": "40",
-    "Text": "Ryk frem til Strandvejen. Hvis De passere START, indkasser da 4000 kr.",
+    "Text": "Ryk frem til Strandvejen. Hvis De passere START, indkassér da 4000 kr.",
     "Cash added": "",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -609,14 +581,14 @@
     "MoveBy": "",
     "MoveToType": "",
     "MoveTo": "19",
-    "PayIfCrossStart": "0",
+    "PayIfCrossStart": "1",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
+
   },
   {
     "Number": "41",
-    "Text": "Tag til Rådhuspladsen",
+    "Text": "Tag til Rådhuspladsen.",
     "Cash added": "",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -626,8 +598,8 @@
     "MoveTo": "39",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
+
   },
   {
     "Number": "42",
@@ -661,7 +633,7 @@
   },
   {
     "Number": "44",
-    "Text": "Gå i fængsel, De indkasserer ikke 4000 kr for at passere start.",
+    "Text": "Gå i fængsel, De indkassérer ikke 4000 kr. for at passere start.",
     "Cash added": "",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -671,12 +643,12 @@
     "MoveTo": "30",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
+
   },
   {
     "Number": "45",
-    "Text": "Gå i fængsel, De indkasserer ikke 4000 kr for at passere start.",
+    "Text": "Gå i fængsel, De indkasserer ikke 4000 kr. for at passere start.",
     "Cash added": "",
     "CashAddedPerHouse": "",
     "CashAddedPerHotel": "",
@@ -686,7 +658,7 @@
     "MoveTo": "30",
     "PayIfCrossStart": "0",
     "Condition": "",
-    "RentMultiplier": "",
-    "JailFreeCard": "0"
+    "RentMultiplier": ""
+
   }
 ]

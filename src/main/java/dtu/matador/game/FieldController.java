@@ -384,6 +384,8 @@ public class FieldController {
 
         if (owner.equals(playerID)) {
             System.out.println("Du ejer dette rederi. ");
+        }
+        else {
         } else {
             //TODO den nedenstående variable skal ændres således at den ser på ejerens ferries og ikke den nuværende spillers...
             int ferriesOwned = 0;
@@ -526,6 +528,7 @@ public class FieldController {
             if (key.equals("condition") && rawCard.get(key).equals("1")) {
                 System.out.println("Condition");
                 condition = true;
+
             }
             if (key.equals("RentMultiplier") && !rawCard.get(key).equals("")) {
                 System.out.println("RentMultiplier");
@@ -586,6 +589,7 @@ public class FieldController {
                 case "MoveBy" -> {
                     System.out.println("MoveBy");
                     int moveBy = Integer.parseInt(card.get(key));
+                    gui.buttonRequest(message, "Ok");
                     int currentPosition = playerController.getPlayerFromID(playerID).getPosition();
                     if (moveBy < 0) {
                         moveBy += 40;
@@ -652,6 +656,8 @@ public class FieldController {
                 }
                 case "MoveTo" -> {
                     System.out.println("MoveTo");
+                    int cardPosition  = Integer.parseInt(card.get(key));
+                    gui.buttonRequest(message, "Ok");
                     int cardPosition = Integer.parseInt(card.get(key));
                     int startPlayerPosition = player.getPosition();
                     player.setPosition(cardPosition);
@@ -660,6 +666,7 @@ public class FieldController {
                 }
                 case "JailFreeCard" -> {
                     System.out.println("JailFreeCard");
+                    gui.buttonRequest(message, "Ok");
                     player.addJailCard();
                 }
             }

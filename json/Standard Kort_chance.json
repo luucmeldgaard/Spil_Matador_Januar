@@ -429,7 +429,7 @@
     "MoveBy": "",
     "MoveToType": "",
     "MoveTo": "0",
-    "PayIfCrossStart": "0",
+    "PayIfCrossStart": "1",
     "Condition": "",
     "RentMultiplier": "",
     "JailFreeCard": "0"
@@ -444,7 +444,7 @@
     "MoveBy": "",
     "MoveToType": "",
     "MoveTo": "0",
-    "PayIfCrossStart": "0",
+    "PayIfCrossStart": "1",
     "Condition": "",
     "RentMultiplier": "",
     "JailFreeCard": "0"
