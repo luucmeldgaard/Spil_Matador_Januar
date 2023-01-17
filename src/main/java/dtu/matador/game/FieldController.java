@@ -536,6 +536,7 @@ public class FieldController {
         for (String key : card.keySet()) {
             System.out.println(key + ": " + card.get(key));
             String message = card.get("Text");
+            gui.displayInMiddle(message);
             switch (key) {
                 case "Cash added" -> {
                     System.out.println("Cash added");
