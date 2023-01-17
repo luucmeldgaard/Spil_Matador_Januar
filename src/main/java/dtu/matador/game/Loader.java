@@ -11,8 +11,6 @@ import java.io.*;
 import java.util.*;
 
 public class Loader {
-
-
     ArrayList<String> boardFiles;
     ArrayList<String> colorFiles;
     ArrayList<String> chanceFiles;
@@ -23,6 +21,7 @@ public class Loader {
     ArrayList<Map<String, String>> playersList;
 
     public Loader(int loadGame) {
+        generateFolderStructure();
         if (loadGame == 0) {
             this.settings = JSONtoMap("settings.json", "settings");
             this.boardFiles = getAllFilesOfType("board");
@@ -34,6 +33,23 @@ public class Loader {
             this.playersList = new ArrayList<>();
         }
         else { loadFromExistingGame(loadGame); }
+    }
+
+    public void generateFolderStructure() {
+        String[] paths = new String[] {"./json/Saved Games/1", "./json/Saved Games/2", "./json/Saved Games/3", "./json/Saved Games/4", "./json/Saved Games/5"};
+        for (String path : paths) {
+            File file = new File(path);
+            if (!file.exists()) {
+                System.out.println(path + " doesn't exist");
+                if (file.mkdirs()) {
+                    System.out.println(path + " Folder was created");
+                } else {
+                    System.out.println("A problem occurred while creating directory. ");
+                }
+            } else {
+                System.out.println(path + " already exists");
+            }
+        }
     }
 
     public ArrayList<String> getAllFilesOfType(String SnakeCaseSuffix) {
