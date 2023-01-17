@@ -27,15 +27,17 @@ public class Street extends Property {
         return -currentRent(this.housing);
     }
 
-    //Gets the buildPrice of a house on the specific street and substracts it from the player choosing to buy a house
+    //Gets the buildPrice of a house on the specific street and subtracts it from the player choosing to buy a house
     public int getBuildPrice(){
         return -this.buildPrice;
     }
 
+    //Gets the amount of houses a player owns
     public int getHousing() {
         return this.housing;
     }
 
+    //Sets the amount of houses a player owns
     public void setHousing(int amount) {
         this.housing = amount;
     }
