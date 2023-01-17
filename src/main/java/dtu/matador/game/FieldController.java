@@ -308,7 +308,7 @@ public class FieldController {
             }
         } else if (player.getjailed() == 4) {
             payForJail(player);
-            gui.buttonRequest("Efter at have betalt 1000kr kommer du endelig ud. Slå med terningerne", "Slå");
+            gui.buttonRequest("Efter at have betalt 1000 kr. kommer du endelig ud. Slå med terningerne", "Slå");
             int[] rolls = player.rollDie();
             int oldpos = player.getjailed();
             player.movePosition(rolls[2]);
@@ -337,7 +337,7 @@ public class FieldController {
         Player player = playerController.getPlayerFromID(playerID);
         if (owner == null) {
             System.out.println("This field is not owned by anyone!");
-            String choice = gui.buttonRequest("Køb eller auktionér?", "Køb", "Auktion");
+            String choice = gui.buttonRequest("Køb eller sæt på auktion?", "Køb", "Auktion");
             if (choice.equals("Køb")) {
 
                 String message = property.buyMessage() + " for " + Math.abs(property.getPrice()) + " kroner?";
