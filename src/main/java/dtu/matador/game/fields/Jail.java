@@ -26,13 +26,14 @@ public class Jail extends NonPurchasableFields {
 
     }
 
+    //
     public void setInstanceOfJail() {
         if (InstanceOfJail == 0) {
             firstJailInstancePosition = this.getPosition();
         }
         this.jailInstance = InstanceOfJail;
         InstanceOfJail += 1;
-        System.out.println("INSTANCE OF JAIL: " + this.jailInstance);
+        System.out.println("Instans af fængsel: " + this.jailInstance);
     }
 
     public int getInstanceOfJail() {
