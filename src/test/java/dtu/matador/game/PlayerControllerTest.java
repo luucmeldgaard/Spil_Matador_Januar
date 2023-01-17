@@ -6,7 +6,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class PlayerControllerTest {
+
+    private ArrayList<Player> players = new ArrayList<>();
+    private ArrayList<String> removedPlayers = new ArrayList<>();
 
     @Test
     public void testHandleTransactionPositiveForTarget() {
@@ -69,5 +74,30 @@ public class PlayerControllerTest {
         assertNull(playerController.getPlayerFromName(targetPlayerName));
         assertEquals(5000 + targetPlayerActualBalance, beneficiary.getBalance());
     }
+    
+    @Test
+    public void removesPlayerFromTheGame(String playerID) {
+        PlayerController playerController = new PlayerController();
+        Player player = getPlayerFromID(playerID);
+        removedPlayers.add(player.getId());
+        players.remove(player);
+    }
 
+    @Test
+    private Player getPlayerFromID(String playerID) {
+        for (Player player : players) {
+            String id = player.getId();
+            if (id.equals(playerID)) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+    public void addsAPlayerToTheGame() {
+        String name = "haidar";
+
+        Player player = new Player(name, chosenColor, position, balance);
+        this.players.add(player);
+    }
 }
