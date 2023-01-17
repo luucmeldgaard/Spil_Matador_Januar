@@ -93,6 +93,10 @@ public class PlayerController {
         }
     }
 
+    public void snapshotOfPlayers() {
+
+    }
+
 
 
     public void reset() {
