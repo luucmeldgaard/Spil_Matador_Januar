@@ -113,7 +113,7 @@ public class GameController {
             String name = gui.getNameFromInput();
             System.out.println("Select player color");
             String chosenColor = gui.colorDropDownList();
-            playerController.addPlayer(name, chosenColor, 0, 50000);
+            playerController.addPlayer(name, chosenColor, 0, 30000);
         }
         for (String id : playerController.getAllPlayerIDs()) {
             Player player = playerController.getPlayerFromID(id);
