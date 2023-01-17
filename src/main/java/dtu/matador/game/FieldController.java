@@ -316,7 +316,7 @@ public class FieldController {
             String choice = gui.buttonRequest("Køb eller auktionér?", "Køb", "Auktionér");
             if (choice.equals("Køb")) {
 
-                String message = property.buyMessage() + " for " + property.getPrice() + " kroner?";
+                String message = property.buyMessage() + " for " + Math.abs(property.getPrice()) + " kroner?";
                 boolean purchase = createTransaction(playerID,null, property.getPrice(), false, message);
                 if (purchase) {
                     property.setOwner(playerID);
