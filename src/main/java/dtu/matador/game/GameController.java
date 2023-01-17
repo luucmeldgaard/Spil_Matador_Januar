@@ -147,13 +147,13 @@ public class GameController {
     }
 
     private static void bonusMenuHandler(Player player) {
-        String response = gui.dropDownList("Vælg en action fra menuen", "Tilbage", "Snydekoder", "Lav byttehandel", "Gem Spil", "Sælg boliger", "Giv Op");
+        String response = gui.dropDownList("Vælg en action fra menuen", "Tilbage", "Snydekoder", "Lav byttehandel", "Gem Spil", "Sælg bolig(er)", "Giv Op");
         switch (response) {
             case "Tilbage" -> { playRound(player); }
             case "Snydekoder" -> { cheatMenu(player); }
             case "Lav byttehandel" -> {}
             case "Gem Spil" -> { saveGame(player); }
-            case "Sælg bolig(er)" -> {}
+            case "Sælg bolig(er)" -> { sellAnyHousingSelector(player); }
             case "Giv Op" -> {
                 ArrayList<String> allPlayerIDs = playerController.getAllPlayerIDs();
                 if (allPlayerIDs.size() == 1) {
@@ -208,8 +208,8 @@ public class GameController {
             case "Flyt til felt" -> {
                 ArrayList<String> allFieldNames = board.lookUpFieldStringValues("title");
                 String[] allFieldNamesStringArray = allFieldNames.toArray(new String[0]);
-                response = gui.dropDownList("Væg et felt", allFieldNamesStringArray);
-                System.out.println("felt valgt: " + response);
+                response = gui.dropDownList("Vælg et felt", allFieldNamesStringArray);
+                System.out.println("Felt valgt: " + response);
                 ArrayList<String> fieldPositionAsArray = board.lookUpFieldStringValues(null, "title", response, "position");
                 int fieldPosition = Integer.parseInt(fieldPositionAsArray.get(0));
                 System.out.println("Felt position: " + fieldPosition);
@@ -218,8 +218,8 @@ public class GameController {
             }
             case "Sæt næste terningslag" -> {
                 String[] dieFaces = new String[]{"1", "2", "3", "4", "5", "6"};
-                int die1 = Integer.parseInt(gui.dropDownList("Choose first die", dieFaces));
-                int die2 = Integer.parseInt(gui.dropDownList("Choose first die", dieFaces));
+                int die1 = Integer.parseInt(gui.dropDownList("Sæt første terning", dieFaces));
+                int die2 = Integer.parseInt(gui.dropDownList("Sæt den anden terning", dieFaces));
                 int[] setDieValues = new int[]{die1, die2, die1+die2};
                 player.setLastPlayedDieRoll(setDieValues);
                 movePlayer(player, currentPosition, setDieValues, true);
@@ -282,6 +282,24 @@ public class GameController {
             }
         }
     }
+
+    private static void sellAnyHousingSelector(Player player) {
+        String response;
+        ArrayList<String> allPlayerOwnedHousing = board.getPlayerOwnedHousing(player.getId());
+        String[] allPlayerOwnedFieldsList = allPlayerOwnedHousing.toArray(new String[0]);
+        if (allPlayerOwnedHousing.size()  == 0) {
+            gui.buttonRequest("Du ejer ingen huse. ", "Ok");
+            bonusMenuHandler(player);
+            return;
+        }
+        response = gui.dropDownList("Vælg en ejendom fra det nabolag, hvor du ønsker at sælge huse", allPlayerOwnedFieldsList);
+        System.out.println("felt valgt: " + response);
+        boolean confirmation = board.sellHousing(player.getId(), response);
+        if (!confirmation) {
+            bonusMenuHandler(player);
+        }
+    }
+
 
     private static void saveGame(Player player) {
         String[] saveLocations = new String[] {"Annuller", "1", "2", "3", "4", "5"};

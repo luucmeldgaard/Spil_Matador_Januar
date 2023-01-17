@@ -780,9 +780,9 @@ public class FieldController {
         }
     }
 
-    public void sellHousing(String playerID, Street street){
+    public boolean sellHousing(String playerID, Street street){
         if (street.getHousing() > 0) {
-            String sale = gui.buttonRequest("Vil du sælge dette hus?", "Ja" , "Nej");
+            String sale = gui.buttonRequest("Vil du sælge et hus på hver ejendom i denne farvegruppe?", "Ja" , "Nej");
             Player player = playerController.getPlayerFromID(playerID);
             if (sale.equals("Ja")){
                 int sellPrice = 0;
@@ -795,8 +795,56 @@ public class FieldController {
                 }
                 createTransaction(playerID, null, -sellPrice, false, "Du har solgt ét hus på hver ejendom i området. Modtag " + Math.abs(sellPrice) + " kroner.");
             }
+            else { return false; }
 
         }
+        return true;
+    }
+
+    public boolean sellHousing(String playerID, String streetName){
+
+        ArrayList<FieldSpaces> streetMatchList = lookUpFields(null, "title", streetName);
+        if (streetMatchList.size() < 1) {
+            gui.buttonRequest("Noget gik galt", "Fortsæt");
+            return false;
+        }
+
+        Street street = (Street) streetMatchList.get(0);
+
+        if (street.getHousing() > 0) {
+            String sale = gui.buttonRequest("Vil du sælge et hus på hver ejendom i denne farvegruppe?", "Ja" , "Nej");
+            Player player = playerController.getPlayerFromID(playerID);
+            if (sale.equals("Ja")){
+                int sellPrice = 0;
+                for (Property propertyInGroup : propertyBank.getPropertiesFromGroup(street.getNeighborhood())) {
+                    sellPrice += street.getPrice() * 0.5;
+                    Street streetInGroup = (Street) propertyInGroup;
+                    streetInGroup.setHousing(streetInGroup.getHousing() - 1);
+                    updateFieldMap(propertyInGroup);
+                    updateGUI(propertyInGroup, playerID);
+                }
+                createTransaction(playerID, null, -sellPrice, false, "Du har solgt ét hus på hver ejendom i området. Modtag " + Math.abs(sellPrice) + " kroner.");
+            }
+            else { return false; }
+
+        }
+        return true;
+    }
+
+    protected ArrayList<String> getPlayerOwnedHousing(String playerID) {
+        ArrayList<String> playerOwnedHousing = new ArrayList<>();
+        for (ArrayList<Property> propertyList : propertyBank.getPropertyMap().values()) {
+            for (Property property : propertyList) {
+                if (property instanceof Street) {
+                    if (property.getOwner() != null) {
+                        if (property.getOwner().equals(playerID) && ((Street) property).getHousing() > 0) {
+                            playerOwnedHousing.add(property.getName());
+                        }
+                    }
+                }
+            }
+        }
+        return playerOwnedHousing;
     }
 
     protected void updateGUI(Property property, String playerID) {
