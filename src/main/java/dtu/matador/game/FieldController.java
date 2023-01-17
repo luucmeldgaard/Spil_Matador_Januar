@@ -337,7 +337,6 @@ public class FieldController {
                     }
                 }
             } else if (choice.equals("Auktion")) {
-                gui.buttonRequest("Du har ikke råd. ", "Ok");
                 auction(playerID, property);
             }
 
