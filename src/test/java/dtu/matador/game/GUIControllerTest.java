@@ -9,7 +9,7 @@ public class GUIControllerTest {
 
     @Test
     public void loadGUI() {
-        Loader loader = new Loader("test_FieldData");
+        Loader loader = new Loader(0);
         ArrayList<Map<String, String>> fieldList;
         fieldList = loader.getBoardList();
         GUIController gui = new GUIController();
@@ -18,7 +18,7 @@ public class GUIControllerTest {
 
     @Test
     public void addNewPlayerToBoard() throws InterruptedException {
-        Loader loader = new Loader("test_FieldData");
+        Loader loader = new Loader(0);
         ArrayList<Map<String, String>> fieldList;
         fieldList = loader.getBoardList();
         GUIController gui = new GUIController();

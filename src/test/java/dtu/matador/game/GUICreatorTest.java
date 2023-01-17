@@ -18,7 +18,7 @@ public class GUICreatorTest {
     @Test
     public void guiFieldsCreated() {
         GUICreator guiCreator = new GUICreator();
-        Loader loader = new Loader("test_FieldData");
+        Loader loader = new Loader(0);
         ArrayList<Map<String, String>> fieldMap;
         fieldMap = loader.getBoardList();
         guiCreator.setup(fieldMap);
